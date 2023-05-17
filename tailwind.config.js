@@ -184,7 +184,7 @@ module.exports = {
       'full':'9999px'
     },
     fontFamily:{
-      main:['Ubuntu','sans-serif']
+      main:['Montserrat','sans-serif']
     },
     container:{
       center:true,
@@ -192,8 +192,11 @@ module.exports = {
 
     extend:{
       colors:{
-        dark:'#1c181f',
-        light:'#fff'
+        'primary-dark-1':'#313a46',
+        'primary-dark-2':'rgba(108,117,125,1)',
+        'primary-light-1':'#ffffff',
+        'secondary-light-1':'#bccee4',
+        'secondary-light-2':'#fafbfe'
       }
     }
   },
@@ -209,13 +212,11 @@ module.exports = {
         'h1,h2,h3,h4,h5,h6':{
           lineHeight:'1.5',
           fontWeight:'500',
-          color:'#333'
         },
         'p,span,a':{
           fontSize:'0.9rem',
           fontWeight:'500',
           lineHeight:'1.6',
-          color:'#333'
         }
       })
     })
