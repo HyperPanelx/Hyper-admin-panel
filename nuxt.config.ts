@@ -1,11 +1,15 @@
 
 // https://res.cloudinary.com/dhpxutwun/image/upload/v1684354705/hyper/logo-lg_hqn9rt.png
+/// <nuxt-img provider="cloudinary" src="v1684354705/hyper/logo-lg_hqn9rt.png"/>-->
+
+
 export default defineNuxtConfig({
     image:{
         cloudinary:{
             baseURL:'https://res.cloudinary.com/dhpxutwun/image/upload/'
         }
     },
+    // @ts-ignore
     postcss:{
         plugins: {
             'postcss-import': {},
@@ -41,6 +45,10 @@ export default defineNuxtConfig({
     },
     srcDir: './src',
     modules: [
-        '@pinia/nuxt','@nuxt/image-edge'
+        '@pinia/nuxt','@nuxt/image-edge','@nuxtjs/tailwindcss','@formkit/nuxt'
     ],
+    formkit:{
+        defaultConfig:false,
+        configFile:'./formkit.config.ts'
+    }
 })

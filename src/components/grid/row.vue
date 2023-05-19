@@ -1,5 +1,5 @@
 <template>
-  <div v-bind="$attrs" class="row flex flex-wrap"><slot/></div>
+  <div v-bind="$attrs" class="row"><slot/></div>
 </template>
 
 <script>
@@ -21,6 +21,8 @@ export default {
   .row{
     column-gap: v-bind(columnGaps);
     row-gap: v-bind(rowGaps);
+    display: flex;
+    flex-wrap: wrap;
   }
 }
 

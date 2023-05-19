@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 import type { Config } from 'tailwindcss'
+import colors from './colors'
 const plugin = require('tailwindcss/plugin')
 
 
@@ -192,13 +193,7 @@ module.exports = {
     },
 
     extend:{
-      colors:{
-        'primary-dark-1':'#313a46',
-        'primary-dark-2':'rgba(108,117,125,1)',
-        'primary-light-1':'#ffffff',
-        'secondary-light-1':'#bccee4',
-        'secondary-light-2':'#fafbfe'
-      }
+      colors
     }
   },
   plugins: [

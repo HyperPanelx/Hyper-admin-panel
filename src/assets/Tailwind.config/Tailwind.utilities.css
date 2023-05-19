@@ -1,5 +1,6 @@
 @tailwind utilities;
 @layer utilities {
+
   .col-1{
     width:  calc((1 * 100%) / 12);
   }
@@ -36,6 +37,5 @@
   .col-12{
     width: 100% ;
   }
-
 
 }
