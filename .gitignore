@@ -1,5 +1,4 @@
 node_modules
-images
 *.log*
 .nuxt
 .nitro
@@ -7,3 +6,4 @@ images
 .output
 .env
 dist
+.DS_Store

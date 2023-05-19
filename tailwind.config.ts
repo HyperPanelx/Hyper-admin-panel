@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+import type { Config } from 'tailwindcss'
 const plugin = require('tailwindcss/plugin')
 
 
@@ -201,7 +202,7 @@ module.exports = {
     }
   },
   plugins: [
-    plugin(function ({addBase}) {
+    plugin(function ({addBase}:any) {
       addBase({
         '*':{
           fontFamily:'theme(fontFamily.main)'

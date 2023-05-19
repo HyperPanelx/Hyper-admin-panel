@@ -2,9 +2,9 @@
 // https://res.cloudinary.com/dhpxutwun/image/upload/v1684354705/hyper/logo-lg_hqn9rt.png
 export default defineNuxtConfig({
     image:{
-      cloudinary:{
-          baseURL:'https://res.cloudinary.com/dhpxutwun/image/upload/'
-      }
+        cloudinary:{
+            baseURL:'https://res.cloudinary.com/dhpxutwun/image/upload/'
+        }
     },
     postcss:{
         plugins: {
