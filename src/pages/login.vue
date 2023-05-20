@@ -2,10 +2,10 @@
   login page
 </template>
 
-<script>
-export default {
-  name: "login"
-}
+<script setup lang="ts">
+definePageMeta({layout:false,name:'LOGIN'})
+
+
 </script>
 
 <style scoped>

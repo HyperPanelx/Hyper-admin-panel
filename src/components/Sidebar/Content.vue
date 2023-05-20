@@ -3,7 +3,7 @@
     <p v-if="windowWidth>500 ? !sidebarCollapseFlag : true" class="text-primary-dark-2 font-500 uppercase text-0.8">
       Navigation
     </p>
-    <ul class="mt-2">
+    <ul class="mt-2 mb-1">
       <template v-if="sidebarCollapseFlag && windowWidth>500">
         <li v-for="item in sidebarItemData" class="sidebar-item-collapse group">
           <NuxtLink active-class="active" :to="{name:item.page}" class="sidebar-item-link sidebar-item-link-collapse">
