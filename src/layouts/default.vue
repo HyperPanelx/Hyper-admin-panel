@@ -1,17 +1,16 @@
 <template>
   <main id="content-wrapper">
     <LayoutSidebar />
-    <section id="main-content">
+    <section id="main-content" :class="{'v-shrink':sidebarCollapseFlag,'v-grow':!sidebarCollapseFlag}">
       <LayoutNavbar />
       <slot />
     </section>
   </main>
 </template>
 
-<script>
-export default {
-  name: "default"
-}
+<script setup lang="ts">
+const {sidebarCollapseFlag}=useStates()
+
 </script>
 
 <style scoped lang="css">

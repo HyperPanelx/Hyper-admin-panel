@@ -4,8 +4,9 @@
 
 
 export default defineNuxtConfig({
+    // @ts-ignore
     nuxtIcon: {
-        size: '24px', // default <Icon> size applied
+        size: '30px', // default <Icon> size applied
         class: 'v-icon', // default <Icon> class applied
         aliases: {
             'nuxt': 'logos:nuxt-icon',

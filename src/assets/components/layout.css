@@ -1,6 +1,17 @@
 @tailwind components;
 @layer components {
     #content-wrapper{
-        @apply grid grid-cols-[260px_1fr]
+        @apply   relative
     }
+    #main-content{
+        @apply sm:ml-[260px]  transition-all
+    }
+
+    #main-content.v-shrink{
+        @apply sm:!ml-[70px]
+    }
+    #main-content.v-grow{
+        @apply sm:!ml-[260px]
+    }
+
 }

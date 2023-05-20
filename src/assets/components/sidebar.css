@@ -1,0 +1,17 @@
+@tailwind components;
+@layer components {
+    .sidebar{
+        @apply transition-all duration-[350ms] ease-in-out absolute sm:w-[260px]  top-0 sm:!left-0 w-[260px] left-[-260px] z-[50]
+    }
+    .sidebar.v-shrink{
+        @apply sm:!w-[70px] left-[0px]
+    }
+    .sidebar.v-grow{
+        @apply sm:!w-[260px]
+    }
+    .backdrop-shadow{
+        @apply bg-[rgba(0,0,0,0.2)] fixed top-0 left-0 w-[100vw] h-[100vh]
+    }
+
+
+}
