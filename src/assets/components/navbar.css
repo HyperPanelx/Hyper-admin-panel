@@ -1,0 +1,7 @@
+@tailwind components;
+
+@layer components {
+    .navbar{
+        @apply fixed top-0 w-full h-[70px] bg-primary-light-1 shadow-[0_0_30px_rgba(0,0,0,0.1)]
+    }
+}

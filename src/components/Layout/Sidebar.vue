@@ -1,20 +1,13 @@
 <template>
-  <aside :class="{'v-shrink':sidebarCollapseFlag,'v-grow':!sidebarCollapseFlag}" class="sidebar bg-red-600 h-[200px]">
-    sidebar
-    <Icon @click="closeSidebar" size="2rem" class="cursor-pointer sm:!hidden" name="ci:close-small" color="black"/>
-
-
-
-
+  <aside :class="{'v-shrink ':sidebarCollapseFlag,'v-grow':!sidebarCollapseFlag,'p-0':windowWidth>500 && sidebarCollapseFlag}" class="sidebar ">
+   <SidebarBrand />
+   <SidebarContent />
   </aside>
   <VShadow class="sm:hidden" v-model="sidebarCollapseFlag"/>
 </template>
 
 <script setup lang="ts">
-const {sidebarCollapseFlag}=useStates()
-const closeSidebar = () => {
-  sidebarCollapseFlag.value=false
-}
+const {sidebarCollapseFlag,windowWidth}=useStates()
 
 </script>
 

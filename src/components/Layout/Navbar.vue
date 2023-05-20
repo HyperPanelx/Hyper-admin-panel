@@ -1,5 +1,5 @@
 <template>
-  <nav>
+  <nav class="navbar">
     <Icon @click="collapseSidebar" size="2rem" class="cursor-pointer" name="fluent-mdl2:align-justify" color="black" />
     navbar
   </nav>

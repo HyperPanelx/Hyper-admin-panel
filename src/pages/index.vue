@@ -1,11 +1,9 @@
 <template>
-    index
+    <NuxtPage></NuxtPage>
 </template>
 
-<script>
-export default {
-  name: "index"
-}
+<script lang="ts" setup>
+definePageMeta({redirect:{name:'DASHBOARD'}})
 </script>
 
 <style scoped>

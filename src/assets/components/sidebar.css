@@ -1,10 +1,38 @@
 @tailwind components;
 @layer components {
     .sidebar{
-        @apply transition-all duration-[350ms] ease-in-out absolute sm:w-[260px]  top-0 sm:!left-0 w-[260px] left-[-260px] z-[50]
+        @apply transition-all duration-[350ms] ease-in-out fixed sm:w-[260px]  top-0 sm:!left-0 w-[260px] left-[-260px] z-[50] h-[100vh] bg-primary-dark-1 p-1
+    }
+    .sidebar-brand{
+        @apply flex  items-center md:justify-center justify-between
+    }
+    .sidebar-brand-image{
+        @apply sm:w-[40px] w-[30px];
+    }
+    .sidebar-brand-title{
+        @apply text-primary-light-1 font-700 md:text-[1.75rem] text-[1.25rem];
+    }
+    .sidebar-close-icon{
+        @apply cursor-pointer sm:!hidden text-primary-dark-2
     }
     .sidebar.v-shrink{
         @apply sm:!w-[70px] left-[0px]
+    }
+    .sidebar-item-link{
+        @apply flex items-center gap-1.5 mb-2 [&_p]:hover:text-primary-light-2 [&_svg]:hover:text-primary-light-2 [&_p]:transition-all [&_svg]:transition-all
+    }
+    .sidebar-item-collapse{
+        @apply  hover:bg-secondary-light-2 [&_*]:hover:!text-primary-light-1 cursor-pointer relative ;
+    }
+    .sidebar-item-link-collapse{
+        @apply !m-0 py-1 [&_svg]:text-primary-dark-2 [&_svg]:m-auto
+    }
+    .sidebar-item-link-collapse span{
+        @apply absolute h-full bg-secondary-light-2 w-[190px] invisible flex items-center opacity-0 pl-0.5 right-[-190px] ;
+    }
+
+    .sidebar-item-link.active p,.sidebar-item-link.active svg{
+        @apply text-primary-light-1 ;
     }
     .sidebar.v-grow{
         @apply sm:!w-[260px]

@@ -2,4 +2,5 @@
 @import "../components/modal.css";
 @import "../components/layout.css";
 @import "../components/sidebar.css";
+@import "../components/navbar.css";
 @tailwind components;
