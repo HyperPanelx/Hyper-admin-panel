@@ -4,6 +4,13 @@
 
 
 export default defineNuxtConfig({
+    nuxtIcon: {
+        size: '24px', // default <Icon> size applied
+        class: 'v-icon', // default <Icon> class applied
+        aliases: {
+            'nuxt': 'logos:nuxt-icon',
+        }
+    },
     image:{
         cloudinary:{
             baseURL:'https://res.cloudinary.com/dhpxutwun/image/upload/'
@@ -28,7 +35,7 @@ export default defineNuxtConfig({
     ],
     app:{
         rootId:'v-app',
-        rootTag:'main',
+        rootTag:'div',
         head:{
             title:'Dashboard | Hyper',
             meta: [
@@ -45,7 +52,7 @@ export default defineNuxtConfig({
     },
     srcDir: './src',
     modules: [
-        '@pinia/nuxt','@nuxt/image-edge','@nuxtjs/tailwindcss','@formkit/nuxt'
+        '@pinia/nuxt','@nuxt/image-edge','@nuxtjs/tailwindcss','@formkit/nuxt','nuxt-icon'
     ],
     formkit:{
         defaultConfig:false,

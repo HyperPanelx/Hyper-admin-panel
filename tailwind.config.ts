@@ -203,7 +203,8 @@ module.exports = {
           fontFamily:'theme(fontFamily.main)'
         },
         'body':{
-          overflowX:'hidden'
+          overflowX:'hidden',
+          backgroundColor:'theme(colors["primary-light-2"])'
         },
         'h1,h2,h3,h4,h5,h6':{
           lineHeight:'1.5',
