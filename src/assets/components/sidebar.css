@@ -19,18 +19,20 @@
         @apply sm:!w-[70px] left-[0px]
     }
     .sidebar-item-link{
-        @apply flex items-center gap-1.5 mb-2 [&_p]:hover:text-primary-light-2 [&_svg]:hover:text-primary-light-2 [&_p]:transition-all [&_svg]:transition-all
+        @apply flex items-center gap-1.5 [&_p]:hover:text-primary-light-2 [&_svg]:hover:text-primary-light-2 [&_p]:transition-all [&_svg]:transition-all
     }
     .sidebar-item-collapse{
-        @apply  hover:bg-secondary-light-2 [&_*]:hover:!text-primary-light-1 cursor-pointer relative ;
+        @apply  hover:bg-secondary-light-2 [&_span]:hover:!text-primary-light-1 cursor-pointer relative ;
     }
     .sidebar-item-link-collapse{
         @apply !m-0 py-1 [&_svg]:text-primary-dark-2 [&_svg]:m-auto
     }
-    .sidebar-item-link-collapse span{
+    .sidebar-item-link-collapse div{
         @apply absolute h-full bg-secondary-light-2 w-[190px] invisible flex items-center opacity-0 pl-0.5 right-[-190px] ;
     }
-
+    .sidebar-item-link-collapse ul{
+        @apply absolute w-full left-0 top-[56px] bg-secondary-dark-1 h-auto shadow-[0_0_45px_0_rgba(108,117,125,0.2)]
+    }
     .sidebar-item-link.active p,.sidebar-item-link.active svg{
         @apply text-primary-light-1 ;
     }

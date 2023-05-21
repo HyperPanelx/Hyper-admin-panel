@@ -5,5 +5,6 @@ export default {
     'primary-light-1':'#ffffff',
     'primary-light-2':'#bccee4',
     'secondary-light-1':'#fafbfe',
-    'secondary-light-2':'#727cf5'
+    'secondary-light-2':'#727cf5',
+    'secondary-dark-1':'#313a46'
 }

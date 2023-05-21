@@ -8,6 +8,12 @@
 
 <script setup lang="ts">
 const {sidebarCollapseFlag,windowWidth}=useStates()
+const router=useRouter()
+router.beforeResolve(()=>{
+  if(windowWidth && windowWidth<500){
+    sidebarCollapseFlag.value=false
+  }
+})
 
 </script>
 

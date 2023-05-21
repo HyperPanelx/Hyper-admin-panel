@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar-brand" :class="{'p-1':sidebarCollapseFlag}">
+  <div class="sidebar-brand" :class="{'p-1':sidebarCollapseFlag,'!p-1':windowWidth<500}">
     <NuxtLink :to="{name:'DASHBOARD'}">
       <div class="flex gap-1 items-center">
         <nuxt-img class="sidebar-brand-image" provider="cloudinary" src="v1684354705/hyper/logo-lg_hqn9rt.png"/>
