@@ -5,16 +5,7 @@ export const sidebarItemData:ISidebar[]=[
         title:'Dashboard',
         icon:'humbleicons:home',
         link:{name:'DASHBOARD'},
-        hasSub:true,
-        sub:[
-            {
-                title:'Sub menu 1',
-                link:{name:'DASHBOARD'},
-            },{
-                title:'Sub menu 2',
-                link:{name:'USERS'},
-            },
-        ]
+        hasSub:false,
     },{
         title:'Users',
         icon:'humbleicons:users',

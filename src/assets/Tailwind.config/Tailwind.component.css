@@ -3,4 +3,7 @@
 @import "../components/layout.css";
 @import "../components/sidebar.css";
 @import "../components/navbar.css";
+@import "../components/login.css";
+@import "../components/form.css";
+@import "../components/tooltip.css";
 @tailwind components;

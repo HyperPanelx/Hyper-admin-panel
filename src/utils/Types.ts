@@ -10,3 +10,9 @@ export interface ISidebar {
         link:RouteLocationRaw
     }[]
 }
+
+export interface IUser_Data {
+    username:string,
+    password:string
+    rememberMe:boolean
+}

@@ -1,0 +1,18 @@
+@tailwind components;
+@layer components {
+    .login-form-wrapper{
+        @apply rounded-8 bg-primary-light-1 w-full my-1.5 h-full overflow-hidden shadow-[0_0_30px_rgba(0,0,0,0.2)]
+    }
+    .login-form-header{
+        @apply  h-[180px] relative
+    }
+    .login-img{
+        @apply bg-[url("https://res.cloudinary.com/dhpxutwun/image/upload/v1684759508/hyper/login_iudqzb.jpg")] h-full bg-cover bg-no-repeat bg-center
+    }
+    .login-header-content{
+        @apply absolute top-0 left-0 w-full h-full z-[3] bg-[rgba(54,84,99,.7)] flex justify-center items-center
+    }
+    .login-form-content{
+        @apply p-1.5
+    }
+}

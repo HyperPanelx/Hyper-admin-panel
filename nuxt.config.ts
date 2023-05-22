@@ -1,8 +1,7 @@
 
 // https://res.cloudinary.com/dhpxutwun/image/upload/v1684354705/hyper/logo-lg_hqn9rt.png
 /// <nuxt-img provider="cloudinary" src="v1684354705/hyper/logo-lg_hqn9rt.png"/>-->
-
-
+// https://res.cloudinary.com/dhpxutwun/image/upload/v1684759508/hyper/login_iudqzb.jpg
 export default defineNuxtConfig({
     // @ts-ignore
     nuxtIcon: {

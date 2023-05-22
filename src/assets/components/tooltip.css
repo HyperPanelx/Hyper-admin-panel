@@ -1,0 +1,9 @@
+@tailwind components;
+@layer components {
+    .tooltip{
+        @apply relative
+    }
+    .tooltip-inner{
+        @apply absolute block w-14 text-0.8 bg-primary-dark-1 top-[-40px] z-[99] right-[37px] text-primary-light-1 p-0.4 rounded-4
+    }
+}
