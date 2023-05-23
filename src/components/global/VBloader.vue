@@ -13,7 +13,6 @@ watchEffect(()=>{
   if(btn.value){
     const ladda = Ladda.create(btn.value);
     if(props.loading){
-      console.log('startttt')
         ladda.start()
     }else{
       ladda.stop()

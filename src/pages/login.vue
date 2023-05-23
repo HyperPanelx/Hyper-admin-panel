@@ -37,9 +37,6 @@
                   <row  class="justify-center pl-4">
                     <column md="8" col="12" class="flex justify-between items-center">
                       <VCheckbox v-model="userData.rememberMe" label="Remember me" />
-                      <NuxtLink class="text-gray-600 text-0.8 hover:text-secondary-light-2 transition-all" :to="{name:'DASHBOARD'}">
-                        Forgot Password?
-                      </NuxtLink>
                     </column>
                   </row>
                   <row class="justify-center pl-4 mt-2">

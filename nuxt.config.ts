@@ -57,5 +57,8 @@ export default defineNuxtConfig({
     formkit:{
         defaultConfig:false,
         configFile:'./formkit.config.ts'
+    },
+    runtimeConfig:{
+        cookieName:process.env.COOKIE_NAME
     }
 })

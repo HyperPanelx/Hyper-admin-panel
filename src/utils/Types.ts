@@ -16,3 +16,8 @@ export interface IUser_Data {
     password:string
     rememberMe:boolean
 }
+
+export interface IUser_Information {
+    firstname:string,
+    lastname:string
+}
