@@ -4,4 +4,13 @@
     .navbar{
         @apply fixed top-0 w-full h-[70px] bg-primary-light-1 shadow-[0_0_30px_rgba(0,0,0,0.1)]
     }
+    .navbar-left{
+        @apply py-1 px-1.5 w-full flex items-center
+    }
+    .search-result-box{
+        @apply w-full h-[90%] flex justify-center items-center
+    }
+    .search-result-item{
+        @apply p-0.7 cursor-pointer hover:bg-gray-100 transition-all flex gap-1 items-center
+    }
 }

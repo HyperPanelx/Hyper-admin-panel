@@ -6,4 +6,5 @@
 @import "../components/login.css";
 @import "../components/form.css";
 @import "../components/tooltip.css";
+@import "../components/dropdown.css";
 @tailwind components;

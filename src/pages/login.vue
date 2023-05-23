@@ -14,7 +14,7 @@
                 <form @submit.prevent="formHandler">
                   <row class="justify-center pl-4">
                     <column md="8" col="12">
-                      <VInput type="text"
+                      <VTInput type="text"
                               placeholder="Enter username"
                               label="Username"
                               v-model="userData.username"
@@ -25,7 +25,7 @@
                   </row>
                   <row class="justify-center pl-4">
                     <column md="8" col="12">
-                      <VInput type="password"
+                      <VTInput type="password"
                               placeholder="Enter password"
                               label="Password"
                               v-model="userData.password"

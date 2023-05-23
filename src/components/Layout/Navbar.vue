@@ -1,7 +1,9 @@
 <template>
   <nav class="navbar">
-    <Icon @click="collapseSidebar" size="2rem" class="cursor-pointer" name="fluent-mdl2:align-justify" color="black" />
-    navbar
+    <div class="navbar-left">
+      <Icon @click="collapseSidebar" size="2rem" class="cursor-pointer mr-2" name="mdi-light:menu" color="black" />
+      <NavbarSearch />
+    </div>
   </nav>
 </template>
 

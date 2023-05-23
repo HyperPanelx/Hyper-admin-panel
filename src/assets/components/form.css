@@ -6,17 +6,20 @@
     .input-wrapper label{
         @apply text-gray-500 font-400 text-1 absolute left-[-110px] w-[80px] text-left cursor-pointer
     }
-    .v-input{
+    .v-input-rest{
+        @apply outline-none border-none focus:border-none focus:outline-none
+    }
+    .v-trans-input{
         @apply  outline-none border-b-[1px] border-b-gray-500/60  w-full transition-all focus:border-b-secondary-light-2 text-gray-900 placeholder:text-0.9 text-0.9 h-[45px] pl-0.2
     }
-    .v-input:not(:placeholder-shown){
+    .v-trans-input:not(:placeholder-shown){
         @apply border-b-secondary-light-2
     }
     .password-eye-icon{
         @apply absolute right-0 text-gray-700 cursor-pointer
     }
     .btn{
-        @apply px-0.9 py-[0.45rem] transition-all
+        @apply px-0.9 py-[0.45rem] transition-all relative z-[10]
     }
     .btn-primary{
         @apply bg-secondary-light-2 text-primary-light-1 shadow-[0_2px_6px_0_rgba(114,124,245,0.5)] hover:bg-[#6973e3] focus:ring-4 focus:ring-secondary-light-2/30 focus:ring-offset-2
@@ -29,5 +32,14 @@
     }
     .error-icon{
         @apply   text-red-700
+    }
+    .v-gray-input{
+        @apply bg-[#eef2f7] py-0.4 px-0.3 rounded-2 text-0.9 text-gray-600
+    }
+    .input-gray-wrapper{
+        @apply  relative
+    }
+    .search-input-icon{
+        @apply absolute left-[3%] text-gray-600 top-[21%]
     }
 }

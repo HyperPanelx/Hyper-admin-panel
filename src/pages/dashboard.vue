@@ -1,9 +1,6 @@
 <template>
 dashboard page
   {{userInformation}}
-  <NuxtLink :to="{name:'LOGIN'}">
-    login
-  </NuxtLink>
   <button @click="logoutHandler">
     logout
   </button>
