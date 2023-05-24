@@ -34,12 +34,12 @@
         @apply   text-red-700
     }
     .v-gray-input{
-        @apply bg-[#eef2f7] py-0.4 px-0.3 rounded-2 text-0.9 text-gray-600
+        @apply bg-[#eef2f7] py-0.4 px-0.3 rounded-2 text-0.9 text-gray-600 dark:bg-[#464f5b] dark:caret-primary-dark-2 dark:text-primary-dark-2
     }
     .input-gray-wrapper{
         @apply  relative
     }
     .search-input-icon{
-        @apply absolute left-[3%] text-gray-600 top-[21%]
+        @apply absolute left-[3%] text-gray-600 top-[21%] dark:text-primary-dark-2
     }
 }

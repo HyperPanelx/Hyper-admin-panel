@@ -6,6 +6,7 @@ const plugin = require('tailwindcss/plugin')
 
 
 module.exports = {
+  darkMode: 'class',
   content: [
     "./src/components/**/*.{js,vue,ts}",
     "./src/composables/**/*.{js,vue,ts}",

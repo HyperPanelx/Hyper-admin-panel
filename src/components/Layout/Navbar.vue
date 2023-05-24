@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar">
     <div class="navbar-left">
-      <Icon @click="collapseSidebar" size="2rem" class="cursor-pointer mr-2" name="mdi-light:menu" color="black" />
+      <Icon @click="collapseSidebar" size="2rem" class="cursor-pointer mr-2 dark:!text-primary-dark-2" name="mdi-light:menu" color="black" />
       <NavbarSearch />
     </div>
     <div class="navbar-right">
