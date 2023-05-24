@@ -7,10 +7,15 @@
     <div class="navbar-right">
       <NavbarNotification/>
       <NavbarTheme />
-      <Icon @click="requestFullScreen" :name="fullScreenFlag ? 'solar:quit-full-screen-linear' : 'solar:full-screen-bold'" class="navbar-icon" size="1.6rem"
+      <Icon @click="requestFullScreen"
+            :name="fullScreenFlag ? 'solar:quit-full-screen-linear' : 'solar:full-screen-bold'" class="navbar-icon"
+            size="1.6rem"
       />
     </div>
+    <NavbarUser />
   </nav>
+
+
 </template>
 
 <script setup lang="ts">
