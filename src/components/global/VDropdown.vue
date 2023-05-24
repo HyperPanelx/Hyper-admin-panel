@@ -1,8 +1,8 @@
 <template>
-  <div v-bind="$attrs" class="dropdown-wrapper">
+  <div v-click-outside="closeDropdown" v-bind="$attrs" class="dropdown-wrapper">
     <slot name="parent"></slot>
     <Transition name="slide">
-      <div v-if="on" class="dropdown">
+      <div v-if="modelValue" :class="dropdownClass" class="dropdown">
         <slot name="content"/>
       </div>
     </Transition>
@@ -11,8 +11,18 @@
 
 <script setup lang="ts">
 const props=defineProps<{
-  on:boolean
+  modelValue:boolean,
+  height:string,
+  minHeight:string,
+  maxHeight:string,
+  dropdownClass:string
+}>();
+const emit=defineEmits<{
+  (e:'update:modelValue',value:boolean):void
 }>()
+const closeDropdown = () => {
+  emit('update:modelValue',false)
+}
 </script>
 
 <style scoped>
@@ -26,6 +36,11 @@ const props=defineProps<{
   }
   .slide-enter-to,.slide-leave-from {
     @apply top-[154%] opacity-100 visible
+  }
+  .dropdown{
+    height: v-bind(height);
+    min-height: v-bind(minHeight);
+    max-height: v-bind(maxHeight);
   }
 }
 </style>

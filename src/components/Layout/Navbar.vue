@@ -4,6 +4,10 @@
       <Icon @click="collapseSidebar" size="2rem" class="cursor-pointer mr-2" name="mdi-light:menu" color="black" />
       <NavbarSearch />
     </div>
+    <div class="navbar-right">
+      <NavbarNotification/>
+      <NavbarTheme />
+    </div>
   </nav>
 </template>
 

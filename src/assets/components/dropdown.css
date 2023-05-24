@@ -4,6 +4,6 @@
         @apply relative
     }
     .dropdown{
-        @apply absolute top-[154%] w-full left-0 bg-primary-light-1 h-24 border-[1px] border-gray-300 rounded-4 shadow-[0_0_20px_rgba(0,0,0,0.1)] overflow-hidden
+        @apply absolute top-[154%] w-full left-0 bg-primary-light-1  border-[1px] border-gray-300 rounded-4 shadow-[0_0_20px_rgba(0,0,0,0.1)] overflow-hidden
     }
 }

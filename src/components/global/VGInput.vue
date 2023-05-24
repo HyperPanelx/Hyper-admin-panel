@@ -9,7 +9,7 @@
            :placeholder="placeholder"
            type="text"
            class="v-input-rest v-gray-input"
-           :class="{'!pl-2.5':icon}"
+           :class="[{'!pl-2.5':icon},inputClass]"
     >
   </div>
 </template>
@@ -21,7 +21,8 @@ const props=defineProps<{
   icon:string,
   modelValue:string,
   delay:boolean,
-  timer?:number
+  timer?:number,
+  inputClass:string
 }>();
 const emit=defineEmits<{
   (e:'update:modelValue',value:string):void,
