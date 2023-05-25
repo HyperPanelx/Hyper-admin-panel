@@ -1,16 +1,16 @@
 <template>
-  <VDropdown height="23rem" dropdown-class="w-[320px] !left-[-320px]" v-model="openDropdownFlag">
+  <VDropdown height="23rem" dropdown-class="w-[320px] dark:bg-primary-dark-1 dark:!border-primary-dark-2/50 lg:!left-[-300px] left-[-200px]" v-model="openNavbarDropdownFlag">
     <template v-slot:parent>
-      <span @click="openDropdownFlag=!openDropdownFlag" class="badge " >
+      <span @click="openNavbarDropdownFlag=!openNavbarDropdownFlag" class="badge " >
           <Icon  name="ep:bell-filled" size="1.7rem" class=" navbar-icon"/>
       </span>
     </template>
     <template v-slot:content>
-     <div class="px-0.8 py-1 flex justify-between border-b-[1px] border-b-gray-200">
-       <p class="text-gray-600">Notification</p>
-        <p class="text-0.8 text-gray-800 underline cursor-pointer">Clear All</p>
+     <div class="px-0.8 py-1 flex justify-between border-b-[1px] border-b-gray-200 dark:border-primary-dark-2/30">
+       <p class="text-gray-600 dark:text-primary-dark-3">Notification</p>
+        <p class="text-0.8 text-gray-800 underline cursor-pointer dark:text-primary-light-1">Clear All</p>
      </div>
-      <div class="py-0.8 px-1.5 overflow-y-auto h-[16rem]">
+      <div class="py-0.8 px-1.5 overflow-y-auto h-[16rem] scroller">
         <p class="text-0.8 text-gray-400">Today</p>
         <NavbarNotificationItem
             v-for="(item,index) in fakeTodayNotification"
@@ -44,9 +44,9 @@
 
 <script setup lang="ts">
 import { fakeTodayNotificationData,fakeYesterdayNotificationData} from "~/utils/Data";
-const openDropdownFlag=ref<boolean>(false)
 const fakeTodayNotification=ref(fakeTodayNotificationData)
 const fakeYesterdayNotification=ref(fakeYesterdayNotificationData)
+const {openNavbarDropdownFlag}=useStates()
 
 </script>
 

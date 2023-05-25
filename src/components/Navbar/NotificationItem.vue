@@ -5,11 +5,11 @@
               <Icon name="ep:message" />
             </span>
       <div class="w-11">
-        <p class="text-gray-600 font-500 text-0.8 group-hover:text-primary-dark-1">
+        <p class="text-gray-600 font-500 text-0.8 group-hover:text-primary-dark-1 dark:text-primary-dark-3 dark:group-hover:text-primary-light-1">
           {{sender}}
           <span class="text-gray-400 text-0.7 ml-1 inline-block">{{time}}</span>
         </p>
-        <p class="text-gray-400 text-0.8 text-hidden w-[180px]">
+        <p class="text-gray-400 dark:text-primary-dark-2 text-0.8 text-hidden w-[180px]">
           {{content}}
         </p>
       </div>

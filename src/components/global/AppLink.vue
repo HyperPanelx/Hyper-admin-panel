@@ -10,8 +10,8 @@
 <script setup lang="ts">
 const props=defineProps<{
   href:string|object
-  activeClass:string,
-  exactActiveClass:string
+  activeClass?:string,
+  exactActiveClass?:string
 }>()
 
 const isExternalLink=computed(()=>{

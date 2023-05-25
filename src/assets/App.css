@@ -1,2 +1,18 @@
 @import "./components/skelton.css";
 @import "./components/transition.css";
+
+.scroller{
+    scrollbar-width:thin;
+    scrollbar-color: #8391a2 #3a444e;
+}
+
+::-webkit-scrollbar{
+    width: 8px;
+}
+::-webkit-scrollbar-thumb{
+    background:#8391a2;
+}
+::-webkit-scrollbar-track{
+    background:  #3a444e ;
+}
+

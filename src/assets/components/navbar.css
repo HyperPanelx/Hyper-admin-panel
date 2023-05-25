@@ -8,10 +8,10 @@
         @apply py-1 px-1.5 w-full flex items-center
     }
     .search-result-box{
-        @apply w-full h-full flex justify-center items-center absolute top-0 bg-primary-light-1
+        @apply w-full h-full flex justify-center items-center absolute top-0 bg-primary-light-1 dark:bg-primary-dark-1
     }
     .search-result-item{
-        @apply p-0.7 cursor-pointer hover:bg-gray-100 transition-all flex gap-1 items-center
+        @apply p-0.7 cursor-pointer hover:bg-gray-100 transition-all flex gap-1 items-center dark:hover:bg-primary-dark-2/50 dark:[&_p]:hover:text-primary-light-1
     }
     .navbar-right{
         @apply flex gap-1.8 items-center
@@ -20,7 +20,7 @@
         @apply text-[#6c757d] font-700 cursor-pointer hover:text-secondary-light-2 transition-all
     }
     .notification-item{
-        @apply px-0.5 py-0.8 rounded-4 border-[1px] border-gray-200 my-0.6 cursor-pointer hover:bg-gray-100 transition-all flex gap-1 items-center
+        @apply px-0.5 py-0.8 rounded-4 border-[1px] border-gray-200 my-0.6 cursor-pointer hover:bg-gray-100 transition-all flex gap-1 items-center dark:border-primary-dark-2/30 hover:bg-primary-dark-2/10
     }
     .notification-icon-wrapper{
         @apply w-2 h-2 rounded-full bg-secondary-light-2 [&_svg]:text-primary-light-1  flex justify-center items-center
@@ -29,7 +29,7 @@
         @apply overflow-hidden text-ellipsis whitespace-nowrap;
     }
     .notification-bottom{
-        @apply sticky bottom-0 w-full h-[3.4rem] bg-primary-light-1 cursor-pointer border-t-[1px] border-t-gray-200 transition-all hover:bg-gray-100
+        @apply sticky bottom-0 w-full h-[3.4rem] bg-primary-light-1 cursor-pointer border-t-[1px] border-t-gray-200 transition-all hover:bg-gray-100 dark:bg-primary-dark-1 dark:border-primary-dark-3/20 dark:hover:bg-primary-dark-2/10
     }
 
 

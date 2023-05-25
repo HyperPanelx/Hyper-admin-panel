@@ -5,8 +5,9 @@ export const useStates=()=>{
     const windowWidth:null|number=process.client ? window.innerWidth : null
     const isLogin=useState<boolean>('isLogin')
     const userInformation=useState<IUser_Information>('userInformation')
+    const openNavbarDropdownFlag=ref<boolean>(false)
 
     return{
-        sidebarCollapseFlag,windowWidth,isLogin,userInformation
+        sidebarCollapseFlag,windowWidth,isLogin,userInformation,openNavbarDropdownFlag
     }
 }
