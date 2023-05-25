@@ -1,11 +1,15 @@
 @import "./components/skelton.css";
 @import "./components/transition.css";
 
-.scroller{
+body.dark .scroller{
     scrollbar-width:thin;
     scrollbar-color: #8391a2 #3a444e;
 }
 
+body .scroller{
+    scrollbar-width:thin;
+    scrollbar-color: #ccc #fff;
+}
 ::-webkit-scrollbar{
     width: 8px;
 }

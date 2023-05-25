@@ -1,0 +1,11 @@
+@tailwind components;
+
+@layer components {
+    .card-title{
+        @apply p-2 flex items-center justify-between shadow-[0_0.125rem_0.25rem_rgba(0,0,0,.075)]
+    }
+    .shadow-card{
+        @apply shadow-[0_4px_21px_rgba(0,0,0,0.15)] dark:shadow-[0_0_15px_rgba(255,255,255,0.2)];
+    }
+
+}

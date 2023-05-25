@@ -1,7 +1,11 @@
 <template>
-  <NuxtLayout><NuxtPage/></NuxtLayout>
+  <NuxtLayout>
+    <VPreloader :on="showPreloaderFlag" />
+    <NuxtPage/>
+  </NuxtLayout>
 </template>
 <script setup lang="ts">
+const {showPreloaderFlag}=usePreloader()
 const route=useRoute()
 useHead({
   titleTemplate(){

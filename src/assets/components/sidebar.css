@@ -1,7 +1,7 @@
 @tailwind components;
 @layer components {
     .sidebar{
-        @apply transition-all duration-[350ms] ease-in-out fixed sm:w-[260px]  top-0 sm:!left-0 w-[260px] left-[-260px] z-[50] h-[100vh] bg-primary-dark-1 p-1 dark:shadow-[0_0_30px_rgba(0,0,0,0.2)]
+        @apply transition-all duration-[350ms] ease-in-out fixed sm:w-[260px]  top-0 sm:!left-0 w-[260px] left-[-260px] z-[50] h-[100vh] bg-primary-dark-1 p-1 shadow-[0_0_30px_rgba(0,0,0,0.2)]
     }
     .sidebar-brand{
         @apply flex  items-center md:justify-center justify-between
