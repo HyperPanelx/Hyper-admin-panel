@@ -3,7 +3,7 @@
     <LayoutSidebar />
     <section id="main-content" :class="{'v-shrink':sidebarCollapseFlag,'v-grow':!sidebarCollapseFlag}">
       <LayoutNavbar />
-      <div class="relative p-1.5">
+      <div class="relative px-1.5 py-2">
         <slot />
       </div>
     </section>

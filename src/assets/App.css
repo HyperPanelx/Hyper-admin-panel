@@ -19,4 +19,6 @@ body .scroller{
 ::-webkit-scrollbar-track{
     background:  #3a444e ;
 }
-
+body.dark .apexcharts-text.apexcharts-datalabel-label , body.dark .apexcharts-text.apexcharts-datalabel-value{
+    fill: #fff!important;
+}

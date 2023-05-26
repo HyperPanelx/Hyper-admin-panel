@@ -27,3 +27,13 @@ export default {
   }
 }
 </script>
+<style scoped>
+@tailwind components;
+@layer components {
+  .col{
+    @apply sm:px-0.5 sm:first:!pl-0 sm:last:!pr-0 py-0.5
+  }
+}
+
+
+</style>

@@ -14,6 +14,6 @@
         @apply block before:block before:w-[7px] before:rounded-full before:bg-red-400 before:h-[7px] before:translate-x-[19px] before:translate-y-[6px]
     }
     .page-preloader{
-        @apply w-full h-[100vh] absolute top-0 left-0 flex justify-center items-center bg-[rgba(255,255,255,0.2)]
+        @apply w-full h-[100vh] absolute top-0 left-0 flex justify-center items-center bg-[rgba(255,255,255,0.2)] z-[100]
     }
 }

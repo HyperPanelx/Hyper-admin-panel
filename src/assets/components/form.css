@@ -19,10 +19,16 @@
         @apply absolute right-0 text-gray-700 cursor-pointer
     }
     .btn{
-        @apply px-0.9 py-[0.45rem] transition-all relative z-[10]
+        @apply px-0.9 py-[0.45rem] transition-all relative z-[10] text-primary-light-1
     }
     .btn-primary{
-        @apply bg-secondary-light-2 text-primary-light-1 shadow-[0_2px_6px_0_rgba(114,124,245,0.5)] hover:bg-[#6973e3] focus:ring-4 focus:ring-secondary-light-2/30 focus:ring-offset-2
+        @apply bg-secondary-light-2  shadow-[0_2px_6px_0_rgba(114,124,245,0.5)] hover:bg-[#6973e3] focus:ring-4 focus:ring-secondary-light-2/30 focus:ring-offset-2
+    }
+    .btn-success{
+        @apply bg-[#0acf97] shadow-[0_2px_6px_0_rgba(10,207,151,0.5)] hover:bg-[#09bf8c] focus:ring-[#0acf97]/30 focus:ring-offset-2
+    }
+    .btn-secondary{
+        @apply bg-[#6c757d] shadow-[0_2px_6px_0_rgba(70,79,91,0.5)] hover:bg-[#646c74] focus:ring-[#6c757d]/30 focus:ring-offset-2
     }
     .btn-sm{
         @apply text-0.9
