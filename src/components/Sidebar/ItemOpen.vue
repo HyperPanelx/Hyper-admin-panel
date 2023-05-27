@@ -3,7 +3,7 @@
       v-if="hasSub"
       @click="openSubMenuFlag=!openSubMenuFlag"
       class="sidebar-item-link cursor-pointer "
-      :class="{'active':$route.name.includes(link.name)}"
+      :class="{'active':$route.path.toLowerCase().includes(link.name.toLowerCase())}"
   >
     <Icon  class="text-primary-dark-2 " size="1.5rem" :name="icon" />
     <p v-if="windowWidth>500 ? !sidebarCollapseFlag : true" class="text-primary-dark-2">{{title}}</p>
@@ -11,16 +11,17 @@
   </div>
   <AppLink  v-else
             @click="openSubMenuFlag=!openSubMenuFlag"
-            active-class="active"
+            :class="$route.path.toLowerCase().includes(link.name.toLowerCase())? 'active' : null"
             :href="link"
             class="sidebar-item-link"
   >
+
     <Icon  class="text-primary-dark-2 " size="1.5rem" :name="icon" />
     <p v-if="windowWidth>500 ? !sidebarCollapseFlag : true" class="text-primary-dark-2">{{title}}</p>
   </AppLink>
   <ul v-if="hasSub" v-collapse="openSubMenuFlag" class="v-collapse">
-    <li v-for="row2 in sub" class="pt-1 last:pb-0">
-      <AppLink class="sidebar-item-link pl-3 " exact-active-class="active" :href="row2.link">
+    <li v-for="row2 in sub" class="pt-1.5 last:pb-0">
+      <AppLink class="sidebar-item-link pl-3 " active-class="active" :href="row2.link">
         <p  class="text-primary-dark-2 !text-[0.85rem]">{{row2.title}}</p>
       </AppLink>
     </li>

@@ -1,11 +1,13 @@
 <template>
-  online users
+  <VBreadcrumb :pages="[{name:'Home',link:'DASHBOARD'},{name:'Online Users'}]" />
+
+
 </template>
 
 <script setup lang="ts">
 definePageMeta({
-  name:'ONLINE_USERS',
-  path:'/online-users'
+  name:'ONLINE',
+  path:'/online'
 })
 </script>
 

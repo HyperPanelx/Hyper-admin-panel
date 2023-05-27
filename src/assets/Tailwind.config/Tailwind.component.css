@@ -8,6 +8,7 @@
 @import "../components/tooltip.css";
 @import "../components/dropdown.css";
 @import "../components/card.css";
+@import "../components/table.css";
 @tailwind components;
 @layer components {
     .badge{
@@ -15,5 +16,8 @@
     }
     .page-preloader{
         @apply w-full h-[100vh] absolute top-0 left-0 flex justify-center items-center bg-[rgba(255,255,255,0.2)] z-[100]
+    }
+    .category-card{
+        @apply p-[0.25rem] px-0.5 rounded-6 text-0.7 font-600 ;
     }
 }

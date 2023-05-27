@@ -37,3 +37,19 @@ export interface IServer_Status {
         upload:number
     }
 }
+
+export interface ITable_Data {
+    titles:string[],
+    rows:{username:string,
+        password:string,
+        traffic:string,
+        usedVolume:number,
+        userLimitation:number,
+        contactInfo:string,
+        date:{
+            registered:string,
+            expired:string
+        },
+        active:boolean}[]
+
+}

@@ -32,6 +32,8 @@ export default defineNuxtConfig({
         '~/assets/Tailwind.config/Tailwind.base.css',
         '~/assets/Tailwind.config/Tailwind.component.css',
         '~/assets/Tailwind.config/Tailwind.utilities.css',
+        'ladda/dist/ladda-themeless.min.css',
+        '@formkit/addons/css/floatingLabels'
     ],
     app:{
         rootId:'v-app',

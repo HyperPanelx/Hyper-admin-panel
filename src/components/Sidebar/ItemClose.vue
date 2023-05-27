@@ -1,5 +1,5 @@
 <template>
-  <AppLink active-class="active"  :href="link" class="sidebar-item-link sidebar-item-link-collapse">
+  <AppLink :class="$route.path.toLowerCase().includes(link.name.toLowerCase()) ? 'active' : null"  :href="link" class="sidebar-item-link sidebar-item-link-collapse">
     <Icon  size="1.5rem" :name="icon" />
     <div class="group-hover:opacity-100  group-hover:visible transition-all duration-[100ms]">
       <span >
@@ -7,8 +7,8 @@
       </span>
       <ul v-if="hasSub">
        <li v-for="row2 in sub" >
-         <AppLink exact-active-class="active" :href="row2.link" class="sidebar-item-link p-1 [&_p]:hover:!text-primary-light-2">
-           <p class="!text-primary-dark-2 !text-[0.85rem]" :class="{'!text-primary-light-1':$route.name.includes(row2.link.name)}">{{row2.title}}</p>
+         <AppLink exact-active-class="active"  :href="row2.link" class="sidebar-item-link p-1 [&_p]:hover:!text-primary-light-2">
+           <p class="!text-primary-dark-2 !text-[0.85rem]" :class="{'!text-primary-light-1':$route.name.toLowerCase().includes(row2.link.name.toLowerCase())}">{{row2.title}}</p>
          </AppLink>
        </li>
       </ul>

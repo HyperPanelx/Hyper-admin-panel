@@ -1,5 +1,6 @@
 <template>
-  settings page
+  <VBreadcrumb :pages="[{name:'Home',link:'DASHBOARD'},{name:'Settings'}]" />
+
 </template>
 
 <script setup lang="ts">

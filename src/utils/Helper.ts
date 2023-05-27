@@ -15,7 +15,7 @@ export const sidebarItemData:ISidebar[]=[
     },{
         title:'Online users',
         icon:'humbleicons:radio',
-        link:{name:'ONLINE_USERS'},
+        link:{name:'ONLINE'},
         hasSub:false,
 
     },{

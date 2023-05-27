@@ -19,22 +19,31 @@
         @apply absolute right-0 text-gray-700 cursor-pointer
     }
     .btn{
-        @apply px-0.9 py-[0.45rem] transition-all relative z-[10] text-primary-light-1
+        @apply !px-0.9 py-[0.45rem] !transition-all relative z-[10] !text-primary-light-1 !inline-block dark:!shadow-[0_0_10px_rgba(255,255,255,0.3)] !rounded-[0px] !text-0.9 !font-main
     }
     .btn-primary{
         @apply bg-secondary-light-2  shadow-[0_2px_6px_0_rgba(114,124,245,0.5)] hover:bg-[#6973e3] focus:ring-4 focus:ring-secondary-light-2/30 focus:ring-offset-2
     }
+    .btn-primary.active{
+        @apply !bg-blue-500
+    }
     .btn-success{
-        @apply bg-[#0acf97] shadow-[0_2px_6px_0_rgba(10,207,151,0.5)] hover:bg-[#09bf8c] focus:ring-[#0acf97]/30 focus:ring-offset-2
+        @apply bg-[#0acf97] shadow-[0_2px_6px_0_rgba(10,207,151,0.5)] hover:bg-[#09bf8c] focus:ring-[#0acf97]/30 focus:ring-offset-2 focus:ring-4
     }
     .btn-secondary{
-        @apply bg-[#6c757d] shadow-[0_2px_6px_0_rgba(70,79,91,0.5)] hover:bg-[#646c74] focus:ring-[#6c757d]/30 focus:ring-offset-2
+        @apply bg-[#6c757d] shadow-[0_2px_6px_0_rgba(70,79,91,0.5)] hover:bg-[#646c74] focus:ring-[#6c757d]/30 focus:ring-offset-2 focus:ring-4
+    }
+    .btn-teal{
+        @apply bg-teal-600 shadow-[0_2px_6px_0_rgba(45,212,191,0.5)] hover:bg-teal-500 focus:ring-teal-600/30 focus:ring-offset-2 focus:ring-4
+    }
+    .btn-indigo{
+        @apply !bg-indigo-600 !shadow-[0_2px_6px_rgba(129,140,248,0.5)] hover:!bg-indigo-500 focus:!ring-indigo-600/30 focus:!ring-offset-2 focus:!ring-4
     }
     .btn-sm{
         @apply text-0.9
     }
     .btn-md{
-        @apply !text-1.1 !px-1.1 !py-0.6
+        @apply !text-1 !px-1 !py-0.6
     }
     .error-icon{
         @apply   text-red-700
@@ -47,5 +56,8 @@
     }
     .search-input-icon{
         @apply absolute left-[3%] text-gray-600 top-[21%] dark:text-primary-dark-2
+    }
+    .v-input-float{
+        @apply !border-[1px] !border-gray-100;
     }
 }

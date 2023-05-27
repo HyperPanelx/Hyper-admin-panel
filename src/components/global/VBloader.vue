@@ -6,7 +6,6 @@
 
 <script setup lang="ts">
 import * as Ladda from 'ladda';
-import 'ladda/dist/ladda-themeless.min.css'
 const props=defineProps(['animation','duration','progress','loading'])
 const btn=ref<HTMLButtonElement|null>(null)
 watchEffect(()=>{

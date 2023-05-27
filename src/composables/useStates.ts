@@ -6,8 +6,9 @@ export const useStates=()=>{
     const isLogin=useState<boolean>('isLogin')
     const userInformation=useState<IUser_Information>('userInformation')
     const openNavbarDropdownFlag=ref<boolean>(false)
+    const showPreloaderFlag=useState('showPreloaderFlag')
 
     return{
-        sidebarCollapseFlag,windowWidth,isLogin,userInformation,openNavbarDropdownFlag
+        sidebarCollapseFlag,windowWidth,isLogin,userInformation,openNavbarDropdownFlag,showPreloaderFlag
     }
 }
