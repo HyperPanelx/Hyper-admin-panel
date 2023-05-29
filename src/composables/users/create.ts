@@ -4,7 +4,8 @@ export const useCreateUser=()=>{
     const createSingleUserFetchFlag=useState<boolean|null>('createSingleUserFetchFlag',()=>null)
     const responseMessage=ref<string>('')
     const createSingleUserForm=ref(null)
-    
+    const {public:{internalApiKey}}=useRuntimeConfig()
+
     const submitForm = () => {
         if(createSingleUserForm.value){
             const node = (createSingleUserForm.value as any).node
@@ -19,7 +20,10 @@ export const useCreateUser=()=>{
         try {
             const createSingleUserRequest=await $fetch('/api/users/create',{
                 body:value,
-                method:'POST'
+                method:'POST',
+                headers:{
+                    Authorization:internalApiKey
+                }
             })
             console.log(createSingleUserRequest)
             responseMessage.value='User created successfully!'

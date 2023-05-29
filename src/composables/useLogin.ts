@@ -6,6 +6,7 @@ export const useLogin=()=>{
     const passwordRegex=/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/g
     const loginRequestFlag=useState<boolean|null>('loginRequestFlag',()=>null)
     const {isLogin,userInformation}=useStates()
+    const {public:{internalApiKey}}=useRuntimeConfig()
     const userData=reactive<IUser_Data>({
         username:'hooman_77',
         password:'123456H%ioo',
@@ -17,7 +18,10 @@ export const useLogin=()=>{
             loginRequestFlag.value=true
             try {
                 const loginValidationRequest:IUser_Information=await $fetch('/api/login',{
-                    method:'POST',body:userData
+                    method:'POST',body:userData,
+                    headers:{
+                        Authorization:internalApiKey
+                    }
                 })
                 userInformation.value=loginValidationRequest
                 isLogin.value=true

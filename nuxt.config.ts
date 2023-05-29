@@ -61,6 +61,9 @@ export default defineNuxtConfig({
         configFile:'./formkit.config.ts'
     },
     runtimeConfig:{
-        cookieName:process.env.COOKIE_NAME
+        cookieName:process.env.COOKIE_NAME,
+        public:{
+            internalApiKey:process.env.INTERNAL_API_KEY
+        }
     }
 })
