@@ -10,7 +10,16 @@
        </th>
      </tr>
      </thead>
-     <tbody>
+     <tbody v-if="searchResultFlag">
+     <tr>
+       <td colspan="7">
+         <p class="text-center uppercase  text-gray-800 p-2">
+           no search result!
+         </p>
+       </td>
+     </tr>
+     </tbody>
+     <tbody v-else-if="rows.length>0">
      <tr   v-for="item in rows">
        <td class="td-shadow">
          <div class="p-1 ">
@@ -68,6 +77,15 @@
        </td>
      </tr>
      </tbody>
+     <tbody v-else-if="rows.length===0">
+     <tr>
+       <td colspan="7">
+         <p class="text-center uppercase  text-gray-800 p-2">
+           no users found!
+         </p>
+       </td>
+     </tr>
+     </tbody>
    </table>
  </div>
 </template>
@@ -75,7 +93,8 @@
 <script setup lang="ts">
 const props=defineProps<{
   titles:string[],
-  rows:object[]
+  rows:object[],
+  searchResultFlag:boolean
 }>()
 
 

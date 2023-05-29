@@ -46,16 +46,33 @@
               </button>
             </div>
           </div>
-          <VTable :rows="paginationData.currentPageData" :titles="tableData.titles" />
-          <div class="bg-gray-100 p-2 flex md:justify-between justify-center items-center items-center md:flex-row flex-col gap-1 md:gap-0">
-            <h6 class="text-gray-700">Showing page {{paginationData.currentPage}} of {{paginationData.allPages}} </h6>
+          <VTable :searchResultFlag="paginationData.searchResultFlag" :rows="paginationData.currentPageData" :titles="tableData.titles" />
+          <div class="pagination-section">
+            <h6 class="text-gray-700" v-if="paginationData.searchResultFlag || paginationData.currentPageData.length===0">
+              Showing page 1 of 1
+            </h6>
+            <h6 v-else class="text-gray-700">Showing page {{paginationData.currentPage}} of {{paginationData.allPages}} </h6>
+
             <div class="flex items-center gap-1">
               <button @click="previousPage" class="btn btn-primary !p-0.5">
                 <Icon name="ri:arrow-left-s-line" size="1.7rem"/>
               </button>
-              <button :class="{'active':item===paginationData.currentPage}" @click="changePage(item)" v-for="item in paginationData.allPages" class="btn btn-primary btn-md">
-                {{item}}
-              </button>
+              <template v-if="paginationData.allPages<4">
+                <button :class="{'active':item===paginationData.currentPage}" @click="changePage(item)" v-for="item in paginationData.allPages" class="btn btn-primary btn-md">
+                  {{item}}
+                </button>
+              </template>
+             <template v-if="paginationData.allPages>3">
+               <button v-if="paginationData.startShowPaginationButton>1" @click="showLessButton" class="btn btn-primary btn-md">
+                 ...
+               </button>
+               <button :class="{'active':item===paginationData.currentPage}" @click="changePage(item)" v-for="item in declareNumberToArray(paginationData.allPages).slice(paginationData.startShowPaginationButton-1,paginationData.endShowPaginationButton)" class="btn btn-primary btn-md">
+                 {{item}}
+               </button>
+               <button v-if="paginationData.endShowPaginationButton<paginationData.allPages" @click="showMoreButton" class="btn btn-primary btn-md">
+                 ...
+               </button>
+             </template>
               <button @click="nextPage" class="btn btn-primary !p-0.5">
                 <Icon name="ri:arrow-right-s-line" size="1.7rem"/>
               </button>
@@ -70,12 +87,12 @@
 </template>
 
 <script setup lang="ts">
+import {declareNumberToArray} from '~/utils/Helper'
 definePageMeta({
   name:'USERS'
 });
 const {tableData,fetchTableDataFlag}=useUsersList()
-const {paginationData,changePerPageHandler,changePage,nextPage,previousPage,searchHandler,searchText,resetSearch}=usePagination()
-
+const {paginationData,changePerPageHandler,changePage,nextPage,previousPage,searchHandler,searchText,resetSearch,showMoreButton,showLessButton}=usePagination()
 
 
 </script>
@@ -85,6 +102,9 @@ const {paginationData,changePerPageHandler,changePage,nextPage,previousPage,sear
 @layer components {
   .formkit-outer{
     @apply !mb-0
+  }
+  .pagination-section{
+    @apply bg-gray-100 p-2 flex md:justify-between justify-center items-center items-center md:flex-row flex-col gap-1 md:gap-0;
   }
 }
 </style>

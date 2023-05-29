@@ -26,3 +26,12 @@ export const sidebarItemData:ISidebar[]=[
 
     },
 ]
+
+
+export const declareNumberToArray = (num:number) => {
+    const res=[]
+    for (let n=1;n<num+1;n++){
+        res.push(n)
+    }
+    return res
+}
