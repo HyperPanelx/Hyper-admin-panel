@@ -57,7 +57,9 @@
     .search-input-icon{
         @apply absolute left-[3%] text-gray-600 top-[21%] dark:text-primary-dark-2
     }
-    .v-input-float{
-        @apply !border-[1px] !border-gray-100;
+
+    .select-dark{
+        @apply dark:text-primary-light-1 dark:bg-[rgb(70,79,91)]
     }
+
 }

@@ -8,6 +8,7 @@ const config: DefaultConfigOptions = defaultConfig({
             useAsDefault: true, // defaults to false
         }),
     ],
+    content: ['./src/**/*.{html,js,vue}', './path/to/formkit.config.js'],
 })
 
 

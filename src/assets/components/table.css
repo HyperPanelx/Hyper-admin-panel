@@ -7,6 +7,6 @@
     @apply hover:bg-gray-200 transition-all;
   }
   .td-shadow{
-    @apply shadow-[4px_-2px_8px_-3px_rgba(0,0,0,0.15)]
+    @apply shadow-[4px_-2px_8px_-3px_rgba(0,0,0,0.15)] dark:shadow-[4px_-2px_8px_-3px_rgba(255,255,255,0.15)]
   }
 }

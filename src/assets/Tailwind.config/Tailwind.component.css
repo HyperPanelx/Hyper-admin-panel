@@ -15,9 +15,9 @@
         @apply block before:block before:w-[7px] before:rounded-full before:bg-red-400 before:h-[7px] before:translate-x-[19px] before:translate-y-[6px]
     }
     .page-preloader{
-        @apply w-full h-[100vh] absolute top-0 left-0 flex justify-center items-center bg-[rgba(255,255,255,0.2)] z-[100]
+        @apply w-full h-[100vh] absolute top-0 left-0 flex justify-center items-center bg-[rgba(255,255,255,0.2)] z-[100] dark:bg-primary-dark-1
     }
     .category-card{
-        @apply p-[0.25rem] px-0.5 rounded-6 text-0.7 font-600 ;
+        @apply py-[0.25rem] px-0.5 rounded-6 text-[0.75rem] font-600 ;
     }
 }

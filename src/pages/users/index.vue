@@ -25,18 +25,20 @@
                 <FormKit
                     type="select"
                     name="per_page"
+                    input-class="select-dark"
                     :options="[
                   5,10,15,20,25
                 ]"
                 />
-                <span class="text-0.7 text-gray-600">Entries per page</span>
+                <span class="text-0.7 text-gray-600 dark:text-primary-light-1">Entries per page</span>
               </div>
             </FormKit>
             <div class="flex gap-1 items-center">
               <FormKit
-                  input-class="v-input-float"
                   type="text"
+                  input-class=" font-main"
                   label="Search username..."
+                  label-class="dark:text-primary-dark-2 dark:!bg-[#37404a]  !font-main"
                   :floating-label="true"
                   @input="searchHandler"
                   v-model="searchText"
@@ -48,11 +50,12 @@
           </div>
           <VTable :searchResultFlag="paginationData.searchResultFlag" :rows="paginationData.currentPageData" :titles="tableData.titles" />
           <div class="pagination-section">
-            <h6 class="text-gray-700" v-if="paginationData.searchResultFlag || paginationData.currentPageData.length===0">
-              Showing page 1 of 1
+            <h6 class="text-gray-700 dark:text-primary-dark-3" >
+              <template v-if="paginationData.searchResultFlag || paginationData.currentPageData.length===0">Showing page 1 of 1
+              </template>
+              <template v-else>Showing page {{paginationData.currentPage}} of {{paginationData.allPages}}
+              </template>
             </h6>
-            <h6 v-else class="text-gray-700">Showing page {{paginationData.currentPage}} of {{paginationData.allPages}} </h6>
-
             <div class="flex items-center gap-1">
               <button @click="previousPage" class="btn btn-primary !p-0.5">
                 <Icon name="ri:arrow-left-s-line" size="1.7rem"/>
@@ -97,14 +100,17 @@ const {paginationData,changePerPageHandler,changePage,nextPage,previousPage,sear
 
 </script>
 
-<style scoped>
+<style >
 @tailwind components;
 @layer components {
   .formkit-outer{
     @apply !mb-0
   }
+  .formkit-input{
+    @apply !border-[1px] !border-gray-100/50 dark:!text-primary-light-1 font-main
+  }
   .pagination-section{
-    @apply bg-gray-100 p-2 flex md:justify-between justify-center items-center items-center md:flex-row flex-col gap-1 md:gap-0;
+    @apply bg-gray-100 p-2 flex md:justify-between justify-center items-center items-center md:flex-row flex-col gap-1 md:gap-0 dark:bg-[rgb(70,79,91)];
   }
 }
 </style>
