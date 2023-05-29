@@ -40,16 +40,22 @@ export interface IServer_Status {
 
 export interface ITable_Data {
     titles:string[],
-    rows:{username:string,
+    rows:{
+        uid:string|number,
+        username:string,
         password:string,
         traffic:string,
         usedVolume:number,
         userLimitation:number,
-        contactInfo:string,
+        contactInfo:{
+            phone:string,
+            email:string
+        },
         date:{
             registered:string,
             expired:string
         },
-        active:boolean}[]
+        status:'active'|'inactive'|'Traffic completion'
+    }[]
 
 }

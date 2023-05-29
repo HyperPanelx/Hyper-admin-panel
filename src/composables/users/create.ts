@@ -1,6 +1,6 @@
 import { reset } from '@formkit/core'
 
-export const useCreateSingleUser=()=>{
+export const useCreateUser=()=>{
     const createSingleUserFetchFlag=useState<boolean|null>('createSingleUserFetchFlag',()=>null)
     const responseMessage=ref<string>('')
     const createSingleUserForm=ref(null)
@@ -17,7 +17,7 @@ export const useCreateSingleUser=()=>{
         createSingleUserFetchFlag.value=true
         responseMessage.value=''
         try {
-            const createSingleUserRequest=await $fetch('/api/users/create/single',{
+            const createSingleUserRequest=await $fetch('/api/users/create',{
                 body:value,
                 method:'POST'
             })

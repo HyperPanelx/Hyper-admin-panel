@@ -5,186 +5,242 @@ export default defineEventHandler(async ev=>{
         titles:['user info','traffic','User limitation','Contact info','Date','status','operation'],
         rows:[
             {
+                uid:1,
                 username:'hooman_77',
                 password:'12345667',
                 traffic:'Unlimited',
                 usedVolume:0,
                 userLimitation:1,
-                contactInfo:'09981929653',
+                contactInfo:{
+                    phone:'09981929653',
+                    email:'hoomanmousavi77@gmail.com'
+                },
                 date:{
                     registered:'02-05-2023',
                     expired:'02-05-2023'
                 },
-                active:true
+                status:'active'
             },
             {
+                uid:2,
                 username:'ali_88',
                 password:'12345667',
                 traffic:'Unlimited',
                 usedVolume:0,
                 userLimitation:1,
-                contactInfo:'09981929653',
+                contactInfo:{
+                    phone:'09981929653',
+                    email:'hoomanmousavi77@gmail.com'
+                },
                 date:{
                     registered:'02-05-2023',
                     expired:'02-05-2023'
                 },
-                active:true
+                status:'Traffic completion'
             },
             {
+                uid:3,
                 username:'reza-90',
                 password:'12345667',
                 traffic:'Unlimited',
                 usedVolume:0,
                 userLimitation:1,
-                contactInfo:'09981929653',
+                contactInfo:{
+                    phone:'09981929653',
+                    email:'hoomanmousavi77@gmail.com'
+                },
                 date:{
                     registered:'02-05-2023',
                     expired:'02-05-2023'
                 },
-                active:true
+                status:'inactive'
             },
             {
+                uid:4,
                 username:'reza_09',
                 password:'12345667',
                 traffic:'Unlimited',
                 usedVolume:0,
                 userLimitation:1,
-                contactInfo:'09981929653',
+                contactInfo:{
+                    phone:'09981929653',
+                    email:'hoomanmousavi77@gmail.com'
+                },
                 date:{
                     registered:'02-05-2023',
                     expired:'02-05-2023'
                 },
-                active:true
+                status:'active'
             },
             {
+                uid:5,
                 username:'arian',
                 password:'12345667',
                 traffic:'Unlimited',
                 usedVolume:0,
                 userLimitation:1,
-                contactInfo:'09981929653',
+                contactInfo:{
+                    phone:'09981929653',
+                    email:'hoomanmousavi77@gmail.com'
+                },
                 date:{
                     registered:'02-05-2023',
                     expired:'02-05-2023'
                 },
-                active:true
+                status:'active'
             },
             {
+                uid:6,
                 username:'maryam',
                 password:'12345667',
                 traffic:'Unlimited',
                 usedVolume:0,
                 userLimitation:1,
-                contactInfo:'09981929653',
+                contactInfo:{
+                    phone:'09981929653',
+                    email:'hoomanmousavi77@gmail.com'
+                },
                 date:{
                     registered:'02-05-2023',
                     expired:'02-05-2023'
                 },
-                active:true
+                status:'active'
             },
             {
+                uid:7,
                 username:'maryam',
                 password:'12345667',
                 traffic:'Unlimited',
                 usedVolume:0,
                 userLimitation:1,
-                contactInfo:'09981929653',
+                contactInfo:{
+                    phone:'09981929653',
+                    email:'hoomanmousavi77@gmail.com'
+                },
                 date:{
                     registered:'02-05-2023',
                     expired:'02-05-2023'
                 },
-                active:true
+                status:'active'
             },
             {
+                uid:8,
                 username:'maryam',
                 password:'12345667',
                 traffic:'Unlimited',
                 usedVolume:0,
                 userLimitation:1,
-                contactInfo:'09981929653',
+                contactInfo:{
+                    phone:'09981929653',
+                    email:'hoomanmousavi77@gmail.com'
+                },
                 date:{
                     registered:'02-05-2023',
                     expired:'02-05-2023'
                 },
-                active:true
+                status:'active'
             },
             {
+                uid:9,
                 username:'maryam',
                 password:'12345667',
                 traffic:'Unlimited',
                 usedVolume:0,
                 userLimitation:1,
-                contactInfo:'09981929653',
+                contactInfo:{
+                    phone:'09981929653',
+                    email:'hoomanmousavi77@gmail.com'
+                },
                 date:{
                     registered:'02-05-2023',
                     expired:'02-05-2023'
                 },
-                active:true
+                status:'active'
             },
             {
+                uid:10,
                 username:'maryam',
                 password:'12345667',
                 traffic:'Unlimited',
                 usedVolume:0,
                 userLimitation:1,
-                contactInfo:'09981929653',
+                contactInfo:{
+                    phone:'09981929653',
+                    email:'hoomanmousavi77@gmail.com'
+                },
                 date:{
                     registered:'02-05-2023',
                     expired:'02-05-2023'
                 },
-                active:true
+                status:'active'
             },
             {
+                uid:11,
                 username:'mahdi',
                 password:'12345667',
                 traffic:'Unlimited',
                 usedVolume:0,
                 userLimitation:1,
-                contactInfo:'09981929653',
+                contactInfo:{
+                    phone:'09981929653',
+                    email:'hoomanmousavi77@gmail.com'
+                },
                 date:{
                     registered:'02-05-2023',
                     expired:'02-05-2023'
                 },
-                active:true
+                status:'active'
             },
             {
+                uid:12,
                 username:'arash',
                 password:'12345667',
                 traffic:'Unlimited',
                 usedVolume:0,
                 userLimitation:1,
-                contactInfo:'09981929653',
+                contactInfo:{
+                    phone:'09981929653',
+                    email:'hoomanmousavi77@gmail.com'
+                },
                 date:{
                     registered:'02-05-2023',
                     expired:'02-05-2023'
                 },
-                active:true
+                status:'active'
             },
             {
+                uid:13,
                 username:'hooman_77',
                 password:'12345667',
                 traffic:'Unlimited',
                 usedVolume:0,
                 userLimitation:1,
-                contactInfo:'09981929653',
+                contactInfo:{
+                    phone:'09981929653',
+                    email:'hoomanmousavi77@gmail.com'
+                },
                 date:{
                     registered:'02-05-2023',
                     expired:'02-05-2023'
                 },
-                active:true
+                status:'active'
             },
             {
+                uid:14,
                 username:'hooman_77',
                 password:'12345667',
                 traffic:'Unlimited',
                 usedVolume:0,
                 userLimitation:1,
-                contactInfo:'09981929653',
+                contactInfo:{
+                    phone:'09981929653',
+                    email:'hoomanmousavi77@gmail.com'
+                },
                 date:{
                     registered:'02-05-2023',
                     expired:'02-05-2023'
                 },
-                active:true
+                status:'active'
             },
         ]
     }

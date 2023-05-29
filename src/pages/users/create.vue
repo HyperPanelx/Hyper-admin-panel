@@ -1,5 +1,5 @@
 <template>
-  <VBreadcrumb :pages="[{name:'Home',link:'DASHBOARD'},{name:'Users',link:'USERS'},{name:'Create Single User'}]" />
+  <VBreadcrumb :pages="[{name:'Home',link:'DASHBOARD'},{name:'Users',link:'USERS'},{name:'Create User'}]" />
   <row class="mt-3">
     <column col="12">
       <VCard title="create new user" body-class="!p-2">
@@ -49,13 +49,13 @@
               </column>
               <column col="12" md="6">
                 <FormKit
-                    validation="matches:/^09\d{9}$/"
+                    validation="required|matches:/^09\d{9}$/"
                     validation-label="Phone Number"
                     type="text"
                     id="phone"
                     name="phone"
                     input-class=" font-main"
-                    label="Phone Number (like: 09xxxxxxxxx)"
+                    label="Phone Number (Required) (like: 09xxxxxxxxx)"
                     label-class="dark:text-primary-dark-2 dark:!bg-[#37404a] !font-main"
                     :floating-label="true"
                 />
@@ -65,11 +65,13 @@
             <row>
               <column col="12" md="6">
                 <FormKit
+                    validation="required"
+                    validation-label="Concurrent user"
                     type="number"
                     id="concurrent_user"
                     name="concurrent_user"
                     input-class=" font-main"
-                    label="Concurrent user"
+                    label="Concurrent user (Required)"
                     label-class="dark:text-primary-dark-2 dark:!bg-[#37404a] !font-main"
                     value="1"
                     :floating-label="true"
@@ -78,13 +80,16 @@
               </column>
               <column col="12" md="6">
                 <FormKit
+                    validation="required"
+                    validation-label="Expiration Date"
                     type="date"
                     id="expiration_date"
                     name="expiration_date"
                     input-class=" font-main"
-                    label="Expiration Date"
+                    label="Expiration Date (Required)"
                     label-class="dark:text-primary-dark-2 !translate-x-[-1px] !text-0.7 !translate-y-[2px] bg-primary-light-1 dark:!bg-[#37404a] !font-main"
                     :floating-label="true"
+                    help-class="dark:text-primary-dark-3"
                     help="Leave this field empty if you set the expiration date automatically."
                 />
 
@@ -93,20 +98,16 @@
             <row  class="my-1">
               <column col="12" md="6">
                 <FormKit
-                    validation-label="traffic"
-                    validation="required"
                     type="text"
                     id="traffic"
                     name="traffic"
                     input-class=" font-main"
-                    label="Traffic (required)"
+                    label="Traffic"
                     label-class="dark:text-primary-dark-2 dark:!bg-[#37404a] !font-main"
                     :floating-label="true"
                 />
                 <FormKit
                     name="traffic_unit"
-                    validation-label="traffic unit"
-                    validation="required"
                     fieldset-class="!border-[0px] dark:[&_*]!text-primary-light-1 !pl-0 !ml-0"
                     options-class="!flex gap-1 !flex-row"
                     type="radio"
@@ -130,7 +131,20 @@
               </column>
             </row>
             <row >
-            <column col="12" >
+              <column col="12" md="6">
+                <FormKit
+                    validation-label="Telegram id"
+                    validation="required"
+                    type="text"
+                    id="telegram_id"
+                    name="telegram_id"
+                    input-class="font-main"
+                    label="Telegram id (required)"
+                    label-class="dark:text-primary-dark-2 dark:!bg-[#37404a] !font-main"
+                    :floating-label="true"
+                />
+              </column>
+              <column col="12" md="6" >
               <FormKit
                   rows="5"
                   type="textarea"
@@ -143,7 +157,7 @@
               />
 
             </column>
-          </row>
+            </row>
           <div class="flex gap-2 items-center mt-2">
             <VBloader class="btn btn-indigo btn-md"
                       animation="slide-down"
@@ -166,12 +180,12 @@
 
 <script setup lang="ts">
 definePageMeta({
-  name:'NEW_SINGLE_USER'
+  name:'CREATE_USER'
 });
 useHead({
-  title:'User > Create > Single'
+  title:'User > Create'
 });
-const {createUserFormSubmit,createSingleUserFetchFlag,responseMessage,createSingleUserForm,submitForm}=useCreateSingleUser()
+const {createUserFormSubmit,createSingleUserFetchFlag,responseMessage,createSingleUserForm,submitForm}=useCreateUser()
 </script>
 
 <style scoped>

@@ -2,14 +2,9 @@
   <template v-if="fetchTableDataFlag">
     <div class="flex sm:flex-row flex-col sm:gap-0 gap-1 sm:items-center sm:justify-between mb-2">
       <VBreadcrumb :pages="[{name:'Home',link:'DASHBOARD'},{name:'Users'}]" />
-      <div>
-        <NuxtLink :to="{name:'NEW_MAJOR_USER'}" class="btn btn-secondary mr-1">
-          Create Users
-        </NuxtLink>
-        <NuxtLink :to="{name:'NEW_SINGLE_USER'}" class="btn btn-success ">
-          New User
-        </NuxtLink>
-      </div>
+      <NuxtLink :to="{name:'CREATE_USER'}" class="btn btn-success ">
+        Add New User
+      </NuxtLink>
     </div>
     <row>
       <column col="12">
@@ -57,26 +52,26 @@
               </template>
             </h6>
             <div class="flex items-center gap-1">
-              <button @click="previousPage" class="btn btn-primary !p-0.5">
+              <button @click="previousPage" class="btn btn-indigo !p-0.5">
                 <Icon name="ri:arrow-left-s-line" size="1.7rem"/>
               </button>
               <template v-if="paginationData.allPages<4">
-                <button :class="{'active':item===paginationData.currentPage}" @click="changePage(item)" v-for="item in paginationData.allPages" class="btn btn-primary btn-md">
+                <button :class="{'active':item===paginationData.currentPage}" @click="changePage(item)" v-for="item in paginationData.allPages" class="btn btn-indigo btn-md">
                   {{item}}
                 </button>
               </template>
              <template v-if="paginationData.allPages>3">
-               <button v-if="paginationData.startShowPaginationButton>1" @click="showLessButton" class="btn btn-primary btn-md">
+               <button v-if="paginationData.startShowPaginationButton>1" @click="showLessButton" class="btn btn-indigo btn-md">
                  ...
                </button>
-               <button :class="{'active':item===paginationData.currentPage}" @click="changePage(item)" v-for="item in declareNumberToArray(paginationData.allPages).slice(paginationData.startShowPaginationButton-1,paginationData.endShowPaginationButton)" class="btn btn-primary btn-md">
+               <button :class="{'active':item===paginationData.currentPage}" @click="changePage(item)" v-for="item in declareNumberToArray(paginationData.allPages).slice(paginationData.startShowPaginationButton-1,paginationData.endShowPaginationButton)" class="btn btn-indigo btn-md">
                  {{item}}
                </button>
-               <button v-if="paginationData.endShowPaginationButton<paginationData.allPages" @click="showMoreButton" class="btn btn-primary btn-md">
+               <button v-if="paginationData.endShowPaginationButton<paginationData.allPages" @click="showMoreButton" class="btn btn-indigo btn-md">
                  ...
                </button>
              </template>
-              <button @click="nextPage" class="btn btn-primary !p-0.5">
+              <button @click="nextPage" class="btn btn-indigo !p-0.5">
                 <Icon name="ri:arrow-right-s-line" size="1.7rem"/>
               </button>
             </div>

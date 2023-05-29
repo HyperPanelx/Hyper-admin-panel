@@ -4,9 +4,13 @@
     @apply overflow-x-auto w-0 min-w-full;
   }
   .table-hover {
-    @apply hover:bg-gray-200 transition-all;
+    @apply cursor-pointer hover:bg-gray-100/50 transition-all dark:hover:bg-primary-dark-3/10;
   }
-  .td-shadow{
+  .td-shadow td{
     @apply shadow-[4px_-2px_8px_-3px_rgba(0,0,0,0.15)] dark:shadow-[4px_-2px_8px_-3px_rgba(255,255,255,0.15)]
   }
+  .td-border td{
+    @apply border-b-[1px] border-b-gray-200
+  }
+
 }

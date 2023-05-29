@@ -18,8 +18,6 @@ export const useUsersList=()=>{
             fetchTableDataFlag.value=true
             showPreloaderFlag.value=false
         }
-
-
     })
 
 
