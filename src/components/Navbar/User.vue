@@ -7,7 +7,7 @@
     <template v-slot:parent>
       <nuxt-img width="40"  provider="cloudinary" src="v1684870684/hyper/profile_1_xe7zxp.svg"/>
       <div class="lg:block hidden">
-        <p class="group-hover:text-secondary-light-2 text-0.9 w-7 text-gray-700 capitalize font-600 text-hidden dark:text-primary-dark-2 dark:group-hover:text-[#bccee4]" v-if="userInformation">{{userInformation.firstname}} {{userInformation.lastname}}</p>
+        <p class="group-hover:text-secondary-light-2 text-0.9 w-7 text-gray-700 capitalize font-600 text-hidden dark:text-primary-dark-2 dark:group-hover:text-[#bccee4]" v-if="username">{{username}}</p>
         <p class="group-hover:text-secondary-light-2 text-0.7 text-gray-600 mt-0.5 dark:text-primary-dark-2 dark:group-hover:text-[#bccee4]">
           Admin
         </p>
@@ -38,7 +38,7 @@
 </template>
 
 <script setup lang="ts">
-const {userInformation}=useStates()
+const {username}=useStates()
 const {logoutHandler}=useLogout()
 const {openNavbarDropdownFlag}=useStates()
 </script>

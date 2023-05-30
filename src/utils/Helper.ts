@@ -35,3 +35,20 @@ export const declareNumberToArray = (num:number) => {
     }
     return res
 }
+
+
+export const loginEncode = (username:string,password:string):{header:any,body:any} => {
+    const myHeaders = new Headers();
+    const urlencoded = new URLSearchParams();
+    myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+    urlencoded.append("grant_type", "");
+    urlencoded.append("scope", "");
+    urlencoded.append("client_id", "");
+    urlencoded.append("client_secret", "");
+    urlencoded.append("username", username);
+    urlencoded.append("password", password);
+    return {
+        header:myHeaders,
+        body:urlencoded
+    }
+}

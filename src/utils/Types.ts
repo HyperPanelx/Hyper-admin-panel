@@ -1,5 +1,11 @@
 import {RouteLocationRaw} from "vue-router";
 
+export interface Login_Response {
+    access_token:string,
+    token_type:'bearer'
+}
+
+
 export interface ISidebar {
     title:string
     icon:string
