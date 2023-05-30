@@ -1,4 +1,4 @@
-import {IUser_Data, IUser_Information} from "~/utils/Types";
+import {IUser_Data} from "~/utils/Types";
 
 
 export const useLogin=()=>{
@@ -17,7 +17,7 @@ export const useLogin=()=>{
         if(userData.password.match(passwordRegex) && userData.username.match(usernameRegex)){
             loginRequestFlag.value=true
             try {
-                const loginValidationRequest:IUser_Information=await $fetch('/api/login',{
+                const loginValidationRequest=await $fetch('/api/login',{
                     method:'POST',body:userData,
                     headers:{
                         Authorization:internalApiKey

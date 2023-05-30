@@ -23,10 +23,7 @@ export interface IUser_Data {
     rememberMe:boolean
 }
 
-export interface IUser_Information {
-    firstname:string,
-    lastname:string
-}
+
 
 export interface IUsers_Data {
     title:string

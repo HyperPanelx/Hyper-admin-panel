@@ -1,4 +1,3 @@
-import {IUser_Information} from "~/utils/Types";
 
 export const useStates=()=>{
     const sidebarCollapseFlag=useState<boolean>('sidebarCollapseFlag')

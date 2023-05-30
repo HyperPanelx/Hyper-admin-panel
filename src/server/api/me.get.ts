@@ -2,14 +2,18 @@ import {getCookie,sendError} from "h3";
 
 
 export default defineEventHandler(async ev=>{
-    const {cookieName}=useRuntimeConfig()
-    const cookie=getCookie(ev,cookieName)
+    const {cookieName,apiBase}=useRuntimeConfig()
+    const cookie=getCookie(ev,cookieName);
+
     if(cookie){
         try {
-            return {
-                firstname: 'hooman',
-                lastname: 'mousavi'
-            }
+            const getUserInformationRequest:{username:string}=await $fetch(apiBase+'panel/me/',{
+                headers:{
+                    'Content-type':'application/json',
+                    Authorization:`Bearer ${cookie}`
+                }
+            })
+            return getUserInformationRequest.username
         }catch (err) {
             sendError(ev,{
                 name:'/api/me',
