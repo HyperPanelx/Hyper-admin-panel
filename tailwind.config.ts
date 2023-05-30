@@ -187,7 +187,8 @@ module.exports = {
       'full':'9999px'
     },
     fontFamily:{
-      main:['Montserrat','sans-serif']
+      main:['Montserrat','sans-serif'],
+      second:['Roboto Mono','monospace']
     },
     container:{
       center:true,

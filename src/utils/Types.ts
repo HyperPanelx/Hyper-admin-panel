@@ -62,3 +62,18 @@ export interface ITable_Data {
     }[]
 
 }
+
+
+export interface ICreate_User {
+    username:string,
+    password?:string,
+    email?:string,
+    phone:string,
+    concurrent_user:number,
+    expiration_date:string,
+    traffic?:string,
+    traffic_unit?:string,
+    referral?:string,
+    telegram_id:string,
+    description?:string
+}

@@ -21,13 +21,11 @@
               </column>
               <column col="12" md="6">
                 <FormKit
-                    validation-label="password"
-                    validation="required"
                     type="password"
                     id="password"
                     name="password"
                     input-class=" font-main"
-                    label="Password (required)"
+                    label="Password"
                     label-class="dark:text-primary-dark-2 dark:!bg-[#37404a] !font-main"
                     :floating-label="true"
                 />
@@ -68,6 +66,7 @@
                     validation="required"
                     validation-label="Concurrent user"
                     type="number"
+                    :plugins="[castNumber]"
                     id="concurrent_user"
                     name="concurrent_user"
                     input-class=" font-main"
@@ -164,18 +163,56 @@
                       :duration="2000"
                       type="submit"
                       @click="submitForm"
-                      :loading="createSingleUserFetchFlag"
+                      :loading="fetchOperationData.on"
             >
               Submit
             </VBloader>
-            <p class="text-gray-800 dark:text-primary-light-1" v-if="responseMessage.length>0 && !createSingleUserFetchFlag">{{responseMessage}}</p>
+            <p class="text-red-700 dark:text-primary-light-1 " v-if="fetchOperationData.error">Error in connecting to api. please try again later!</p>
           </div>
 
         </FormKit>
       </VCard>
     </column>
   </row>
-
+  <VModal :fade-outside="false" class="!p-0 !h-auto" v-model="fetchOperationData.modal">
+    <div  class="modal-header">
+      <div class="flex gap-1 items-center">
+        <nuxt-img class="w-2" provider="cloudinary" src="v1684354705/hyper/logo-lg_hqn9rt.png"/>
+        <h5 class="text-gray-800" > HYPER</h5>
+      </div>
+      <Icon @click="closeModal" size="1.5rem" class="text-gray-800 cursor-pointer" name="heroicons-outline:x" />
+    </div>
+    <div class="modal-body">
+      <p class="text-1 text-green-600 flex items-center gap-0.5"> <Icon name="fluent-mdl2:accept"/>  User created successfully!</p>
+      <row class="mt-1.5 justify-center">
+        <column col="6">
+          <p class="font-second text-right">username:</p>
+        </column>
+        <column col="6">
+          <p class="font-second">{{newCreatedUserData.username}}</p>
+        </column>
+      </row>
+      <row class="mt-0.5">
+        <column col="6">
+          <p class="font-second text-right">password:</p>
+        </column>
+        <column col="6">
+          <div  class="flex gap-1 items-center">
+            <input class="font-second w-6 leading-1" :type="showPasswordFlag ? 'text' : 'password'" disabled :value="newCreatedUserData.password" />
+            <Icon @click="showPasswordFlag=!showPasswordFlag" class="text-gray-800 cursor-pointer" size="1.3rem" :name="showPasswordFlag ? 'mdi:eye-off' : 'mdi:eye' "/>
+          </div>
+        </column>
+      </row>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary btn-sm" @click="copyCreatedUserInfo">
+        copy
+      </button>
+      <button class="btn btn-indigo btn-sm" @click="closeModal">
+        close
+      </button>
+    </div>
+  </VModal>
 </template>
 
 <script setup lang="ts">
@@ -185,7 +222,8 @@ definePageMeta({
 useHead({
   title:'User > Create'
 });
-const {createUserFormSubmit,createSingleUserFetchFlag,responseMessage,createSingleUserForm,submitForm}=useCreateUser()
+const {createUserFormSubmit,fetchOperationData,createSingleUserForm,submitForm,castNumber,closeModal,newCreatedUserData,copyCreatedUserInfo}=useCreateUser();
+const showPasswordFlag=ref<boolean>(false);
 </script>
 
 <style scoped>

@@ -1,44 +1,67 @@
 import { reset } from '@formkit/core'
 
 export const useCreateUser=()=>{
-    const createSingleUserFetchFlag=useState<boolean|null>('createSingleUserFetchFlag',()=>null)
-    const responseMessage=ref<string>('')
     const createSingleUserForm=ref(null)
     const {public:{internalApiKey}}=useRuntimeConfig()
 
+    const fetchOperationData=reactive({
+        on:null as null|boolean,
+        error:false,
+        modal:false
+    })
+
+    const newCreatedUserData=reactive({
+        username:'',
+        password:''
+    })
+
+    onMounted(()=>reset('createSingleUserForm'));
     const submitForm = () => {
         if(createSingleUserForm.value){
             const node = (createSingleUserForm.value as any).node
             node.submit()
         }
 
-    }
-    
+    };
+
+    const castNumber = (node:any) => {
+        node.hook.input((value:any, next:any) => next(Number(value)))
+    };
     const createUserFormSubmit = async (value:any) => {
-        createSingleUserFetchFlag.value=true
-        responseMessage.value=''
+        fetchOperationData.on=true
+        fetchOperationData.error=false
+        fetchOperationData.modal=false
         try {
-            const createSingleUserRequest=await $fetch('/api/users/create',{
+            const createSingleUserRequest:{password:string,username:string}=await $fetch('/api/users/create',{
                 body:value,
                 method:'POST',
-                headers:{
-                    Authorization:internalApiKey
-                }
+                headers:{Authorization:internalApiKey}
             })
-            console.log(createSingleUserRequest)
-            responseMessage.value='User created successfully!'
+            newCreatedUserData.password=createSingleUserRequest.password
+            newCreatedUserData.username=createSingleUserRequest.username
+            fetchOperationData.modal=true
             reset('createSingleUserForm')
         }catch (err) {
             console.log(err)
-            responseMessage.value='Error in connecting to server! please try again and check your connection.'
+            fetchOperationData.error=true
         }finally {
-            createSingleUserFetchFlag.value=false
+            fetchOperationData.on=false
         }
-    }
+    };
 
 
+    const closeModal = () => {
+      fetchOperationData.modal=false
+    };
+
+    const copyCreatedUserInfo = () => {
+        if(process.client){
+            navigator.clipboard.writeText(`username:${newCreatedUserData.username} password:${newCreatedUserData.password}`)
+            alert('copied the text')
+        }
+    };
 
     return{
-        createUserFormSubmit,createSingleUserFetchFlag,responseMessage,createSingleUserForm,submitForm
+        createUserFormSubmit,fetchOperationData,createSingleUserForm,submitForm,castNumber,closeModal,newCreatedUserData,copyCreatedUserInfo
     }
 }

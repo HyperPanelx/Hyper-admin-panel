@@ -1,9 +1,18 @@
 @tailwind components;
 @layer components {
     .modal{
-        @apply  w-[35vw] h-[350px] fixed top-[40px]  bg-white p-1.5 rounded-4  z-[100]
+        @apply  w-[35vw] h-[350px] fixed top-[60px]  bg-white p-1.5 rounded-4  z-[100] overflow-hidden
     }
     .modal-wrapper{
         @apply fixed top-0 left-0  w-[100vw] h-[100vh] flex justify-center bg-[rgba(0,0,0,0.3)] transition-all duration-[300ms]
+    }
+    .modal-header{
+        @apply p-1 bg-gray-100 flex  items-center justify-between
+    }
+    .modal-body{
+        @apply p-1
+    }
+    .modal-footer{
+        @apply p-1 flex justify-end border-t-[1px] border-gray-200 bg-gray-100 gap-1
     }
 }

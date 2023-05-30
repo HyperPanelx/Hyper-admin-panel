@@ -16,12 +16,20 @@
 
 <script setup lang="ts">
 const props=defineProps<{
-  modelValue:boolean
-}>()
+  modelValue:boolean,
+  fadeOutside?:boolean
+}>();
 const emit=defineEmits<{
   (e:'update:modelValue',value:boolean):void
-}>()
-const close = () => emit('update:modelValue',false)
+}>();
+const close = () => {
+  if(props.fadeOutside){
+    emit('update:modelValue',false)
+  }
+}
+
+
+
 </script>
 
 <style scoped>
