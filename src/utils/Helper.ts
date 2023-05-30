@@ -52,3 +52,13 @@ export const loginEncode = (username:string,password:string):{header:any,body:an
         body:urlencoded
     }
 }
+
+
+export const stringToPassword=(str:string)=>{
+    return str.split('').map(item=>'•').join('')
+}
+
+export const copyText = (txt:string) => {
+    navigator.clipboard.writeText(txt);
+    alert('copied')
+}

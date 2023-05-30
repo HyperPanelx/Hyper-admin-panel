@@ -1,3 +1,4 @@
+import {IUsers_Data,IOnline_Users_Data} from "~/utils/Types";
 
 export const useStates=()=>{
     const sidebarCollapseFlag=useState<boolean>('sidebarCollapseFlag')
@@ -5,9 +6,10 @@ export const useStates=()=>{
     const isLogin=useState<boolean>('isLogin')
     const username=useState<string>('username')
     const openNavbarDropdownFlag=ref<boolean>(false)
-    const showPreloaderFlag=useState('showPreloaderFlag')
-
+    const showPreloaderFlag=useState<boolean>('showPreloaderFlag')
+    const tableData=useState<IUsers_Data|IOnline_Users_Data>('tableData');
+    const fetchTableDataFlag=useState<boolean>('fetchTableDataFlag');
     return{
-        sidebarCollapseFlag,windowWidth,isLogin,username,openNavbarDropdownFlag,showPreloaderFlag
+        sidebarCollapseFlag,windowWidth,isLogin,username,openNavbarDropdownFlag,showPreloaderFlag,tableData, fetchTableDataFlag
     }
 }

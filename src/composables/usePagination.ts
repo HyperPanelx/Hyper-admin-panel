@@ -1,15 +1,14 @@
-import {ITable_Data} from "~/utils/Types";
+import {IUsers_Data} from "~/utils/Types";
 
 
 export const usePagination=()=>{
-    const tableData=useState<ITable_Data>('tableData')
-    const fetchTableDataFlag=useState('fetchTableDataFlag')
-    const searchText=useState('tableSearchText',()=>'')
-    const paginationData=reactive({
+    const {tableData,fetchTableDataFlag}=useStates()
+    const searchText=useState('tableSearchText',()=>'');
+    const paginationDataInitialValue={
         itemPerPage:5,
         allPages:0,
-        sourceData:[] as ITable_Data['rows'],
-        currentPageData:[] as ITable_Data['rows'],
+        sourceData:[] as IUsers_Data['rows'],
+        currentPageData:[] as IUsers_Data['rows'],
         startIdx:0,
         endIdx:0,
         currentPage:1,
@@ -17,38 +16,39 @@ export const usePagination=()=>{
         maxShowButton:3,
         startShowPaginationButton:1,
         endShowPaginationButton:3,
-    })
+    }
+    const paginationData=useState<any>('paginationData',()=>paginationDataInitialValue)
 
     const changePerPageHandler = (value:any) => {
-        paginationData.itemPerPage=value.per_page
+        paginationData.value.itemPerPage=value.per_page
         paginationUpdate()
     }
 
     const paginationUpdate = () => {
-        paginationData.allPages=Math.ceil(paginationData.sourceData.length/paginationData.itemPerPage);
-        paginationData.currentPageData=[...paginationData.sourceData].slice(0,paginationData.itemPerPage)
+        paginationData.value.allPages=Math.ceil(paginationData.value.sourceData.length/paginationData.value.itemPerPage);
+        paginationData.value.currentPageData=[...paginationData.value.sourceData].slice(0,paginationData.value.itemPerPage)
     }
 
     const changePage = (pageNumber:number) => {
-        if(pageNumber> paginationData.allPages){
-            paginationData.currentPage=1
+        if(pageNumber> paginationData.value.allPages){
+            paginationData.value.currentPage=1
         }else if(pageNumber<1){
-            paginationData.currentPage=paginationData.allPages
+            paginationData.value.currentPage=paginationData.value.allPages
         }else{
-            paginationData.currentPage=pageNumber
+            paginationData.value.currentPage=pageNumber
         }
-        paginationData.endIdx=paginationData.currentPage*paginationData.itemPerPage
-        paginationData.startIdx=paginationData.endIdx-paginationData.itemPerPage
-        paginationData.currentPageData=[...paginationData.sourceData].slice(paginationData.startIdx,paginationData.endIdx)
+        paginationData.value.endIdx=paginationData.value.currentPage*paginationData.value.itemPerPage
+        paginationData.value.startIdx=paginationData.value.endIdx-paginationData.value.itemPerPage
+        paginationData.value.currentPageData=[...paginationData.value.sourceData].slice(paginationData.value.startIdx,paginationData.value.endIdx)
 
     }
     const nextPage = () => {
-      changePage(paginationData.currentPage+1)
-        goToCurrentButton(paginationData.currentPage)
+      changePage(paginationData.value.currentPage+1)
+        goToCurrentButton(paginationData.value.currentPage)
     }
     const previousPage = () => {
-        changePage(paginationData.currentPage-1)
-        goToCurrentButton(paginationData.currentPage)
+        changePage(paginationData.value.currentPage-1)
+        goToCurrentButton(paginationData.value.currentPage)
     }
 
 
@@ -56,7 +56,9 @@ export const usePagination=()=>{
         ()=>fetchTableDataFlag.value,
         ()=>{
             if(fetchTableDataFlag.value){
-                paginationData.sourceData=tableData.value.rows
+                paginationData.value=null
+                paginationData.value=paginationDataInitialValue
+                paginationData.value.sourceData=tableData.value.rows
                 paginationUpdate()
             }
         },
@@ -66,38 +68,38 @@ export const usePagination=()=>{
     )
 
     const searchHandler = () => {
-        paginationData.sourceData=tableData.value.rows
-        const searchResult=[...paginationData.sourceData].filter(item=>{
-            return item.username.toLowerCase().startsWith(searchText.value.toLowerCase())
+        paginationData.value.sourceData=tableData.value.rows
+        const searchResult=[...paginationData.value.sourceData].filter(item=>{
+            return item.user.toLowerCase().startsWith(searchText.value.toLowerCase())
         });
-        paginationData.sourceData=searchResult
-        paginationData.searchResultFlag = searchResult.length === 0;
+        paginationData.value.sourceData=searchResult
+        paginationData.value.searchResultFlag = searchResult.length === 0;
         paginationUpdate()
     }
 
     const resetSearch = () => {
-        paginationData.sourceData=tableData.value.rows
+        paginationData.value.sourceData=tableData.value.rows
         searchText.value=''
         paginationUpdate()
-        paginationData.searchResultFlag=false
+        paginationData.value.searchResultFlag=false
     }
     const showMoreButton = () => {
-      paginationData.startShowPaginationButton+=paginationData.maxShowButton
-      paginationData.endShowPaginationButton+=paginationData.maxShowButton
+      paginationData.value.startShowPaginationButton+=paginationData.value.maxShowButton
+      paginationData.value.endShowPaginationButton+=paginationData.value.maxShowButton
     }
     const showLessButton = () => {
-        paginationData.startShowPaginationButton-=paginationData.maxShowButton
-        paginationData.endShowPaginationButton-=paginationData.maxShowButton
+        paginationData.value.startShowPaginationButton-=paginationData.value.maxShowButton
+        paginationData.value.endShowPaginationButton-=paginationData.value.maxShowButton
     }
 
     const goToCurrentButton = (currentPage:number) => {
-        const allButtonPage=Math.ceil(paginationData.allPages/paginationData.maxShowButton)
+        const allButtonPage=Math.ceil(paginationData.value.allPages/paginationData.value.maxShowButton)
         for(let i=1;i<allButtonPage+1;i++){
-            const max=i*paginationData.maxShowButton
-            const min=(max-paginationData.maxShowButton)+1
+            const max=i*paginationData.value.maxShowButton
+            const min=(max-paginationData.value.maxShowButton)+1
            if(max>=currentPage && min<=currentPage){
-               paginationData.startShowPaginationButton=min
-               paginationData.endShowPaginationButton=max
+               paginationData.value.startShowPaginationButton=min
+               paginationData.value.endShowPaginationButton=max
                break
            }
         }

@@ -41,29 +41,32 @@ export interface IServer_Status {
     }
 }
 
-export interface ITable_Data {
+export interface IUsers_Data {
     titles:string[],
     rows:{
-        uid:string|number,
-        username:string,
-        password:string,
-        traffic:string,
-        usedVolume:number,
-        userLimitation:number,
-        contactInfo:{
-            phone:string,
-            email:string
-        },
-        date:{
-            registered:string,
-            expired:string
-        },
-        status:'active'|'inactive'|'Traffic completion'
-    }[]
+        desc: string
+        email: string
+        exdate: string
+        multi: number
+        passwd: string
+        phone: number
+        referral: string
+        status: string
+        telegram_id: string
+        traffic: string
+        user: string
+    }[];
 
 }
 
-
+export interface IOnline_Users_Data{
+    titles:string[],
+    rows:{
+      username:string,
+      uid:number,
+      ip:string
+    }[]
+}
 export interface ICreate_User {
     username:string,
     password?:string,

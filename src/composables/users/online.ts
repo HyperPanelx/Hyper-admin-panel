@@ -1,6 +1,7 @@
-import {IUsers_Data} from "~/utils/Types";
+import {IOnline_Users_Data} from "~/utils/Types";
 
-export const useUsersList=()=>{
+
+export const useOnlineUsers=()=>{
     const {showPreloaderFlag,fetchTableDataFlag,tableData}=useStates();
     const {public:{internalApiKey}}=useRuntimeConfig();
 
@@ -10,9 +11,8 @@ export const useUsersList=()=>{
         fetchTableDataFlag.value=false
         showPreloaderFlag.value=true
         try {
-            const getTableDataRequest:IUsers_Data=await $fetch('/api/users/list',{
+            const getTableDataRequest:IOnline_Users_Data=await $fetch('/api/users/online',{
                 headers:{Authorization:internalApiKey}})
-            console.log(getTableDataRequest)
             tableData.value=getTableDataRequest
         }catch (err) {
             console.log(err)
@@ -24,6 +24,6 @@ export const useUsersList=()=>{
 
 
     return{
-       tableData,fetchTableDataFlag
+        tableData,fetchTableDataFlag
     }
 }

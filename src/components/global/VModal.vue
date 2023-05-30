@@ -1,7 +1,7 @@
 <template>
   <client-only>
     <Teleport to="body">
-      <div class="modal-wrapper"  @click.self="close" :class="modelValue ? '!z-[99] opacity-100':'!z-[-1] opacity-0'">
+      <div class="modal-wrapper"  @click.self="close" :class="modelValue ? '!z-[9999] opacity-100':'!z-[-1] opacity-0'">
         <Transition name="translate">
           <div v-if="modelValue" v-bind="$attrs" class="modal " >
             <slot />

@@ -178,28 +178,28 @@
     <div  class="modal-header">
       <div class="flex gap-1 items-center">
         <nuxt-img class="w-2" provider="cloudinary" src="v1684354705/hyper/logo-lg_hqn9rt.png"/>
-        <h5 class="text-gray-800" > HYPER</h5>
+        <h5 class="text-gray-800 dark:text-primary-dark-3" > HYPER</h5>
       </div>
-      <Icon @click="closeModal" size="1.5rem" class="text-gray-800 cursor-pointer" name="heroicons-outline:x" />
+      <Icon @click="closeModal" size="1.5rem" class="text-gray-800 dark:text-primary-dark-3 cursor-pointer" name="heroicons-outline:x" />
     </div>
     <div class="modal-body">
-      <p class="text-1 text-green-600 flex items-center gap-0.5"> <Icon name="fluent-mdl2:accept"/>  User created successfully!</p>
+      <p class="text-1 text-green-600 dark:text-green-400 flex items-center gap-0.5"> <Icon name="fluent-mdl2:accept"/>  User created successfully!</p>
       <row class="mt-1.5 justify-center">
         <column col="6">
-          <p class="font-second text-right">username:</p>
+          <p class="font-second text-right dark:text-primary-light-1">username:</p>
         </column>
         <column col="6">
-          <p class="font-second">{{newCreatedUserData.username}}</p>
+          <p class="font-second dark:text-primary-light-1">{{newCreatedUserData.username}}</p>
         </column>
       </row>
       <row class="mt-0.5">
         <column col="6">
-          <p class="font-second text-right">password:</p>
+          <p class="font-second text-right dark:text-primary-light-1">password:</p>
         </column>
         <column col="6">
           <div  class="flex gap-1 items-center">
-            <input class="font-second w-6 leading-1" :type="showPasswordFlag ? 'text' : 'password'" disabled :value="newCreatedUserData.password" />
-            <Icon @click="showPasswordFlag=!showPasswordFlag" class="text-gray-800 cursor-pointer" size="1.3rem" :name="showPasswordFlag ? 'mdi:eye-off' : 'mdi:eye' "/>
+            <input class="font-second w-6 leading-1 dark:bg-[#37404a] dark:text-primary-light-1" :type="showPasswordFlag ? 'text' : 'password'" disabled :value="newCreatedUserData.password" />
+            <Icon @click="showPasswordFlag=!showPasswordFlag" class="text-gray-800 dark:text-primary-light-1 cursor-pointer" size="1.3rem" :name="showPasswordFlag ? 'mdi:eye-off' : 'mdi:eye' "/>
           </div>
         </column>
       </row>
