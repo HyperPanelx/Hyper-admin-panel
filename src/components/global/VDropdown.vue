@@ -10,14 +10,34 @@
 </template>
 
 <script setup lang="ts">
-const props=defineProps<{
-  on?:any,
-  modelValue:boolean,
-  height?:string,
-  minHeight?:string,
-  maxHeight?:string,
-  dropdownClass?:string
-}>();
+const props=defineProps({
+  on:{
+    type:Boolean
+  },
+  modelValue:{
+    type:Boolean
+  },
+  height:{
+    type:String
+  },
+  minHeight:{
+    type:String
+  },
+  maxHeight:{
+    type:String
+  },
+  dropdownClass:{
+    type:String
+  },
+  topStart:{
+    type:String,
+    default:'180%'
+  },
+  topEnd:{
+    type:String,
+    default:'154%'
+  }
+});
 const emit=defineEmits<{
   (e:'update:modelValue',value:boolean):void,
   (e:'close',value:boolean):void
@@ -35,10 +55,12 @@ const closeDropdown = () => {
     @apply transition-all duration-[200ms] ease-in-out
   }
   .slide-enter-from,.slide-leave-to{
-    @apply top-[180%] opacity-0 invisible
+    top:v-bind(topStart) !important;
+    @apply  opacity-0 invisible;
   }
   .slide-enter-to,.slide-leave-from {
-    @apply top-[154%] opacity-100 visible
+    top:v-bind(topEnd) !important;
+    @apply opacity-100 visible;
   }
   .dropdown{
     height: v-bind(height);

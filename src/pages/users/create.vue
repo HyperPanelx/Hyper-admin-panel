@@ -157,31 +157,24 @@
 
             </column>
             </row>
-          <div class="flex gap-2 items-center mt-2">
-            <VBloader class="btn btn-indigo btn-md"
-                      animation="slide-down"
-                      :duration="2000"
-                      type="submit"
-                      @click="submitForm"
-                      :loading="fetchOperationData.on"
-            >
-              Submit
-            </VBloader>
-            <p class="text-red-700 dark:text-primary-light-1 " v-if="fetchOperationData.error">Error in connecting to api. please try again later!</p>
-          </div>
+
 
         </FormKit>
+        <div class="flex gap-2 items-center mt-2">
+          <VBloader class="btn btn-indigo btn-md"
+                    animation="slide-down"
+                    :duration="2000"
+                    @click="submitForm"
+                    :loading="fetchOperationData.on"
+          >
+            Submit
+          </VBloader>
+          <p class="text-red-700 dark:text-primary-light-1 " v-if="fetchOperationData.error">Error in connecting to api. please try again later!</p>
+        </div>
       </VCard>
     </column>
   </row>
   <VModal :fade-outside="false" class="!p-0 !h-auto" v-model="fetchOperationData.modal">
-    <div  class="modal-header">
-      <div class="flex gap-1 items-center">
-        <nuxt-img class="w-2" provider="cloudinary" src="v1684354705/hyper/logo-lg_hqn9rt.png"/>
-        <h5 class="text-gray-800 dark:text-primary-dark-3" > HYPER</h5>
-      </div>
-      <Icon @click="closeModal" size="1.5rem" class="text-gray-800 dark:text-primary-dark-3 cursor-pointer" name="heroicons-outline:x" />
-    </div>
     <div class="modal-body">
       <p class="text-1 text-green-600 dark:text-green-400 flex items-center gap-0.5"> <Icon name="fluent-mdl2:accept"/>  User created successfully!</p>
       <row class="mt-1.5 justify-center">

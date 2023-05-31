@@ -1,5 +1,5 @@
 <template>
- <div class="table-responsive">
+ <div class="table-responsive overflow-visible">
    <table class="w-full">
      <thead class="bg-primary-dark-1 dark:bg-primary-dark-2/50 text-primary-light-1 text-left font-500">
      <tr  class="w-full">
@@ -20,8 +20,9 @@
      </tr>
      </tbody>
      <tbody v-else-if="rows.length>0">
-     <tr class="table-hover td-border"  v-for="item in rows">
+     <tr class="table-hover td-border"  v-for="(item,index) in rows">
        <UsersTableRow
+        :index="index"
        :user="item.user"
        :traffic="item.traffic"
        :usedVolume="item.usedVolume"

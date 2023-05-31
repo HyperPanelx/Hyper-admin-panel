@@ -12,7 +12,6 @@ export const useUsersList=()=>{
         try {
             const getTableDataRequest:IUsers_Data=await $fetch('/api/users/list',{
                 headers:{Authorization:internalApiKey}})
-            console.log(getTableDataRequest)
             tableData.value=getTableDataRequest
         }catch (err) {
             console.log(err)
