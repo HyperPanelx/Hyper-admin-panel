@@ -9,11 +9,11 @@
         </p>
       </div>
       <div v-if="passwd" class="mb-0.5 flex items-center gap-1">
-        <Icon class="dark:text-primary-dark-3 text-red-500" @click="showPasswordFlag=!showPasswordFlag" :name="showPasswordFlag ? 'mdi:eye':'mdi:eye-off'" size="1.2rem"/>
+        <Icon class="dark:text-red-300 text-red-500" @click="showPasswordFlag=!showPasswordFlag" :name="showPasswordFlag ? 'mdi:eye':'mdi:eye-off'" size="1.2rem"/>
         <p @click="copyText(passwd)" :class="{'font-800':!showPasswordFlag}" class=" dark:text-primary-light-1 text-1  text-gray-800">{{showPasswordFlag ? passwd :  stringToPassword(passwd)}}</p>
       </div>
       <div v-if="telegram_id" class="flex items-center gap-1">
-        <Icon class="dark:!text-primary-dark-3 text-blue-700" name="ri:telegram-fill" size="1.2rem"/>
+        <Icon class="dark:!text-blue-300 text-blue-700" name="ri:telegram-fill" size="1.2rem"/>
         <p @click="copyText('@'+telegram_id)" class="text-gray-800 dark:text-primary-light-1 ">
           @{{telegram_id}}
         </p>

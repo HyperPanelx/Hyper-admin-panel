@@ -49,7 +49,7 @@ export const useUserOperation=(props:any)=>{
         dropdownFlag.value=false
         fetchTableDataFlag.value=false
         try {
-            const deleteUserRequest=await $fetch(`/api/users/${props.user}`,{
+            const deleteUserRequest=await $fetch(`/api/users/delete/${props.user}`,{
                 method:'DELETE'
             })
             operationData.modal=false
@@ -64,9 +64,8 @@ export const useUserOperation=(props:any)=>{
     const changePassword = async () => {
         dropdownFlag.value=false
         operationData.modal=false
-        // fetchTableDataFlag.value=false
         try {
-            const changePasswordRequest=await $fetch<{password:string,username:string}>(`/api/users/${props.user}`,{
+            const changePasswordRequest=await $fetch<{password:string,username:string}>(`/api/users/password/${props.user}`,{
                 method:'POST'
             })
             operationData.newPassword=changePasswordRequest.password
@@ -77,18 +76,34 @@ export const useUserOperation=(props:any)=>{
             (tableData.value as IUsers_Data).rows[userIndex].passwd=changePasswordRequest.password
         }catch (err) {
             console.log(err)
-        }finally {
-            // fetchTableDataFlag.value=true
         }
 
     }
-
-    const lockUser = () => {
-
+    const lockUser = async () => {
+        dropdownFlag.value=false
+        try {
+            const lockUserRequest=await $fetch(`/api/users/lock/${props.user}`,{
+                method:'POST'
+            })
+            const userIndex=tableData.value.rows.findIndex((item:any)=>item.uid===props.uid);
+            (tableData.value as IUsers_Data).rows[userIndex].status='disable';
+            operationData.modal=false
+        }catch (err) {
+            console.log(err)
+        }
     }
-
-    const unlockUser = () => {
-
+    const unlockUser =async () => {
+        dropdownFlag.value=false
+        try {
+            const lockUserRequest=await $fetch(`/api/users/unlock/${props.user}`,{
+                method:'POST'
+            })
+            const userIndex=tableData.value.rows.findIndex((item:any)=>item.uid===props.uid);
+            (tableData.value as IUsers_Data).rows[userIndex].status='enable';
+            operationData.modal=false
+        }catch (err) {
+            console.log(err)
+        }
     }
 
 
