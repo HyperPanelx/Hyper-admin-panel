@@ -5,9 +5,7 @@
       <column col="12">
         <VCard title="online users" body-class="!p-0">
           <PaginationControl />
-<!--          <UsersTable :searchResultFlag="paginationData.searchResultFlag" :rows="paginationData.currentPageData" :titles="tableData.titles" />-->
-
-
+          <OnlineTable :searchResultFlag="paginationData.searchResultFlag" :rows="paginationData.currentPageData" :titles="tableData.titles" />
           <Pagination />
         </VCard>
       </column>

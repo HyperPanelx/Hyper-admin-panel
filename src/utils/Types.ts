@@ -62,7 +62,7 @@ export interface IUsers_Data {
 export interface IOnline_Users_Data{
     titles:string[],
     rows:{
-      username:string,
+      user:string,
       uid:number,
       ip:string
     }[]
