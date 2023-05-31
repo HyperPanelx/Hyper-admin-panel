@@ -35,7 +35,7 @@ const props=defineProps<{
   title:string
   link:string|object,
   hasSub:boolean,
-  sub:object[]
+  sub?:object[]
 }>();
 const {sidebarCollapseFlag,windowWidth}=useStates()
 const openSubMenuFlag=ref<boolean>(false)

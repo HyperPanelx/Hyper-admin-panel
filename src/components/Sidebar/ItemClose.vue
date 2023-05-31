@@ -23,7 +23,7 @@ const props=defineProps<{
   title:string
   link:string|object,
   hasSub:boolean,
-  sub:object[]
+  sub?:object[]
 }>();
 </script>
 

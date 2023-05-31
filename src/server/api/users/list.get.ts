@@ -13,7 +13,9 @@ export default defineEventHandler(async ev=>{
         })
         return  {
             titles:['user info','traffic','User limitation','Contact info','Date','status','operation'],
-            rows:getUsersListRequest
+            rows:getUsersListRequest.map((item,index)=>{
+                return {...item,uid:index+1}
+            })
         }as IUsers_Data
     }catch (err) {
         sendError(ev,{

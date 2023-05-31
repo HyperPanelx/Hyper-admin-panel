@@ -1,4 +1,4 @@
-
+import {IUsers_Data} from "~/utils/Types";
 
 export const useUserOperation=(props:any)=>{
     const downloadAnchorElem=ref<HTMLAnchorElement|null>(null);
@@ -8,7 +8,9 @@ export const useUserOperation=(props:any)=>{
     const operationData=reactive({
         name:'',
         modal:false,
-        username:''
+        username:'',
+        newPassword:'',
+        changePassword:false
     })
 
     const editUser = (uid:string|number) => {
@@ -47,17 +49,37 @@ export const useUserOperation=(props:any)=>{
         dropdownFlag.value=false
         fetchTableDataFlag.value=false
         try {
-            const deleteUserRequest=await $fetch('/api/users/delete',{
-                method:'DELETE',body:{username:props.user}
+            const deleteUserRequest=await $fetch(`/api/users/${props.user}`,{
+                method:'DELETE'
             })
-            tableData.value.rows.splice(props.index,1)
             operationData.modal=false
-            fetchTableDataFlag.value=true
+            const userIndex=tableData.value.rows.findIndex((item:any)=>item.uid===props.uid)
+            tableData.value.rows.splice(userIndex,1)
         }catch (err) {
             console.log(err)
+        }finally {
+            fetchTableDataFlag.value=true
         }
     }
-    const changePassword = () => {
+    const changePassword = async () => {
+        dropdownFlag.value=false
+        operationData.modal=false
+        // fetchTableDataFlag.value=false
+        try {
+            const changePasswordRequest=await $fetch<{password:string,username:string}>(`/api/users/${props.user}`,{
+                method:'POST'
+            })
+            operationData.newPassword=changePasswordRequest.password
+            operationData.changePassword=true
+            operationData.name='Password'
+            operationData.modal=true
+            const userIndex=tableData.value.rows.findIndex((item:any)=>item.uid===props.uid);
+            (tableData.value as IUsers_Data).rows[userIndex].passwd=changePasswordRequest.password
+        }catch (err) {
+            console.log(err)
+        }finally {
+            // fetchTableDataFlag.value=true
+        }
 
     }
 
@@ -75,6 +97,8 @@ export const useUserOperation=(props:any)=>{
         operationData.name=name
         operationData.modal=true
         operationData.username=props.user
+        operationData.newPassword=''
+        operationData.changePassword=false
     }
 
 

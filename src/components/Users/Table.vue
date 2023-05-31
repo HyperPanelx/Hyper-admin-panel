@@ -20,9 +20,8 @@
      </tr>
      </tbody>
      <tbody v-else-if="rows.length>0">
-     <tr class="table-hover td-border"  v-for="(item,index) in rows">
+     <tr class="table-hover td-border"  v-for="item in rows">
        <UsersTableRow
-        :index="index"
        :user="item.user"
        :traffic="item.traffic"
        :usedVolume="item.usedVolume"
