@@ -2,19 +2,19 @@
   <td >
     <div class="p-1 ">
       <div class="mb-0.5 flex items-center gap-1">
-        <Icon class="dark:!text-primary-dark-3" name="ri:account-circle-fill" size="1.2rem"/>
+        <Icon class="dark:!text-primary-dark-3 text-gray-700" name="ri:account-circle-fill" size="1.2rem"/>
         <p @click="copyText(user)" class="text-gray-800 dark:text-primary-light-1 ">
           {{user}}
         </p>
       </div>
       <div v-if="passwd" class="mb-0.5 flex items-center gap-1">
-        <Icon class="dark:text-primary-dark-3" @click="showPasswordFlag=!showPasswordFlag" :name="showPasswordFlag ? 'mdi:eye':'mdi:eye-off'" size="1.2rem"/>
+        <Icon class="dark:text-primary-dark-3 text-red-500" @click="showPasswordFlag=!showPasswordFlag" :name="showPasswordFlag ? 'mdi:eye':'mdi:eye-off'" size="1.2rem"/>
        <p @click="copyText(passwd)" :class="{'font-800':!showPasswordFlag}" class=" dark:text-primary-light-1 text-1  text-gray-800">{{showPasswordFlag ? passwd :  stringToPassword(passwd)}}</p>
       </div>
       <div v-if="telegram_id" class="mb-0.5 flex items-center gap-1">
-        <Icon class="dark:!text-primary-dark-3" name="ri:telegram-fill" size="1.2rem"/>
-        <p @click="copyText(telegram_id)" class="text-gray-800 dark:text-primary-light-1 ">
-          {{telegram_id}}
+        <Icon class="dark:!text-primary-dark-3 text-blue-700" name="ri:telegram-fill" size="1.2rem"/>
+        <p @click="copyText('@'+telegram_id)" class="text-gray-800 dark:text-primary-light-1 ">
+          @{{telegram_id}}
         </p>
       </div>
     </div>
@@ -66,8 +66,9 @@
       <button @click="userSetting(uid)" class="btn btn-sm btn-rose mr-0.5 !p-0.5">
         <Icon name="bi:pencil-square" size="1.5rem"  />
       </button>
-      <button @click="copyUserDetail" class="btn btn-sm btn-teal !p-0.5">
-        <Icon name="ri:links-fill" size="1.5rem"  />
+      <button @click="downloadUserDetail" class="btn btn-sm btn-teal !p-0.5">
+        <Icon name="fluent-mdl2:copy" size="1.5rem"  />
+        <a ref="downloadAnchorElem" style="display:none"></a>
       </button>
     </div>
   </td>
@@ -75,9 +76,10 @@
 
 <script setup lang="ts">
 import {stringToPassword,copyText} from "~/utils/Helper";
-const props=defineProps(['user','traffic','usedVolume','multi','phone','email','registered','exdate','status','uid','passwd','telegram_id'])
+const props=defineProps(['user','traffic','usedVolume','multi','phone','email','registered','exdate','status','uid','passwd','telegram_id','desc','referral'])
 const showPasswordFlag=ref<boolean>(false)
-const {editUser,copyUserDetail,userSetting}=useUserOperation(props)
+const {editUser,downloadUserDetail,userSetting,downloadAnchorElem}=useUserOperation(props)
+
 
 
 </script>

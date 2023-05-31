@@ -34,6 +34,8 @@
        :uid="item.uid"
        :passwd="item.passwd"
        :telegram_id="item.telegram_id"
+       :desc="item.desc"
+       :referral="item.referral"
        />
      </tr>
      </tbody>
