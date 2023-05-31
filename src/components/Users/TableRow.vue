@@ -63,7 +63,7 @@
     <div class="p-1 text-center flex gap-0.5 items-center">
       <VDropdown top-start="10px" top-end="0px" dropdown-class="w-11 left-[-11.5rem] top-[0]" v-model="dropdownFlag">
         <template #parent>
-          <VTooltip content="Setting" inner-class="w-4 right-[-9px] bg-primary-dark-1/70">
+          <VTooltip content="Setting" inner-class="w-4 right-[-11px] bg-primary-dark-1/70">
             <button  @click="toggleDropdown" class="btn btn-sm btn-indigo !p-0.5 ">
               <Icon name="ri:settings-4-fill" size="1.5rem"  />
             </button>
@@ -71,26 +71,13 @@
         </template>
         <template #content>
           <ul class="setting-dropdown">
-            <li @click="selectOperation('Delete')" class="hover:bg-gray-100">
-              <Icon name="ri:delete-bin-5-fill" class="text-red-500" />
-              <p>Delete user</p>
-            </li>
-            <li @click="selectOperation('Change password')" class="hover:bg-gray-100">
-              <Icon name="ri:file-transfer-fill" class="text-blue-500" />
-              <p>Change password</p>
-            </li>
-            <li @click="selectOperation('Lock user')" class="hover:bg-gray-100">
-              <Icon name="ri:lock-fill" class="text-red-500" />
-              <p>Lock user</p>
-            </li>
-            <li @click="selectOperation('Unlock user')" class="hover:bg-gray-100">
-              <Icon name="ri:lock-unlock-fill" class="text-green-500" />
-              <p>Unlock user</p>
+            <li v-for="item in settingDropdownOption" @click="selectOperation(item.title)" class="hover:bg-gray-100">
+              <Icon :name="item.icon" :class="item.theme" />
+              <p>{{item.title}}</p>
             </li>
           </ul>
         </template>
       </VDropdown>
-
 
       <VTooltip content="Edit" inner-class="w-3 right-[-5px] bg-primary-dark-1/70">
         <button @click="editUser(uid)" class="btn btn-sm btn-rose  !p-0.5">
@@ -133,20 +120,32 @@
           <p @click="copyText(operationData.newPassword)" class="font-second dark:text-primary-light-1">{{operationData.newPassword}}</p>
         </column>
       </row>
+      <row v-if="operationData.renewUser" class="mt-0.5">
+        <column col="6">
+          <p class="font-second text-right dark:text-primary-light-1">expiration date:</p>
+        </column>
+        <column col="6">
+          <FormKit id="newExpirationDateForm" type="form" ref="newExpirationDateForm"  @submit="renewUser"  :actions="false" >
+            <FormKit
+                name="new_exp"
+                id="new_exp"
+                validation-label="New expiration date"
+                type="date"
+                :value="exdate"
+                help="Enter a new expiration day."
+                :validation="'required|date_after:'+exdate"
+            />
+          </FormKit>
+        </column>
+      </row>
+
     </div>
     <div class="modal-footer">
-      <button @click="deleteUser" v-if="operationData.name==='Delete'" class="btn btn-secondary btn-sm" >
-        Ok
-      </button>
-      <button @click="changePassword" v-else-if="operationData.name==='Change password'" class="btn btn-secondary btn-sm" >
-        Ok
-      </button>
-      <button @click="lockUser" v-else-if="operationData.name==='Lock user'" class="btn btn-secondary btn-sm" >
-        Ok
-      </button>
-      <button @click="unlockUser" v-else-if="operationData.name==='Unlock user'" class="btn btn-secondary btn-sm" >
-        Ok
-      </button>
+      <template v-for="item in settingDropdownOption">
+        <button v-on="handlers(item.title)" v-if="operationData.name===item.title" class="btn btn-secondary btn-sm" >
+          Ok
+        </button>
+      </template>
       <button class="btn btn-indigo btn-sm" @click="operationData.modal=false">
         Close
       </button>
@@ -157,8 +156,9 @@
 
 <script setup lang="ts">
 import {stringToPassword,copyText} from "~/utils/Helper";
+import {settingDropdownOption} from "~/utils/Data";
 const props=defineProps(['user','traffic','usedVolume','multi','phone','email','registered','exdate','status','uid','passwd','telegram_id','desc','referral']);
-const {editUser,downloadUserDetail,toggleDropdown,downloadAnchorElem,dropdownFlag,showPasswordFlag,selectOperation,operationData,deleteUser,unlockUser,lockUser,changePassword}=useUserOperation(props)
+const {editUser,downloadUserDetail,toggleDropdown,downloadAnchorElem,dropdownFlag,showPasswordFlag,selectOperation,operationData,handlers,renewUser,newExpirationDateForm}=useUserOperation(props)
 
 
 
@@ -169,6 +169,9 @@ const {editUser,downloadUserDetail,toggleDropdown,downloadAnchorElem,dropdownFla
 @layer components {
   .setting-dropdown{
     @apply [&_li]:py-0.7 [&_li]:px-0.7  [&_li]:transition-all cursor-pointer [&_p]:font-400 [&_p]:text-0.8 [&_li]:flex [&_li]:items-center [&_li]:gap-1
+  }
+  .formkit-input{
+    @apply  !font-second
   }
 }
 </style>

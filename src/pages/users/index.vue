@@ -8,7 +8,7 @@
     </div>
     <row>
       <column col="12">
-        <VCard title="users list" body-class="!p-0">
+        <VCard title="users list" class="!overflow-visible" body-class="!p-0">
           <PaginationControl />
           <UsersTable v-if="paginationData.currentPageData" :searchResultFlag="paginationData.searchResultFlag" :rows="paginationData.currentPageData" :titles="tableData.titles" />
           <Pagination />

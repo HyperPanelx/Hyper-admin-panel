@@ -4,24 +4,30 @@ export const useUserOperation=(props:any)=>{
     const downloadAnchorElem=ref<HTMLAnchorElement|null>(null);
     const dropdownFlag=ref<boolean>(false);
     const showPasswordFlag=ref<boolean>(false);
-    const {tableData,fetchTableDataFlag}=useStates()
+    const newExpirationDateForm=ref<HTMLFormElement|null>(null)
+    const {tableData,fetchTableDataFlag,showPreloaderFlag}=useStates()
     const operationData=reactive({
         name:'',
         modal:false,
         username:'',
         newPassword:'',
-        changePassword:false
+        changePassword:false,
+        renewUser:false
     })
+    const submitNewExpForm = () => {
+        if(newExpirationDateForm.value){
+            const node = (newExpirationDateForm.value as any).node
+            node.submit()
+        }
+    };
 
     const editUser = (uid:string|number) => {
         console.log(uid)
 
     }
-
     const toggleDropdown = () => {
         dropdownFlag.value=!dropdownFlag.value
     }
-
     const downloadUserDetail = ()  => {
         if(downloadAnchorElem.value && process.client){
             let dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify({
@@ -47,6 +53,7 @@ export const useUserOperation=(props:any)=>{
     ///// setting operations
     const deleteUser = async () => {
         dropdownFlag.value=false
+        showPreloaderFlag.value=true
         fetchTableDataFlag.value=false
         try {
             const deleteUserRequest=await $fetch(`/api/users/delete/${props.user}`,{
@@ -59,6 +66,7 @@ export const useUserOperation=(props:any)=>{
             console.log(err)
         }finally {
             fetchTableDataFlag.value=true
+            showPreloaderFlag.value=false
         }
     }
     const changePassword = async () => {
@@ -105,6 +113,22 @@ export const useUserOperation=(props:any)=>{
             console.log(err)
         }
     }
+    const renewUser = async (value:any) => {
+        dropdownFlag.value=false
+        try {
+            const renewUserRequest=await $fetch(`/api/users/renew/${props.user}`,{
+                method:'POST',
+                body:value.new_exp
+            })
+            const userIndex=tableData.value.rows.findIndex((item:any)=>item.uid===props.uid);
+            (tableData.value as IUsers_Data).rows[userIndex].exdate=value.new_exp;
+            operationData.renewUser=false
+            operationData.modal=false
+        }catch (err) {
+            console.log(err)
+        }
+    }
+
 
 
     ////// select operation
@@ -114,13 +138,36 @@ export const useUserOperation=(props:any)=>{
         operationData.username=props.user
         operationData.newPassword=''
         operationData.changePassword=false
+        operationData.renewUser = name === 'Renew user';
+    }
+
+    const handlers=(name:string)=>{
+        if(name==='Delete user'){
+            return {
+                'click':deleteUser
+            }
+        }else if(name==='Change password'){
+            return {
+                'click':changePassword
+            }
+        }else if(name==='Lock user'){
+            return {
+                'click':lockUser
+            }
+        }else if(name==='Unlock user'){
+            return {
+                'click':unlockUser
+            }
+        }else if(name==='Renew user'){
+            return {
+                'click':submitNewExpForm
+            }
+        }
     }
 
 
 
-
-
     return{
-        editUser,downloadUserDetail,toggleDropdown,downloadAnchorElem,dropdownFlag,showPasswordFlag,deleteUser,operationData,selectOperation,changePassword,lockUser,unlockUser
+        editUser,downloadUserDetail,toggleDropdown,downloadAnchorElem,dropdownFlag,showPasswordFlag,deleteUser,operationData,selectOperation,changePassword,lockUser,unlockUser,handlers,renewUser,newExpirationDateForm
     }
 }

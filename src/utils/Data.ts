@@ -168,3 +168,27 @@ export const bandWidthOption=(download:number, upload:number)=>{
         }
     }
 }
+
+export const settingDropdownOption=[
+    {
+        icon:'ri:delete-bin-5-fill',
+        title:'Delete user',
+        theme:'text-red-500'
+    },{
+        icon:'ri:file-transfer-fill',
+        title:'Change password',
+        theme:'text-blue-500'
+    },{
+        icon:'ri:repeat-line',
+        title:'Renew user',
+        theme:'text-cyan-500'
+    },{
+        icon:'ri:lock-fill',
+        title:'Lock user',
+        theme:'text-red-500'
+    },{
+        icon:'ri:lock-unlock-fill',
+        title:'Unlock user',
+        theme:'text-green-500'
+    },
+]
