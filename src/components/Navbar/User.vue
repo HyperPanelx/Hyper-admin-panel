@@ -17,13 +17,7 @@
         <p class="text-gray-600 text-0.7 p-0.5 font-600 dark:text-primary-dark-3">Welcome!</p>
       <ul>
         <li >
-          <NuxtLink class="flex gap-0.7 px-1 items-center py-0.7 dark:hover:bg-primary-dark-2/20 hover:bg-gray-100/50" :to="{name:'DASHBOARD'}">
-            <Icon class="text-gray-700 dark:text-primary-dark-3" name="solar:user-bold"/>
-            <p class="text-0.8 text-gray-700 dark:text-primary-dark-3">My Account</p>
-          </NuxtLink>
-        </li>
-        <li >
-          <NuxtLink class="flex gap-0.7 px-1 items-center py-0.7 hover:bg-gray-100/50 dark:hover:bg-primary-dark-2/20" :to="{name:'DASHBOARD'}">
+          <NuxtLink class="flex gap-0.7 px-1 items-center py-0.7 hover:bg-gray-100/50 dark:hover:bg-primary-dark-2/20" :to="{name:'SETTINGS'}">
             <Icon class="text-gray-700 dark:text-primary-dark-3" name="solar:user-check-rounded-linear"/>
             <p class="text-0.8 text-gray-700 dark:text-primary-dark-3">Settings</p>
           </NuxtLink>
@@ -38,9 +32,8 @@
 </template>
 
 <script setup lang="ts">
-const {username}=useStates()
-const {logoutHandler}=useLogout()
-const {openNavbarDropdownFlag}=useStates()
+const {username,openNavbarDropdownFlag}=useStates();
+const {logoutHandler}=useLogout();
 </script>
 
 <style scoped>

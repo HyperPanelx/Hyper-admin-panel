@@ -107,6 +107,7 @@
                 />
                 <FormKit
                     name="traffic_unit"
+                    id="traffic_unit"
                     fieldset-class="!border-[0px] dark:[&_*]!text-primary-light-1 !pl-0 !ml-0"
                     options-class="!flex gap-1 !flex-row"
                     type="radio"

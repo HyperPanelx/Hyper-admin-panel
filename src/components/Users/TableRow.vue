@@ -18,7 +18,7 @@
       </div>
       <div v-if="telegram_id" class="flex items-center gap-1">
         <Icon class="dark:!text-blue-300 text-blue-700" name="ri:telegram-fill" size="1.2rem"/>
-        <p @click="copyText('@'+telegram_id)" class="text-gray-800 dark:text-primary-light-1 ">
+        <p @click="copyText('@'+telegram_id)" :title="telegram_id" class="text-gray-800 text-hidden w-[7.6rem] dark:text-primary-light-1 ">
           @{{telegram_id}}
         </p>
       </div>
@@ -26,7 +26,7 @@
   </td>
   <td  >
     <div class=" p-1">
-      <p v-if="traffic" class="dark:text-primary-dark-3 text-gray-800 mb-0.5 !text-0.8">{{traffic}}</p>
+      <p v-if="traffic" class="dark:text-primary-dark-3 text-center text-gray-800 mb-0.5 !text-0.8">{{traffic}}</p>
       <p v-else class="text-0.7 dark:text-primary-dark-3 text-gray-700 text-center">No Data.</p>
       <p v-if="usedVolume" class="dark:text-primary-dark-3 text-gray-800 !text-0.8">Used Volume: {{usedVolume}}</p>
     </div>
@@ -44,10 +44,13 @@
         <Icon size="0.8rem" name="bi:telephone-fill"  />
         {{phone}}
       </p>
-      <p @click="copyText(email)" :title="email" class="text-gray-800 !text-[0.8rem] w-[6.5rem] text-hidden text-center dark:text-primary-dark-3 flex items-center  mx-auto gap-0.5" v-if="email">
-        <Icon  size="0.8rem" name="bi:envelope-fill"/>
-        {{email}}
-      </p>
+      <div @click="copyText(email)" :title="email" class=" flex items-center   gap-0.5" v-if="email">
+        <Icon  size="0.8rem" name="mdi:email"/>
+        <p class="text-gray-800 !text-[0.8rem] w-5.5 text-hidden text-center dark:text-primary-dark-3">
+          {{email}}
+        </p>
+      </div>
+      <p v-if="!email && !phone" class="text-0.7 dark:text-primary-dark-3 text-gray-700 text-center">No Data.</p>
     </div>
   </td>
   <td >
@@ -137,6 +140,7 @@
                 validation-label="New expiration date"
                 type="date"
                 :value="exdate"
+                help-class="dark:text-primary-light-1"
                 help="Enter a new expiration day."
                 :validation="'required|date_after:'+exdate"
             />

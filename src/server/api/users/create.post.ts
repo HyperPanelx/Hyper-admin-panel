@@ -14,9 +14,14 @@ export default defineEventHandler(async ev=>{
             query:{
                 username:body.username,
                 multi:body.concurrent_user,
+                passwd:body.password,
                 exdate:body.expiration_date,
                 telegram_id:body.telegram_id,
-                phone:body.phone
+                phone:body.phone,
+                email:body?.email ?? '',
+                referral:body?.referral ?? '' ,
+                desc:body?.description ?? '',
+                traffic:`${body?.traffic ?? ''} ${body?.traffic_unit ?? ''}`,
             }
         })
         return createUserRequest

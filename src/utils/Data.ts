@@ -168,7 +168,6 @@ export const bandWidthOption=(download:number, upload:number)=>{
         }
     }
 }
-
 export const settingDropdownOption=[
     {
         icon:'ri:delete-bin-5-fill',
@@ -191,4 +190,15 @@ export const settingDropdownOption=[
         title:'Unlock user',
         theme:'text-green-500'
     },
+]
+
+export const settingTabItems=[
+    {title:'Change password',},
+    {title:'SSH port',},
+    {title:'User limitation',},
+    {title:'Telegram robot',},
+    {title:'Multi server',},
+    {title:'Backup and restore',},
+    {title:'API',},
+    {title:'IP block',},
 ]
