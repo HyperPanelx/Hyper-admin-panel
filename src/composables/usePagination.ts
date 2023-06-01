@@ -2,8 +2,12 @@ import {IUsers_Data} from "~/utils/Types";
 
 
 export const usePagination=()=>{
-    const {tableData,fetchTableDataFlag,selectedUserToDelete,showPreloaderFlag}=useStates()
+    const {tableData,fetchTableDataFlag,selectedUserToDelete,showPreloaderFlag,selectedOnlineUserToKill}=useStates()
     const searchText=useState('tableSearchText',()=>'');
+    const modalData=reactive({
+        on:false,
+        name:''
+    })
     const paginationDataInitialValue={
         itemPerPage:5,
         allPages:0,
@@ -58,6 +62,7 @@ export const usePagination=()=>{
             if(fetchTableDataFlag.value){
                 paginationData.value=null
                 selectedUserToDelete.value=[]
+                selectedOnlineUserToKill.value=[]
                 paginationData.value=paginationDataInitialValue
                 paginationData.value.sourceData=tableData.value.rows
                 paginationUpdate()
@@ -107,7 +112,7 @@ export const usePagination=()=>{
     }
 
 
-    const deleteSelectedUser = async () => {
+    const deleteSelectedUsers = async () => {
         fetchTableDataFlag.value=false
         showPreloaderFlag.value=true
         try {
@@ -119,6 +124,7 @@ export const usePagination=()=>{
                 tableData.value.rows.splice(idx,1)
             })
             selectedUserToDelete.value=[]
+            modalData.on=false
         }catch (err) {
             console.log(err)
         }finally {
@@ -127,8 +133,33 @@ export const usePagination=()=>{
         }
 
     }
+    const killSelectedUsers =async () => {
+        fetchTableDataFlag.value=false
+        showPreloaderFlag.value=true
+        try {
+            const deleteUsersRequest=await $fetch(`/api/users/kill/several?username=${selectedOnlineUserToKill.value.join('&username=')}`,{
+                method:'DELETE',
+            });
+            selectedOnlineUserToKill.value.forEach(user=>{
+                const idx=tableData.value.rows.findIndex((item)=>item.user===user)
+                tableData.value.rows.splice(idx,1)
+            });
+            selectedOnlineUserToKill.value=[]
+            modalData.on=false
+        }catch (err) {
+            console.log(err)
+        }finally {
+            fetchTableDataFlag.value=true
+            showPreloaderFlag.value=false
+        }
+    }
+
+    const selectOperation = (name:string) => {
+        modalData.on=true
+        modalData.name=name
+    }
 
     return{
-        paginationData,changePerPageHandler,changePage,nextPage,previousPage,searchHandler,searchText,resetSearch,showMoreButton,showLessButton,deleteSelectedUser
+        paginationData,changePerPageHandler,changePage,nextPage,previousPage,searchHandler,searchText,resetSearch,showMoreButton,showLessButton,deleteSelectedUsers,killSelectedUsers,selectOperation,modalData
     }
 }

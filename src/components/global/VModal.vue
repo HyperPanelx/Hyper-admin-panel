@@ -1,7 +1,7 @@
 <template>
   <client-only>
     <Teleport to="body">
-      <div class="modal-wrapper"  @click.self="close" :class="modelValue ? '!z-[9999] opacity-100':'!z-[-1] opacity-0'">
+      <div class="modal-wrapper"  @click.self="close" :class="modelValue ? '!z-[9999] opacity-100 visible':'!z-[-1] opacity-0 invisible'">
         <Transition name="translate">
           <div v-if="modelValue" v-bind="$attrs" class="modal " >
             <div  class="modal-header">
@@ -15,8 +15,6 @@
           </div>
         </Transition>
       </div>
-
-<!--      <div v-fade:[350,99]="modelValue"  @click.self="close" class="modal-backdrop"></div>-->
     </Teleport>
   </client-only>
 </template>

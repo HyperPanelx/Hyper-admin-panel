@@ -6,9 +6,14 @@
       <template v-else>Showing page {{paginationData.currentPage}} of {{paginationData.allPages}}
       </template>
     </h6>
-    <div v-if="selectedUserToDelete.length>1">
-      <button @click="deleteSelectedUser" class="btn btn-rose ">
+    <div v-if="selectedUserToDelete.length>1 ">
+      <button @click="selectOperation('Delete Users')" class="btn btn-rose ">
         Delete selected users
+      </button>
+    </div>
+    <div v-if="selectedOnlineUserToKill.length>1 ">
+      <button @click="selectOperation('Kill Connection')" class="btn btn-rose ">
+        Kill selected users
       </button>
     </div>
     <div class="flex items-center gap-1">
@@ -36,14 +41,47 @@
       </button>
     </div>
   </div>
+  <VModal :fade-outside="false" class="!p-0 !h-auto" v-model="modalData.on">
+    <div class="modal-body">
+      <p  class="text-1 text-gray-800 dark:text-primary-dark-3 flex items-center gap-0.5"> Are you sure?</p>
+      <row class="mt-1.5 justify-center">
+        <column col="6">
+          <p class="font-second text-right dark:text-primary-light-1">Operation: </p>
+        </column>
+        <column col="6">
+          <p class="font-second dark:text-primary-light-1">{{modalData.name}}</p>
+        </column>
+      </row>
+      <row class="mt-0.5">
+        <column col="6">
+          <p class="font-second text-right dark:text-primary-light-1">usernames:</p>
+        </column>
+        <column col="6">
+          <p v-if="modalData.name==='Delete Users'" class="font-second dark:text-primary-light-1">{{selectedUserToDelete.join(',')}}</p>
+          <p v-if="modalData.name==='Kill Connection'" class="font-second dark:text-primary-light-1">{{selectedOnlineUserToKill.join(',')}}</p>
+        </column>
+      </row>
+    </div>
+    <div class="modal-footer">
+      <button @click="deleteSelectedUsers" v-if="modalData.name==='Delete Users'" class="btn btn-secondary btn-sm" >
+        Ok
+      </button>
+      <button @click="killSelectedUsers" v-if="modalData.name==='Kill Connection'" class="btn btn-secondary btn-sm" >
+        Ok
+      </button>
+      <button class="btn btn-indigo btn-sm" @click="modalData.on=false">
+        Close
+      </button>
+    </div>
+  </VModal>
 
 </template>
 
 <script setup lang="ts">
 import {usePagination} from "~/composables/usePagination";
 import {declareNumberToArray} from '~/utils/Helper'
-const {paginationData,changePage,nextPage,previousPage,showMoreButton,showLessButton,deleteSelectedUser}=usePagination();
-const {selectedUserToDelete}=useStates();
+const {paginationData,changePage,nextPage,previousPage,showMoreButton,showLessButton,deleteSelectedUsers,killSelectedUsers,selectOperation,modalData}=usePagination();
+const {selectedUserToDelete,selectedOnlineUserToKill}=useStates();
 </script>
 
 <style scoped>

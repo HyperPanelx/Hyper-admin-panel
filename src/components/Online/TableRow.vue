@@ -1,5 +1,10 @@
 <template>
   <td>
+    <div class="pl-0.5">
+      <input type="checkbox" class="v-checkbox" @change="checkboxHandler" :checked="selectedOnlineUserToKill?.includes(user)" :name="user" :id="user">
+    </div>
+  </td>
+  <td>
     <div class="p-1">
       <p class="text-center dark:text-primary-dark-3">
         {{index+1}}
@@ -15,6 +20,7 @@
   <td>
     <div class="p-1">
       <p v-if="ip" class="text-center dark:text-primary-light-1">{{ip}}</p>
+      <p v-else class="text-0.7 dark:text-primary-dark-3 text-gray-700 text-center">No Data.</p>
     </div>
   </td>
   <td>
@@ -63,27 +69,8 @@ const props=defineProps<{
   index:number,
   uid:number
 }>();
-const modalFlag=ref<boolean>(false);
-const {fetchTableDataFlag,tableData,showPreloaderFlag}=useStates()
-
-const killUser =async () => {
-  fetchTableDataFlag.value=false
-  showPreloaderFlag.value=true
-  try {
-    const killUserRequest=await $fetch(`/api/users/kill/${props.user}`,{
-      method:'POST'
-    })
-    const userIndex=tableData.value.rows.findIndex((item:any)=>item.uid===props.uid)
-    tableData.value.rows.splice(userIndex,1)
-    modalFlag.value=false
-  }catch (err) {
-    console.log(err)
-  }finally {
-    fetchTableDataFlag.value=true
-    showPreloaderFlag.value=false
-  }
-
-}
+const {checkboxHandler,killUser,modalFlag}=useOnlineUserOperation(props);
+const {selectedOnlineUserToKill}=useStates()
 
 </script>
 

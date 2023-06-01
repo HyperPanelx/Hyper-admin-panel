@@ -3,6 +3,7 @@
     <table class="w-full">
       <thead class="bg-primary-dark-1 dark:bg-primary-dark-2/50 text-primary-light-1 text-left font-500">
       <tr  class="w-full">
+        <th></th>
         <th class=" capitalize cursor-pointer  py-1.5 pr-0.5 first:pl-1 pl-0.5" v-for="item in titles">
           <div >
             <p class="text-0.9 text-center"> {{item}}</p>
@@ -20,7 +21,7 @@
       </tr>
       </tbody>
       <tbody v-else-if="rows.length>0">
-      <tr class="table-hover td-border"  v-for="(item,index) in rows">
+      <tr  :class="{'row-select':selectedOnlineUserToKill?.includes(item.user)}" class="table-hover td-border"  v-for="(item,index) in rows">
         <OnlineTableRow
             :user="item.user"
             :ip="item.ip"
@@ -48,7 +49,7 @@ const props=defineProps<{
   rows:object[],
   searchResultFlag:boolean
 }>();
-
+const {selectedOnlineUserToKill}=useStates()
 </script>
 
 <style scoped>

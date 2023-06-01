@@ -10,9 +10,9 @@ export const useStates=()=>{
     const tableData=useState<IUsers_Data|IOnline_Users_Data>('tableData');
     const fetchTableDataFlag=useState<boolean>('fetchTableDataFlag');
     const selectedUserToDelete=useState<string[]>('selectedUserToDelete')
-
+    const selectedOnlineUserToKill=useState<string[]>('selectedOnlineUserToKill',()=>[]);
 
     return{
-        sidebarCollapseFlag,windowWidth,isLogin,username,openNavbarDropdownFlag,showPreloaderFlag,tableData, fetchTableDataFlag,selectedUserToDelete
+        sidebarCollapseFlag,windowWidth,isLogin,username,openNavbarDropdownFlag,showPreloaderFlag,tableData, fetchTableDataFlag,selectedUserToDelete,selectedOnlineUserToKill
     }
 }

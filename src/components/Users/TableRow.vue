@@ -14,7 +14,7 @@
       </div>
       <div v-if="passwd" class="mb-0.5 flex items-center gap-1">
         <Icon class="dark:text-red-300 text-red-500" @click="showPasswordFlag=!showPasswordFlag" :name="showPasswordFlag ? 'mdi:eye':'mdi:eye-off'" size="1.2rem"/>
-        <p @click="copyText(passwd)" :class="{'font-800':!showPasswordFlag}" class=" dark:text-primary-light-1 text-1  text-gray-800">{{showPasswordFlag ? passwd :  stringToPassword(passwd)}}</p>
+        <p @click="copyText(passwd)" :class="{'font-800':!showPasswordFlag,'!text-0.9':showPasswordFlag}" class=" dark:text-primary-light-1 text-1  text-gray-800">{{showPasswordFlag ? passwd :  stringToPassword(passwd)}}</p>
       </div>
       <div v-if="telegram_id" class="flex items-center gap-1">
         <Icon class="dark:!text-blue-300 text-blue-700" name="ri:telegram-fill" size="1.2rem"/>
@@ -27,6 +27,7 @@
   <td  >
     <div class=" p-1">
       <p v-if="traffic" class="dark:text-primary-dark-3 text-gray-800 mb-0.5 !text-0.8">{{traffic}}</p>
+      <p v-else class="text-0.7 dark:text-primary-dark-3 text-gray-700 text-center">No Data.</p>
       <p v-if="usedVolume" class="dark:text-primary-dark-3 text-gray-800 !text-0.8">Used Volume: {{usedVolume}}</p>
     </div>
   </td>
