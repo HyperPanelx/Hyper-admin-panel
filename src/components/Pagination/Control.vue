@@ -36,6 +36,7 @@
 </template>
 
 <script setup lang="ts">
+import {usePagination} from "~/composables/usePagination";
 const {changePerPageHandler,searchHandler,searchText,resetSearch}=usePagination();
 
 </script>

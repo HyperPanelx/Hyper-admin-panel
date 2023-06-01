@@ -6,6 +6,11 @@
       <template v-else>Showing page {{paginationData.currentPage}} of {{paginationData.allPages}}
       </template>
     </h6>
+    <div v-if="selectedUserToDelete.length>1">
+      <button @click="deleteSelectedUser" class="btn btn-rose ">
+        Delete selected users
+      </button>
+    </div>
     <div class="flex items-center gap-1">
       <button @click="previousPage" class="btn btn-indigo !p-0.5">
         <Icon name="ri:arrow-left-s-line" size="1.7rem"/>
@@ -30,14 +35,15 @@
         <Icon name="ri:arrow-right-s-line" size="1.7rem"/>
       </button>
     </div>
-
   </div>
 
 </template>
 
 <script setup lang="ts">
+import {usePagination} from "~/composables/usePagination";
 import {declareNumberToArray} from '~/utils/Helper'
-const {paginationData,changePage,nextPage,previousPage,showMoreButton,showLessButton}=usePagination();
+const {paginationData,changePage,nextPage,previousPage,showMoreButton,showLessButton,deleteSelectedUser}=usePagination();
+const {selectedUserToDelete}=useStates();
 </script>
 
 <style scoped>

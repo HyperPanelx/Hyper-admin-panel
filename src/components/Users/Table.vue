@@ -3,6 +3,7 @@
    <table class="w-full">
      <thead class="bg-primary-dark-1 dark:bg-primary-dark-2/50 text-primary-light-1 text-left font-500">
      <tr  class="w-full">
+       <th></th>
        <th class=" capitalize cursor-pointer  py-1.5 pr-0.5 first:pl-1 pl-0.5" v-for="item in titles">
         <div >
           <p class="text-0.9 text-center"> {{item}}</p>
@@ -20,7 +21,7 @@
      </tr>
      </tbody>
      <tbody v-else-if="rows.length>0">
-     <tr class="table-hover td-border"  v-for="item in rows">
+     <tr class="table-hover td-border" :class="{'row-select':selectedUserToDelete?.includes(item.user)}"  v-for="item in rows">
        <UsersTableRow
        :user="item.user"
        :traffic="item.traffic"
@@ -58,6 +59,7 @@ const props=defineProps<{
   rows:object[],
   searchResultFlag:boolean
 }>();
+const {selectedUserToDelete}=useStates();
 
 </script>
 

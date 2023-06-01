@@ -12,5 +12,8 @@
   .td-border td{
     @apply border-b-[1px] border-b-gray-200
   }
+  .row-select{
+    @apply !bg-gray-200  dark:bg-primary-dark-3/50;
+  }
 
 }

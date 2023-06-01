@@ -2,7 +2,7 @@ import {IUsers_Data} from "~/utils/Types";
 
 
 export const usePagination=()=>{
-    const {tableData,fetchTableDataFlag}=useStates()
+    const {tableData,fetchTableDataFlag,selectedUserToDelete,showPreloaderFlag}=useStates()
     const searchText=useState('tableSearchText',()=>'');
     const paginationDataInitialValue={
         itemPerPage:5,
@@ -57,6 +57,7 @@ export const usePagination=()=>{
         ()=>{
             if(fetchTableDataFlag.value){
                 paginationData.value=null
+                selectedUserToDelete.value=[]
                 paginationData.value=paginationDataInitialValue
                 paginationData.value.sourceData=tableData.value.rows
                 paginationUpdate()
@@ -103,10 +104,31 @@ export const usePagination=()=>{
                break
            }
         }
+    }
+
+
+    const deleteSelectedUser = async () => {
+        fetchTableDataFlag.value=false
+        showPreloaderFlag.value=true
+        try {
+            const deleteUsersRequest=await $fetch(`/api/users/delete/several?username=${selectedUserToDelete.value.join('&username=')}`,{
+                method:'DELETE',
+            })
+            selectedUserToDelete.value.forEach(user=>{
+                const idx=tableData.value.rows.findIndex((item)=>item.user===user)
+                tableData.value.rows.splice(idx,1)
+            })
+            selectedUserToDelete.value=[]
+        }catch (err) {
+            console.log(err)
+        }finally {
+            fetchTableDataFlag.value=true
+            showPreloaderFlag.value=false
+        }
 
     }
 
     return{
-        paginationData,changePerPageHandler,changePage,nextPage,previousPage,searchHandler,searchText,resetSearch,showMoreButton,showLessButton
+        paginationData,changePerPageHandler,changePage,nextPage,previousPage,searchHandler,searchText,resetSearch,showMoreButton,showLessButton,deleteSelectedUser
     }
 }

@@ -1,5 +1,9 @@
 <template>
-
+  <td>
+    <div class="pl-0.5">
+      <input type="checkbox" class="v-checkbox" @change="checkboxHandler" :checked="selectedUserToDelete?.includes(user)" :name="user" :id="user">
+    </div>
+  </td>
   <td >
     <div class="p-1 ">
       <div class="mb-0.5 flex items-center gap-1">
@@ -158,7 +162,8 @@
 import {stringToPassword,copyText} from "~/utils/Helper";
 import {settingDropdownOption} from "~/utils/Data";
 const props=defineProps(['user','traffic','usedVolume','multi','phone','email','registered','exdate','status','uid','passwd','telegram_id','desc','referral']);
-const {editUser,downloadUserDetail,toggleDropdown,downloadAnchorElem,dropdownFlag,showPasswordFlag,selectOperation,operationData,handlers,renewUser,newExpirationDateForm}=useUserOperation(props)
+const {editUser,downloadUserDetail,toggleDropdown,downloadAnchorElem,dropdownFlag,showPasswordFlag,selectOperation,operationData,handlers,renewUser,newExpirationDateForm,checkboxHandler}=useUserOperation(props);
+const {selectedUserToDelete}=useStates();
 
 
 

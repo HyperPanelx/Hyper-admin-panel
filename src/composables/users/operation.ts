@@ -5,7 +5,8 @@ export const useUserOperation=(props:any)=>{
     const dropdownFlag=ref<boolean>(false);
     const showPasswordFlag=ref<boolean>(false);
     const newExpirationDateForm=ref<HTMLFormElement|null>(null)
-    const {tableData,fetchTableDataFlag,showPreloaderFlag}=useStates()
+    const {tableData,fetchTableDataFlag,showPreloaderFlag}=useStates();
+    const selectedUserToDelete=useState<string[]>('selectedUserToDelete',()=>[])
     const operationData=reactive({
         name:'',
         modal:false,
@@ -20,6 +21,15 @@ export const useUserOperation=(props:any)=>{
             node.submit()
         }
     };
+
+    const checkboxHandler = () => {
+        if(selectedUserToDelete.value.includes(props.user)){
+            const idx=selectedUserToDelete.value.findIndex(item=>item===props.user)
+            selectedUserToDelete.value.splice(idx,1)
+        }else{
+            selectedUserToDelete.value.push(props.user)
+        }
+    }
 
     const editUser = (uid:string|number) => {
         console.log(uid)
@@ -168,6 +178,6 @@ export const useUserOperation=(props:any)=>{
 
 
     return{
-        editUser,downloadUserDetail,toggleDropdown,downloadAnchorElem,dropdownFlag,showPasswordFlag,deleteUser,operationData,selectOperation,changePassword,lockUser,unlockUser,handlers,renewUser,newExpirationDateForm
+        editUser,downloadUserDetail,toggleDropdown,downloadAnchorElem,dropdownFlag,showPasswordFlag,deleteUser,operationData,selectOperation,changePassword,lockUser,unlockUser,handlers,renewUser,newExpirationDateForm,checkboxHandler
     }
 }

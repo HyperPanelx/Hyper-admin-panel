@@ -9,7 +9,10 @@ export const useStates=()=>{
     const showPreloaderFlag=useState<boolean>('showPreloaderFlag')
     const tableData=useState<IUsers_Data|IOnline_Users_Data>('tableData');
     const fetchTableDataFlag=useState<boolean>('fetchTableDataFlag');
+    const selectedUserToDelete=useState<string[]>('selectedUserToDelete')
+
+
     return{
-        sidebarCollapseFlag,windowWidth,isLogin,username,openNavbarDropdownFlag,showPreloaderFlag,tableData, fetchTableDataFlag
+        sidebarCollapseFlag,windowWidth,isLogin,username,openNavbarDropdownFlag,showPreloaderFlag,tableData, fetchTableDataFlag,selectedUserToDelete
     }
 }
