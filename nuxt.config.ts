@@ -61,11 +61,11 @@ export default defineNuxtConfig({
         configFile:'./formkit.config.ts'
     },
     runtimeConfig:{
-        cookieName:'342iiki46_Hyper_84lchqxz',
-        apiBase:'http://166.1.131.76:6655/',
+        cookieName:process.env.COOKIE_NAME,
+        apiBase:process.env.API_BASE,
         public:{
-            internalApiKey:'b3c7532e3158eea90c6fb542fb69cda06c6280cdc0d0f39d51bf78bae425e8514d8b6c7549ae26d86',
-            internalApiBase:'https://admin-api.iran.liara.run',
+            internalApiKey:process.env.INTERNAL_API_KEY,
+            internalApiBase:process.env.INTERNAL_API_BASE,
         }
     }
 })

@@ -214,7 +214,9 @@ definePageMeta({
   name:'CREATE_USER'
 });
 useHead({
-  title:'User > Create'
+  titleTemplate(){
+    return 'User > Create | Hyper'
+  }
 });
 const {createUserFormSubmit,fetchOperationData,createSingleUserForm,submitForm,castNumber,closeModal,newCreatedUserData,copyCreatedUserInfo}=useCreateUser();
 const showPasswordFlag=ref<boolean>(false);

@@ -193,6 +193,7 @@ export const settingDropdownOption=[
 ];
 
 export const settingTabItems=[
+    {title:'Create admin user',link:{name:'CREATE_ADMIN_USER'}},
     {title:'Change password',link:{name:'CHANGE_PASSWORD'}},
     {title:'SSH port',link:{name:'SSH_PORT'}},
     {title:'User limitation',link:{name:'USER_LIMITATION'}},

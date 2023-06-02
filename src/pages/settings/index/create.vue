@@ -1,11 +1,11 @@
 <template>
-ip
+create user
 </template>
 
 <script setup lang="ts">
 definePageMeta({
-  path:'/settings/ip-block',
-  name:'IP_BLOCK'
+  path:'/settings/create-admin-user',
+  name:'CREATE_ADMIN_USER'
 });
 
 </script>
