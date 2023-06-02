@@ -193,12 +193,12 @@ export const settingDropdownOption=[
 ];
 
 export const settingTabItems=[
-    {title:'Change password',link:{name:'DASHBOARD'}},
-    {title:'SSH port',link:{name:'DASHBOARD'}},
-    {title:'User limitation',link:{name:'DASHBOARD'}},
-    {title:'Telegram robot',link:{name:'DASHBOARD'}},
-    {title:'Multi server',link:{name:'DASHBOARD'}},
-    {title:'Backup and restore',link:{name:'DASHBOARD'}},
-    {title:'API',link:{name:'DASHBOARD'}},
-    {title:'IP block',link:{name:'DASHBOARD'}},
+    {title:'Change password',link:{name:'CHANGE_PASSWORD'}},
+    {title:'SSH port',link:{name:'SSH_PORT'}},
+    {title:'User limitation',link:{name:'USER_LIMITATION'}},
+    {title:'Telegram robot',link:{name:'TELEGRAM_ROBOT'}},
+    {title:'Multi server',link:{name:'MULTI_SERVER'}},
+    {title:'Backup and restore',link:{name:'BACKUP_RESTORE'}},
+    {title:'API',link:{name:'API'}},
+    {title:'IP block',link:{name:'IP_BLOCK'}},
 ]
