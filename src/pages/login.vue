@@ -49,6 +49,10 @@
                       >
                         Login
                       </VBloader>
+
+                      <p v-if="errorMessage" class="text-red-600 mt-1">
+                        {{errorMessage}}
+                      </p>
                     </column>
                   </row>
                 </form>
@@ -67,7 +71,7 @@ useHead({
     style:'background-color:#ebeeef'
   }
 });
-const {userData,formHandler,usernameRegex,passwordRegex,loginRequestFlag}=useLogin()
+const {userData,formHandler,usernameRegex,passwordRegex,loginRequestFlag,errorMessage}=useLogin()
 </script>
 
 <style scoped>

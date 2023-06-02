@@ -6,8 +6,6 @@
 
     </column>
   </row>
-
-
 </template>
 
 <script setup lang="ts">

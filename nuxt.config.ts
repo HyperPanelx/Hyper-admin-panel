@@ -64,7 +64,9 @@ export default defineNuxtConfig({
         cookieName:process.env.COOKIE_NAME,
         apiBase:process.env.API_BASE,
         public:{
-            internalApiKey:process.env.INTERNAL_API_KEY
+            internalApiKey:process.env.INTERNAL_API_KEY,
+            cookieName:process.env.COOKIE_NAME,
+            apiBase:process.env.API_BASE,
         }
     }
 })

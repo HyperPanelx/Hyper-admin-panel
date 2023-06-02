@@ -21,7 +21,7 @@ export default defineEventHandler(async ev=>{
                 email:body?.email ?? '',
                 referral:body?.referral ?? '' ,
                 desc:body?.description ?? '',
-                traffic:`${body?.traffic ?? ''} ${body?.traffic_unit ?? ''}`,
+                traffic:body.traffic ? `${body?.traffic ?? ''} ${body?.traffic_unit ?? ''}` : '',
             }
         })
         return createUserRequest

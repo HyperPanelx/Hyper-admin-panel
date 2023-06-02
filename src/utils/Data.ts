@@ -190,15 +190,15 @@ export const settingDropdownOption=[
         title:'Unlock user',
         theme:'text-green-500'
     },
-]
+];
 
 export const settingTabItems=[
-    {title:'Change password',},
-    {title:'SSH port',},
-    {title:'User limitation',},
-    {title:'Telegram robot',},
-    {title:'Multi server',},
-    {title:'Backup and restore',},
-    {title:'API',},
-    {title:'IP block',},
+    {title:'Change password',link:{name:'DASHBOARD'}},
+    {title:'SSH port',link:{name:'DASHBOARD'}},
+    {title:'User limitation',link:{name:'DASHBOARD'}},
+    {title:'Telegram robot',link:{name:'DASHBOARD'}},
+    {title:'Multi server',link:{name:'DASHBOARD'}},
+    {title:'Backup and restore',link:{name:'DASHBOARD'}},
+    {title:'API',link:{name:'DASHBOARD'}},
+    {title:'IP block',link:{name:'DASHBOARD'}},
 ]
