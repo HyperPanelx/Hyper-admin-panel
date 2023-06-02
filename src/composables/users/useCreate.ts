@@ -2,7 +2,7 @@ import { reset } from '@formkit/core'
 
 export const useCreateUser=()=>{
     const createSingleUserForm=ref(null)
-    const {public:{internalApiKey}}=useRuntimeConfig()
+    const {public:{internalApiKey,internalApiBase}}=useRuntimeConfig()
 
     const fetchOperationData=reactive({
         on:null as null|boolean,
@@ -35,7 +35,8 @@ export const useCreateUser=()=>{
             const createSingleUserRequest:{password:string,username:string}=await $fetch('/api/users/create',{
                 body:value,
                 method:'POST',
-                headers:{Authorization:internalApiKey}
+                headers:{Authorization:internalApiKey},
+                baseURL:internalApiBase
             })
             newCreatedUserData.password=createSingleUserRequest.password
             newCreatedUserData.username=createSingleUserRequest.username

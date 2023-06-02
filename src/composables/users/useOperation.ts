@@ -1,6 +1,7 @@
 import {IUsers_Data} from "~/utils/Types";
 
 export const useUserOperation=(props:any)=>{
+    const {public:{internalApiBase}}=useRuntimeConfig()
     const downloadAnchorElem=ref<HTMLAnchorElement|null>(null);
     const dropdownFlag=ref<boolean>(false);
     const showPasswordFlag=ref<boolean>(false);
@@ -67,7 +68,7 @@ export const useUserOperation=(props:any)=>{
         fetchTableDataFlag.value=false
         try {
             const deleteUserRequest=await $fetch(`/api/users/delete/${props.user}`,{
-                method:'DELETE'
+                method:'DELETE',baseURL:internalApiBase
             })
             operationData.modal=false
             const userIndex=tableData.value.rows.findIndex((item:any)=>item.uid===props.uid)
@@ -84,7 +85,7 @@ export const useUserOperation=(props:any)=>{
         operationData.modal=false
         try {
             const changePasswordRequest=await $fetch<{password:string,username:string}>(`/api/users/password/${props.user}`,{
-                method:'POST'
+                method:'POST',baseURL:internalApiBase
             })
             operationData.newPassword=changePasswordRequest.password
             operationData.changePassword=true
@@ -101,7 +102,7 @@ export const useUserOperation=(props:any)=>{
         dropdownFlag.value=false
         try {
             const lockUserRequest=await $fetch(`/api/users/lock/${props.user}`,{
-                method:'POST'
+                method:'POST',baseURL:internalApiBase
             })
             const userIndex=tableData.value.rows.findIndex((item:any)=>item.uid===props.uid);
             (tableData.value as IUsers_Data).rows[userIndex].status='disable';
@@ -114,7 +115,7 @@ export const useUserOperation=(props:any)=>{
         dropdownFlag.value=false
         try {
             const lockUserRequest=await $fetch(`/api/users/unlock/${props.user}`,{
-                method:'POST'
+                method:'POST',baseURL:internalApiBase
             })
             const userIndex=tableData.value.rows.findIndex((item:any)=>item.uid===props.uid);
             (tableData.value as IUsers_Data).rows[userIndex].status='enable';
@@ -128,7 +129,8 @@ export const useUserOperation=(props:any)=>{
         try {
             const renewUserRequest=await $fetch(`/api/users/renew/${props.user}`,{
                 method:'POST',
-                body:value.new_exp
+                body:value.new_exp,
+                baseURL:internalApiBase
             })
             const userIndex=tableData.value.rows.findIndex((item:any)=>item.uid===props.uid);
             (tableData.value as IUsers_Data).rows[userIndex].exdate=value.new_exp;

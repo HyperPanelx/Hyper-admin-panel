@@ -3,7 +3,7 @@ import {IOnline_Users_Data} from "~/utils/Types";
 
 export const useOnlineUsers=()=>{
     const {showPreloaderFlag,fetchTableDataFlag,tableData}=useStates();
-    const {public:{internalApiKey}}=useRuntimeConfig();
+    const {public:{internalApiKey,internalApiBase}}=useRuntimeConfig();
 
 
     onMounted(async ()=>{
@@ -12,7 +12,9 @@ export const useOnlineUsers=()=>{
         showPreloaderFlag.value=true
         try {
             const getTableDataRequest:IOnline_Users_Data=await $fetch('/api/users/online',{
-                headers:{Authorization:internalApiKey}})
+                headers:{Authorization:internalApiKey},
+                baseURL:internalApiBase
+            })
             tableData.value=getTableDataRequest
         }catch (err) {
             console.log(err)

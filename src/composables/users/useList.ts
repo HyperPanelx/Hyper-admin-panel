@@ -2,7 +2,7 @@ import {IUsers_Data} from "~/utils/Types";
 
 export const useUsersList=()=>{
     const {showPreloaderFlag,fetchTableDataFlag,tableData}=useStates();
-    const {public:{internalApiKey}}=useRuntimeConfig();
+    const {public:{internalApiKey,internalApiBase}}=useRuntimeConfig();
 
 
     onMounted(async ()=>{
@@ -11,7 +11,9 @@ export const useUsersList=()=>{
         showPreloaderFlag.value=true
         try {
             const getTableDataRequest:IUsers_Data=await $fetch('/api/users/list',{
-                headers:{Authorization:internalApiKey}})
+                headers:{Authorization:internalApiKey},
+                baseURL:internalApiBase
+            })
             tableData.value=getTableDataRequest
         }catch (err) {
             console.log(err)
