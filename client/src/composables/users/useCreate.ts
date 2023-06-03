@@ -32,8 +32,9 @@ export const useCreateUser=()=>{
         fetchOperationData.error=false
         fetchOperationData.modal=false
         try {
-            const createSingleUserRequest:{password:string,username:string}=await $fetch('/api/users/create',{
+            const createSingleUserRequest:{password:string,username:string}=await $fetch('/api/user/create',{
                 body:value,
+                credentials: "include",
                 method:'POST',
                 headers:{Authorization:internalApiKey},
                 baseURL:internalApiBase

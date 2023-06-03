@@ -22,9 +22,11 @@ app.use(mw())
 const authRoute=require('./api/auth')
 //// dashboard route
 const dashboardRoute=require('./api/dashboard')
-
+//// users route
+const usersRoute=require('./api/users')
 
 app.use('/api/auth',authRoute)
 app.use('/api/dashboard',dashboardRoute)
+app.use('/api/user',usersRoute)
 
 app.listen(process.env.PORT || 8000,()=>console.log(`server is running on port ${process.env.PORT || 8000}`))

@@ -3,15 +3,18 @@
 export const useOnlineUserOperation=(props:any)=>{
     const {fetchTableDataFlag,tableData,showPreloaderFlag}=useStates();
     const selectedOnlineUserToKill=useState<string[]>('selectedOnlineUserToKill',()=>[]);
-    const {public:{internalApiBase}}=useRuntimeConfig()
+    const {public:{internalApiBase,internalApiKey}}=useRuntimeConfig()
 
     const modalFlag=ref<boolean>(false);
     const killUser =async () => {
         fetchTableDataFlag.value=false
         showPreloaderFlag.value=true
         try {
-            const killUserRequest=await $fetch(`/api/users/kill/${props.user}`,{
-                method:'POST',baseURL:internalApiBase
+            const killUserRequest=await $fetch(`/api/user/kill-online/${props.user}`,{
+                method:'POST',baseURL:internalApiBase,credentials: "include",
+                headers:{
+                    Authorization:internalApiKey
+                },
             })
             const userIndex=tableData.value.rows.findIndex((item:any)=>item.uid===props.uid)
             tableData.value.rows.splice(userIndex,1)

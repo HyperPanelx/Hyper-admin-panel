@@ -44,13 +44,11 @@ router.get('/me',(req,res)=>{
         }).then(response=>response.json()).then(response=>{
             res.status(200).send(response.username)
         }).catch(err=>{
-            res.status(402).send('error in finding user')
+            res.status(401).send('error in finding user')
         })
     }else{
-        res.status(401).send('token is not provided')
+        res.status(401).send('token is not provided!')
     }
-
-
 });
 router.get('/logout',(req,res)=>{
     res.clearCookie(process.env.COOKIE_NAME)

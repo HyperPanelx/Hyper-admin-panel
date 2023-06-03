@@ -11,9 +11,10 @@ export const useOnlineUsers=()=>{
         fetchTableDataFlag.value=false
         showPreloaderFlag.value=true
         try {
-            const getTableDataRequest:IOnline_Users_Data=await $fetch('/api/users/online',{
+            const getTableDataRequest:IOnline_Users_Data=await $fetch('/api/user/online-list',{
                 headers:{Authorization:internalApiKey},
-                baseURL:internalApiBase
+                baseURL:internalApiBase,
+                credentials: "include"
             })
             tableData.value=getTableDataRequest
         }catch (err) {

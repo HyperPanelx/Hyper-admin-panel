@@ -3,7 +3,7 @@ import {IUsers_Data} from "~/utils/Types";
 
 export const usePagination=()=>{
     const {tableData,fetchTableDataFlag,selectedUserToDelete,showPreloaderFlag,selectedOnlineUserToKill}=useStates();
-    const {public:{internalApiBase}}=useRuntimeConfig()
+    const {public:{internalApiBase,internalApiKey}}=useRuntimeConfig()
     const searchText=useState('tableSearchText',()=>'');
     const modalData=reactive({
         on:false,
@@ -139,9 +139,13 @@ export const usePagination=()=>{
         fetchTableDataFlag.value=false
         showPreloaderFlag.value=true
         try {
-            const deleteUsersRequest=await $fetch(`/api/users/kill/several?username=${selectedOnlineUserToKill.value.join('&username=')}`,{
+            const deleteUsersRequest=await $fetch(`/api/user/kill-several?username=${selectedOnlineUserToKill.value.join('&username=')}`,{
                 method:'DELETE',
-                baseURL:internalApiBase
+                baseURL:internalApiBase,
+                headers:{
+                    Authorization:internalApiKey
+                },
+                credentials: "include"
             });
             selectedOnlineUserToKill.value.forEach(user=>{
                 const idx=tableData.value.rows.findIndex((item)=>item.user===user)

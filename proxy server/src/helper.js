@@ -9,8 +9,10 @@ const bodyEncode = (username,password) => {
     urlencoded.append("password", password);
     return urlencoded
 }
-
+const querySerialize = (obj) => {
+  return Object.entries(obj).map(([key, val]) => `${key}=${val}`).join('&');
+}
 
 module.exports={
-    bodyEncode
+    bodyEncode,querySerialize
 }

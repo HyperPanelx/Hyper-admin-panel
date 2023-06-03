@@ -10,9 +10,10 @@ export const useUsersList=()=>{
         fetchTableDataFlag.value=false
         showPreloaderFlag.value=true
         try {
-            const getTableDataRequest:IUsers_Data=await $fetch('/api/users/list',{
+            const getTableDataRequest:IUsers_Data=await $fetch('/api/user/list',{
                 headers:{Authorization:internalApiKey},
-                baseURL:internalApiBase
+                baseURL:internalApiBase,
+                credentials: "include"
             })
             tableData.value=getTableDataRequest
         }catch (err) {
