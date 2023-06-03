@@ -21,13 +21,15 @@ export const useDashboard=()=>{
         showPreloaderFlag.value=true
         fetchDashboardDataFlag.value=false
         try {
-            const serverStatusFetchRequest=await $fetch('/api/server',{
+            const serverStatusFetchRequest=await $fetch('/api/dashboard/server',{
                 headers:{Authorization:internalApiKey},
-                baseURL:internalApiBase
+                baseURL:internalApiBase,
+                credentials: "include",
             })
-            const usersDataFetchRequest=await $fetch('/api/users/status',{
+            const usersDataFetchRequest=await $fetch('/api/dashboard/users-status',{
                 headers:{Authorization:internalApiKey},
-                baseURL:internalApiBase
+                baseURL:internalApiBase,
+                credentials: "include",
             })
             serverStatus.value=serverStatusFetchRequest
             usersData.value=usersDataFetchRequest
