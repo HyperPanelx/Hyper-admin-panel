@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="b2371052-6694-47fe-879f-bce2a684441d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.babelrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Nuxt template.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.npmrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/colors.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/formkit.config.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/10.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/11.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/12.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/13.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/14.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nuxt.config.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/tsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/App.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/Tailwind.config/Tailwind.base.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/Tailwind.config/Tailwind.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/Tailwind.config/Tailwind.utilities.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/components/card.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/components/conatiner.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/components/dropdown.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/components/form.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/components/layout.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/components/login.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/components/modal.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/components/navbar.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/components/sidebar.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/components/skelton.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/components/table.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/components/tooltip.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/components/transition.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Dashboard/Card.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Layout/Navbar.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Layout/Sidebar.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Navbar/Notification.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Navbar/NotificationItem.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Navbar/Search/Desktop.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Navbar/Search/Mobile.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Navbar/Theme.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Navbar/User.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Online/Table.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Online/TableRow.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Pagination/Control.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Pagination/index.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Sidebar/Brand.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Sidebar/Content.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Sidebar/ItemClose.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Sidebar/ItemOpen.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Users/Table.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Users/TableRow.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/global/AppLink.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/global/VBloader.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/global/VBreadcrumb.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/global/VCard.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/global/VCheckbox.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/global/VDropdown.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/global/VGInput.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/global/VModal.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/global/VPreloader.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/global/VShadow.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/global/VTInput.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/global/VTooltip.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/grid/column.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/grid/container.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/grid/containerFull.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/grid/row.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/composables/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/composables/useDashboard.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/composables/useLogin.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/composables/useLogout.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/composables/usePagination.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/composables/usePreloader.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/composables/useSearch.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/composables/useStates.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/composables/users/useCreate.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/composables/users/useList.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/composables/users/useOnline.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/composables/users/useOnlineOperation.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/composables/users/useOperation.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/directive/vClickOutside.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/directive/vCollapsible.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/directive/vFade.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/directive/vFocus.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/error.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layouts/default.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layouts/setting.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/middleware/auth.global.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/dashboard.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/index.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/login.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/onlineUsers.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/settings/index.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/settings/index/SSH.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/settings/index/api.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/settings/index/backup.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/settings/index/changePassword.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/settings/index/create.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/settings/index/ip.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/settings/index/limitation.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/settings/index/multi.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/settings/index/robot.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/users/create.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/users/index.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/plugins/apexchart.client.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/plugins/auth.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/plugins/color.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/plugins/directives.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/plugins/grid.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/plugins/skeletor.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/public/login.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/api/login.post.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/api/logout.get.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/api/me.get.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/api/server.get.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/api/users/create.post.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/api/users/delete/[username].delete.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/api/users/delete/several.delete.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/api/users/kill/[username].post.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/api/users/kill/several.delete.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/api/users/list.get.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/api/users/lock/[username].post.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/api/users/online.get.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/api/users/password/[username].post.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/api/users/renew/[username].post.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/api/users/status.get.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/api/users/unlock/[username].post.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/middleware/auth.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/Data.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/Helper.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/Types.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tailwind.config.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="TypeScript File" />
+        <option value="Vue Single File Component" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2PysoL54sGFCvwTxqN8SKAWkLYA" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/WEB/Projects/SPA projects/3-Administrator project/src/server/api/users/kill&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\PhpStorm 2022.1\\plugins\\JavaScriptLanguage\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\WEB\Projects\SPA projects\3-Administrator project\src\server\api\users\kill" />
+      <recent name="D:\WEB\Projects\SPA projects\3-Administrator project\src\server\api\users\renew" />
+      <recent name="D:\WEB\Projects\SPA projects\3-Administrator project\src\server\api\users\unlock" />
+      <recent name="D:\WEB\Projects\SPA projects\3-Administrator project\src\server\api\users\lock" />
+      <recent name="D:\WEB\Projects\SPA projects\3-Administrator project\src\server\api\users" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\WEB\Projects\SPA projects\3-Administrator project\src\pages\settings\index" />
+      <recent name="D:\WEB\Projects\SPA projects\3-Administrator project\src\pages\setting" />
+      <recent name="D:\WEB\Projects\SPA projects\3-Administrator project\src\server\api\users\password" />
+      <recent name="D:\WEB\Projects\SPA projects\3-Administrator project\src\server\api\users\delete" />
+      <recent name="D:\WEB\Projects\SPA projects\3-Administrator project\src\server\api\users" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b2371052-6694-47fe-879f-bce2a684441d" name="Changes" comment="" />
+      <created>1684440837516</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1684440837516</updated>
+      <workItem from="1684440842562" duration="9282000" />
+      <workItem from="1684481820079" duration="7691000" />
+      <workItem from="1684502877021" duration="280000" />
+      <workItem from="1684503712844" duration="4713000" />
+      <workItem from="1684512692488" duration="5836000" />
+      <workItem from="1684587882945" duration="19962000" />
+      <workItem from="1684677233703" duration="14851000" />
+      <workItem from="1684753546729" duration="22996000" />
+      <workItem from="1684849767429" duration="18937000" />
+      <workItem from="1684938389389" duration="17114000" />
+      <workItem from="1685014791932" duration="15680000" />
+      <workItem from="1685105331485" duration="18338000" />
+      <workItem from="1685182719417" duration="29291000" />
+      <workItem from="1685346066749" duration="34260000" />
+      <workItem from="1685440801957" duration="22763000" />
+      <workItem from="1685470195504" duration="5502000" />
+      <workItem from="1685519743499" duration="29462000" />
+      <workItem from="1685609465462" duration="18730000" />
+      <workItem from="1685649897171" duration="1815000" />
+      <workItem from="1685652000326" duration="385000" />
+      <workItem from="1685694025565" duration="28724000" />
+      <workItem from="1685778493724" duration="8821000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

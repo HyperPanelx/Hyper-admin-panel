@@ -10,6 +10,7 @@ export default defineNuxtPlugin(async nuxtApp=>{
             headers:{
                 Authorization:internalApiKey
             },
+            credentials: "include",
             baseURL:internalApiBase
         })
         username.value=getUserAuthorizationInfo

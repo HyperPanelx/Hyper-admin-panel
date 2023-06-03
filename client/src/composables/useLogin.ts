@@ -20,6 +20,7 @@ export const useLogin=()=>{
                 const loginValidationRequest=await $fetch('/api/login',{
                     method:'POST',
                     body:userData,
+                    credentials: "include",
                     headers:{
                         Authorization:internalApiKey
                     },
