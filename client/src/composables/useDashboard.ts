@@ -4,6 +4,7 @@ export const useDashboard=()=>{
     const {showPreloaderFlag}=useStates()
     const fetchDashboardDataFlag=useState<boolean>('fetchServerDataFlag',()=>false)
     const usersData=useState<IUsers_Data[]>('usersData',()=>[])
+    const {public:{apiKey,apiBase}}=useRuntimeConfig();
     const serverStatus=useState<IServer_Status>('serverStatus',()=>{
         return{
             cpu:0,
@@ -11,19 +12,24 @@ export const useDashboard=()=>{
             disk:0,
             bandWidth:{
                 download:0,
-                upload:0
+                upload:0,
+                downloadSpeed:0,
+                uploadSpeed:0,
+                speedUnit:''
             }
         }
     })
-    const {public:{apiKey,apiBase}}=useRuntimeConfig()
 
-    onMounted(async ()=>{
+
+
+    const getDashboardData=async ()=>{
         showPreloaderFlag.value=true
         fetchDashboardDataFlag.value=false
         try {
             const serverStatusFetchRequest:IServer_Status=await $fetch('/api/dashboard/server',{
                 headers:{Authorization:apiKey},
                 baseURL:apiBase,
+                keepalive:true,
                 credentials: "include",
             })
             const usersDataFetchRequest:IUsers_Data[]=await $fetch('/api/dashboard/users-status',{
@@ -31,16 +37,32 @@ export const useDashboard=()=>{
                 baseURL:apiBase,
                 credentials: "include",
             })
-            serverStatus.value=serverStatusFetchRequest
             usersData.value=usersDataFetchRequest
+            serverStatus.value=serverStatusFetchRequest
         }catch (err) {
             console.log(err)
         }finally {
             fetchDashboardDataFlag.value=true
             showPreloaderFlag.value=false
         }
+    }
+
+    onMounted(async ()=>{
+        await getDashboardData()
     })
 
+    watch(
+        ()=>fetchDashboardDataFlag.value,
+         ()=>{
+            if(fetchDashboardDataFlag.value){
+                setTimeout(async ()=>{
+                    await getDashboardData()
+                },15000)
+            }
+        },{
+            immediate:true,
+        }
+    )
 
 
     return{

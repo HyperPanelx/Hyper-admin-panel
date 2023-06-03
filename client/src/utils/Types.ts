@@ -37,7 +37,10 @@ export interface IServer_Status {
     disk:number
     bandWidth:{
         download:number
-        upload:number
+        upload:number,
+        downloadSpeed:number,
+        speedUnit:string,
+        uploadSpeed:number,
     }
 }
 

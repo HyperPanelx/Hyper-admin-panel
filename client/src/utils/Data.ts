@@ -121,7 +121,7 @@ export const serverStatusChartOption=(prc:number,label:string)=>{
         series: [prc],
     }
 }
-export const bandWidthOption=(download:number, upload:number)=>{
+export const bandWidthOption=(download:number, upload:number,unit:string)=>{
     return {
         series: [download, upload],
         chartOptions: {
@@ -148,9 +148,9 @@ export const bandWidthOption=(download:number, upload:number)=>{
                                 showAlways: true,
                                 show: true,
                                 formatter: function (w:any) {
-                                    return w.globals.seriesTotals.reduce((a: any, b: any) => {
-                                        return a + b
-                                    }, 0) + ' MG'
+                                    return w.globals.seriesTotals.reduce((a: number, b: number) => {
+                                        return a+b;
+                                    }, 0).toFixed(2) + ` ${unit}`
                                 }
                             },
 
@@ -161,7 +161,7 @@ export const bandWidthOption=(download:number, upload:number)=>{
             tooltip: {
                 y: {
                     formatter: function (val:string) {
-                        return val + ' MG'
+                        return val + ` ${unit}`
                     }
                 }
             }

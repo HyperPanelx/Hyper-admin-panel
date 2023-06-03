@@ -68,8 +68,8 @@
                  type="donut"
                  width="350"
                  height="300"
-                 :options="bandWidthOption(serverStatus.bandWidth.download,serverStatus.bandWidth.upload).chartOptions"
-                 :series="bandWidthOption(serverStatus.bandWidth.download,serverStatus.bandWidth.upload).series"></apexchart>
+                 :options="bandWidthOption(serverStatus.bandWidth.downloadSpeed,serverStatus.bandWidth.uploadSpeed,serverStatus.bandWidth.speedUnit).chartOptions"
+                 :series="bandWidthOption(serverStatus.bandWidth.downloadSpeed,serverStatus.bandWidth.uploadSpeed,serverStatus.bandWidth.speedUnit).series"></apexchart>
            </ClientOnly>
           </template>
         </VCard>
@@ -86,9 +86,9 @@
 <script setup lang="ts">
 definePageMeta({name:'DASHBOARD'})
 import {serverStatusChartOption,bandWidthOption} from "~/utils/Data";
-const {fetchDashboardDataFlag,serverStatus,usersData}=useDashboard()
+const {fetchDashboardDataFlag,usersData,serverStatus}=useDashboard()
 const {sidebarCollapseFlag}=useStates()
-
+const {public:{apiKey,apiBase}}=useRuntimeConfig()
 
 </script>
 
