@@ -6,7 +6,7 @@ export default defineNuxtPlugin(async nuxtApp=>{
     const {public:{internalApiKey,internalApiBase}}=useRuntimeConfig()
 
     try {
-        const getUserAuthorizationInfo:string=await $fetch('/api/me',{
+        const getUserAuthorizationInfo:string=await $fetch('/api/auth/me',{
             headers:{
                 Authorization:internalApiKey
             },

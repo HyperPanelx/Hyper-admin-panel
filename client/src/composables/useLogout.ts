@@ -6,10 +6,11 @@ export const useLogout=()=>{
 
     const logoutHandler = async () => {
       try {
-          const logoutRequest=await $fetch('/api/logout',{
+          const logoutRequest=await $fetch('/api/auth/logout',{
               headers:{
                   Authorization:internalApiKey
               },
+              credentials: "include",
               baseURL:internalApiBase
           })
           isLogin.value=false

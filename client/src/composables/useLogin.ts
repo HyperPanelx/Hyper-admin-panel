@@ -17,7 +17,7 @@ export const useLogin=()=>{
             loginRequestFlag.value=true
             errorMessage.value=''
             try {
-                const loginValidationRequest=await $fetch('/api/login',{
+                const loginValidationRequest=await $fetch('/api/auth/login',{
                     method:'POST',
                     body:userData,
                     credentials: "include",
