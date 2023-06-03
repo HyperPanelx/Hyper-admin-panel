@@ -15,20 +15,20 @@ export const useDashboard=()=>{
             }
         }
     })
-    const {public:{internalApiKey,internalApiBase}}=useRuntimeConfig()
+    const {public:{apiKey,apiBase}}=useRuntimeConfig()
 
     onMounted(async ()=>{
         showPreloaderFlag.value=true
         fetchDashboardDataFlag.value=false
         try {
             const serverStatusFetchRequest:IServer_Status=await $fetch('/api/dashboard/server',{
-                headers:{Authorization:internalApiKey},
-                baseURL:internalApiBase,
+                headers:{Authorization:apiKey},
+                baseURL:apiBase,
                 credentials: "include",
             })
             const usersDataFetchRequest:IUsers_Data[]=await $fetch('/api/dashboard/users-status',{
-                headers:{Authorization:internalApiKey},
-                baseURL:internalApiBase,
+                headers:{Authorization:apiKey},
+                baseURL:apiBase,
                 credentials: "include",
             })
             serverStatus.value=serverStatusFetchRequest

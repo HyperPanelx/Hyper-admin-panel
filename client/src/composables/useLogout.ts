@@ -2,16 +2,16 @@
 
 export const useLogout=()=>{
     const {isLogin}=useStates()
-    const {public:{internalApiKey,internalApiBase}}=useRuntimeConfig()
+    const {public:{apiKey,apiBase}}=useRuntimeConfig()
 
     const logoutHandler = async () => {
       try {
           const logoutRequest=await $fetch('/api/auth/logout',{
               headers:{
-                  Authorization:internalApiKey
+                  Authorization:apiKey
               },
               credentials: "include",
-              baseURL:internalApiBase
+              baseURL:apiBase
           })
           isLogin.value=false
           return navigateTo({name:'LOGIN'})

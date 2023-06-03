@@ -4,7 +4,7 @@ const router=express.Router();
 const helper=require('../helper')
 
 //// users page
-router.get('/list',async (req,res)=>{
+router.get('/list', (req,res)=>{
     const token=req.cookies[process.env.COOKIE_NAME]
     if(token){
         fetch(process.env.API_BASE+'get-users',{
@@ -55,7 +55,110 @@ router.post('/create',(req,res)=>{
 
 })
 
+router.delete('/delete-several',(req,res)=>{
+    const usernames=req.query.username
+    const token=req.cookies[process.env.COOKIE_NAME]
+    if(usernames && token){
+        res.status(200).end()
+    }else{
+        res.status(400).send('missing required query username!')
+    }
+});
+router.delete('/delete/:username',(req,res)=>{
+    const username=req.params.username
+    const token=req.cookies[process.env.COOKIE_NAME]
+    if(username && token) {
+        fetch(process.env.API_BASE+'delete-user?'+helper.querySerialize({username}),{
+            headers:{
+                'Content-Type':'application/json',
+                Authorization:`Bearer ${token}`
+            },
+        }).then(response=>response.json()).then(response=>{
+            res.status(200).end()
+        }).catch(err=>{
+            res.status(401).end()
+        })
+    }else{
+        res.status(400).send('missing required params username!')
+    }
+});
+router.post('/lock/:username',(req,res)=>{
+    const username=req.params.username
+    const token=req.cookies[process.env.COOKIE_NAME]
+    if(username && token) {
+        fetch(process.env.API_BASE+'lock-user?'+helper.querySerialize({username}),{
+            headers:{
+                'Content-Type':'application/json',
+                Authorization:`Bearer ${token}`
+            },
+        }).then(response=>response.json()).then(response=>{
+            res.status(200).end()
+        }).catch(err=>{
+            res.status(401).end()
+        })
+    }else{
+        res.status(400).send('missing required params username!')
+    }
 
+});
+router.post('/unlock/:username',(req,res)=>{
+    const username=req.params.username
+    const token=req.cookies[process.env.COOKIE_NAME]
+    if(username && token) {
+        fetch(process.env.API_BASE+'unlock-user?'+helper.querySerialize({username}),{
+            headers:{
+                'Content-Type':'application/json',
+                Authorization:`Bearer ${token}`
+            },
+        }).then(response=>response.json()).then(response=>{
+            res.status(200).end()
+        }).catch(err=>{
+            res.status(401).end()
+        })
+    }else{
+        res.status(400).send('missing required params username!')
+    }
+
+});
+router.post('/renew-user/:username',(req,res)=>{
+    const username=req.params.username;
+    const token=req.cookies[process.env.COOKIE_NAME];
+    if(username && token) {
+        const body=req.body;
+        fetch(process.env.API_BASE+'renew-user?'+ helper.querySerialize({username:username,exdate:body.date}),{
+            headers:{
+                'Content-Type':'application/json',
+                Authorization:`Bearer ${token}`
+            },
+        }).then(response=>response.json()).then(response=>{
+            res.status(200).end()
+        }).catch(err=>{
+            res.status(401).end()
+        })
+    }else{
+        res.status(400).send('missing required params username!')
+    }
+
+
+});
+router.post('/change-password/:username',(req,res)=>{
+    const username=req.params.username;
+    const token=req.cookies[process.env.COOKIE_NAME];
+    if(username && token) {
+        fetch(process.env.API_BASE+'change-passwd-user?'+helper.querySerialize({username}),{
+            headers:{
+                'Content-Type':'application/json',
+                Authorization:`Bearer ${token}`
+            },
+        }).then(response=>response.json()).then(response=>{
+            res.status(200).send(response)
+        }).catch(err=>{
+            res.status(401).end()
+        })
+    }else{
+        res.status(400).send('missing required params username!')
+    }
+})
 
 //// online user page
 router.get('/online-list',(req,res)=>{

@@ -3,15 +3,16 @@
 export default defineNuxtPlugin(async nuxtApp=>{
     const isLogin=useState<boolean>('isLogin')
     const username=useState<string>('username')
-    const {public:{internalApiKey,internalApiBase}}=useRuntimeConfig()
+    const {public:{apiKey,apiBase}}=useRuntimeConfig()
 
     try {
         const getUserAuthorizationInfo:string=await $fetch('/api/auth/me',{
             headers:{
-                Authorization:internalApiKey
+                Authorization:apiKey
             },
+            retry:5,
             credentials: "include",
-            baseURL:internalApiBase
+            baseURL:apiBase
         })
         username.value=getUserAuthorizationInfo
         isLogin.value=true

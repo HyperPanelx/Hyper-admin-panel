@@ -4,7 +4,7 @@ import {usernameRegex,passwordRegex} from "~/utils/Helper";
 export const useLogin=()=>{
     const loginRequestFlag=useState<boolean|null>('loginRequestFlag',()=>null)
     const {isLogin,username}=useStates()
-    const {public:{internalApiKey,internalApiBase}}=useRuntimeConfig();
+    const {public:{apiKey,apiBase}}=useRuntimeConfig();
     const errorMessage=useState<string>('loginErrorMessage',()=>'')
     const userData=reactive<IUser_Data>({
         username:'hooman_77',
@@ -22,9 +22,9 @@ export const useLogin=()=>{
                     body:userData,
                     credentials: "include",
                     headers:{
-                        Authorization:internalApiKey
+                        Authorization:apiKey
                     },
-                    baseURL:internalApiBase
+                    baseURL:apiBase
                 })
                 username.value=userData.username
                 isLogin.value=true

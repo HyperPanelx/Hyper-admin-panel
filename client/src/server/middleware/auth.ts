@@ -1,7 +1,7 @@
 
 export default defineEventHandler( ev=>{
     const headerToken=ev.node.req.headers.authorization
-    const {public:{internalApiKey}}=useRuntimeConfig()
+    const {public:{apiKey}}=useRuntimeConfig()
     const url:string|undefined=ev.node.req.url
     if(
         url==='/api/server' ||
@@ -13,7 +13,7 @@ export default defineEventHandler( ev=>{
         url==='api/users/create'
 
     ){
-        if(headerToken!==internalApiKey){
+        if(headerToken!==apiKey){
             return createError({
                 statusCode:501,
                 statusMessage:'unauthorized token!'

@@ -1,7 +1,7 @@
 import {IUsers_Data} from "~/utils/Types";
 
 export const useUserOperation=(props:any)=>{
-    const {public:{internalApiBase}}=useRuntimeConfig()
+    const {public:{apiBase,apiKey}}=useRuntimeConfig()
     const downloadAnchorElem=ref<HTMLAnchorElement|null>(null);
     const dropdownFlag=ref<boolean>(false);
     const showPasswordFlag=ref<boolean>(false);
@@ -67,8 +67,12 @@ export const useUserOperation=(props:any)=>{
         showPreloaderFlag.value=true
         fetchTableDataFlag.value=false
         try {
-            const deleteUserRequest=await $fetch(`/api/users/delete/${props.user}`,{
-                method:'DELETE',baseURL:internalApiBase
+            const deleteUserRequest=await $fetch(`/api/user/delete/${props.user}`,{
+                method:'DELETE',baseURL:apiBase,
+                headers:{
+                    Authorization:apiKey
+                },
+                credentials: "include"
             })
             operationData.modal=false
             const userIndex=tableData.value.rows.findIndex((item:any)=>item.uid===props.uid)
@@ -84,8 +88,13 @@ export const useUserOperation=(props:any)=>{
         dropdownFlag.value=false
         operationData.modal=false
         try {
-            const changePasswordRequest=await $fetch<{password:string,username:string}>(`/api/users/password/${props.user}`,{
-                method:'POST',baseURL:internalApiBase
+            const changePasswordRequest=await $fetch<{password:string,username:string}>(`/api/user/change-password/${props.user}`,{
+                method:'POST',
+                baseURL:apiBase,
+                headers:{
+                    Authorization:apiKey
+                },
+                credentials: "include"
             })
             operationData.newPassword=changePasswordRequest.password
             operationData.changePassword=true
@@ -101,8 +110,12 @@ export const useUserOperation=(props:any)=>{
     const lockUser = async () => {
         dropdownFlag.value=false
         try {
-            const lockUserRequest=await $fetch(`/api/users/lock/${props.user}`,{
-                method:'POST',baseURL:internalApiBase
+            const lockUserRequest=await $fetch(`/api/user/lock/${props.user}`,{
+                method:'POST',baseURL:apiBase,
+                headers:{
+                    Authorization:apiKey
+                },
+                credentials: "include"
             })
             const userIndex=tableData.value.rows.findIndex((item:any)=>item.uid===props.uid);
             (tableData.value as IUsers_Data).rows[userIndex].status='disable';
@@ -114,8 +127,12 @@ export const useUserOperation=(props:any)=>{
     const unlockUser =async () => {
         dropdownFlag.value=false
         try {
-            const lockUserRequest=await $fetch(`/api/users/unlock/${props.user}`,{
-                method:'POST',baseURL:internalApiBase
+            const lockUserRequest=await $fetch(`/api/user/unlock/${props.user}`,{
+                method:'POST',baseURL:apiBase,
+                headers:{
+                    Authorization:apiKey
+                },
+                credentials: "include"
             })
             const userIndex=tableData.value.rows.findIndex((item:any)=>item.uid===props.uid);
             (tableData.value as IUsers_Data).rows[userIndex].status='enable';
@@ -127,10 +144,14 @@ export const useUserOperation=(props:any)=>{
     const renewUser = async (value:any) => {
         dropdownFlag.value=false
         try {
-            const renewUserRequest=await $fetch(`/api/users/renew/${props.user}`,{
+            const renewUserRequest=await $fetch(`/api/user/renew-user/${props.user}`,{
                 method:'POST',
-                body:value.new_exp,
-                baseURL:internalApiBase
+                body:{date:value.new_exp},
+                baseURL:apiBase,
+                headers:{
+                    Authorization:apiKey
+                },
+                credentials: "include"
             })
             const userIndex=tableData.value.rows.findIndex((item:any)=>item.uid===props.uid);
             (tableData.value as IUsers_Data).rows[userIndex].exdate=value.new_exp;
