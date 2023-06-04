@@ -2,7 +2,7 @@ import {IUsers_Data,IServer_Status} from "~/utils/Types";
 
 export const useDashboard=()=>{
     const {showPreloaderFlag}=useStates()
-    const fetchDashboardDataFlag=useState<boolean>('fetchServerDataFlag',()=>false)
+    const fetchDashboardDataFlag=useState<boolean>('fetchServerDataFlag',()=>false);
     const usersData=useState<IUsers_Data[]>('usersData',()=>[])
     const {public:{apiKey,apiBase}}=useRuntimeConfig();
     const serverStatus=useState<IServer_Status>('serverStatus',()=>{
@@ -23,8 +23,6 @@ export const useDashboard=()=>{
 
 
     const getDashboardData=async ()=>{
-        showPreloaderFlag.value=true
-        fetchDashboardDataFlag.value=false
         try {
             const serverStatusFetchRequest:IServer_Status=await $fetch('/api/dashboard/server',{
                 headers:{Authorization:apiKey},
@@ -41,28 +39,51 @@ export const useDashboard=()=>{
             serverStatus.value=serverStatusFetchRequest
         }catch (err) {
             console.log(err)
-        }finally {
-            fetchDashboardDataFlag.value=true
-            showPreloaderFlag.value=false
         }
     }
 
     onMounted(async ()=>{
-        await getDashboardData()
+        if(process.client){document.body.style.overflow='hidden'}
+        showPreloaderFlag.value=true
+        fetchDashboardDataFlag.value=false
+        try {
+            await getDashboardData()
+            showPreloaderFlag.value=false
+            fetchDashboardDataFlag.value=true
+            if(process.client){document.body.style.overflow='auto'}
+        }catch (err) {
+            console.log(err)
+        }
     })
 
+    const router=useRouter()
+    let timer:any=null;
     watch(
         ()=>fetchDashboardDataFlag.value,
          ()=>{
             if(fetchDashboardDataFlag.value){
-                setTimeout(async ()=>{
-                    await getDashboardData()
+                timer= setTimeout(async ()=>{
+                    fetchDashboardDataFlag.value=false
+                    try {
+                        await getDashboardData();
+                        fetchDashboardDataFlag.value=true
+                    }catch (err) {
+                        console.log(err)
+                    }
                 },15000)
             }
         },{
             immediate:true,
         }
     )
+
+    router.afterEach((to,from)=>{
+        if(to.name!=='DASHBOARD' && from.name==='DASHBOARD'){
+            /// exit dashboard page
+            fetchDashboardDataFlag.value=false
+            clearTimeout(timer)
+        }
+    })
 
 
     return{

@@ -35,7 +35,6 @@ router.post('/login',async (req,res)=>{
 });
 router.get('/me',(req,res)=>{
     const token=req.headers.token
-
     fetch(process.env.API_BASE+'panel/me/',{
         headers:{
             'Content-type':'application/json',

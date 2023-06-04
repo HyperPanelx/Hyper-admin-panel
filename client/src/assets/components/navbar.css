@@ -2,7 +2,7 @@
 
 @layer components {
     .navbar{
-        @apply sticky top-0 w-full h-[70px] bg-primary-light-1 flex justify-between  shadow-[0_0_30px_rgba(0,0,0,0.1)] dark:bg-primary-dark-1 z-[20]
+        @apply sticky top-0 w-full h-[70px] bg-primary-light-1 flex justify-between  shadow-[0_0_30px_rgba(0,0,0,0.1)] dark:bg-primary-dark-1 z-[999]
     }
     .navbar-left{
         @apply py-1 px-1.5 w-full flex items-center

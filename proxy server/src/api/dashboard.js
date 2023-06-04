@@ -27,10 +27,9 @@ router.get('/server',(req,res)=>{
                 speedUnit:downloadSpeed.slice(downloadSpeed.length-2),
             }
         })
-        res.status(200).end()
     }).catch(err=>{
         console.log(err)
-        res.status(400).end()
+        res.status(400).send('error in connecting to api')
     })
 
 

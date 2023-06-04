@@ -54,7 +54,7 @@ router.delete('/delete-several',(req,res)=>{
     const usernames=req.query.username
     const token=req.headers.token
     if(usernames){
-        res.status(200).end()
+        res.status(200).send('ok')
     }else{
         res.status(400).send('missing required query username!')
     }
@@ -70,9 +70,9 @@ router.delete('/delete/:username',(req,res)=>{
                 Authorization:`Bearer ${token}`
             },
         }).then(response=>response.json()).then(response=>{
-            res.status(200).end()
+            res.status(200).send('ok')
         }).catch(err=>{
-            res.status(401).end()
+            res.status(401).send('error in connecting to api')
         })
     }else{
         res.status(400).send('missing required params username!')
@@ -89,9 +89,9 @@ router.post('/lock/:username',(req,res)=>{
                 Authorization:`Bearer ${token}`
             },
         }).then(response=>response.json()).then(response=>{
-            res.status(200).end()
+            res.status(200).send('ok')
         }).catch(err=>{
-            res.status(401).end()
+            res.status(401).send('error in connecting to api')
         })
     }else{
         res.status(400).send('missing required params username!')
@@ -109,9 +109,9 @@ router.post('/unlock/:username',(req,res)=>{
                 Authorization:`Bearer ${token}`
             },
         }).then(response=>response.json()).then(response=>{
-            res.status(200).end()
+            res.status(200).send('ok')
         }).catch(err=>{
-            res.status(401).end()
+            res.status(401).send('error in connecting to api')
         })
     }else{
         res.status(400).send('missing required params username!')
@@ -130,9 +130,9 @@ router.post('/renew-user/:username',(req,res)=>{
                 Authorization:`Bearer ${token}`
             },
         }).then(response=>response.json()).then(response=>{
-            res.status(200).end()
+            res.status(200).send('ok')
         }).catch(err=>{
-            res.status(401).end()
+            res.status(401).send('error in connecting to api')
         })
     }else{
         res.status(400).send('missing required params username!')
@@ -153,7 +153,7 @@ router.post('/change-password/:username',(req,res)=>{
         }).then(response=>response.json()).then(response=>{
             res.status(200).send(response)
         }).catch(err=>{
-            res.status(401).end()
+            res.status(401).send('error in connecting to api')
         })
     }else{
         res.status(400).send('missing required params username!')
@@ -194,7 +194,7 @@ router.post('/kill-online/:username',(req,res)=>{
                 Authorization:`Bearer ${token}`
             },
         }).then(response=>response.json()).then(response=>{
-            res.status(200).end()
+            res.status(200).send('ok')
         }).catch(err=>{
             res.status(400).send('error in connecting to api!')
         })
@@ -206,7 +206,7 @@ router.delete('/kill-several',(req,res)=>{
     const usernames=req.query.username
     const token=req.headers.token
     if(usernames){
-        res.status(200).end()
+        res.status(200).send('ok')
     }else{
         res.status(400).send('missing required query username!')
     }
