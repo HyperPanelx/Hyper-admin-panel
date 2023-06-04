@@ -16,6 +16,12 @@ npm install
 # pnpm
 pnpm install
 ```
+#### Then you need to create a .env file in the root of the project and add these keys and values
+
+```
+API_KEY=xxx  // proxy server api key
+API_BASE=xxx // proxy server api base
+```
 
 ## Development Server
 
