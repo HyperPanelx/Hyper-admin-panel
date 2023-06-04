@@ -18,7 +18,7 @@ router.post('/login',async (req,res)=>{
                 res.cookie(process.env.COOKIE_NAME,response.access_token,{
                     maxAge:10*24*60*60,
                     httpOnly:true,
-                    secure:true,
+                    secure:false,
                     path:'/'
                 })
                 res.status(200).send('cookie saved')
@@ -34,21 +34,18 @@ router.post('/login',async (req,res)=>{
 
 });
 router.get('/me',(req,res)=>{
-    const token=req.cookies[process.env.COOKIE_NAME]
-    if(token){
-        fetch(process.env.API_BASE+'panel/me/',{
-            headers:{
-                'Content-type':'application/json',
-                Authorization:`Bearer ${token}`
-            }
-        }).then(response=>response.json()).then(response=>{
-            res.status(200).send(response.username)
-        }).catch(err=>{
-            res.status(401).send('error in finding user')
-        })
-    }else{
-        res.status(401).send('token is not provided!')
-    }
+    const token=req.headers.token
+
+    fetch(process.env.API_BASE+'panel/me/',{
+        headers:{
+            'Content-type':'application/json',
+            Authorization:`Bearer ${token}`
+        }
+    }).then(response=>response.json()).then(response=>{
+        res.status(200).send(response.username)
+    }).catch(err=>{
+        res.status(401).send('error in finding user')
+    })
 });
 router.get('/logout',(req,res)=>{
     res.clearCookie(process.env.COOKIE_NAME)

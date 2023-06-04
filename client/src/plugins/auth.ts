@@ -9,6 +9,7 @@ export default defineNuxtPlugin(async nuxtApp=>{
             headers:{
                 Authorization:apiKey
             },
+            retry:5,
             credentials: "include",
             baseURL:apiBase
         })
