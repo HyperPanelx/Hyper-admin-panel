@@ -44,7 +44,6 @@ router.post('/create',(req,res)=>{
             Authorization:`Bearer ${token}`
         },
     }).then(response=>response.json()).then(response=>{
-        console.log(response)
         res.status(200).send(response)
     }).catch(err=>{
         res.status(401).send('error in connecting to api!')

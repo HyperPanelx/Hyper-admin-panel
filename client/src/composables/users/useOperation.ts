@@ -6,7 +6,7 @@ export const useUserOperation=(props:any)=>{
     const dropdownFlag=ref<boolean>(false);
     const showPasswordFlag=ref<boolean>(false);
     const newExpirationDateForm=ref<HTMLFormElement|null>(null)
-    const {tableData,fetchTableDataFlag,showPreloaderFlag}=useStates();
+    const {tableData,fetchTableDataFlag,showPreloaderFlag,token}=useStates();
     const selectedUserToDelete=useState<string[]>('selectedUserToDelete',()=>[])
     const operationData=reactive({
         name:'',
@@ -70,7 +70,8 @@ export const useUserOperation=(props:any)=>{
             const deleteUserRequest=await $fetch(`/api/user/delete/${props.user}`,{
                 method:'DELETE',baseURL:apiBase,
                 headers:{
-                    Authorization:apiKey
+                    Authorization:apiKey,
+                    token:token.value
                 },
                 credentials: "include"
             })
@@ -92,7 +93,8 @@ export const useUserOperation=(props:any)=>{
                 method:'POST',
                 baseURL:apiBase,
                 headers:{
-                    Authorization:apiKey
+                    Authorization:apiKey,
+                    token:token.value
                 },
                 credentials: "include"
             })
@@ -113,7 +115,8 @@ export const useUserOperation=(props:any)=>{
             const lockUserRequest=await $fetch(`/api/user/lock/${props.user}`,{
                 method:'POST',baseURL:apiBase,
                 headers:{
-                    Authorization:apiKey
+                    Authorization:apiKey,
+                    token:token.value
                 },
                 credentials: "include"
             })
@@ -130,7 +133,8 @@ export const useUserOperation=(props:any)=>{
             const lockUserRequest=await $fetch(`/api/user/unlock/${props.user}`,{
                 method:'POST',baseURL:apiBase,
                 headers:{
-                    Authorization:apiKey
+                    Authorization:apiKey,
+                    token:token.value
                 },
                 credentials: "include"
             })
@@ -149,7 +153,8 @@ export const useUserOperation=(props:any)=>{
                 body:{date:value.new_exp},
                 baseURL:apiBase,
                 headers:{
-                    Authorization:apiKey
+                    Authorization:apiKey,
+                    token:token.value
                 },
                 credentials: "include"
             })

@@ -1,6 +1,7 @@
 import { reset } from '@formkit/core'
 
 export const useCreateUser=()=>{
+    const {token}=useStates()
     const createSingleUserForm=ref(null)
     const {public:{apiKey,apiBase}}=useRuntimeConfig()
 
@@ -36,7 +37,7 @@ export const useCreateUser=()=>{
                 body:value,
                 credentials: "include",
                 method:'POST',
-                headers:{Authorization:apiKey},
+                headers:{Authorization:apiKey,token:token.value},
                 baseURL:apiBase
             })
             newCreatedUserData.password=createSingleUserRequest.password

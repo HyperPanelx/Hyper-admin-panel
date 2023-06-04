@@ -22,7 +22,6 @@ pnpm install
 PORT=3001 
 API_KEY=xxx  // api server key
 API_BASE=xxx // api server address => like: http://127.0.0.1/
-COOKIE_NAME=xxx
 ```
 
 

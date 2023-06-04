@@ -14,17 +14,7 @@ router.post('/login',async (req,res)=>{
                 "Content-Type":"application/x-www-form-urlencoded"
             },
         }).then(response=>response.json()).then(response=>{
-            if(body.rememberMe){
-                res.cookie(process.env.COOKIE_NAME,response.access_token,{
-                    maxAge:10*24*60*60,
-                    httpOnly:true,
-                    secure:false,
-                    path:'/'
-                })
-                res.status(200).send('cookie saved')
-            }else{
-                res.status(200).send('you logged in')
-            }
+            res.status(200).send(response.access_token)
         }).catch(err=>{
             res.status(401).send('error in connecting to api!')
         })
@@ -46,9 +36,6 @@ router.get('/me',(req,res)=>{
         res.status(401).send('error in finding user')
     })
 });
-router.get('/logout',(req,res)=>{
-    res.clearCookie(process.env.COOKIE_NAME)
-    res.status(200).send('cookie removed')
-});
+
 
 module.exports=router

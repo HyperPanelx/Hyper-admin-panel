@@ -2,7 +2,7 @@ import {IOnline_Users_Data} from "~/utils/Types";
 
 
 export const useOnlineUsers=()=>{
-    const {showPreloaderFlag,fetchTableDataFlag,tableData}=useStates();
+    const {showPreloaderFlag,fetchTableDataFlag,tableData,token}=useStates();
     const {public:{apiKey,apiBase}}=useRuntimeConfig();
 
     const getOnlineUsers =async () => {
@@ -11,7 +11,7 @@ export const useOnlineUsers=()=>{
         showPreloaderFlag.value=true
         try {
             const getTableDataRequest:IOnline_Users_Data=await $fetch('/api/user/online-list',{
-                headers:{Authorization:apiKey},
+                headers:{Authorization:apiKey,token:token.value},
                 baseURL:apiBase,
                 credentials: "include"
             })

@@ -1,7 +1,7 @@
 import {IUsers_Data,IServer_Status} from "~/utils/Types";
 
 export const useDashboard=()=>{
-    const {showPreloaderFlag}=useStates()
+    const {showPreloaderFlag,token}=useStates()
     const fetchDashboardDataFlag=useState<boolean>('fetchServerDataFlag',()=>false);
     const usersData=useState<IUsers_Data[]>('usersData',()=>[])
     const {public:{apiKey,apiBase}}=useRuntimeConfig();
@@ -25,7 +25,7 @@ export const useDashboard=()=>{
     const getServerUsageData=async ()=>{
         try {
             const serverStatusFetchRequest:IServer_Status=await $fetch('/api/dashboard/server',{
-                headers:{Authorization:apiKey},
+                headers:{Authorization:apiKey,token:token.value},
                 baseURL:apiBase,
                 keepalive:true,
                 credentials: "include",
@@ -37,13 +37,12 @@ export const useDashboard=()=>{
     }
 
     onMounted(async ()=>{
-        document.body.style.overflow='hidden'
         showPreloaderFlag.value=true
         fetchDashboardDataFlag.value=false
         try {
             await getServerUsageData();
             const usersDataFetchRequest:IUsers_Data[]=await $fetch('/api/dashboard/users-status',{
-                headers:{Authorization:apiKey},
+                headers:{Authorization:apiKey,token:token.value},
                 baseURL:apiBase,
                 credentials: "include",
             });
@@ -51,7 +50,6 @@ export const useDashboard=()=>{
         }catch (err) {
             console.log(err)
         }finally {
-            document.body.style.overflow='auto'
             showPreloaderFlag.value=false
             fetchDashboardDataFlag.value=true
         }

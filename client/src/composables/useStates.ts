@@ -1,6 +1,7 @@
 import {IUsers_Data,IOnline_Users_Data} from "~/utils/Types";
 
 export const useStates=()=>{
+    const {public:{cookieName}}=useRuntimeConfig();
     const sidebarCollapseFlag=useState<boolean>('sidebarCollapseFlag')
     const windowWidth:null|number= window.innerWidth
     const isLogin=useState<boolean>('isLogin')
@@ -11,8 +12,8 @@ export const useStates=()=>{
     const fetchTableDataFlag=useState<boolean>('fetchTableDataFlag');
     const selectedUserToDelete=useState<string[]>('selectedUserToDelete')
     const selectedOnlineUserToKill=useState<string[]>('selectedOnlineUserToKill',()=>[]);
-
+    const token=useCookie(cookieName);
     return{
-        sidebarCollapseFlag,windowWidth,isLogin,username,openNavbarDropdownFlag,showPreloaderFlag,tableData, fetchTableDataFlag,selectedUserToDelete,selectedOnlineUserToKill
+        sidebarCollapseFlag,windowWidth,isLogin,username,openNavbarDropdownFlag,showPreloaderFlag,tableData, fetchTableDataFlag,selectedUserToDelete,selectedOnlineUserToKill,token
     }
 }

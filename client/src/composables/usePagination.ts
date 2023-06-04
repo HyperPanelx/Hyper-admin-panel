@@ -2,7 +2,7 @@ import {IUsers_Data} from "~/utils/Types";
 
 
 export const usePagination=()=>{
-    const {tableData,fetchTableDataFlag,selectedUserToDelete,showPreloaderFlag,selectedOnlineUserToKill}=useStates();
+    const {token,tableData,fetchTableDataFlag,selectedUserToDelete,showPreloaderFlag,selectedOnlineUserToKill}=useStates();
     const {public:{apiBase,apiKey}}=useRuntimeConfig()
     const searchText=useState('tableSearchText',()=>'');
     const modalData=reactive({
@@ -121,7 +121,8 @@ export const usePagination=()=>{
                 method:'DELETE',
                 baseURL:apiBase,
                 headers:{
-                    Authorization:apiKey
+                    Authorization:apiKey,
+                    token:token.value
                 },
                 credentials: "include"
             })
@@ -147,7 +148,8 @@ export const usePagination=()=>{
                 method:'DELETE',
                 baseURL:apiBase,
                 headers:{
-                    Authorization:apiKey
+                    Authorization:apiKey,
+                    token:token.value
                 },
                 credentials: "include"
             });

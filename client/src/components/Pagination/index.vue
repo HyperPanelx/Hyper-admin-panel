@@ -57,8 +57,8 @@
           <p class="font-second text-right dark:text-primary-light-1">usernames:</p>
         </column>
         <column col="6">
-          <p v-if="modalData.name==='Delete Users'" class="font-second dark:text-primary-light-1">{{selectedUserToDelete.join(',')}}</p>
-          <p v-if="modalData.name==='Kill Connection'" class="font-second dark:text-primary-light-1">{{selectedOnlineUserToKill.join(',')}}</p>
+          <p :title="selectedUserToDelete.join(',')" v-if="modalData.name==='Delete Users'" class="font-second dark:text-primary-light-1 w-11 text-hidden">{{selectedUserToDelete.join(',')}}</p>
+          <p :title="selectedOnlineUserToKill.join(',')" v-if="modalData.name==='Kill Connection'" class="font-second dark:text-primary-light-1 w-11 text-hidden">{{selectedOnlineUserToKill.join(',')}}</p>
         </column>
       </row>
     </div>
