@@ -4,8 +4,7 @@ export const useUsersList=()=>{
     const {showPreloaderFlag,fetchTableDataFlag,tableData}=useStates();
     const {public:{apiKey,apiBase}}=useRuntimeConfig();
 
-
-    onMounted(async ()=>{
+    const getUsersList=async ()=>{
         tableData.value={rows:[],titles:[]}
         fetchTableDataFlag.value=false
         showPreloaderFlag.value=true
@@ -22,10 +21,16 @@ export const useUsersList=()=>{
             fetchTableDataFlag.value=true
             showPreloaderFlag.value=false
         }
+    }
+
+    onMounted(async ()=>{
+        await getUsersList()
     })
 
 
+
+
     return{
-       tableData,fetchTableDataFlag
+       tableData,fetchTableDataFlag,getUsersList
     }
 }

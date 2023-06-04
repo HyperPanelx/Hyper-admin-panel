@@ -22,7 +22,7 @@ export const useDashboard=()=>{
 
 
 
-    const getDashboardData=async ()=>{
+    const getServerUsageData=async ()=>{
         try {
             const serverStatusFetchRequest:IServer_Status=await $fetch('/api/dashboard/server',{
                 headers:{Authorization:apiKey},
@@ -30,12 +30,6 @@ export const useDashboard=()=>{
                 keepalive:true,
                 credentials: "include",
             })
-            const usersDataFetchRequest:IUsers_Data[]=await $fetch('/api/dashboard/users-status',{
-                headers:{Authorization:apiKey},
-                baseURL:apiBase,
-                credentials: "include",
-            })
-            usersData.value=usersDataFetchRequest
             serverStatus.value=serverStatusFetchRequest
         }catch (err) {
             console.log(err)
@@ -47,12 +41,19 @@ export const useDashboard=()=>{
         showPreloaderFlag.value=true
         fetchDashboardDataFlag.value=false
         try {
-            await getDashboardData()
+            await getServerUsageData();
+            const usersDataFetchRequest:IUsers_Data[]=await $fetch('/api/dashboard/users-status',{
+                headers:{Authorization:apiKey},
+                baseURL:apiBase,
+                credentials: "include",
+            });
+            usersData.value=usersDataFetchRequest
+        }catch (err) {
+            console.log(err)
+        }finally {
             showPreloaderFlag.value=false
             fetchDashboardDataFlag.value=true
             if(process.client){document.body.style.overflow='auto'}
-        }catch (err) {
-            console.log(err)
         }
     })
 
@@ -65,7 +66,7 @@ export const useDashboard=()=>{
                 timer= setTimeout(async ()=>{
                     fetchDashboardDataFlag.value=false
                     try {
-                        await getDashboardData();
+                        await getServerUsageData();
                         fetchDashboardDataFlag.value=true
                     }catch (err) {
                         console.log(err)

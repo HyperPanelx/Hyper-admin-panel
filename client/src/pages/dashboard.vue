@@ -8,14 +8,16 @@
               cpu
             </template>
             <template v-slot:body>
-              <ClientOnly v-if="fetchDashboardDataFlag">
-                <apexchart
-                           type="radialBar"
-                           height="260"
-                           :options="serverStatusChartOption(serverStatus.cpu,'CPU').chartOptions"
-                           :series="serverStatusChartOption(serverStatus.cpu,'CPU').series">
-                </apexchart>
-              </ClientOnly>
+              <div v-if="fetchDashboardDataFlag">
+                <ClientOnly >
+                  <apexchart
+                      type="radialBar"
+                      height="260"
+                      :options="serverStatusChartOption(serverStatus.cpu,'CPU').chartOptions"
+                      :series="serverStatusChartOption(serverStatus.cpu,'CPU').series">
+                  </apexchart>
+                </ClientOnly>
+              </div>
               <div v-else class="section-loader">
                 <hollow-dots-spinner
                     :animation-duration="1000"
@@ -34,14 +36,16 @@
             ram
           </template>
           <template v-slot:body>
-            <ClientOnly  v-if="fetchDashboardDataFlag">
-              <apexchart
-                         type="radialBar"
-                         height="260"
-                         :options="serverStatusChartOption(serverStatus.ram,'RAM').chartOptions"
-                         :series="serverStatusChartOption(serverStatus.ram,'RAM').series">
-              </apexchart>
-            </ClientOnly>
+            <div v-if="fetchDashboardDataFlag">
+              <ClientOnly  >
+                <apexchart
+                    type="radialBar"
+                    height="260"
+                    :options="serverStatusChartOption(serverStatus.ram,'RAM').chartOptions"
+                    :series="serverStatusChartOption(serverStatus.ram,'RAM').series">
+                </apexchart>
+              </ClientOnly>
+            </div>
             <div v-else class="section-loader">
               <hollow-dots-spinner
                   :animation-duration="1000"
@@ -60,15 +64,17 @@
             disk
           </template>
           <template v-slot:body>
-            <ClientOnly v-if="fetchDashboardDataFlag">
-              <apexchart
+            <div v-if="fetchDashboardDataFlag">
+              <ClientOnly >
+                <apexchart
 
-                         type="radialBar"
-                         height="260"
-                         :options="serverStatusChartOption(serverStatus.disk,'DISK').chartOptions"
-                         :series="serverStatusChartOption(serverStatus.disk,'DISK').series"></apexchart>
+                    type="radialBar"
+                    height="260"
+                    :options="serverStatusChartOption(serverStatus.disk,'DISK').chartOptions"
+                    :series="serverStatusChartOption(serverStatus.disk,'DISK').series"></apexchart>
 
-            </ClientOnly>
+              </ClientOnly>
+            </div>
             <div v-else class="section-loader">
               <hollow-dots-spinner
                   :animation-duration="1000"
@@ -87,17 +93,19 @@
             bandwidth
           </template>
           <template  v-slot:body>
+            <div v-if="fetchDashboardDataFlag">
+              <ClientOnly  >
+                <apexchart
+                    :class="{'md:!left-[-65px]':sidebarCollapseFlag}"
+                    class="md:left-[-83px] dark:[&_*]:!text-primary-light-1 left-[-35px] relative"
+                    type="donut"
+                    width="350"
+                    height="300"
+                    :options="bandWidthOption(serverStatus.bandWidth.downloadSpeed,serverStatus.bandWidth.uploadSpeed,serverStatus.bandWidth.speedUnit).chartOptions"
+                    :series="bandWidthOption(serverStatus.bandWidth.downloadSpeed,serverStatus.bandWidth.uploadSpeed,serverStatus.bandWidth.speedUnit).series"></apexchart>
+              </ClientOnly>
+            </div>
 
-           <ClientOnly  v-if="fetchDashboardDataFlag">
-             <apexchart
-                 :class="{'md:!left-[-65px]':sidebarCollapseFlag}"
-                 class="md:left-[-83px] dark:[&_*]:!text-primary-light-1 left-[-35px] relative"
-                 type="donut"
-                 width="350"
-                 height="300"
-                 :options="bandWidthOption(serverStatus.bandWidth.downloadSpeed,serverStatus.bandWidth.uploadSpeed,serverStatus.bandWidth.speedUnit).chartOptions"
-                 :series="bandWidthOption(serverStatus.bandWidth.downloadSpeed,serverStatus.bandWidth.uploadSpeed,serverStatus.bandWidth.speedUnit).series"></apexchart>
-           </ClientOnly>
             <div v-else class="section-loader !h-17">
               <hollow-dots-spinner
                   :animation-duration="1000"
@@ -110,21 +118,9 @@
         </VCard>
       </column>
     </row>
-    <row class="my-1.5" v-if="fetchDashboardDataFlag">
+    <row class="my-1.5" >
       <column v-for="item in usersData" col="12" sm="6" lg="3">
         <DashboardCard :title="item.title" :number="item.number" :theme="item.theme"/>
-      </column>
-    </row>
-    <row v-else class="my-1.5">
-      <column v-for="i in 4" col="12" sm="6" lg="3">
-        <div class="card p-1.3 section-loader !h-9">
-          <hollow-dots-spinner
-              :animation-duration="1000"
-              :dot-size="15"
-              :dots-num="3"
-              color="#727cf5"
-          />
-        </div>
       </column>
     </row>
   </container-full>

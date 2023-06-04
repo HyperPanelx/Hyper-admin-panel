@@ -4,7 +4,7 @@
     <row class="mt-2">
       <column col="12">
         <VCard title="online users" body-class="!p-0">
-          <PaginationControl />
+          <PaginationControl @refresh="getOnlineUsers" />
           <OnlineTable :searchResultFlag="paginationData.searchResultFlag" :rows="paginationData.currentPageData" :titles="tableData.titles" />
           <Pagination />
         </VCard>
@@ -20,7 +20,7 @@ definePageMeta({
   path:'/online'
 });
 const {paginationData}=usePagination();
-const {tableData,fetchTableDataFlag}=useOnlineUsers()
+const {tableData,fetchTableDataFlag,getOnlineUsers}=useOnlineUsers()
 
 
 

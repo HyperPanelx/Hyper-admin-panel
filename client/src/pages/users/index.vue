@@ -9,7 +9,7 @@
     <row>
       <column col="12">
         <VCard title="users list" class="!overflow-visible" body-class="!p-0">
-          <PaginationControl />
+          <PaginationControl  @refresh="getUsersList"/>
           <UsersTable v-if="paginationData.currentPageData" :searchResultFlag="paginationData.searchResultFlag" :rows="paginationData.currentPageData" :titles="tableData.titles" />
           <Pagination />
         </VCard>
@@ -22,7 +22,7 @@
 definePageMeta({
   name:'USERS'
 });
-const {tableData,fetchTableDataFlag}=useUsersList();
+const {tableData,fetchTableDataFlag,getUsersList}=useUsersList();
 const {paginationData}=usePagination();
 
 

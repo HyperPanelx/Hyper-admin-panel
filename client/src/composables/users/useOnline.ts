@@ -5,8 +5,7 @@ export const useOnlineUsers=()=>{
     const {showPreloaderFlag,fetchTableDataFlag,tableData}=useStates();
     const {public:{apiKey,apiBase}}=useRuntimeConfig();
 
-
-    onMounted(async ()=>{
+    const getOnlineUsers =async () => {
         tableData.value={rows:[],titles:[]}
         fetchTableDataFlag.value=false
         showPreloaderFlag.value=true
@@ -23,10 +22,14 @@ export const useOnlineUsers=()=>{
             fetchTableDataFlag.value=true
             showPreloaderFlag.value=false
         }
+    }
+
+    onMounted(async ()=>{
+        await getOnlineUsers()
     })
 
 
     return{
-        tableData,fetchTableDataFlag
+        tableData,fetchTableDataFlag,getOnlineUsers
     }
 }

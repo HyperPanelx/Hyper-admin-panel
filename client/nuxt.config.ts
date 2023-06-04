@@ -65,5 +65,6 @@ export default defineNuxtConfig({
             apiKey:process.env.API_KEY,
             apiBase:process.env.API_BASE,
         }
-    }
+    },
+    ssr:false
 })

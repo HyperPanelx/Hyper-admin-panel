@@ -44,7 +44,7 @@
         <Icon size="0.8rem" name="bi:telephone-fill"  />
         {{phone}}
       </p>
-      <div @click="copyText(email)" :title="email" class=" flex items-center   gap-0.5" v-if="email">
+      <div @click="copyText(email)" :title="email" class=" flex items-center dark:text-primary-dark-3  gap-0.5 text-gray-800" v-if="email">
         <Icon  size="0.8rem" name="mdi:email"/>
         <p class="text-gray-800 !text-[0.8rem] w-5.5 text-hidden text-center dark:text-primary-dark-3">
           {{email}}

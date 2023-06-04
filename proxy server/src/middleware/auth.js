@@ -4,6 +4,7 @@ module.exports = function (options) {
             next()
         }else{
             const token=req.cookies[process.env.COOKIE_NAME]
+            console.log(token)
             const apiKey=req.headers.authorization
             if(apiKey===process.env.API_KEY && token ){
                 req.headers.token=token

@@ -31,12 +31,18 @@
       <button @click="resetSearch" class="btn btn-indigo btn-md">
         Reset
       </button>
+      <button @click="emit('refresh')" class="btn btn-indigo btn-md">
+        Refresh Data
+      </button>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import {usePagination} from "~/composables/usePagination";
+const emit=defineEmits<{
+  (e:'refresh'):void
+}>()
 const {changePerPageHandler,searchHandler,searchText,resetSearch}=usePagination();
 
 </script>
