@@ -2,7 +2,7 @@ import {IUsers_Data,IOnline_Users_Data} from "~/utils/Types";
 
 export const useStates=()=>{
     const sidebarCollapseFlag=useState<boolean>('sidebarCollapseFlag')
-    const windowWidth:null|number=process.client ? window.innerWidth : null
+    const windowWidth:null|number= window.innerWidth
     const isLogin=useState<boolean>('isLogin')
     const username=useState<string>('username')
     const openNavbarDropdownFlag=ref<boolean>(false)

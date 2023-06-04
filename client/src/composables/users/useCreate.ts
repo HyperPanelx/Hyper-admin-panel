@@ -57,10 +57,8 @@ export const useCreateUser=()=>{
     };
 
     const copyCreatedUserInfo = () => {
-        if(process.client){
-            navigator.clipboard.writeText(`username:${newCreatedUserData.username} password:${newCreatedUserData.password}`)
-            alert('copied the text')
-        }
+        navigator.clipboard.writeText(`username:${newCreatedUserData.username} password:${newCreatedUserData.password}`)
+        alert('copied the text')
     };
 
     return{

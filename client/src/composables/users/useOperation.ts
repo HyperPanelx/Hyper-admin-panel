@@ -40,7 +40,7 @@ export const useUserOperation=(props:any)=>{
         dropdownFlag.value=!dropdownFlag.value
     }
     const downloadUserDetail = ()  => {
-        if(downloadAnchorElem.value && process.client){
+        if(downloadAnchorElem.value){
             let dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify({
                 username:props.user,
                 password:props.passwd,

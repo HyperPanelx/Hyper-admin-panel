@@ -9,7 +9,7 @@ export const useSearch=(props:{modelValue:any},emit:any)=>{
         emit('update:modelValue',searchContent.value.length > 0)
         searchResultFlag.value=false
         searchResult.value=[]
-        if(process.client && searchContent.value.length>0){
+        if(searchContent.value.length>0){
             // fetch request here
             setTimeout(()=>{
                 searchResultFlag.value=true

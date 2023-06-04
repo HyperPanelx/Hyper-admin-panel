@@ -37,7 +37,7 @@ export const useDashboard=()=>{
     }
 
     onMounted(async ()=>{
-        if(process.client){document.body.style.overflow='hidden'}
+        document.body.style.overflow='hidden'
         showPreloaderFlag.value=true
         fetchDashboardDataFlag.value=false
         try {
@@ -51,9 +51,9 @@ export const useDashboard=()=>{
         }catch (err) {
             console.log(err)
         }finally {
+            document.body.style.overflow='auto'
             showPreloaderFlag.value=false
             fetchDashboardDataFlag.value=true
-            if(process.client){document.body.style.overflow='auto'}
         }
     })
 
