@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="41c91330-deb7-4d8f-a7e6-33d9ae0f7075" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.babelrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/watcherTasks.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/webpack sample.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/colors.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/app.4b0ce95c38ea0a089209.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/app.4b0ce95c38ea0a089209.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/app.7d9e237951645123f04f.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/app.7d9e237951645123f04f.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/app.82571c4dd8af8ab24959.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/app.82571c4dd8af8ab24959.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/app.92440d7415f4216e7b0a.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/app.92440d7415f4216e7b0a.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/app.e216a77e761391fea586.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/app.e216a77e761391fea586.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/dist/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/main.619a850ecfadc8734101.hot-update.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/main.619a850ecfadc8734101.hot-update.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/main.619a850ecfadc8734101.hot-update.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/main.cfd76b039e271b6cc85d.hot-update.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/main.cfd76b039e271b6cc85d.hot-update.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/main.cfd76b039e271b6cc85d.hot-update.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/src_pages_dashboard_vue.cfd76b039e271b6cc85d.hot-update.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/src_pages_dashboard_vue.cfd76b039e271b6cc85d.hot-update.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/src_pages_login_vue.619a850ecfadc8734101.hot-update.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/src_pages_login_vue.619a850ecfadc8734101.hot-update.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/formkit.config.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/postcss.config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/composables/useLogin.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/composables/useLogin.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/composables/useStates.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/composables/useStates.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/auth.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/auth.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/Helper.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/Helper.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tailwind.config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webpack.dev.config.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webpack.prod.config.ts" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="JavaScript File" />
+        <option value="Vue Single File Component" />
+        <option value="SCSS File" />
+        <option value="TypeScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2GJwoMrAAVL8QHGjYnNjEpDs03B" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "D:/WEB/Projects/SPA projects/3-Administrator project/src",
+    "list.type.of.created.stylesheet": "SCSS",
+    "nodejs_package_manager_path": "npm",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\PhpStorm 2022.1\\plugins\\JavaScriptLanguage\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\WEB\Projects\SPA projects\3-Administrator project\src" />
+      <recent name="D:\WEB\Projects\SPA projects\3-Administrator project\src\composables" />
+      <recent name="D:\WEB\Projects\SPA projects\3-Administrator project\src\components" />
+      <recent name="D:\WEB\Projects\SPA projects\3-Administrator project\src\pages" />
+      <recent name="D:\WEB\Projects\SPA projects\3-Administrator project" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\WEB\Projects\SPA projects\3-Administrator project\src\pages\users" />
+      <recent name="D:\WEB\Projects\SPA projects\3-Administrator project\client\src\assets" />
+      <recent name="D:\WEB\Ready to use\webpack template\src\assets" />
+      <recent name="D:\WEB\Ready to use\webpack template\src" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="41c91330-deb7-4d8f-a7e6-33d9ae0f7075" name="Changes" comment="" />
+      <created>1666120177392</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1666120177392</updated>
+      <workItem from="1666120182302" duration="411000" />
+      <workItem from="1668426551410" duration="121000" />
+      <workItem from="1676285926585" duration="6141000" />
+      <workItem from="1676296047580" duration="1505000" />
+      <workItem from="1676298126705" duration="868000" />
+      <workItem from="1676299330569" duration="298000" />
+      <workItem from="1685957321244" duration="733000" />
+      <workItem from="1685958096849" duration="4536000" />
+      <workItem from="1685962973785" duration="349000" />
+      <workItem from="1685963833253" duration="11017000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
