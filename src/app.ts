@@ -6,6 +6,20 @@ import App from "./App.vue";
 import './assets/Tailwind.config/Tailwind.base.scss'
 import './assets/Tailwind.config/Tailwind.component.scss'
 import './assets/Tailwind.config/Tailwind.utilities.scss'
+import './assets/components/card.scss'
+import './assets/components/conatiner.scss'
+import './assets/components/dropdown.scss'
+import './assets/components/layout.scss'
+import './assets/components/form.scss'
+import './assets/components/login.scss'
+import './assets/components/modal.scss'
+import './assets/components/navbar.scss'
+import './assets/components/sidebar.scss'
+import './assets/components/skelton.scss'
+import './assets/components/table.scss'
+import './assets/components/tooltip.scss'
+import './assets/components/transition.scss'
+import './assets/components/general.scss'
 
 /////////// main style
 import './assets/app.scss';
@@ -18,10 +32,10 @@ import router from "./router";
 //////////// fontawesome
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import {} from '@fortawesome/free-solid-svg-icons'
+import {faCircleCheck,faXmark,faEye,faEyeSlash,faCircleExclamation} from '@fortawesome/free-solid-svg-icons'
 import {} from '@fortawesome/free-brands-svg-icons'
-import {} from '@fortawesome/free-regular-svg-icons'
-library.add()
+import {faCircle} from '@fortawesome/free-regular-svg-icons'
+library.add(faCircle,faCircleCheck,faXmark,faEye,faEyeSlash,faCircleExclamation)
 
 
 ///// dependencies
@@ -42,7 +56,7 @@ import containerFull from './components/grid/containerFull.vue'
 import row from './components/grid/row.vue'
 // @ts-ignore
 import { createPinia } from 'pinia';
-
+import VueCookies from 'vue-cookies'
 
 ///// app
 const app=createApp(App)
@@ -63,4 +77,8 @@ app.component('container-full',containerFull);
 app.component('container',container);
 app.use(plugin, defaultConfig(config));
 app.use(pinia);
+app.use(VueCookies,{
+    expires:10*24*60*60,
+    path:'/'
+})
 app.mount('#v-app');

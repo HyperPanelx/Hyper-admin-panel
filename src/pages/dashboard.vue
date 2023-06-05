@@ -1,15 +1,11 @@
 <template>
-  dashboard
-
-  <router-link :to="{name:'USERS'}">
-    users
-  </router-link>
+  {{isLogin}}{{username}}
 </template>
 
-<script>
-export default {
-  name: "dashboard"
-}
+<script setup lang="ts">
+import {useAuthStore} from "../composables/useStates";
+const {isLogin,username}=useAuthStore()
+
 </script>
 
 <style scoped>
