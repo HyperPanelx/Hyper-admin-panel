@@ -1,0 +1,24 @@
+@import "./components/skelton.scss";
+@import "./components/transition.scss";
+
+body.dark .scroller{
+  scrollbar-width:thin;
+  scrollbar-color: #8391a2 #3a444e;
+}
+
+body .scroller{
+  scrollbar-width:thin;
+  scrollbar-color: #ccc #fff;
+}
+::-webkit-scrollbar{
+  width: 8px;
+}
+::-webkit-scrollbar-thumb{
+  background:#8391a2;
+}
+::-webkit-scrollbar-track{
+  background:  #3a444e ;
+}
+body.dark .apexcharts-text.apexcharts-datalabel-label , body.dark .apexcharts-text.apexcharts-datalabel-value{
+  fill: #fff!important;
+}

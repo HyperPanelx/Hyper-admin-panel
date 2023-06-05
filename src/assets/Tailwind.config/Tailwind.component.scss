@@ -1,0 +1,23 @@
+@import "../components/conatiner.scss";
+@import "../components/modal.scss";
+@import "../components/layout.scss";
+@import "../components/sidebar.scss";
+@import "../components/navbar.scss";
+@import "../components/login.scss";
+@import "../components/form.scss";
+@import "../components/tooltip.scss";
+@import "../components/dropdown.scss";
+@import "../components/card.scss";
+@import "../components/table.scss";
+@tailwind components;
+@layer components {
+  .badge{
+    @apply block before:block before:w-[7px] before:rounded-full before:bg-red-400 before:h-[7px] before:translate-x-[19px] before:translate-y-[6px]
+  }
+  .page-preloader{
+    @apply w-full h-[calc(100vh-70px)] absolute top-0 left-0 flex justify-center items-center  bg-secondary-light-1 z-[100] dark:bg-primary-dark-1
+  }
+  .category-card{
+    @apply py-[0.25rem] px-0.5 rounded-6 text-[0.75rem] font-600 block w-5 text-hidden;
+  }
+}
