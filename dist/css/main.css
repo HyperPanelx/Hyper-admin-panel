@@ -584,10 +584,6 @@ body {
   display: flex;
 }
 
-.w-2 {
-  width: 2rem;
-}
-
 .max-w-full {
   max-width: 100%;
 }
@@ -665,12 +661,6 @@ body {
   --tw-text-opacity: 1;
   color: rgb(202, 138, 4);
   color: rgb(202 138 4/var(--tw-text-opacity));
-}
-
-.text-gray-700 {
-  --tw-text-opacity: 1;
-  color: rgb(55, 65, 81);
-  color: rgb(55 65 81/var(--tw-text-opacity));
 }
 
 .col-1 {

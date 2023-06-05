@@ -6,6 +6,3 @@
 
 </script>
 
-<style scoped>
-
-</style>

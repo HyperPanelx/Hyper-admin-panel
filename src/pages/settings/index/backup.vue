@@ -1,10 +1,12 @@
 <template>
-  <router-view></router-view>
+ backup
 </template>
 
 <script setup lang="ts">
 
+
 </script>
+
 
 <style scoped>
 

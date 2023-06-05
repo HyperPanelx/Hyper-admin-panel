@@ -1,8 +1,9 @@
 <template>
-  <router-view></router-view>
+multi
 </template>
 
 <script setup lang="ts">
+
 
 </script>
 

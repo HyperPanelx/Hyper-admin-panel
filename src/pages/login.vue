@@ -1,9 +1,11 @@
 <template>
-  <router-view></router-view>
+  login
 </template>
 
-<script setup lang="ts">
-
+<script>
+export default {
+  name: "login"
+}
 </script>
 
 <style scoped>

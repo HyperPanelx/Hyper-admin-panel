@@ -1,8 +1,9 @@
 <template>
-  <router-view></router-view>
+create user
 </template>
 
 <script setup lang="ts">
+
 
 </script>
 

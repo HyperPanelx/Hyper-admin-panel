@@ -1,5 +1,5 @@
 <template>
-  <router-view></router-view>
+limitation
 </template>
 
 <script setup lang="ts">

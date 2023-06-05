@@ -1,5 +1,5 @@
 <template>
-  <router-view></router-view>
+ip
 </template>
 
 <script setup lang="ts">
