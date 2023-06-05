@@ -23,13 +23,12 @@ export const useAuth=()=>{
                 // @ts-ignore
                 credentials: "include",
                 baseURL:apiBase
-            }).then(response=>response.json()).then(userInformation=>{
+            }).then(response=>response.json()).then(username=>{
                 authStore.$patch({
-                    username:userInformation,
+                    username:username,
                     isLogin:true,
                     token:token
                 })
-                console.log(userInformation)
                 router.push({name:'DASHBOARD'})
             }).catch(err=>{
                 authStore.$reset()

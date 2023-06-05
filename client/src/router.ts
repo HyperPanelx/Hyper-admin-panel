@@ -1,4 +1,5 @@
 import {createRouter,createWebHashHistory,RouteRecordRaw} from "vue-router";
+import {Auth} from './store/auth'
 
 const routes:RouteRecordRaw[]=[
     {
@@ -23,7 +24,7 @@ const routes:RouteRecordRaw[]=[
                         component:import('./pages/users/create.vue'),
                         path:'create',
                         name:'CREATE_USER',
-                        meta:{title:'Create Users | Hyper'},
+                        meta:{title:'Create User | Hyper'},
                     }
                 ]
             },
@@ -104,7 +105,8 @@ const routes:RouteRecordRaw[]=[
         name:'LOGIN',
         path:'/login',
         meta:{title:'Login | Hyper'},
-    }
+    },
+    { path: '/:pathMatch(.*)*', name: 'NotFound', component: import('./pages/error.vue') },
 
 ]
 
@@ -119,5 +121,16 @@ router.afterEach((to,from,next)=>{
     (document.title as any)=to.meta.title
 })
 
+router.beforeEach((to,from,next)=>{
+    const authStore=Auth();
+    if(to.name!=='LOGIN'){
+        if(authStore.isLogin){
+            next()
+        }
+    }else{
+        next()
+    }
+
+})
 
 export default router
