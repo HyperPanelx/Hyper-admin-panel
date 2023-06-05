@@ -1,27 +1,48 @@
 import {createRouter,createWebHashHistory,RouteRecordRaw} from "vue-router";
 import {Auth} from './store/auth'
+//// pages
+import  MainIndex from './pages/index.vue'
+import dashboard from './pages/dashboard.vue'
+import usersIndex from './pages/users/index.vue'
+import createUser from './pages/users/create.vue'
+import settingsIndex from './pages/settings/index.vue'
+import onlineUsers from './pages/onlineUsers.vue'
+import login from './pages/login.vue'
+import error from './pages/error.vue'
+
+//// setting page
+import api from './pages/settings/index/api.vue'
+import backup from './pages/settings/index/backup.vue'
+import create from './pages/settings/index/create.vue'
+import ip from './pages/settings/index/ip.vue'
+import SSH from './pages/settings/index/SSH.vue'
+import robot from './pages/settings/index/robot.vue'
+import changePassword from './pages/settings/index/changePassword.vue'
+import limitation from './pages/settings/index/limitation.vue'
+import multi from './pages/settings/index/multi.vue'
+
 
 const routes:RouteRecordRaw[]=[
     {
-        component:import('./pages/index.vue'),
+        component:MainIndex,
         path:'/',
         redirect:{
             name:'DASHBOARD'
         },
         children:[
             {
-                component:import('./pages/dashboard.vue'),
+                component:dashboard,
                 path:'dashboard',
                 name:'DASHBOARD',
                 meta:{title:'Dashboard | Hyper'}
             },{
-                component:import('./pages/users/index.vue'),
+                component:usersIndex,
                 path:'users',
                 name:'USERS',
                 meta:{title:'Users | Hyper'},
                 children:[
                     {
-                        component:import('./pages/users/create.vue'),
+                        component:createUser,
                         path:'create',
                         name:'CREATE_USER',
                         meta:{title:'Create User | Hyper'},
@@ -29,13 +50,13 @@ const routes:RouteRecordRaw[]=[
                 ]
             },
             {
-                component:import('./pages/onlineUsers.vue'),
+                component:onlineUsers,
                 name:'ONLINE',
                 path:'online',
                 meta:{title:'Online Users | Hyper'},
             },
             {
-                component:import('./pages/settings/index.vue'),
+                component:settingsIndex,
                 name:'SETTINGS',
                 path:'settings',
                 redirect:{
@@ -43,55 +64,55 @@ const routes:RouteRecordRaw[]=[
                 },
                 children:[
                     {
-                        component: import('./pages/settings/index/create.vue'),
+                        component: create,
                         name:'CREATE_ADMIN_USER',
                         path: 'create-admin-user',
                         meta:{title:'Create Admin User | Hyper'},
                     },
                     {
-                        component: import('./pages/settings/index/api.vue'),
+                        component:api,
                         name:'API',
                         path: 'api',
                         meta:{title:'Api | Hyper'},
                     },
                     {
-                        component: import('./pages/settings/index/ip.vue'),
+                        component: ip,
                         name:'IP_BLOCK',
                         path: 'ip-block',
                         meta:{title:'IP Block | Hyper'},
                     },
                     {
-                        component: import('./pages/settings/index/SSH.vue'),
+                        component:SSH,
                         name:'SSH_PORT',
                         path: 'ssh-port',
                         meta:{title:'SSH Port | Hyper'},
                     },
                     {
-                        component: import('./pages/settings/index/backup.vue'),
+                        component: backup,
                         name:'BACKUP_RESTORE',
                         path: 'backup-restore',
                         meta:{title:'Backup & Restore | Hyper'},
                     },
                     {
-                        component: import('./pages/settings/index/changePassword.vue'),
+                        component: changePassword,
                         name:'CHANGE_PASSWORD',
                         path: 'change-password',
                         meta:{title:'Change Password | Hyper'},
                     },
                     {
-                        component: import('./pages/settings/index/limitation.vue'),
+                        component: limitation,
                         name:'USER_LIMITATION',
                         path: 'user-limitation',
                         meta:{title:'User Limitation | Hyper'},
                     },
                     {
-                        component: import('./pages/settings/index/multi.vue'),
+                        component: multi,
                         name:'MULTI_SERVER',
                         path: 'multi-server',
                         meta:{title:'Multi Server | Hyper'},
                     },
                     {
-                        component: import('./pages/settings/index/robot.vue'),
+                        component: robot,
                         name:'TELEGRAM_ROBOT',
                         path: 'telegram-robot',
                         meta:{title:'Telegram Robot | Hyper'},
@@ -101,12 +122,12 @@ const routes:RouteRecordRaw[]=[
         ]
     },
     {
-        component:import('./pages/login.vue'),
+        component:login,
         name:'LOGIN',
         path:'/login',
         meta:{title:'Login | Hyper'},
     },
-    { path: '/:pathMatch(.*)*', name: 'NotFound', component: import('./pages/error.vue') },
+    { path: '/:pathMatch(.*)*', name: 'NotFound', component: error },
 
 ]
 

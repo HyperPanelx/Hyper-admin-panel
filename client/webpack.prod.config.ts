@@ -11,7 +11,7 @@ module.exports={
     entry: "./src/app.ts",
     output: {
         path: path.resolve(__dirname,"./dist"),
-        filename: "app.[contenthash].js",
+        filename: "[name].[contenthash].js",
         assetModuleFilename: "assets/[name][ext]"
     },
     mode: "production",
@@ -78,7 +78,7 @@ module.exports={
             ],
         }),
         new MiniCssExtractPlugin({
-            filename:"css/app.[contenthash].css"
+            filename:"css/[name].css"
         }),
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
