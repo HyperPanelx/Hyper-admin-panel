@@ -15,7 +15,7 @@ router.get('/server',(req,res)=>{
         const downloadSpeed=response[1]['Download Speed']
         const download=response[1]['Download']
         const upload=response[1]['Upload']
-        res.status(200).send({
+        res.status(200).send(JSON.stringify({
             cpu:response[0].cpu,
             ram:response[0].mem,
             disk:response[0].hdd,
@@ -26,7 +26,7 @@ router.get('/server',(req,res)=>{
                 uploadSpeed:Number(uploadSpeed.slice(0,uploadSpeed.length-2)),
                 speedUnit:downloadSpeed.slice(downloadSpeed.length-2),
             }
-        })
+        }))
     }).catch(err=>{
         console.log(err)
         res.status(400).send('error in connecting to api')
@@ -36,7 +36,7 @@ router.get('/server',(req,res)=>{
 })
 router.get('/users-status',(req,res)=>{
     const token=req.headers.token
-    res.status(200).send([
+    res.status(200).send(JSON.stringify([
         {
             title:'All Users',
             number:20,
@@ -54,7 +54,7 @@ router.get('/users-status',(req,res)=>{
             number:20,
             theme:'red'
         },
-    ] )
+    ]) )
 })
 
 

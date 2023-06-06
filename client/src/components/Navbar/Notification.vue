@@ -1,5 +1,5 @@
 <template>
-  <VDropdown height="23rem" dropdown-class="!w-[320px] dark:!bg-primary-dark-1 dark:!border-primary-dark-2/50 lg:!left-[-300px] left-[-200px]" v-model="dropdownFlag">
+  <VDropdown height="23rem" dropdown-class="!w-[320px] dark:!bg-primary-dark-1 dark:!border-primary-dark-2/50 lg:!left-[-300px] !left-[-200px]" v-model="dropdownFlag">
     <template v-slot:parent>
       <span @click="dropdownFlag=!dropdownFlag" class="badge " >
           <font-awesome-icon  icon="fa-solid fa-bell" size="1.7rem" class=" navbar-icon"/>

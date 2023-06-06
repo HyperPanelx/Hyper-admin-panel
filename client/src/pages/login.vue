@@ -69,10 +69,14 @@ import VTInput from '../components/global/VTInput.vue'
 import VCheckbox from '../components/global/VCheckbox.vue'
 import VBloader from '../components/global/VBloader.vue'
 import {useLogin} from "../composables/useLogin";
-const {userData,formHandler,usernameRegex,passwordRegex,loginRequestFlag,errorMessage}=useLogin()
-
+const {userData,formHandler,usernameRegex,passwordRegex,loginRequestFlag,errorMessage}=useLogin();
 </script>
 
-<style lang="scss">
-
+<style lang="scss" scoped>
+@tailwind components;
+@layer components {
+  body{
+    @apply !bg-primary-light-1;
+  }
+}
 </style>

@@ -2,7 +2,7 @@
   <VDropdown @click="dropdownFlag=!dropdownFlag"
              v-model="dropdownFlag"
              dropdown-class="!top-[102%] dark:bg-primary-dark-1 !left-[-200%] lg:w-full lg:!left-0 sm:left-[-130%] md:left-[-120%] !w-11 dark:!border-primary-dark-2/50"
-             class="bg-gray-100/50 p-0.5 mr-1 ml-1.8 dark:bg-[#3c4655]  flex items-center gap-0.5 lg:w-17 w-6  cursor-pointer group lg:justify-start justify-center border-x-primary-dark-3/10 border-x-[1px]"
+             class="bg-gray-100/50 p-0.5 !mr-2 ml-1.8 dark:bg-[#3c4655]  flex items-center gap-0.5 lg:w-17 w-6  cursor-pointer group lg:justify-start justify-center border-x-primary-dark-3/10 border-x-[1px]"
   >
     <template v-slot:parent>
       <img width="40"  src="../../public/profiles/profile_1.svg"/>

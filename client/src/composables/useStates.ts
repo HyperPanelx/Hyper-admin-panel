@@ -28,9 +28,10 @@ export const useAuthStore=()=>{
 export const useDashboardStore=()=>{
     const dashboardStore=Dashboard()
     const sidebarCollapseFlag=computed<boolean>(()=>dashboardStore.sidebarCollapseFlag)
+    const showPreloaderFlag=computed<boolean>(()=>dashboardStore.showPreloaderFlag)
     const windowWidth:null|number= window.innerWidth
 
     return{
-        sidebarCollapseFlag,windowWidth,dashboardStore
+        sidebarCollapseFlag,windowWidth,dashboardStore,showPreloaderFlag
     }
 }
