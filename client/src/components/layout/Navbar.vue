@@ -1,8 +1,8 @@
 <template>
-  <nav class="navbar">
+  <nav class="navbar" :class="{'n-collapse':sidebarCollapseFlag}">
     <div class="navbar-left">
-      <font-awesome-icon @click="collapseSidebar" size="2rem" class="cursor-pointer mr-2 dark:!text-primary-dark-2 w-2" icon="fa-solid fa-bars" color="black" />
-      <NavbarSearchDesktop v-model="openNavbarDropdownFlag"/>
+      <font-awesome-icon @click="collapseSidebar"  class="cursor-pointer mr-2 dark:!text-primary-dark-2 text-1.5 text-gray-700" icon="fa-solid fa-bars" color="black" />
+      <NavbarSearchDesktop v-model="openDropdownFlag"/>
     </div>
     <div class="navbar-right">
       <NavbarSearchMobile />
@@ -26,10 +26,9 @@ import NavbarTheme from '../Navbar/Theme.vue'
 import NavbarUser from '../Navbar/User.vue'
 import {useDashboardStore} from "../../composables/useStates";
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
-const {windowWidth,dashboardStore,openNavbarDropdownFlag}=useDashboardStore();
+const {windowWidth,dashboardStore,sidebarCollapseFlag}=useDashboardStore();
 const fullScreenFlag=ref<boolean>(false)
-
-
+const openDropdownFlag=ref<boolean>(false)
 const collapseSidebar = () => {
   dashboardStore.sidebarCollapseFlag=!dashboardStore.sidebarCollapseFlag
 }

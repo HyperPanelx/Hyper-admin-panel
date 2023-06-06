@@ -5,7 +5,7 @@
       class="sidebar-item-link cursor-pointer "
       :class="{'active':$route.path.toLowerCase().includes(link.name.toLowerCase())}"
   >
-    <font-awesome-icon  class="text-primary-dark-2 w-1.5" size="1.5rem" :icon="icon" />
+    <font-awesome-icon  class="text-primary-dark-2 text-1.5"  :icon="icon" />
     <p v-if="windowWidth>500 ? !sidebarCollapseFlag : true" class="text-primary-dark-2">{{title}}</p>
     <font-awesome-icon size="1.5rem" :class="{'rotate-[90deg]':openSubMenuFlag}" class="ml-auto text-primary-dark-2 transition-all w-1.5" icon="fa-solid fa-chevron-right"/>
   </div>

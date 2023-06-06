@@ -1,7 +1,7 @@
 <template>
-  <VDropdown height="23rem" dropdown-class="w-[320px] dark:bg-primary-dark-1 dark:!border-primary-dark-2/50 lg:!left-[-300px] left-[-200px]" v-model="openNavbarDropdownFlag">
+  <VDropdown height="23rem" dropdown-class="!w-[320px] dark:!bg-primary-dark-1 dark:!border-primary-dark-2/50 lg:!left-[-300px] left-[-200px]" v-model="dropdownFlag">
     <template v-slot:parent>
-      <span @click="openNavbarDropdownFlag=!openNavbarDropdownFlag" class="badge " >
+      <span @click="dropdownFlag=!dropdownFlag" class="badge " >
           <font-awesome-icon  icon="fa-solid fa-bell" size="1.7rem" class=" navbar-icon"/>
       </span>
     </template>
@@ -45,13 +45,12 @@
 <script setup lang="ts">
 import {ref} from "vue";
 import  NavbarNotificationItem from './NotificationItem.vue'
-import {useDashboardStore} from "../../composables/useStates";
 import VDropdown from '../global/VDropdown.vue'
 import { fakeTodayNotificationData,fakeYesterdayNotificationData} from "../../utils/Data";
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 const fakeTodayNotification=ref(fakeTodayNotificationData)
 const fakeYesterdayNotification=ref(fakeYesterdayNotificationData)
-const {openNavbarDropdownFlag}=useDashboardStore()
+const dropdownFlag=ref<boolean>(false)
 
 </script>
 

@@ -1,5 +1,5 @@
 <template>
-  <font-awesome-icon @click="toggleTheme" :name="themeFlag ? 'fa-regular fa-sun' : 'fa-solid fa-moon'" size="1.6rem" class=" navbar-icon"/>
+  <font-awesome-icon @click="toggleTheme" :icon="themeFlag ? 'fa-regular fa-sun' : 'fa-solid fa-moon'" size="1.6rem" class=" navbar-icon"/>
 </template>
 
 <script  setup lang="ts">

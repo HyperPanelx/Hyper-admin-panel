@@ -1,6 +1,6 @@
 <template>
   <AppLink :class="$route.path.toLowerCase().includes(link.name.toLowerCase()) ? 'active' : null"  :href="link" class="sidebar-item-link sidebar-item-link-collapse">
-    <font-awesome-icon  size="1.5rem" class="w-1.5" :icon="icon" />
+    <font-awesome-icon  class="text-1.2" :icon="icon" />
     <div class="group-hover:opacity-100  group-hover:visible transition-all duration-[100ms]">
       <span >
               {{title}}

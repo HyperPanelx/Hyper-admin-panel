@@ -4,24 +4,24 @@ export const passwordRegex=/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%
 export const sidebarItemData:ISidebar[]=[
     {
         title:'Dashboard',
-        icon:'humbleicons:home',
+        icon:'fa-solid fa-house',
         link:{name:'DASHBOARD'},
         hasSub:false,
     },{
         title:'Users',
-        icon:'humbleicons:users',
+        icon:'fa-solid fa-user-group',
         link:{name:'USERS'},
         hasSub:false,
 
     },{
         title:'Online users',
-        icon:'humbleicons:radio',
+        icon:'fa-solid fa-tower-broadcast',
         link:{name:'ONLINE'},
         hasSub:false,
 
     },{
         title:'Settings',
-        icon:'ri:settings-5-fill',
+        icon:'fa-solid fa-gear',
         link:{name:'SETTINGS'},
         hasSub:false,
 

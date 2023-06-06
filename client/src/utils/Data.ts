@@ -4,39 +4,39 @@ export const fakeSearchData=[
     {
         name:'Hooman Mousavi',
         rule:'Admin',
-        img:'https://res.cloudinary.com/dhpxutwun/image/upload/v1684870684/hyper/profile_1_xe7zxp.svg',
+        img:'./assets/profile_1.svg',
         link:'DASHBOARD'
     },
     {
         name:'Alireza Alikhani',
         rule:'Admin',
-        img:'https://res.cloudinary.com/dhpxutwun/image/upload/v1684870684/hyper/profile_3_qqtojq.svg',
+        img:'./assets/profile_2.svg',
         link:'DASHBOARD'
 
     },
     {
         name:'Hooman Mousavi',
         rule:'Admin',
-        img:'https://res.cloudinary.com/dhpxutwun/image/upload/v1684870677/hyper/profile_4_onv3ig.svg',
+        img:'./assets/profile_3.svg',
         link:'DASHBOARD'
 
     },{
         name:'Alireza Alikhani',
         rule:'Admin',
-        img:'https://res.cloudinary.com/dhpxutwun/image/upload/v1684870676/hyper/profile_6_qmlvib.svg',
+        img:'./assets/profile_4.svg',
         link:'DASHBOARD'
 
     },
     {
         name:'Hooman Mousavi',
         rule:'Admin',
-        img:'https://res.cloudinary.com/dhpxutwun/image/upload/v1684870676/hyper/profile_5_db5rph.svg',                        link:'DASHBOARD'
+        img:'./assets/profile_5.svg',                        link:'DASHBOARD'
 
     },
     {
         name:'Alireza Alikhani',
         rule:'Admin',
-        img:'https://res.cloudinary.com/dhpxutwun/image/upload/v1684870676/hyper/profile_2_p0pbjb.svg',                        link:'DASHBOARD'
+        img:'./assets/profile_6.svg',                        link:'DASHBOARD'
 
     },
 ]

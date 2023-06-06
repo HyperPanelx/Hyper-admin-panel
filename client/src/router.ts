@@ -1,25 +1,25 @@
 import {createRouter,createWebHashHistory,RouteRecordRaw} from "vue-router";
 import {Auth} from './store/auth'
 //// pages
-import  MainIndex from './pages/index.vue'
-import dashboard from './pages/dashboard.vue'
-import usersIndex from './pages/users/index.vue'
-import createUser from './pages/users/create.vue'
-import settingsIndex from './pages/settings/index.vue'
-import onlineUsers from './pages/onlineUsers.vue'
-import login from './pages/login.vue'
-import error from './pages/error.vue'
+const MainIndex=()=>import(  './pages/index.vue')
+const dashboard=()=>import( './pages/dashboard.vue')
+const usersIndex=()=>import( './pages/users/index.vue')
+const createUser=()=>import( './pages/users/create.vue')
+const settingsIndex=()=>import( './pages/settings/index.vue')
+const onlineUsers=()=>import( './pages/onlineUsers.vue')
+const login=()=>import( './pages/login.vue')
+const error=()=>import( './pages/error.vue')
 
 //// setting page
-import api from './pages/settings/index/api.vue'
-import backup from './pages/settings/index/backup.vue'
-import create from './pages/settings/index/create.vue'
-import ip from './pages/settings/index/ip.vue'
-import SSH from './pages/settings/index/SSH.vue'
-import robot from './pages/settings/index/robot.vue'
-import changePassword from './pages/settings/index/changePassword.vue'
-import limitation from './pages/settings/index/limitation.vue'
-import multi from './pages/settings/index/multi.vue'
+const api=()=>import( './pages/settings/index/api.vue')
+const backup=()=>import( './pages/settings/index/backup.vue')
+const create=()=>import( './pages/settings/index/create.vue')
+const ip=()=>import( './pages/settings/index/ip.vue')
+const SSH=()=>import( './pages/settings/index/SSH.vue')
+const robot=()=>import( './pages/settings/index/robot.vue')
+const changePassword=()=>import( './pages/settings/index/changePassword.vue')
+const limitation=()=>import( './pages/settings/index/limitation.vue')
+const multi=()=>import( './pages/settings/index/multi.vue')
 
 
 const routes:RouteRecordRaw[]=[

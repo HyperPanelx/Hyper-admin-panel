@@ -3,7 +3,6 @@ const Dotenv = require('dotenv-webpack');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CopyPlugin = require("copy-webpack-plugin");
 const { VueLoaderPlugin } = require('vue-loader')
 
 module.exports={
@@ -65,15 +64,6 @@ module.exports={
             path:'./.env.development'
         }),
         new VueLoaderPlugin(),
-        new CopyPlugin({
-            patterns: [
-                {
-                    from:'**/*',
-                    context: path.resolve(__dirname, "src", "public"),
-                    to:'public'
-                },
-            ],
-        }),
         new MiniCssExtractPlugin({
             filename:"css/[name].css"
         }),

@@ -10,8 +10,8 @@ export const useLogout=()=>{
     const router=useRouter()
 
     const logoutHandler = async () => {
-        $cookies?.set(cookieName as string,'',0,'/')
-        authStore.isLogin=false
+        $cookies?.remove(cookieName as string,'/')
+        authStore.$reset()
         router.push({name:'LOGIN'})
     }
 

@@ -4,13 +4,9 @@
   </teleport>
 </template>
 
-<script setup lang="ts">
-const props=defineProps<{
-  modelValue:string
-}>();
-const emit=defineEmits<{
-  (e:'update:modelValue',value:boolean):void
-}>();
+<script setup >
+const props=defineProps(['modelValue']);
+const emit=defineEmits(['update:modelValue']);
 const close = () => emit('update:modelValue',false)
 
 </script>

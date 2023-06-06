@@ -2,7 +2,10 @@
 
 @layer components {
     .navbar{
-        @apply sticky top-0 w-full h-[70px] bg-primary-light-1 flex justify-between  shadow-[0_0_30px_rgba(0,0,0,0.1)] dark:bg-primary-dark-1 z-[998]
+        @apply sticky top-0 w-full h-[70px] bg-primary-light-1 flex justify-between  shadow-[0_0_30px_rgba(0,0,0,0.1)] dark:bg-primary-dark-1 z-[998] sm:ml-[260px] sm:w-[calc(100vw-260px)] transition-all
+    }
+    .navbar.n-collapse{
+        @apply sm:!ml-[70px] sm:!w-auto
     }
     .navbar-left{
         @apply py-1 px-1.5 w-full flex items-center
@@ -17,7 +20,7 @@
         @apply flex gap-1.8 items-center
     }
     .navbar-icon{
-        @apply text-[#6c757d] font-700 cursor-pointer hover:text-secondary-light-2 transition-all w-1.7
+        @apply text-[#6c757d] font-700 cursor-pointer hover:text-secondary-light-2 transition-all text-1.4
     }
     .notification-item{
         @apply px-0.5 py-0.8 rounded-4 border-[1px] border-gray-200 my-0.6 cursor-pointer hover:bg-gray-100 transition-all flex gap-1 items-center dark:border-primary-dark-2/30 hover:bg-primary-dark-2/10

@@ -9,39 +9,38 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
+
 const props=defineProps({
   on:{
-    type:Boolean
+    required:false
   },
   modelValue:{
-    type:Boolean
+    required:false
   },
   height:{
-    type:String
+     required:false,
   },
   minHeight:{
-    type:String
+        required:false
   },
   maxHeight:{
-    type:String
+        required:false
   },
   dropdownClass:{
-    type:String
+    required:false
   },
   topStart:{
-    type:String,
+     required:false,
     default:'180%'
   },
   topEnd:{
-    type:String,
+    required:false,
     default:'154%'
   }
 });
-const emit=defineEmits<{
-  (e:'update:modelValue',value:boolean):void,
-  (e:'close',value:boolean):void
-}>()
+
+const emit=defineEmits(['update:modelValue','close'])
 const closeDropdown = () => {
   emit('update:modelValue',false)
   emit('close',false)

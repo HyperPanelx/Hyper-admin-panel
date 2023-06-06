@@ -1,14 +1,15 @@
 {
   "compilerOptions": {
     "experimentalDecorators": true,
-    "strict": true,
+    "strict": false,
     "target": "ES5",
     "module": "ES2020",
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "removeComments": true,
     "preserveConstEnums": true,
      "moduleResolution": "Node",
-    "sourceMap": true,
+    "sourceMap": true
   },
-  "exclude": ["./webpack.dev.config.ts","./webpack.prod.config.ts"]
+  "exclude": ["./webpack.dev.config.ts","./webpack.prod.config.ts"],
+  "include": [".d.ts"]
 }

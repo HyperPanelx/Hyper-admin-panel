@@ -2,7 +2,7 @@
   <div class="sidebar-brand" :class="{'p-1':sidebarCollapseFlag,'!p-1':windowWidth<500}">
     <router-link :to="{name:'DASHBOARD'}">
       <div class="flex gap-1 items-center">
-        <img class="sidebar-brand-image"  src="../../public/logo-lg.png" alt="logo"/>
+        <img class="sidebar-brand-image" :src="logoLg" alt="logo"/>
         <p v-if="windowWidth>500 ? !sidebarCollapseFlag : true" class="sidebar-brand-title">
           HYPER
         </p>
@@ -13,6 +13,7 @@
 </template>
 
 <script setup lang="ts">
+import logoLg from '../../public/logo-lg.png'
 import {useDashboardStore} from "../../composables/useStates";
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 const {sidebarCollapseFlag,windowWidth,dashboardStore}=useDashboardStore()

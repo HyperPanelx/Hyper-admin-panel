@@ -28,14 +28,9 @@ export const useAuthStore=()=>{
 export const useDashboardStore=()=>{
     const dashboardStore=Dashboard()
     const sidebarCollapseFlag=computed<boolean>(()=>dashboardStore.sidebarCollapseFlag)
-    const openNavbarDropdownFlag=computed<boolean>(()=>dashboardStore.openNavbarDropdownFlag);
-    const searchContent=computed<string>(()=>dashboardStore.searchContent)
-    const searchResultFlag=computed<boolean>(()=>dashboardStore.searchResultFlag)
-    const searchResult=computed<any[]>(()=>dashboardStore.searchResult)
     const windowWidth:null|number= window.innerWidth
 
-
     return{
-        sidebarCollapseFlag,windowWidth,dashboardStore,openNavbarDropdownFlag,searchContent,searchResultFlag,searchResult
+        sidebarCollapseFlag,windowWidth,dashboardStore
     }
 }

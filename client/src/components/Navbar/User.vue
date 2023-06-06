@@ -1,6 +1,6 @@
 <template>
-  <VDropdown @click="openNavbarDropdownFlag=!openNavbarDropdownFlag"
-             v-model="openNavbarDropdownFlag"
+  <VDropdown @click="dropdownFlag=!dropdownFlag"
+             v-model="dropdownFlag"
              dropdown-class="!top-[102%] dark:bg-primary-dark-1 !left-[-200%] lg:w-full lg:!left-0 sm:left-[-130%] md:left-[-120%] !w-11 dark:!border-primary-dark-2/50"
              class="bg-gray-100/50 p-0.5 mr-1 ml-1.8 dark:bg-[#3c4655]  flex items-center gap-0.5 lg:w-17 w-6  cursor-pointer group lg:justify-start justify-center border-x-primary-dark-3/10 border-x-[1px]"
   >
@@ -18,12 +18,12 @@
       <ul>
         <li >
           <router-link class="flex gap-0.7 px-1 items-center py-0.7 hover:bg-gray-100/50 dark:hover:bg-primary-dark-2/20" :to="{name:'SETTINGS'}">
-            <Icon class="text-gray-700 dark:text-primary-dark-3" name="solar:user-check-rounded-linear"/>
+            <font-awesome-icon class="text-gray-700 dark:text-primary-dark-3" icon="fa-solid fa-gear"/>
             <p class="text-0.8 text-gray-700 dark:text-primary-dark-3">Settings</p>
           </router-link>
         </li>
         <li @click="logoutHandler" class="flex gap-0.7 px-1 items-center py-0.7 hover:bg-gray-100/50 dark:hover:bg-primary-dark-2/20">
-          <Icon class="text-gray-700 dark:text-primary-dark-3" name="solar:exit-bold"/>
+          <font-awesome-icon class="text-gray-700 dark:text-primary-dark-3" icon="fa-solid fa-arrow-right-from-bracket"/>
           <p class="text-0.8 text-gray-700 dark:text-primary-dark-3">Logout</p>
         </li>
       </ul>
@@ -32,12 +32,14 @@
 </template>
 
 <script setup lang="ts">
+import {ref} from "vue";
 import VDropdown from '../global/VDropdown.vue'
 import {useLogout} from "../../composables/useLogout";
-import {useAuthStore,useDashboardStore} from "../../composables/useStates";
-const {username}=useAuthStore()
-const {openNavbarDropdownFlag}=useDashboardStore()
+import {useAuthStore} from "../../composables/useStates";
+import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
+const {username}=useAuthStore();
 const {logoutHandler}=useLogout();
+const dropdownFlag=ref<boolean>(false);
 </script>
 
 <style scoped>

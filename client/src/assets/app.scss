@@ -1,4 +1,8 @@
 
+body{
+  overflow-x: hidden;
+}
+
 body.dark .scroller{
   scrollbar-width:thin;
   scrollbar-color: #8391a2 #3a444e;
