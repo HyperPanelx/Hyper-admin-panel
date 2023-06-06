@@ -32,10 +32,10 @@ import router from "./router";
 //////////// fontawesome
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import {faCircleCheck,faXmark,faEye,faEyeSlash,faCircleExclamation} from '@fortawesome/free-solid-svg-icons'
+import {faCircleCheck,faXmark,faEye,faEyeSlash,faCircleExclamation,faBars,faChevronRight,faCompress,faExpand,faMagnifyingGlass,faBell,faMoon} from '@fortawesome/free-solid-svg-icons'
 import {} from '@fortawesome/free-brands-svg-icons'
-import {faCircle} from '@fortawesome/free-regular-svg-icons'
-library.add(faCircle,faCircleCheck,faXmark,faEye,faEyeSlash,faCircleExclamation)
+import {faCircle,faEnvelope,faSun} from '@fortawesome/free-regular-svg-icons'
+library.add(faCircle,faCircleCheck,faXmark,faEye,faEyeSlash,faCircleExclamation,faBars,faChevronRight,faCompress,faExpand,faMagnifyingGlass,faBell,faEnvelope,faMoon,faSun)
 
 
 ///// dependencies

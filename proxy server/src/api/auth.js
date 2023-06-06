@@ -14,14 +14,17 @@ router.post('/login', (req,res)=>{
                 "Content-Type":"application/x-www-form-urlencoded"
             },
         }).then(response=>response.json()).then(response=>{
-            res.status(200).send(JSON.stringify(response.access_token))
+            if(response.detail){
+                res.status(200).send(JSON.stringify(response))
+            }else{
+                res.status(200).send(JSON.stringify(response.access_token))
+            }
         }).catch(err=>{
-            res.status(401).send('error in connecting to api!')
+            res.status(503).send('error in connecting to api!')
         })
     }else{
-        res.status(401).send('missing body params!')
+        res.status(406).send('missing body params!')
     }
-
 });
 router.get('/me',(req,res)=>{
     const token=req.headers.token
@@ -31,9 +34,15 @@ router.get('/me',(req,res)=>{
             Authorization:`Bearer ${token}`
         }
     }).then(response=>response.json()).then(response=>{
-        res.status(200).send(JSON.stringify(response.username))
+        if(response.detail){
+            res.status(404).send('error in finding user')
+        }else if(response.username){
+            res.status(200).send(JSON.stringify(response.username))
+        }else{
+            res.status(503).send('error in api!')
+        }
     }).catch(err=>{
-        res.status(401).send('error in finding user')
+        res.status(503).send('error in connecting to api! route: api/auth/me => panel/me/')
     })
 });
 

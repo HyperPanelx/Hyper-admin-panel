@@ -13,7 +13,7 @@
         @apply text-primary-light-1 font-700 md:text-[1.75rem] text-[1.25rem];
     }
     .sidebar-close-icon{
-        @apply cursor-pointer sm:!hidden text-primary-dark-2
+        @apply cursor-pointer sm:!hidden text-primary-dark-2 w-1.5
     }
     .sidebar.v-shrink{
         @apply sm:!w-[70px] left-[0px]

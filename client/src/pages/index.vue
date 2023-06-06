@@ -1,11 +1,12 @@
 <template>
-  <router-view></router-view>
+  <DefaultLayout>
+    <router-view></router-view>
+  </DefaultLayout>
 </template>
 
-<script>
-export default {
-  name: "index"
-}
+<script setup lang="ts">
+import DefaultLayout from '../layouts/default.vue'
+
 </script>
 
 <style scoped>

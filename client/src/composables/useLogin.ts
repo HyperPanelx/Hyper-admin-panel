@@ -23,24 +23,26 @@ export const useLogin=()=>{
         if(userData.password.match(passwordRegex) && userData.username.match(usernameRegex)){
             loginRequestFlag.value=true
             errorMessage.value=''
-            fetch(apiBase+'/api/auth/login',{
+            fetch(apiBase+'/auth/login',{
                 method:'POST',
                 body:JSON.stringify(userData),
-                // @ts-ignore
                 headers:{
                     'Content-Type':'application/json',
-                    Authorization:apiKey
+                    'Authorization':apiKey as string
                 },
-            }).then(response=>response.json()).then((token:any)=>{
-                if(userData.rememberMe){
-                    $cookies?.set(cookieName as string,token)
+            }).then(response=>response.json()).then((response:any)=>{
+                if(response.detail){
+                    authStore.$reset()
+                    errorMessage.value=response.detail +'!'
+                }else{
+                    userData.rememberMe &&  $cookies?.set(cookieName as string,response)
+                    authStore.$patch({
+                        username:userData.username,
+                        isLogin:true,
+                        token:response
+                    })
+                    router.push({name:'DASHBOARD'})
                 }
-                authStore.$patch({
-                    username:userData.username,
-                    isLogin:true,
-                    token:token
-                })
-                router.push({name:'DASHBOARD'})
             }).catch(err=>{
                 authStore.$reset()
                 errorMessage.value='Error in connecting to server! please try again.'

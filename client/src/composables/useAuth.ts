@@ -13,17 +13,15 @@ export const useAuth=()=>{
     onMounted(async ()=>{
         const token=$cookies?.get(cookieName as string)
         if(token){
-            fetch(apiBase+'/api/auth/me',{
-                // @ts-ignore
+            fetch(apiBase+'/auth/me',{
                 headers:{
-                    Authorization:apiKey,
+                    Authorization:apiKey as string,
                     token:token,
                     'Content-type':'application/json'
                 },
-                // @ts-ignore
-                credentials: "include",
-                baseURL:apiBase
-            }).then(response=>response.json()).then(username=>{
+            }).
+            then(response=>response.json()).
+            then(username=>{
                 authStore.$patch({
                     username:username,
                     isLogin:true,

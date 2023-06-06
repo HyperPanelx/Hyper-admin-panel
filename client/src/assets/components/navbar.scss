@@ -17,7 +17,7 @@
         @apply flex gap-1.8 items-center
     }
     .navbar-icon{
-        @apply text-[#6c757d] font-700 cursor-pointer hover:text-secondary-light-2 transition-all
+        @apply text-[#6c757d] font-700 cursor-pointer hover:text-secondary-light-2 transition-all w-1.7
     }
     .notification-item{
         @apply px-0.5 py-0.8 rounded-4 border-[1px] border-gray-200 my-0.6 cursor-pointer hover:bg-gray-100 transition-all flex gap-1 items-center dark:border-primary-dark-2/30 hover:bg-primary-dark-2/10
