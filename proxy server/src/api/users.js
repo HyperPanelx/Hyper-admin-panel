@@ -28,25 +28,30 @@ router.post('/create',(req,res)=>{
     const body=req.body
     const query=helper.querySerialize({
         username:body.username,
-        multi:body.concurrent_user,
+        multi:Number(body.concurrent_user),
         passwd:body.password,
         exdate:body.expiration_date,
         telegram_id:body.telegram_id,
-        phone:body.phone,
+        phone:Number(body.phone),
         email:body?.email ?? '',
         referral:body?.referral ?? '' ,
         desc:body?.description ?? '',
         traffic:body.traffic ? `${body?.traffic ?? ''} ${body?.traffic_unit ?? ''}` : '',
-    })
+    });
+
     fetch(process.env.API_BASE+'add-user?'+query,{
         headers:{
             'Content-Type':'application/json',
             Authorization:`Bearer ${token}`
         },
     }).then(response=>response.json()).then(response=>{
-        res.status(200).send(response)
+        if(response.username && response.password){
+            res.status(200).send(JSON.stringify(response)).end()
+        }else{
+            res.status(200).send(JSON.stringify(false)).end()
+        }
     }).catch(err=>{
-        res.status(401).send('error in connecting to api!')
+        res.status(401).send('error in connecting to api!').end()
     })
 })
 

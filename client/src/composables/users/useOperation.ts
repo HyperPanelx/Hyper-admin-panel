@@ -147,7 +147,8 @@ export const useUserOperation=(props:any)=>{
             body:JSON.stringify({date:value.new_exp}),
             headers:{
                 Authorization:apiKey,
-                token:token.value
+                token:token.value,
+                'Content-Type':'application/json'
             },
         }).
         then(()=>{
