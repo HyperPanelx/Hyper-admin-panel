@@ -29,9 +29,13 @@ export const useDashboardStore=()=>{
     const dashboardStore=Dashboard()
     const sidebarCollapseFlag=computed<boolean>(()=>dashboardStore.sidebarCollapseFlag)
     const showPreloaderFlag=computed<boolean>(()=>dashboardStore.showPreloaderFlag)
+    const fetchDashboardDataFlag=computed(()=>dashboardStore.fetchDashboardDataFlag)
+    const usersStatusData=computed(()=>dashboardStore.usersStatusData)
+    const serverStatus=computed(()=>dashboardStore.serverStatus)
+
     const windowWidth:null|number= window.innerWidth
 
     return{
-        sidebarCollapseFlag,windowWidth,dashboardStore,showPreloaderFlag
+        sidebarCollapseFlag,windowWidth,dashboardStore,showPreloaderFlag,fetchDashboardDataFlag,usersStatusData,serverStatus
     }
 }

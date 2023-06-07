@@ -101,8 +101,8 @@
         </VCard>
       </column>
     </row>
-    <row class="my-1.5" v-if="usersData.length>0">
-      <column v-for="item in usersData" col="12" sm="6" lg="3">
+    <row class="my-1.5" v-if="usersStatusData.length>0">
+      <column v-for="item in usersStatusData" col="12" sm="6" lg="3">
         <DashboardCard :title="item.title" :number="item.number" :theme="item.theme"/>
       </column>
     </row>
@@ -117,9 +117,8 @@ import { HollowDotsSpinner } from 'epic-spinners';
 import {useDashboard} from "../composables/useDashboard";
 import {useDashboardStore} from "../composables/useStates";
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
-const {fetchDashboardDataFlag,usersData,serverStatus}=useDashboard();
-const {sidebarCollapseFlag}=useDashboardStore()
-
+const {sidebarCollapseFlag,fetchDashboardDataFlag,usersStatusData,serverStatus}=useDashboardStore();
+useDashboard();
 </script>
 
 <style >
