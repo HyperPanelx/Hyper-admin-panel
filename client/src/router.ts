@@ -1,4 +1,4 @@
-import {createRouter,createWebHashHistory,RouteRecordRaw} from "vue-router";
+import {createRouter,createWebHashHistory,RouteRecordRaw,createWebHistory} from "vue-router";
 import {Auth} from './store/auth'
 //// pages
 const MainIndex=()=>import(  './pages/index.vue')
@@ -142,7 +142,7 @@ const routes:RouteRecordRaw[]=[
 
 const router=createRouter({
     routes,
-    history:createWebHashHistory()
+    history:createWebHistory()
 })
 
 
