@@ -2,9 +2,10 @@ import {IUsers_Data} from "../../utils/Types";
 import {envVariable} from "../useStates";
 import {ref,reactive} from "vue";
 import {useTableStore,useAuthStore,useDashboardStore} from "../useStates";
-
+import { useNotification } from "@kyvg/vue3-notification";
 
 export const useUserOperation=(props:any)=>{
+    const { notify }  = useNotification()
     const {apiBase,apiKey}=envVariable()
     const downloadAnchorElem=ref<HTMLAnchorElement|null>(null);
     const dropdownFlag=ref<boolean>(false);
@@ -79,12 +80,24 @@ export const useUserOperation=(props:any)=>{
             },
         }).
         then(()=>{
-            operationData.modal=false
             const userIndex=tableStore.tableData.rows.findIndex((item:any)=>item.uid===props.uid)
             tableStore.tableData.rows.splice(userIndex,1)
+            notify({
+                type:'warn',
+                title:'Delete Operation',
+                text:'User deleted successfully!'
+            })
         }).
-        catch(err=>console.log(err)).
+        catch(err=>{
+            console.log(err)
+            notify({
+                type:'error',
+                title:'Delete User Operation',
+                text:'Operation failed! Error in connecting to server.'
+            })
+        }).
         finally(()=>{
+            operationData.modal=false
             tableStore.fetchTableDataFlag=true
             dashboardStore.showPreloaderFlag=false
         })
@@ -108,6 +121,18 @@ export const useUserOperation=(props:any)=>{
             operationData.modal=true
             const userIndex=tableStore.tableData.rows.findIndex((item:any)=>item.uid===props.uid);
             (tableStore.tableData as IUsers_Data).rows[userIndex].passwd=response.password
+            notify({
+                type:'success',
+                title:'Change Password Operation',
+                text:'Password Changed successfully!'
+            })
+        }).catch(err=>{
+            operationData.modal=false
+            notify({
+                type:'error',
+                title:'Change Password Operation',
+                text:'Operation failed! Error in connecting to server.'
+            })
         })
     }
     const lockUser = async () => {
@@ -120,10 +145,22 @@ export const useUserOperation=(props:any)=>{
             }
         }).
         then(()=>{
+            notify({
+                type:'success',
+                title:'Lock User Operation',
+                text:'User locked successfully!'
+            })
             const userIndex=tableStore.tableData.rows.findIndex((item:any)=>item.uid===props.uid);
             (tableStore.tableData as IUsers_Data).rows[userIndex].status='disable';
+        }).catch(err=>{
+            notify({
+                type:'error',
+                title:'Lock User Operation',
+                text:'Operation failed! Error in connecting to server.'
+            })
+        }).finally(()=>{
             operationData.modal=false
-        }).catch(err=>console.log(err))
+        })
     }
     const unlockUser =async () => {
         dropdownFlag.value=false
@@ -137,8 +174,21 @@ export const useUserOperation=(props:any)=>{
         then(()=>{
             const userIndex=tableStore.tableData.rows.findIndex((item:any)=>item.uid===props.uid);
             (tableStore.tableData as IUsers_Data).rows[userIndex].status='enable';
+            notify({
+                type:'warn',
+                title:'Unlock User Operation',
+                text:'User unlocked successfully!'
+            })
+        }).catch(err=>{
+            console.log(err)
+            notify({
+                type:'error',
+                title:'Unlock User Operation',
+                text:'Operation failed! Error in connecting to server.'
+            })
+        }).finally(()=>{
             operationData.modal=false
-        }).catch(err=>console.log(err))
+        })
     }
     const renewUser = async (value:any) => {
         dropdownFlag.value=false
@@ -155,8 +205,21 @@ export const useUserOperation=(props:any)=>{
             const userIndex=tableStore.tableData.rows.findIndex((item:any)=>item.uid===props.uid);
             (tableStore.tableData as IUsers_Data).rows[userIndex].exdate=value.new_exp;
             operationData.renewUser=false
+            notify({
+                type:'success',
+                title:'Renew User Operation',
+                text:'User renewed successfully!'
+            })
+        }).catch(err=>{
+            console.log(err)
+            notify({
+                type:'error',
+                title:'Renew User Operation',
+                text:'Operation failed! Error in connecting to server.'
+            })
+        }).finally(()=>{
             operationData.modal=false
-        }).catch(err=>console.log(err))
+        })
     }
     /////
 

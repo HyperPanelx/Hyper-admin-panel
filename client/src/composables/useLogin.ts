@@ -4,9 +4,10 @@ import {ref, reactive,inject} from "vue";
 import {VueCookies} from "vue-cookies";
 import {envVariable,useAuthStore} from "./useStates";
 import {useRouter} from "vue-router";
-
+import { useNotification } from "@kyvg/vue3-notification";
 
 export const useLogin=()=>{
+    const { notify }  = useNotification()
     const router=useRouter()
     const loginRequestFlag=ref<boolean|null>(null)
     const $cookies = inject<VueCookies>('$cookies');
@@ -39,6 +40,11 @@ export const useLogin=()=>{
                     authStore.$reset()
                     errorMessage.value=response.detail +'!'
                 }else{
+                    notify({
+                        title: "Authorization",
+                        text: "You have been logged in!",
+                        type:'success'
+                    });
                     userData.rememberMe &&  $cookies?.set(cookieName as string,response)
                     authStore.$patch({
                         username:userData.username,

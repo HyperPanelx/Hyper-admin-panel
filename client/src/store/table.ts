@@ -36,6 +36,28 @@ export const Table=defineStore('table',{
                 this.fetchTableDataFlag=true
                 dashboardStore.showPreloaderFlag=false
             })
+        },
+        async getOnlineUsers ()  {
+            //// dashboard store for preloader
+            const {dashboardStore}=useDashboardStore()
+            /// token / .env
+            const {token}=useAuthStore()
+            const {apiBase,apiKey}=envVariable()
+            this.tableData={rows:[],titles:[]}
+            this.fetchTableDataFlag=false
+            dashboardStore.showPreloaderFlag=true
+            fetch(apiBase+'/user/online-list',{
+                headers:{Authorization:apiKey,token:token.value},
+            }).
+            then(response=>response.json()).
+            then(response=>{
+                this.tableData=response
+            }).
+            catch(err=>console.log(err)).
+            finally(()=>{
+                this.fetchTableDataFlag=true
+                dashboardStore.showPreloaderFlag=false
+            })
         }
     }
 })

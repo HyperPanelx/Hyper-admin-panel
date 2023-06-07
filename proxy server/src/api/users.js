@@ -174,7 +174,7 @@ router.get('/online-list',(req,res)=>{
             Authorization:`Bearer ${token}`
         },
     }).then(response=>response.json()).then(response=>{
-        res.status(200).send({
+        res.status(200).send(JSON.stringify({
             titles:['#','Username','IP Address','Management'],
             rows:response.slice(1,response.length-1).split(',').map((item,index)=>{
                 return {
@@ -183,9 +183,9 @@ router.get('/online-list',(req,res)=>{
                     uid:index+1
                 }
             })
-        })
+        })).end()
     }).catch(err=>{
-        res.status(400).send('error in connecting to api!')
+        res.status(400).send('error in connecting to api!').end()
     })
 })
 router.post('/kill-online/:username',(req,res)=>{
@@ -199,12 +199,12 @@ router.post('/kill-online/:username',(req,res)=>{
                 Authorization:`Bearer ${token}`
             },
         }).then(response=>response.json()).then(response=>{
-            res.status(200).send('ok')
+            res.status(200).end()
         }).catch(err=>{
-            res.status(400).send('error in connecting to api!')
+            res.status(400).send('error in connecting to api!').end()
         })
     }else{
-        res.status(400).send('missing required params username!')
+        res.status(400).send('missing required params username!').end()
     }
 })
 router.delete('/kill-several',(req,res)=>{

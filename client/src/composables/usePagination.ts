@@ -1,8 +1,11 @@
 import {IUsers_Data} from "../utils/Types";
 import {useTableStore,envVariable,useAuthStore,useDashboardStore} from "./useStates";
 import {reactive,watch} from "vue";
+import { useNotification } from "@kyvg/vue3-notification";
+
 
 export const usePagination=()=>{
+    const { notify }  = useNotification()
     const {tableStore}=useTableStore()
     const {apiKey,apiBase}=envVariable()
     const {token}=useAuthStore()
@@ -92,6 +95,7 @@ export const usePagination=()=>{
         tableStore.paginationData.sourceData=tableStore.tableData.rows
         tableStore.searchText=''
         paginationUpdate()
+        changePage(1)
         tableStore.paginationData.searchResultFlag=false
     }
     const showMoreButton = () => {
@@ -127,19 +131,30 @@ export const usePagination=()=>{
                 token:token.value
             }
         }).
-        then(response=>response.json()).
-        then(response=>{
+        then(()=>{
             tableStore.selectedUserToDelete.forEach(user=>{
                 const idx=tableStore.tableData.rows.findIndex((item)=>item.user===user)
                 tableStore.tableData.rows.splice(idx,1)
             })
             tableStore.selectedUserToDelete=[]
-            modalData.on=false
+            notify({
+                type:'warn',
+                title:'Delete Users Operation',
+                text:'Users deleted successfully!'
+            })
         }).
-        catch(err=>console.log(err)).
+        catch(err=>{
+            console.log(err)
+            notify({
+                type:'error',
+                title:'Delete Users Operation',
+                text:'Operation failed! Error in connecting to server.'
+            })
+        }).
         finally(()=>{
             tableStore.fetchTableDataFlag=true
             dashboardStore.showPreloaderFlag=false
+            modalData.on=false
         })
     }
 
@@ -154,17 +169,28 @@ export const usePagination=()=>{
                 token:token.value
             },
         }).
-        then(response=>response.json()).
-        then(response=>{
+        then(()=>{
             tableStore.selectedOnlineUserToKill.forEach(user=>{
                 const idx=tableStore.tableData.rows.findIndex((item)=>item.user===user)
                 tableStore.tableData.rows.splice(idx,1)
             });
             tableStore.selectedOnlineUserToKill=[]
-            modalData.on=false
+            notify({
+                type:'warn',
+                title:'Kill Users Operation',
+                text:'Users killed successfully!'
+            })
         }).
-        catch(err=>console.log(err)).
+        catch(err=>{
+            console.log(err)
+            notify({
+                type:'error',
+                title:'Kill Users Operation',
+                text:'Operation failed! Error in connecting to server.'
+            })
+        }).
         finally(()=>{
+            modalData.on=false
             tableStore.fetchTableDataFlag=true
             dashboardStore.showPreloaderFlag=false
         })

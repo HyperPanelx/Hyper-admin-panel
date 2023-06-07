@@ -41,16 +41,14 @@ import router from "./router";
 //////////// fontawesome
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-// @ts-ignore
-import {faCircleCheck,faXmark,faEye,faEyeSlash,faCircleExclamation,faBars,faChevronRight,faCompress,faExpand,faMagnifyingGlass,faBell,faMoon,faGear,faArrowRightFromBracket,faHouse,faUserGroup,faTowerBroadcast,faUser,faMicrochip,faServer,faHardDrive,faSignal,faChevronLeft,faKey,faPhone,faSliders,faDownload,faTrash,faRightLeft,faLock,faLockOpen} from '@fortawesome/free-solid-svg-icons'
+import {faCircleCheck,faXmark,faEye,faEyeSlash,faCircleExclamation,faBars,faChevronRight,faCompress,faExpand,faMagnifyingGlass,faBell,faMoon,faGear,faArrowRightFromBracket,faHouse,faUserGroup,faTowerBroadcast,faUser,faMicrochip,faServer,faHardDrive,faSignal,faChevronLeft,faKey,faPhone,faSliders,faDownload,faTrash,faRightLeft,faLock,faLockOpen,faArrowRight} from '@fortawesome/free-solid-svg-icons'
 import {faTelegram} from '@fortawesome/free-brands-svg-icons'
-// @ts-ignore
 import {faCircle,faEnvelope,faSun,faPenToSquare} from '@fortawesome/free-regular-svg-icons'
-library.add(faCircle,faCircleCheck,faXmark,faEye,faEyeSlash,faCircleExclamation,faBars,faChevronRight,faCompress,faExpand,faMagnifyingGlass,faBell,faEnvelope,faMoon,faSun,faGear,faArrowRightFromBracket,faHouse,faUserGroup,faTowerBroadcast,faUser,faMicrochip,faServer,faHardDrive,faSignal,faChevronLeft,faKey,faTelegram,faPhone,faCircle,faSliders,faPenToSquare,faDownload,faTrash,faRightLeft,faLock,faLockOpen)
+library.add(faCircle,faCircleCheck,faXmark,faEye,faEyeSlash,faCircleExclamation,faBars,faChevronRight,faCompress,faExpand,faMagnifyingGlass,faBell,faEnvelope,faMoon,faSun,faGear,faArrowRightFromBracket,faHouse,faUserGroup,faTowerBroadcast,faUser,faMicrochip,faServer,faHardDrive,faSignal,faChevronLeft,faKey,faTelegram,faPhone,faCircle,faSliders,faPenToSquare,faDownload,faTrash,faRightLeft,faLock,faLockOpen,faArrowRight)
 
 
 ///// dependencies
-// @ts-ignore
+import Notifications from '@kyvg/vue3-notification'
 import VueApexCharts from "vue3-apexcharts";
 import { plugin ,defaultConfig} from '@formkit/vue';
 import '@formkit/addons/css/floatingLabels';
@@ -65,7 +63,6 @@ import column from './components/grid/column.vue'
 import container from './components/grid/container.vue'
 import containerFull from './components/grid/containerFull.vue'
 import row from './components/grid/row.vue'
-// @ts-ignore
 import { createPinia } from 'pinia';
 import VueCookies from 'vue-cookies'
 
@@ -92,4 +89,5 @@ app.use(VueCookies,{
     expires:10*24*60*60,
     path:'/'
 })
+app.use(Notifications);
 app.mount('#v-app');

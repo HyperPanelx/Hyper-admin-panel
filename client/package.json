@@ -55,6 +55,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/vue-fontawesome": "^3.0.3",
     "@heroicons/vue": "^2.0.18",
+    "@kyvg/vue3-notification": "^2.9.1",
     "apexcharts": "^3.40.0",
     "axios": "^1.4.0",
     "core-js": "^3.27.2",

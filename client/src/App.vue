@@ -1,4 +1,5 @@
 <template>
+  <notifications position="bottom right" duration="6" />
   <router-view></router-view>
 </template>
 
