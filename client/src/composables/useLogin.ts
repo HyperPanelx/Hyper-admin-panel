@@ -20,8 +20,11 @@ export const useLogin=()=>{
     })
 
     const formHandler = async () => {
+        //// validation using regex
         if(userData.password.match(passwordRegex) && userData.username.match(usernameRegex)){
+            //// turn on button loader
             loginRequestFlag.value=true
+            //// make empty error msg
             errorMessage.value=''
             fetch(apiBase+'/auth/login',{
                 method:'POST',
@@ -32,6 +35,7 @@ export const useLogin=()=>{
                 },
             }).then(response=>response.json()).then((response:any)=>{
                 if(response.detail){
+                    /// if username or password is wrong
                     authStore.$reset()
                     errorMessage.value=response.detail +'!'
                 }else{

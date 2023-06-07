@@ -54,11 +54,11 @@ const closeDropdown = () => {
     @apply transition-all duration-[200ms] ease-in-out
   }
   .slide-enter-from,.slide-leave-to{
-    top:v-bind(topStart) ;
+    top:v-bind(topStart) !important;
     @apply  opacity-0 invisible;
   }
   .slide-enter-to,.slide-leave-from {
-    top:v-bind(topEnd) ;
+    top:v-bind(topEnd) !important;
     @apply opacity-100 visible;
   }
   .dropdown{

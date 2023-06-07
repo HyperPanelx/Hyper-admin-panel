@@ -5,6 +5,7 @@ const MainIndex=()=>import(  './pages/index.vue')
 const dashboard=()=>import( './pages/dashboard.vue')
 const usersIndex=()=>import( './pages/users/index.vue')
 const createUser=()=>import( './pages/users/create.vue')
+const usersList=()=>import( './pages/users/list.vue')
 const settingsIndex=()=>import( './pages/settings/index.vue')
 const onlineUsers=()=>import( './pages/onlineUsers.vue')
 const login=()=>import( './pages/login.vue')
@@ -38,15 +39,22 @@ const routes:RouteRecordRaw[]=[
             },{
                 component:usersIndex,
                 path:'users',
-                name:'USERS',
-                meta:{title:'Users | Hyper'},
+                name:'USERS_INDEX',
+                redirect:{
+                    name:'USERS'
+                },
                 children:[
                     {
                         component:createUser,
                         path:'create',
                         name:'CREATE_USER',
                         meta:{title:'Create User | Hyper'},
-                    }
+                    },{
+                        component:usersList,
+                        path:'',
+                        name:'USERS',
+                        meta:{title:'Users | Hyper'},
+                    },
                 ]
             },
             {

@@ -1,7 +1,7 @@
 import {inject, onMounted} from "vue";
 import {VueCookies} from "vue-cookies";
 import {envVariable,useAuthStore} from "./useStates";
-import {useRouter} from "vue-router";
+import {useRouter,useRoute} from "vue-router";
 
 
 
@@ -10,6 +10,7 @@ export const useAuth=()=>{
     const {apiBase,cookieName,apiKey}=envVariable()
     /// router
     const router=useRouter()
+    const route=useRoute()
 
     /// authentication store
     const {authStore}=useAuthStore()

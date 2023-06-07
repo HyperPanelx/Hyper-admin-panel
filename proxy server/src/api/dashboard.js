@@ -12,7 +12,7 @@ router.get('/server',(req,res)=>{
         }
     }).then(response=>response.json()).then(response=>{
         if(response.detail){
-            res.status(200).send(JSON.stringify(false))
+            res.status(200).send(JSON.stringify(false)).end()
         }else{
             const uploadSpeed=response[1]['Upload Speed']
             const downloadSpeed=response[1]['Download Speed']
@@ -29,11 +29,11 @@ router.get('/server',(req,res)=>{
                     uploadSpeed:Number(uploadSpeed.slice(0,uploadSpeed.length-2)),
                     speedUnit:downloadSpeed.slice(downloadSpeed.length-2),
                 }
-            }))
+            })).end()
         }
     }).catch(err=>{
         console.log(err)
-        res.status(400).send('error in connecting to api')
+        res.status(400).send('error in connecting to api').end()
     })
 
 
@@ -58,7 +58,7 @@ router.get('/users-status',(req,res)=>{
             number:20,
             theme:'red'
         },
-    ]) )
+    ]) ).end()
 })
 
 

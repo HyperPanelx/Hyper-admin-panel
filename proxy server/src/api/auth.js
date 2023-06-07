@@ -15,15 +15,15 @@ router.post('/login', (req,res)=>{
             },
         }).then(response=>response.json()).then(response=>{
             if(response.detail){
-                res.status(200).send(JSON.stringify(response))
+                res.status(200).send(JSON.stringify(response)).end()
             }else{
-                res.status(200).send(JSON.stringify(response.access_token))
+                res.status(200).send(JSON.stringify(response.access_token)).end()
             }
         }).catch(err=>{
-            res.status(503).send('error in connecting to api!')
+            res.status(503).send('error in connecting to api!').end()
         })
     }else{
-        res.status(406).send('missing body params!')
+        res.status(406).send('missing body params!').end()
     }
 });
 router.get('/me',(req,res)=>{
@@ -35,14 +35,14 @@ router.get('/me',(req,res)=>{
         }
     }).then(response=>response.json()).then(response=>{
         if(response.detail){
-            res.status(404).send('error in finding user')
+            res.status(404).send('error in finding user').end()
         }else if(response.username){
-            res.status(200).send(JSON.stringify(response.username))
+            res.status(200).send(JSON.stringify(response.username)).end()
         }else{
-            res.status(503).send('error in api!')
+            res.status(503).send('error in api!').end()
         }
     }).catch(err=>{
-        res.status(503).send('error in connecting to api! route: api/auth/me => panel/me/')
+        res.status(503).send('error in connecting to api! route: api/auth/me => panel/me/').end()
     })
 });
 

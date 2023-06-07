@@ -7,6 +7,6 @@
     @apply w-full h-[calc(100vh-70px)] absolute top-0 left-0 flex justify-center items-center  bg-secondary-light-1 z-[100] dark:bg-primary-dark-1
   }
   .category-card{
-    @apply py-[0.25rem] px-0.5 rounded-6 text-[0.75rem] font-600 block w-5 text-hidden;
+    @apply py-[0.25rem] px-0.5 rounded-6 text-[0.75rem] font-600 block w-4.5 ;
   }
 }
