@@ -88,8 +88,6 @@
                   label="Expiration Date (Required)"
                   label-class="dark:text-primary-dark-2 !translate-x-[-1px] !text-0.7 !translate-y-[2px] bg-primary-light-1 dark:!bg-[#37404a] !font-main"
                   :floating-label="true"
-                  help-class="dark:text-primary-dark-3"
-                  help="Leave this field empty if you set the expiration date automatically."
               />
 
             </column>

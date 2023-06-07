@@ -8,8 +8,10 @@ const createUser=()=>import( './pages/users/create.vue')
 const usersList=()=>import( './pages/users/list.vue')
 const settingsIndex=()=>import( './pages/settings/index.vue')
 const onlineUsers=()=>import( './pages/onlineUsers.vue')
+const generateUser=()=>import('./pages/users/generate.vue')
 const login=()=>import( './pages/login.vue')
 const error=()=>import( './pages/error.vue')
+
 
 //// setting page
 const api=()=>import( './pages/settings/index/api.vue')
@@ -54,6 +56,12 @@ const routes:RouteRecordRaw[]=[
                         path:'',
                         name:'USERS',
                         meta:{title:'Users | Hyper'},
+                    },
+                    {
+                        component:generateUser,
+                        path:'generate',
+                        name:'GENERATE_USER',
+                        meta:{title:'Generate Users | Hyper'},
                     },
                 ]
             },
@@ -142,7 +150,7 @@ const routes:RouteRecordRaw[]=[
 
 const router=createRouter({
     routes,
-    history:createWebHistory()
+    history:createWebHashHistory()
 })
 
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="table-responsive overflow-visible">
+  <div v-if="rows" class="table-responsive overflow-visible">
     <table class="w-full">
       <thead class="bg-primary-dark-1 dark:bg-primary-dark-2/50 text-primary-light-1 text-left font-500">
       <tr  class="w-full">

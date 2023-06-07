@@ -165,6 +165,41 @@ router.post('/change-password/:username',(req,res)=>{
     }
 })
 
+router.post('/generate',(req,res)=>{
+    const body=req.body
+    const token=req.headers.token;
+    if(body){
+        const query=helper.querySerialize({
+            multi:body.g_concurrent_user,
+            exdate:body.g_expiration_date,
+            count:body.g_count
+        });
+        fetch(process.env.API_BASE+'user-gen?'+query,{
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json',
+                Authorization:`Bearer ${token}`
+            },
+        }).then(response=>response.json()).then(response=>{
+            if(response.detail){
+                res.status(200).send(JSON.stringify({error:response.detail})).end()
+            }else{
+                res.status(200).send(JSON.stringify(response)).end()
+            }
+        }).catch(err=>{
+            res.status(400).send('error in connecting to api!').end()
+        })
+    }else{
+        res.status(400).send('missing required body!').end()
+    }
+
+})
+
+
+
+
+
+
 //// online user page
 router.get('/online-list',(req,res)=>{
     const token=req.headers.token

@@ -2,9 +2,14 @@
   <template v-if="fetchTableDataFlag">
     <div class="flex sm:flex-row flex-col sm:gap-0 gap-1 sm:items-center sm:justify-between mb-2">
       <VBreadcrumb :pages="[{name:'Home',link:'DASHBOARD'},{name:'Users'}]" />
-      <router-link :to="{name:'CREATE_USER'}" class="btn btn-success ">
-        Add New User
-      </router-link>
+      <div>
+        <router-link  :to="{name:'GENERATE_USER'}" class="btn btn-success mr-1">
+          Generate New Users
+        </router-link>
+        <router-link :to="{name:'CREATE_USER'}" class="btn btn-success ">
+          Add New User
+        </router-link>
+      </div>
     </div>
     <row>
       <column col="12">

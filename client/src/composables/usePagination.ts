@@ -74,6 +74,7 @@ export const usePagination=()=>{
                 tableStore.paginationData.sourceData=tableStore.tableData.rows
                 tableStore.searchText=''
                 paginationUpdate()
+                console.log(tableStore.paginationData.currentPageData)
             }
         },
         {
