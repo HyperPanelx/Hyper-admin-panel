@@ -14,9 +14,9 @@
       </VCard>
 
     </aside>
-    <div >
+    <VCard :title="$route.path.slice(10).split('-').join(' ')" body-class="!p-2">
       <slot />
-    </div>
+    </VCard>
   </section>
 </template>
 
@@ -36,7 +36,7 @@ import {settingTabItems} from "../utils/Data";
     @apply [&_*]:text-blue-700 [&_p]:ml-1.5 dark:[&_*]:text-blue-400
   }
   #settings{
-    @apply grid grid-cols-[1fr_3fr] gap-1.5 mt-3
+    @apply grid grid-cols-[1fr_3fr] gap-1.5 mt-3 items-start
   }
 }
 </style>

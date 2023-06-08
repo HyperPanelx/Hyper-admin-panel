@@ -36,6 +36,9 @@
     .btn-teal{
         @apply bg-teal-600 shadow-[0_2px_6px_0_rgba(45,212,191,0.5)] hover:bg-teal-500 focus:ring-teal-600/30 focus:ring-offset-2 focus:ring-4
     }
+    .btn-amber{
+        @apply bg-amber-600 shadow-[0_2px_6px_0_rgba(253,186,116,0.5)] hover:bg-amber-500 focus:ring-amber-600/30 focus:ring-offset-2 focus:ring-4
+    }
     .btn-rose{
         @apply bg-rose-600 shadow-[0_2px_6px_0_rgba(251,113,133,1)] hover:bg-rose-500 focus:ring-rose-600/30 focus:ring-offset-2 focus:ring-4
     }
