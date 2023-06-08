@@ -29,37 +29,34 @@
         </column>
       </row>
   </FormKit>
-  <div class="mt-1 flex gap-2 items-center">
+  <div class="mt-1">
     <VBloader class="btn btn-indigo btn-md"
               animation="slide-down"
               :duration="2000"
               @click="submitForm"
-              :loading="createUserData.on"
+              :loading="fetchFlag"
     >
       Submit
     </VBloader>
-    <p class="text-gray-800 dark:text-primary-light-1">
-      {{createUserData.msg}}
-    </p>
   </div>
 </template>
 
 <script setup lang="ts">
 import {ref,reactive} from "vue";
+import { useNotification } from "@kyvg/vue3-notification";
 import { reset } from '@formkit/core'
 import VBloader from '../../../components/global/VBloader.vue';
 import {envVariable,useAuthStore} from "../../../composables/useStates";
 const {apiBase,apiKey}=envVariable()
+const { notify }  = useNotification()
 const {token}=useAuthStore()
 const createAdminUserForm=ref<any>(null);
-const createUserData=reactive({
-  on:false,
-  msg:''
-});
+const fetchFlag=ref(false)
+
+
 
 const createAdminUserFormSubmit = (value) => {
-  createUserData.on=true
-  createUserData.msg=''
+  fetchFlag.value=true
   fetch(apiBase+'/panel/admin',{
     method:'POST',
     headers:{
@@ -70,16 +67,28 @@ const createAdminUserFormSubmit = (value) => {
     body:JSON.stringify(value)
   }).then(response=>response.json()).then(response=>{
     if(response.detail){
-      createUserData.msg=response.detail
+      notify({
+        type:'error',
+        title:'Create Admin User',
+        text:response.detail
+      })
     }else{
-      createUserData.msg='User created successfully!'
+      notify({
+        type:'success',
+        title:'Create Admin User',
+        text:'user created successfully'
+      })
       reset('createAdminUserForm')
     }
   }).catch(err=>{
     console.log(err)
-    createUserData.msg='Error in connecting to api!'
+    notify({
+      type:'error',
+      title:'Create Admin User',
+      text:'operation failed due to network connection!'
+    })
   }).finally(()=>{
-    createUserData.on=false
+    fetchFlag.value=false
   })
 
 }

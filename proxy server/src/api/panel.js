@@ -28,7 +28,17 @@ router.post('/admin',(req,res)=>{
     }
 })
 
+router.post('/change-password',(req,res)=>{
+    const body=req.body
+    const token=req.headers.token
+    if(body) {
+        const query=helper.querySerialize({username:body.username,new_pass:body.new_password})
+        res.status(200).send(JSON.stringify('ok')).end()
+    }else{
+        res.status(400).send('missing required body!').end()
+    }
 
+})
 
 
 module.exports=router
