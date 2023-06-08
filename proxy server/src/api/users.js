@@ -59,7 +59,22 @@ router.delete('/delete-several',(req,res)=>{
     const usernames=req.query.username
     const token=req.headers.token
     if(usernames){
-        res.status(200).end()
+        fetch(process.env.API_BASE+'del-kill-users?mode=del',{
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json',
+                Authorization:`Bearer ${token}`
+            },
+            body:JSON.stringify(usernames)
+        }).then(response=>response.json()).then(response=>{
+            if(response){
+                res.status(200).end()
+            }else{
+                res.status(401).send('error in inputs!').end()
+            }
+        }).catch(err=>{
+            res.status(401).send('error in connecting to api!').end()
+        })
     }else{
         res.status(400).send('missing required query username!').end()
     }

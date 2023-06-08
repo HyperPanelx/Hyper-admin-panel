@@ -15,8 +15,8 @@ export const useLogin=()=>{
     const {apiBase,cookieName,apiKey}=envVariable();
     const errorMessage=ref<string>('')
     const userData=reactive<IUser_Data>({
-        username:'',
-        password:'',
+        username:'hooman_77',
+        password:'13777731Ho@',
         rememberMe:false
     })
 

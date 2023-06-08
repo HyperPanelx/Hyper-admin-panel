@@ -27,7 +27,7 @@ export const useOnlineUserOperation=(props:any)=>{
             notify({
                 type:'warn',
                 title:'Kill User Operation',
-                text:'User killed successfully!'
+                text:'User is killed successfully!'
             })
         }).
         catch(err=>{

@@ -179,7 +179,7 @@ export const usePagination=()=>{
             notify({
                 type:'warn',
                 title:'Kill Users Operation',
-                text:'Users killed successfully!'
+                text:'Users are killed successfully!'
             })
         }).
         catch(err=>{
