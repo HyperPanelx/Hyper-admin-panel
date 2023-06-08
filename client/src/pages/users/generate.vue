@@ -7,7 +7,7 @@
           <row>
             <column md="4" col="12">
               <FormKit
-                  validation="required"
+                  validation="min:1"
                   validation-label="Concurrent user"
                   type="number"
                   :plugins="[castNumber]"
@@ -36,7 +36,7 @@
             </column>
             <column md="4" col="12">
               <FormKit
-                  validation="required"
+                  validation="min:1"
                   validation-label="Count"
                   type="number"
                   :plugins="[castNumber]"

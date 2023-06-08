@@ -63,7 +63,7 @@
           <row>
             <column col="12" md="6">
               <FormKit
-                  validation="required"
+                  validation="min:1"
                   validation-label="Concurrent user"
                   type="number"
                   :plugins="[castNumber]"

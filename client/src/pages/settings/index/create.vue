@@ -42,7 +42,7 @@
 </template>
 
 <script setup lang="ts">
-import {ref,reactive} from "vue";
+import {ref} from "vue";
 import { useNotification } from "@kyvg/vue3-notification";
 import { reset } from '@formkit/core'
 import VBloader from '../../../components/global/VBloader.vue';

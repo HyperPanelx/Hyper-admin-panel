@@ -37,8 +37,37 @@ router.post('/change-password',(req,res)=>{
     }else{
         res.status(400).send('missing required body!').end()
     }
-
 })
+
+router.post('/change-ssh',(req,res)=>{
+    const body=req.body
+    const token=req.headers.token
+    if(body) {
+        console.log(body)
+        const query=helper.querySerialize({new_ssh:Number(body.new_ssh)})
+        res.status(200).send(JSON.stringify('ok')).end()
+    }else{
+        res.status(400).send('missing required body!').end()
+    }
+})
+
+router.post('/user-limitation',(req,res)=>{
+    const body=req.body
+    const token=req.headers.token
+    if(body) {
+        const query=helper.querySerialize({status:body.status})
+        if(body.status==='Active'){
+            /// change status to active
+            res.status(200).send(JSON.stringify('Active')).end()
+        }else{
+            /// change status to deactive
+            res.status(200).send(JSON.stringify('Deactive')).end()
+        }
+    }else{
+        res.status(400).send('missing required body!').end()
+    }
+})
+
 
 
 module.exports=router
