@@ -1,5 +1,5 @@
 <template>
-  <FormKit id="changeSSHForm" type="form" ref="changeSSHForm"  @submit="createAdminUserFormSubmit"  :actions="false" >
+  <FormKit id="changeSSHForm" type="form" ref="changeSSHForm"  @submit="changeSSHPortFormSubmit"  :actions="false" >
     <row>
       <column  col="12">
         <FormKit
@@ -44,7 +44,7 @@ const fetchFlag=ref(false)
 
 
 
-const createAdminUserFormSubmit = (value) => {
+const changeSSHPortFormSubmit = (value) => {
   fetchFlag.value=true
   fetch(apiBase+'/panel/change-ssh',{
     method:'POST',

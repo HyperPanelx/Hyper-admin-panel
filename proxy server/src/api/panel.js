@@ -68,6 +68,22 @@ router.post('/user-limitation',(req,res)=>{
     }
 })
 
+router.post('/telegram-robot',(req,res)=>{
+    const body=req.body
+    const token=req.headers.token
+    const query=req.query
+    if(body) {
+        if(query.session_file==='false'){
+            const reqQuery=helper.querySerialize({token:body.robot_token,id:body.manager_id})
+        }else{
+            const jsonData=body.file
+            console.log(jsonData)
+        }
+        res.status(200).send(JSON.stringify('ok')).end()
+    }else{
+        res.status(400).send('missing required body!').end()
+    }
+})
 
 
 module.exports=router

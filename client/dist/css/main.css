@@ -776,6 +776,10 @@ body {
   margin-top: 3rem;
 }
 
+.mb-1\.5 {
+  margin-bottom: 1.5rem;
+}
+
 .block {
   display: block;
 }

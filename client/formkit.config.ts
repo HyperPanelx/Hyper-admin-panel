@@ -1,5 +1,5 @@
 import { DefaultConfigOptions,defaultConfig } from '@formkit/vue'
-import { createFloatingLabelsPlugin } from '@formkit/addons'
+import { createFloatingLabelsPlugin,createMultiStepPlugin  } from '@formkit/addons'
 import '@formkit/themes/genesis'
 
 const config: DefaultConfigOptions = defaultConfig({
@@ -7,6 +7,7 @@ const config: DefaultConfigOptions = defaultConfig({
         createFloatingLabelsPlugin({
             useAsDefault: true, // defaults to false
         }),
+        createMultiStepPlugin()
     ],
     content: ['./src/**/*.{html,js,vue}', './path/to/formkit.config.js'],
 })

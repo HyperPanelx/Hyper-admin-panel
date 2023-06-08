@@ -1,5 +1,5 @@
 <template>
-  <FormKit id="changePasswordForm" type="form" ref="changePasswordForm"  @submit="createAdminUserFormSubmit"  :actions="false" >
+  <FormKit id="changePasswordForm" type="form" ref="changePasswordForm"  @submit="changePasswordSubmit"  :actions="false" >
     <row>
       <column md="6" col="12">
         <FormKit
@@ -55,7 +55,7 @@ const fetchFlag=ref(false)
 
 
 
-const createAdminUserFormSubmit = (value) => {
+const changePasswordSubmit = (value) => {
   fetchFlag.value=true
   fetch(apiBase+'/panel/change-password',{
     method:'POST',
