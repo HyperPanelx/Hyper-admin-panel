@@ -27,7 +27,6 @@ router.post('/admin',(req,res)=>{
         res.status(400).send('missing required body!').end()
     }
 })
-
 router.post('/change-password',(req,res)=>{
     const body=req.body
     const token=req.headers.token
@@ -38,7 +37,6 @@ router.post('/change-password',(req,res)=>{
         res.status(400).send('missing required body!').end()
     }
 })
-
 router.post('/change-ssh',(req,res)=>{
     const body=req.body
     const token=req.headers.token
@@ -84,6 +82,5 @@ router.post('/telegram-robot',(req,res)=>{
         res.status(400).send('missing required body!').end()
     }
 })
-
 
 module.exports=router

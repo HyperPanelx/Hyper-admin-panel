@@ -97,15 +97,6 @@
       </VBloader>
     </div>
   </template>
-
-
-
-
-
-
-
-
-
 </template>
 
 <script setup lang="ts">
@@ -114,14 +105,17 @@ import { useNotification } from "@kyvg/vue3-notification";
 import { reset } from '@formkit/core'
 import VBloader from '../../../components/global/VBloader.vue';
 import {envVariable,useAuthStore} from "../../../composables/useStates";
+////////////////////////////////
 const {apiBase,apiKey}=envVariable()
 const { notify }  = useNotification()
 const {token}=useAuthStore()
+////////////////////////////////
 const telegramRobotWithoutSessionFileForm=ref<any>(null);
 const telegramRobotWithSessionFileForm=ref<any>(null);
 const fetchFlag=ref(false)
 const checkBoxFlag=ref<boolean>(false)
 
+//////////////////////////////////////
 const handlerFormWithSessionFile =async (data) => {
   console.log(data)
   const fileReader=new FileReader()
@@ -156,7 +150,6 @@ const handlerFormWithSessionFile =async (data) => {
 
   }
 }
-
 const handlerFormWithoutSessionFile = (data) => {
   fetchFlag.value=true
   fetch(apiBase+'/panel/telegram-robot?session_file=false',{
@@ -181,15 +174,12 @@ const handlerFormWithoutSessionFile = (data) => {
     fetchFlag.value=false
   })
 }
-
-
 const telegramRobotWithoutSessionFileFormHandler = () => {
   if(telegramRobotWithoutSessionFileForm.value){
     const node = (telegramRobotWithoutSessionFileForm.value as any).node
     node.submit()
   }
 };
-
 const telegramRobotWithSessionFileFormHandler = () => {
   if(telegramRobotWithSessionFileForm.value){
     const node = (telegramRobotWithSessionFileForm.value as any).node
