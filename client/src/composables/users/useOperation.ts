@@ -3,6 +3,8 @@ import {envVariable} from "../useStates";
 import {ref,reactive} from "vue";
 import {useTableStore,useAuthStore,useDashboardStore} from "../useStates";
 import { useNotification } from "@kyvg/vue3-notification";
+import {downloadTextFile} from "../../utils/Helper";
+
 
 export const useUserOperation=(props:any)=>{
     const { notify }  = useNotification()
@@ -47,22 +49,10 @@ export const useUserOperation=(props:any)=>{
     }
     const downloadUserDetail = ()  => {
         if(downloadAnchorElem.value){
-            let dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify({
-                username:props.user,
-                password:props.passwd,
-                phone:props.phone,
-                email:props.email,
-                expired:props.exdate,
-                status:props.status,
-                telegram_id:props.telegram_id,
-                registered:props.registered,
-                traffic:props.traffic,
-                limitation:props.multi,
-                desc:props.desc,
-                referral:props.referral,
-            }));
-            downloadAnchorElem.value.setAttribute("href",     dataStr     );
-            downloadAnchorElem.value.setAttribute("download", `${props.user}.json`);
+            const text:string=`username:${props.user}\npassword:${props.passwd}\nphone:${props.phone}\nemail:${props.email}\nexpired:${props.exdate}\nstatus:${props.status}\ntelegram id:${props.telegram_id}\nregistered:${props?.registered ?? ''}\ntraffic:${props.traffic}\nlimitation:${props.multi}\ndescription:${props.desc}\nreferral:${props.referral}\n
+            `
+            downloadAnchorElem.value.setAttribute("href",     downloadTextFile(text)     );
+            downloadAnchorElem.value.setAttribute("download", `${props.user}.txt`);
             downloadAnchorElem.value.click();
         }
     }

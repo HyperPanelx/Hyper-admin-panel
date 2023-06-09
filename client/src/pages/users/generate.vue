@@ -72,13 +72,46 @@
       </VCard>
     </column>
   </row>
+
+  <VModal :fade-outside="true" class="!p-0 !h-auto" v-model="generateUsersData.modalFlag">
+    <div :class="{'!h-auto':generateUsersData.data.length===1}" class="modal-body h-13 overflow-y-auto">
+      <p  class="text-1 text-gray-800 dark:text-primary-dark-3 flex items-center gap-0.5"> Users Generated!</p>
+      <template v-for="(item,index) in generateUsersData.data">
+        <row  class="mt-0.5 justify-center">
+          <column col="6">
+            <p class="font-second text-right dark:text-primary-light-1">Username: </p>
+          </column>
+          <column col="6">
+            <p @click="copyText(item.user)" class="font-second dark:text-primary-light-1">{{item.user}}</p>
+          </column>
+        </row>
+        <row  class="mt-0.5 justify-center">
+          <column col="6">
+            <p class="font-second text-right dark:text-primary-light-1">Password: </p>
+          </column>
+          <column col="6">
+            <p @click="copyText(item.passwd)" class="font-second dark:text-primary-light-1">{{item.passwd}}</p>
+          </column>
+        </row>
+        <div v-if="index!==generateUsersData.data.length-1" class="w-full h-[1px] my-0.5 bg-gray-200"></div>
+      </template>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-indigo btn-sm" @click="generateUsersData.modalFlag=false">
+        Close
+      </button>
+    </div>
+  </VModal>
+
 </template>
 
 <script setup lang="ts">
 import VBreadcrumb from '../../components/global/VBreadcrumb.vue'
+import VModal from '../../components/global/VModal.vue'
 import VCard from '../../components/global/VCard.vue'
 import VBloader from '../../components/global/VBloader.vue'
 import {useGenerate} from "../../composables/users/useGenerate";
+import {copyText} from "../../utils/Helper";
 const {castNumber,generateUserForm,submitForm,generateUserFormSubmit,generateUsersData,downloadGeneratedDataHandler,downloadAnchorElem}=useGenerate()
 </script>
 

@@ -60,10 +60,23 @@ export const stringToPassword=(str:string)=>{
 }
 
 export const copyText = (txt:string) => {
-    navigator.clipboard.writeText(txt);
-    alert('copied')
+    if(navigator.clipboard){
+        navigator.clipboard.writeText(txt);
+        alert('copied')
+    }else{
+        alert('copy text is not allowed over http secure origin!')
+    }
 }
 
 export const querySerialize = (obj:object) => {
     return Object.entries(obj).map(([key, val]) => `${key}=${val}`).join('&');
+}
+
+
+export const downloadTextFile = (txt:string) => {
+    return "data:text/json;charset=utf-8," + encodeURI(txt);
+}
+
+export const downloadJsonFile = (json:string) => {
+    return "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(json));
 }

@@ -2,6 +2,7 @@ import {ref,reactive} from "vue";
 import { reset } from '@formkit/core'
 import {useAuthStore,envVariable} from "../useStates";
 import { useNotification } from "@kyvg/vue3-notification";
+import {downloadTextFile} from "../../utils/Helper";
 
 export const useGenerate=()=>{
     const { notify }  = useNotification()
@@ -10,18 +11,19 @@ export const useGenerate=()=>{
     const downloadAnchorElem=ref<HTMLAnchorElement|null>(null);
     const generateUserForm=ref<HTMLFormElement|null>(null);
     const generateUsersData=reactive({
-        on:false,
-        msg:'',
-        msgFlag:false,
-        isDownloadAvailable:false,
-        data:[] as any[]
+        on:false as boolean,
+        msg:'' as string,
+        msgFlag:false as boolean,
+        isDownloadAvailable:false as boolean,
+        data:[] as any[],
+        modalFlag:false
     })
 
     const downloadGeneratedDataHandler = () => {
         if(downloadAnchorElem.value && generateUsersData.data){
-            let dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(generateUsersData.data));
-            downloadAnchorElem.value.setAttribute("href",     dataStr     );
-            downloadAnchorElem.value.setAttribute("download", `generatedUser.json`);
+            const text:string=generateUsersData.data.map(item=> `username:${item.user}\npassword:${item.passwd}`).join('\n<------------->\n')
+            downloadAnchorElem.value.setAttribute("href",     downloadTextFile(text)     );
+            downloadAnchorElem.value.setAttribute("download", `generatedUser.txt`);
             downloadAnchorElem.value.click();
         }
     }
@@ -32,6 +34,7 @@ export const useGenerate=()=>{
         generateUsersData.msg=''
         generateUsersData.isDownloadAvailable=false
         generateUsersData.data=[]
+        generateUsersData.modalFlag=false
         fetch(apiBase+'/user/generate',{
             method:'POST',
             body:JSON.stringify(value),
@@ -54,6 +57,7 @@ export const useGenerate=()=>{
                 })
                 generateUsersData.isDownloadAvailable=true
                 generateUsersData.data=response
+                generateUsersData.modalFlag=value.g_count < 5
                 reset('generateUserForm')
             }
         }).catch(err=>{
