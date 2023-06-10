@@ -164,7 +164,7 @@ router.post('/change-password/:username',(req,res)=>{
     const username=req.params.username;
     const token=req.headers.token;
     if(username ) {
-        const query=helper.querySerialize({username})
+        const query=helper.querySerialize({mode:'users',username})
         fetch(process.env.API_BASE+'change-passwd-user?'+query,{
             headers:{
                 'Content-Type':'application/json',
@@ -224,7 +224,6 @@ router.get('/online-list',(req,res)=>{
             Authorization:`Bearer ${token}`
         },
     }).then(response=>response.json()).then(response=>{
-        console.log(response)
         res.status(200).send(JSON.stringify({
             titles:['#','Username','IP Address','Management'],
             rows:response.map((item,index)=>{

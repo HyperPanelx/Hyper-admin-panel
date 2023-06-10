@@ -47,12 +47,13 @@ import { useNotification } from "@kyvg/vue3-notification";
 import { reset } from '@formkit/core'
 import VBloader from '../../../components/global/VBloader.vue';
 import {envVariable,useAuthStore} from "../../../composables/useStates";
+import {useLogout} from "../../../composables/useLogout";
 const {apiBase,apiKey}=envVariable()
 const { notify }  = useNotification()
 const {token,username}=useAuthStore()
 const changePasswordForm=ref<any>(null);
 const fetchFlag=ref(false)
-
+const {logoutHandler}=useLogout()
 
 
 const changePasswordSubmit = (value) => {
@@ -79,9 +80,10 @@ const changePasswordSubmit = (value) => {
       notify({
         type:'success',
         title:'Change Password',
-        text:'password changed successfully'
+        text:'password changed successfully! you need to login again.'
       })
       reset('changePasswordForm')
+      logoutHandler()
     }
   }).catch(err=>{
     console.log(err)

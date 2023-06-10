@@ -31,7 +31,24 @@ router.post('/change-password',(req,res)=>{
     const body=req.body
     const token=req.headers.token
     if(body) {
-        const query=helper.querySerialize({username:body.username,new_pass:body.new_password})
+        const query=helper.querySerialize({mode:'admin',username:body.username,passwd:body.new_password})
+
+        fetch(process.env.API_BASE+'change-passwd-user?'+query,{
+            headers:{
+                'Content-Type':'application/json',
+                Authorization:`Bearer ${token}`
+            },
+        }).then(response=>response.json()).then(response=>{
+            if(response){
+                res.status(200).send('ok').end()
+            }else{
+                res.status(401).send('error in connecting to api').end()
+            }
+        }).catch(err=>{
+            res.status(401).send('error in connecting to api').end()
+        })
+
+
         res.status(200).send(JSON.stringify('ok')).end()
     }else{
         res.status(400).send('missing required body!').end()
