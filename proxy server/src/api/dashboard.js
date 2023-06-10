@@ -40,25 +40,27 @@ router.get('/server',(req,res)=>{
 })
 router.get('/users-status',(req,res)=>{
     const token=req.headers.token
-    res.status(200).send(JSON.stringify([
-        {
-            title:'All Users',
-            number:20,
-            theme:'indigo'
-        },{
-            title:'Active Users',
-            number:65,
-            theme:'green'
-        },{
-            title:'Online Users',
-            number:40,
-            theme:'blue'
-        },{
-            title:'Blocked Users',
-            number:20,
-            theme:'red'
-        },
-    ]) ).end()
+
+    fetch(process.env.API_BASE+'status-clients',{
+        headers:{
+            'Content-Type':'application/json',
+            Authorization:`Bearer ${token}`
+        }
+    }).then(response=>response.json()).then(response=>{
+        res.status(200).send(JSON.stringify([
+            {
+                title:'All Users', number:response.all_users,theme:'indigo'
+            },{
+                title:'Active Users', number:response.active_users, theme:'green'
+            },{
+                title:'Online Users', number:response.active_users, theme:'blue'
+            },{
+                title:'Blocked Users', number:response.disabled_users,theme:'red'
+            },
+        ]) ).end()
+    }).catch(err=>{
+        res.status(400).send('error in connecting to api').end()
+    })
 })
 
 
