@@ -11,7 +11,7 @@ export const textColor:Plugin={
 export const bgColor:Plugin={
     install(app:App<any>,option:any){
         app.config.globalProperties.$bgColor=(key:string)=>{
-            return {'bg-red-200':key==='red','bg-sky-200':key==='blue','bg-indigo-200':key==='indigo','bg-green-200':key==='green','bg-yellow-200':key==='yellow'}
+            return {'!bg-red-200':key==='red','!bg-sky-200':key==='blue','!bg-indigo-200':key==='indigo','!bg-green-200':key==='green','!bg-yellow-200':key==='yellow'}
         }
     }
 }

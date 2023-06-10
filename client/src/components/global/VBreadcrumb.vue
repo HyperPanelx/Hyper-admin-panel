@@ -9,7 +9,7 @@
             <span class="dark:text-primary-light-1" v-else>{{item.name}}</span>
           </li>
           <li>
-            <span class="text-[0.9rem] text-gray-600 dark:text-primary-light-1" v-if="index!==pages.length-1">/</span>
+            <span :class="{'!text-blue-700':item.link}" class="text-[0.9rem] text-gray-600 dark:text-primary-light-1" v-if="index!==pages.length-1">></span>
           </li>
         </template>
       </ul>

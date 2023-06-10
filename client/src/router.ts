@@ -11,7 +11,7 @@ const onlineUsers=()=>import( './pages/onlineUsers.vue')
 const generateUser=()=>import('./pages/users/generate.vue')
 const login=()=>import( './pages/login.vue')
 const error=()=>import( './pages/error.vue')
-
+const editUser=()=>import('./pages/users/edit.vue')
 
 //// setting page
 const api=()=>import( './pages/settings/index/api.vue')
@@ -33,6 +33,7 @@ const routes:RouteRecordRaw[]=[
             name:'DASHBOARD'
         },
         children:[
+
             {
                 component:dashboard,
                 path:'dashboard',
@@ -46,6 +47,12 @@ const routes:RouteRecordRaw[]=[
                     name:'USERS'
                 },
                 children:[
+                    {
+                        component:editUser,
+                        path:'edit',
+                        name:'EDIT_USER',
+                        meta:{title:'Edit User | Hyper'}
+                    },
                     {
                         component:createUser,
                         path:'create',

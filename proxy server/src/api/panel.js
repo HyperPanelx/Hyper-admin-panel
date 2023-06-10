@@ -58,7 +58,6 @@ router.post('/change-ssh',(req,res)=>{
     const body=req.body
     const token=req.headers.token
     if(body) {
-        console.log(body)
         const query=helper.querySerialize({new_ssh:Number(body.new_ssh)})
         res.status(200).send(JSON.stringify('ok')).end()
     }else{

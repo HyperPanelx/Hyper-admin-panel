@@ -208,10 +208,49 @@ router.post('/generate',(req,res)=>{
         res.status(400).send('missing required body!').end()
     }
 
+});
+router.get('/detail',(req,res)=>{
+    const username=req.query.username
+    const token=req.headers.token;
+    if(username){
+        res.status(200).send(JSON.stringify({
+            username:'hooman_77',
+            telegram_id:'hooman_77',
+            phone:'09921929653',
+            email:'hoomanmousavi77@gmail.com',
+            traffic:{
+                num:12,
+                unit:'Gigabyte'
+            }
+        }))
+    }else{
+        res.status(400).send('missing required query param username!').end()
+    }
+
+});
+
+router.put('/edit',(req,res)=>{
+    const token=req.headers.token;
+    const body=req.body
+    if(body){
+        const query=helper.querySerialize({
+            username:body.e_username,
+            telegram_id :body.e_telegram_id,
+            phone:body.e_phone,
+            email:body.e_email,
+            traffic:body.e_traffic ? `${body.e_traffic} ${body.e_traffic_unit}` : ''
+        })
+        const response=''
+        if(response.detail){
+            res.status(200).send(JSON.stringify(response))
+        }else{
+            res.status(200).send(JSON.stringify('ok'))
+        }
+    }else{
+        res.status(400).send('missing required body!').end()
+    }
+
 })
-
-
-
 
 
 

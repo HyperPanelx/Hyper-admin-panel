@@ -1,16 +1,14 @@
 <template>
   <VTooltip content="Edit" inner-class="!w-3 !right-[-2px] !bg-primary-dark-1/70">
-    <button @click="editUser(uid)" class=" btn-rose btn-operation">
+    <router-link :to="{name:'EDIT_USER',query:{username:user}}"  class=" btn-rose btn-operation">
       <font-awesome-icon class="text-1.3 text-primary-light-1" icon="fa-regular fa-pen-to-square" />
-    </button>
+    </router-link>
   </VTooltip>
 </template>
 
 <script setup lang="ts">
 const props=defineProps<{uid:number,user:string}>();
 import VTooltip from '../global/VTooltip.vue'
-import {useEdit} from "../../composables/users/useEdit";
-const {editUser}=useEdit(props)
 
 </script>
 
