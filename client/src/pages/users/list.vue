@@ -15,7 +15,32 @@
       <column col="12">
         <VCard title="users list" class="!overflow-visible" body-class="!p-0">
           <PaginationControl  @refresh="tableStore.getUsersList()"/>
-          <UsersTable v-if="paginationData.currentPageData" :searchResultFlag="paginationData.searchResultFlag" :rows="paginationData.currentPageData" :titles="tableData.titles" />
+          <Table v-if="paginationData.currentPageData"
+                 :searchResultFlag="paginationData.searchResultFlag"
+                 :rows="paginationData.currentPageData"
+                 :titles="tableData.titles" >
+            <tr class="table-hover td-border" :class="{'row-select':selectedUserToDelete?.includes(item.user)}"  v-for="item in paginationData.currentPageData">
+              <UsersTableRow
+                  :user="item.user"
+                  :traffic="item.traffic"
+                  :usedVolume="item.usedVolume"
+                  :multi="item.multi"
+                  :phone="item.phone"
+                  :email="item.email"
+                  :registered="item.registered"
+                  :exdate="item.exdate"
+                  :status="item.status"
+                  :uid="item.uid"
+                  :passwd="item.passwd"
+                  :telegram_id="item.telegram_id"
+                  :desc="item.desc"
+                  :referral="item.referral"
+              />
+            </tr>
+          </Table>
+
+
+<!--          <UsersTable v-if="paginationData.currentPageData" :searchResultFlag="paginationData.searchResultFlag" :rows="paginationData.currentPageData" :titles="tableData.titles" />-->
           <Pagination />
         </VCard>
       </column>
@@ -24,17 +49,19 @@
 </template>
 
 <script setup lang="ts">
+import Table from '../../components/Table/index.vue';
+import UsersTableRow from '../../components/Users/TableRow.vue'
 import  VBreadcrumb from '../../components/global/VBreadcrumb.vue';
 import VCard from '../../components/global/VCard.vue'
 import PaginationControl from '../../components/Pagination/Control.vue'
 import Pagination from '../../components/Pagination/index.vue'
-import UsersTable from '../../components/Users/Table.vue'
 import {useTableStore} from "../../composables/useStates";
 import {onMounted} from "vue";
 const {paginationData,tableStore,fetchTableDataFlag,tableData}=useTableStore()
 onMounted(async ()=>{
   await tableStore.getUsersList()
 })
+const {selectedUserToDelete}=useTableStore()
 
 </script>
 

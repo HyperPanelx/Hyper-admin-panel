@@ -1,7 +1,7 @@
 import {useTableStore,useAuthStore,envVariable,useDashboardStore} from "../useStates";
 import {ref} from "vue";
 import { useNotification } from "@kyvg/vue3-notification";
-export const useOnlineUserOperation=(props:any)=>{
+export const useKill=(props:any)=>{
     const { notify }  = useNotification()
     const {apiBase,apiKey}=envVariable()
     const {tableStore}=useTableStore()
@@ -45,19 +45,12 @@ export const useOnlineUserOperation=(props:any)=>{
         })
 
     };
-    const checkboxHandler = () => {
-        if(tableStore.selectedOnlineUserToKill.includes(props.user)){
-            const idx=tableStore.selectedOnlineUserToKill.findIndex(item=>item===props.user)
-            tableStore.selectedOnlineUserToKill.splice(idx,1)
-        }else{
-            tableStore.selectedOnlineUserToKill.push(props.user)
-        }
-    }
+
 
 
 
 
     return{
-        checkboxHandler,killUser,modalFlag
+       killUser,modalFlag
     }
 }

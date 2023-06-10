@@ -224,11 +224,12 @@ router.get('/online-list',(req,res)=>{
             Authorization:`Bearer ${token}`
         },
     }).then(response=>response.json()).then(response=>{
+        console.log(response)
         res.status(200).send(JSON.stringify({
             titles:['#','Username','IP Address','Management'],
-            rows:response.slice(1,response.length-1).split(',').map((item,index)=>{
+            rows:response.map((item,index)=>{
                 return {
-                    user:item.trim().slice(1,item.trim().length-1),
+                    user:item,
                     ip:'',
                     uid:index+1
                 }
