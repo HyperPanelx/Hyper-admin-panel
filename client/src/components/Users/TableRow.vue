@@ -1,7 +1,7 @@
 <template>
   <td>
     <div class="pl-0.5">
-      <input type="checkbox" class="v-checkbox" @change="checkboxHandler" :checked="selectedUserToDelete?.includes(user)" :name="user" :id="user">
+      <CheckBox :user="user"/>
     </div>
   </td>
   <td >
@@ -69,115 +69,23 @@
   </td>
   <td >
     <div class="p-1 text-center flex gap-0.5 items-center">
-      <VDropdown top-start="10px" top-end="0px" dropdown-class="!w-11 !left-[-11.5rem] !top-[0]" v-model="dropdownFlag">
-        <template #parent>
-          <VTooltip content="Setting" inner-class="!w-4 !right-[-11px] !bg-primary-dark-1/70">
-            <button  @click="toggleDropdown" class=" btn-indigo btn-operation">
-              <font-awesome-icon class="text-1.3 text-primary-light-1" icon="fa-solid fa-gear" />
-            </button>
-          </VTooltip>
-        </template>
-        <template #content>
-          <ul class="setting-dropdown">
-            <li v-for="item in settingDropdownOption" @click="selectOperation(item.title)" class="hover:bg-gray-100">
-              <font-awesome-icon class="text-0.9" :icon="item.icon" :class="item.theme" />
-              <p>{{item.title}}</p>
-            </li>
-          </ul>
-        </template>
-      </VDropdown>
-
-      <VTooltip content="Edit" inner-class="!w-3 !right-[-2px] !bg-primary-dark-1/70">
-        <button @click="editUser(uid)" class=" btn-rose btn-operation">
-          <font-awesome-icon class="text-1.3 text-primary-light-1" icon="fa-regular fa-pen-to-square" />
-        </button>
-      </VTooltip>
-      <VTooltip content="Download user detail" inner-class="!w-10 !right-[-18px] !bg-primary-dark-1/70">
-        <button @click="downloadUserDetail" class="btn-operation btn-teal ">
-          <font-awesome-icon class="text-1.3 text-primary-light-1" icon="fa-solid fa-download" />
-          <a ref="downloadAnchorElem" style="display:none"></a>
-        </button>
-      </VTooltip>
+      <Settings  :user="user" :uid="uid" :exdate="exdate"/>
+      <Edit :uid="uid" :user="user" />
+      <Download v-bind="props" />
     </div>
   </td>
-  <VModal :fade-outside="false" class="!p-0 !h-auto" v-model="operationData.modal">
-    <div class="modal-body">
-      <p v-if="operationData.changePassword" class="text-1 text-gray-800 dark:text-primary-dark-3 flex items-center gap-0.5">Password changed.</p>
-      <p v-else class="text-1 text-gray-800 dark:text-primary-dark-3 flex items-center gap-0.5"> Are you sure?</p>
-      <row class="mt-1.5 justify-center">
-        <column col="6">
-          <p class="font-second text-right dark:text-primary-light-1">Operation: </p>
-        </column>
-        <column col="6">
-          <p class="font-second dark:text-primary-light-1">{{operationData.name}}</p>
-        </column>
-      </row>
-      <row class="mt-0.5">
-        <column col="6">
-          <p class="font-second text-right dark:text-primary-light-1">username:</p>
-        </column>
-        <column col="6">
-          <p class="font-second dark:text-primary-light-1">{{operationData.username}}</p>
-        </column>
-      </row>
-      <row v-if="operationData.changePassword" class="mt-0.5">
-        <column col="6">
-          <p class="font-second text-right dark:text-primary-light-1">new password:</p>
-        </column>
-        <column col="6">
-          <p @click="copyText(operationData.newPassword)" class="font-second dark:text-primary-light-1">{{operationData.newPassword}}</p>
-        </column>
-      </row>
-      <row v-if="operationData.renewUser" class="mt-0.5">
-        <column col="6">
-          <p class="font-second text-right dark:text-primary-light-1">expiration date:</p>
-        </column>
-        <column col="6">
-          <FormKit id="newExpirationDateForm" type="form" ref="newExpirationDateForm"  @submit="renewUser"  :actions="false" >
-            <FormKit
-                name="new_exp"
-                id="new_exp"
-                validation-label="New expiration date"
-                type="date"
-                :value="exdate"
-                help-class="dark:text-primary-light-1"
-                help="Enter a new expiration day."
-                :validation="'required|date_after:'+exdate"
-            />
-          </FormKit>
-        </column>
-      </row>
-
-    </div>
-    <div class="modal-footer">
-      <template v-for="item in settingDropdownOption">
-        <button v-on="handlers(item.title)" v-if="operationData.name===item.title" class="btn btn-secondary btn-sm" >
-          Ok
-        </button>
-      </template>
-      <button class="btn btn-indigo btn-sm" @click="operationData.modal=false">
-        Close
-      </button>
-    </div>
-  </VModal>
-
 </template>
 
 <script setup lang="ts">
 import {stringToPassword,copyText} from "../../utils/Helper";
-import {settingDropdownOption} from "../../utils/Data";
-import VDropdown from '../../components/global/VDropdown.vue'
-import VModal from '../../components/global/VModal.vue'
-import {useTableStore} from "../../composables/useStates";
-import VTooltip from '../../components/global/VTooltip.vue'
-import {useUserOperation} from "../../composables/users/useOperation";
+import Settings from './Setting.vue'
+import Edit from './Edit.vue'
+import Download from './Download.vue'
+import CheckBox from './Check.vue'
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
+import {ref} from "vue";
 const props=defineProps(['user','traffic','usedVolume','multi','phone','email','registered','exdate','status','uid','passwd','telegram_id','desc','referral']);
-const {editUser,downloadUserDetail,toggleDropdown,downloadAnchorElem,dropdownFlag,showPasswordFlag,selectOperation,operationData,handlers,renewUser,newExpirationDateForm,checkboxHandler}=useUserOperation(props);
-const {selectedUserToDelete}=useTableStore();
-
-
-
+const showPasswordFlag=ref<boolean>(false)
 
 
 </script>

@@ -23,7 +23,7 @@
             </column>
             <column md="4" col="12">
               <FormKit
-                  validation="required"
+                  :validation="`required|date_after:${date.getFullYear()}-${date.getDay()}-${date.getDate()}`"
                   validation-label="Expiration Date"
                   type="date"
                   id="g_expiration_date"
@@ -112,7 +112,9 @@ import VCard from '../../components/global/VCard.vue'
 import VBloader from '../../components/global/VBloader.vue'
 import {useGenerate} from "../../composables/users/useGenerate";
 import {copyText} from "../../utils/Helper";
-const {castNumber,generateUserForm,submitForm,generateUserFormSubmit,generateUsersData,downloadGeneratedDataHandler,downloadAnchorElem}=useGenerate()
+const {castNumber,generateUserForm,submitForm,generateUserFormSubmit,generateUsersData,downloadGeneratedDataHandler,downloadAnchorElem}=useGenerate();
+const date=new Date()
+
 </script>
 
 <style scoped>

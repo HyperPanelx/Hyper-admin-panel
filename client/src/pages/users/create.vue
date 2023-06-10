@@ -79,7 +79,7 @@
             </column>
             <column col="12" md="6">
               <FormKit
-                  validation="required"
+                  :validation="`required|date_after:${date.getFullYear()}-${date.getDay()}-${date.getDate()}`"
                   validation-label="Expiration Date"
                   type="date"
                   id="expiration_date"
@@ -217,6 +217,7 @@ import {useCreateUser} from "../../composables/users/useCreate";
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 const {createUserFormSubmit,fetchOperationData,createSingleUserForm,submitForm,castNumber,closeModal,newCreatedUserData,copyCreatedUserInfo}=useCreateUser();
 const showPasswordFlag=ref<boolean>(false);
+const date=new Date()
 </script>
 
 <style scoped>

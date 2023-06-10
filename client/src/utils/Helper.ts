@@ -1,4 +1,6 @@
 import {ISidebar} from "./Types";
+import { useNotification } from "@kyvg/vue3-notification";
+
 export const usernameRegex=/^(?=.{3,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/g
 export const passwordRegex=/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/g
 export const sidebarItemData:ISidebar[]=[
@@ -60,11 +62,18 @@ export const stringToPassword=(str:string)=>{
 }
 
 export const copyText = (txt:string) => {
+    const { notify }  = useNotification()
     if(navigator.clipboard){
         navigator.clipboard.writeText(txt);
-        alert('copied')
+        notify({
+            type:'success',
+            title:'Copied'
+        })
     }else{
-        alert('copy text is not allowed over http secure origin!')
+        notify({
+            type:'error',
+            title:'copy text is not allowed over http secure origin!'
+        })
     }
 }
 

@@ -3,15 +3,12 @@ import {envVariable} from "../useStates";
 import {ref,reactive} from "vue";
 import {useTableStore,useAuthStore,useDashboardStore} from "../useStates";
 import { useNotification } from "@kyvg/vue3-notification";
-import {downloadTextFile} from "../../utils/Helper";
 
 
-export const useUserOperation=(props:any)=>{
+export const useSettings=(props:any)=>{
     const { notify }  = useNotification()
     const {apiBase,apiKey}=envVariable()
-    const downloadAnchorElem=ref<HTMLAnchorElement|null>(null);
     const dropdownFlag=ref<boolean>(false);
-    const showPasswordFlag=ref<boolean>(false);
     const newExpirationDateForm=ref<HTMLFormElement|null>(null)
     const {tableStore}=useTableStore()
     const {token}=useAuthStore()
@@ -31,31 +28,12 @@ export const useUserOperation=(props:any)=>{
         }
     };
 
-    const checkboxHandler = () => {
-        if(tableStore.selectedUserToDelete.includes(props.user)){
-            const idx=tableStore.selectedUserToDelete.findIndex(item=>item===props.user)
-            tableStore.selectedUserToDelete.splice(idx,1)
-        }else{
-            tableStore.selectedUserToDelete.push(props.user)
-        }
-    }
 
-    const editUser = (uid:string|number) => {
-        console.log(uid)
 
-    }
     const toggleDropdown = () => {
         dropdownFlag.value=!dropdownFlag.value
     }
-    const downloadUserDetail = ()  => {
-        if(downloadAnchorElem.value){
-            const text:string=`username:${props.user}\npassword:${props.passwd}\nphone:${props.phone}\nemail:${props.email}\nexpired:${props.exdate}\nstatus:${props.status}\ntelegram id:${props.telegram_id}\nregistered:${props?.registered ?? ''}\ntraffic:${props.traffic}\nlimitation:${props.multi}\ndescription:${props.desc}\nreferral:${props.referral}\n
-            `
-            downloadAnchorElem.value.setAttribute("href",     downloadTextFile(text)     );
-            downloadAnchorElem.value.setAttribute("download", `${props.user}.txt`);
-            downloadAnchorElem.value.click();
-        }
-    }
+
 
     ///// setting operations
     const deleteUser = async () => {
@@ -251,6 +229,6 @@ export const useUserOperation=(props:any)=>{
 
 
     return{
-        editUser,downloadUserDetail,toggleDropdown,downloadAnchorElem,dropdownFlag,showPasswordFlag,deleteUser,operationData,selectOperation,changePassword,lockUser,unlockUser,handlers,renewUser,newExpirationDateForm,checkboxHandler
+        toggleDropdown,dropdownFlag,selectOperation,operationData,handlers,renewUser,newExpirationDateForm
     }
 }
