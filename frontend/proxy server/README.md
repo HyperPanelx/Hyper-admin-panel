@@ -27,7 +27,7 @@ PORT=9001
 
 ## Development Server
 
-Start the development server on `http://localhost:3001`
+Start the development server on `http://localhost:9001`
 
 ```bash
 npm run start
