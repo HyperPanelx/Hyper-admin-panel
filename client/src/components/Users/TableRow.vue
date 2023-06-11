@@ -6,18 +6,18 @@
   </td>
   <td >
     <div class="p-1 ">
-      <div class="mb-0.5 flex items-center gap-1">
-        <font-awesome-icon class="dark:!text-primary-dark-3 text-gray-700 text-0.8" icon="fa-solid fa-user"/>
+      <div class="mb-0.5 flex items-center">
+        <font-awesome-icon class="dark:!text-primary-dark-3 text-gray-700 text-0.8 mr-1" icon="fa-solid fa-user"/>
         <p @click="copyText(user)" class="text-gray-800 dark:text-primary-light-1 ">
           {{user}}
         </p>
       </div>
-      <div v-if="passwd" class="mb-0.5 flex items-center gap-1">
-        <font-awesome-icon class="dark:text-red-300 text-0.8 text-red-500" @click="showPasswordFlag=!showPasswordFlag" :icon="showPasswordFlag ? 'fa-solid fa-eye-slash':'fa-solid fa-eye'" size="1.2rem"/>
+      <div v-if="passwd" class="mb-0.5 flex items-center ">
+        <font-awesome-icon class="dark:text-red-300 text-0.8 mr-1 text-red-500" @click="showPasswordFlag=!showPasswordFlag" :icon="showPasswordFlag ? 'fa-solid fa-eye-slash':'fa-solid fa-eye'" size="1.2rem"/>
         <p @click="copyText(passwd)" :class="{'font-800':!showPasswordFlag,'!text-0.9':showPasswordFlag}" class=" dark:text-primary-light-1 text-1  text-gray-800">{{showPasswordFlag ? passwd :  stringToPassword(passwd)}}</p>
       </div>
-      <div v-if="telegram_id" class="flex items-center gap-1">
-        <font-awesome-icon class="dark:!text-blue-300 text-blue-700 text-0.8" icon="fa-brands fa-telegram"/>
+      <div v-if="telegram_id" class="flex items-center ">
+        <font-awesome-icon class="dark:!text-blue-300 mr-1 text-blue-700 text-0.8" icon="fa-brands fa-telegram"/>
         <p @click="copyText('@'+telegram_id)" :title="telegram_id" class="text-gray-800 text-hidden w-[7.6rem] dark:text-primary-light-1 ">
           @{{telegram_id}}
         </p>
@@ -40,12 +40,12 @@
   </td>
   <td >
     <div class="p-0.5">
-      <p @click="copyText(phone)" class="text-gray-800 flex items-center  !text-[0.8rem] mb-0.5 text-center dark:text-primary-dark-3 gap-0.5 " v-if="phone">
-        <font-awesome-icon class="text-0.8" size="0.8rem" icon="fa-solid fa-phone"  />
+      <p @click="copyText(phone)" class="text-gray-800 flex items-center  !text-[0.8rem] mb-0.5 text-center dark:text-primary-dark-3  " v-if="phone">
+        <font-awesome-icon class="text-0.8 mr-0.5" size="0.8rem" icon="fa-solid fa-phone"  />
         {{phone}}
       </p>
-      <div @click="copyText(email)" :title="email" class=" flex items-center dark:text-primary-dark-3  gap-0.5 text-gray-800" v-if="email">
-        <font-awesome-icon  size="0.8rem" class="text-0.8" icon="fa-regular fa-envelope"/>
+      <div @click="copyText(email)" :title="email" class=" flex items-center dark:text-primary-dark-3  text-gray-800" v-if="email">
+        <font-awesome-icon  size="0.8rem" class="text-0.8 mr-0.5" icon="fa-regular fa-envelope"/>
         <p class="text-gray-800 !text-[0.8rem] w-5.5 text-hidden text-center dark:text-primary-dark-3">
           {{email}}
         </p>
@@ -68,7 +68,7 @@
     </div>
   </td>
   <td >
-    <div class="p-1 text-center flex gap-0.5 items-center">
+    <div class="p-1 text-center flex items-center">
       <Settings  :user="user" :uid="uid" :exdate="exdate"/>
       <Edit :uid="uid" :user="user" />
       <Download v-bind="props" />

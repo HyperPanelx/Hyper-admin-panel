@@ -4,7 +4,7 @@
         @apply flex gap-1.5 items-center my-1 relative
     }
     .input-wrapper label{
-        @apply text-gray-500 font-400 text-1 absolute left-[-110px] w-[80px] text-left cursor-pointer
+        @apply text-gray-500 font-400 text-1 absolute md:left-[-110px] left-[-3px] top-[-24px] md:top-0 w-[80px] text-left cursor-pointer
     }
     .v-input-rest{
         @apply outline-none border-none focus:border-none focus:outline-none
@@ -25,7 +25,7 @@
         @apply bg-secondary-light-2  shadow-[0_2px_6px_0_rgba(114,124,245,0.5)] hover:bg-[#6973e3] focus:ring-4 focus:ring-secondary-light-2/30 focus:ring-offset-2
     }
     .btn-indigo.active{
-        @apply !bg-blue-500
+        @apply !bg-indigo-500
     }
     .btn-success{
         @apply bg-[#0acf97] shadow-[0_2px_6px_0_rgba(10,207,151,0.5)] hover:bg-[#09bf8c] focus:ring-[#0acf97]/30 focus:ring-offset-2 focus:ring-4

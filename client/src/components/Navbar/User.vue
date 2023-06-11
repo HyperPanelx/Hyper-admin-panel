@@ -19,13 +19,13 @@
         <p class="text-gray-600 text-0.7 p-0.5 font-600 dark:text-primary-dark-3">Welcome!</p>
       <ul>
         <li >
-          <router-link class="flex gap-0.7 px-1 items-center py-0.7 hover:bg-gray-100/50 dark:hover:bg-primary-dark-2/20" :to="{name:'SETTINGS'}">
-            <font-awesome-icon class="text-gray-700 dark:text-primary-dark-3" icon="fa-solid fa-gear"/>
+          <router-link class="flex  px-1 items-center py-0.7 hover:bg-gray-100/50 dark:hover:bg-primary-dark-2/20" :to="{name:'SETTINGS'}">
+            <font-awesome-icon class="text-gray-700 mr-0.7 dark:text-primary-dark-3" icon="fa-solid fa-gear"/>
             <p class="text-0.8 text-gray-700 dark:text-primary-dark-3">Settings</p>
           </router-link>
         </li>
-        <li @click="logoutHandler" class="flex gap-0.7 px-1 items-center py-0.7 hover:bg-gray-100/50 dark:hover:bg-primary-dark-2/20">
-          <font-awesome-icon class="text-gray-700 dark:text-primary-dark-3" icon="fa-solid fa-arrow-right-from-bracket"/>
+        <li @click="logoutHandler" class="flex  px-1 items-center py-0.7 hover:bg-gray-100/50 dark:hover:bg-primary-dark-2/20">
+          <font-awesome-icon class="text-gray-700 mr-0.7 dark:text-primary-dark-3" icon="fa-solid fa-arrow-right-from-bracket"/>
           <p class="text-0.8 text-gray-700 dark:text-primary-dark-3">Logout</p>
         </li>
       </ul>

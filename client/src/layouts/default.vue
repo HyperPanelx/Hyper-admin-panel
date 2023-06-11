@@ -7,12 +7,14 @@
         <slot />
       </div>
     </section>
+    <Footer/>
   </main>
 </template>
 
 <script setup lang="ts">
 import Navbar from '../components/layout/Navbar.vue';
-import Sidebar from '../components/layout/Sidebar.vue'
+import Sidebar from '../components/layout/Sidebar.vue';
+import Footer from '../components/layout/Footer.vue'
 import {useDashboardStore} from "../composables/useStates";
 const {sidebarCollapseFlag}=useDashboardStore()
 

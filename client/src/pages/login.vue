@@ -12,7 +12,7 @@
             </div>
             <div class="login-form-content">
               <form @submit.prevent="formHandler">
-                <row class="justify-center pl-4">
+                <row class="justify-center md:pl-4">
                   <column md="8" col="12">
                     <VTInput type="text"
                              placeholder="Enter username"
@@ -23,7 +23,7 @@
                     />
                   </column>
                 </row>
-                <row class="justify-center pl-4">
+                <row class="justify-center md:pl-4">
                   <column md="8" col="12">
                     <VTInput type="password"
                              placeholder="Enter password"
@@ -34,12 +34,12 @@
                     />
                   </column>
                 </row>
-                <row  class="justify-center pl-4">
+                <row  class="justify-center md:pl-4">
                   <column md="8" col="12" class="flex justify-between items-center">
                     <VCheckbox v-model="userData.rememberMe" label="Remember me" />
                   </column>
                 </row>
-                <row class="justify-center pl-4 mt-2">
+                <row class="justify-center md:pl-4 mt-2">
                   <column md="8">
                     <VBloader class="btn btn-primary btn-md"
                               animation="slide-down"

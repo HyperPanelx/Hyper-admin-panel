@@ -1,5 +1,5 @@
 <template>
-  <div class="p-2 shadow-[inset_0_0px_5px_0_rgba(0,0,0,0.1)] overflow-hidden flex justify-between items-center">
+  <div class="p-2 shadow-[inset_0_0px_5px_0_rgba(0,0,0,0.1)] overflow-hidden flex md:flex-row flex-col md:justify-between md:items-center">
     <FormKit type="form"  @submit="changePerPageHandler"  :actions="false" >
       <div class="flex gap-1 items-center">
         <FormKit
@@ -18,9 +18,10 @@
         <span class="text-0.7 text-gray-600 dark:text-primary-light-1">Entries per page</span>
       </div>
     </FormKit>
-    <div class="flex gap-1 items-center">
+    <div class="flex md:flex-row flex-col  md:mt-0 mt-2 items-center">
       <FormKit
           type="text"
+          outer-class="w-full"
           input-class=" font-main"
           label="Search username..."
           label-class="dark:text-primary-dark-2 dark:!bg-[#37404a]  !font-main"
@@ -28,12 +29,14 @@
           @keyup="searchHandler"
           v-model="tableStore.searchText"
       />
-      <button @click="resetSearch" class="btn btn-indigo btn-md">
-        Reset
-      </button>
-      <button @click="emit('refresh')" class="btn btn-indigo btn-md">
-        Refresh Data
-      </button>
+      <div class="w-full md:ml-1 ml-0 mt-1 md:mt-0">
+        <button @click="resetSearch" class="btn btn-indigo btn-md mr-1">
+          Reset
+        </button>
+        <button @click="emit('refresh')" class="btn btn-indigo btn-md">
+          Refresh Data
+        </button>
+      </div>
     </div>
   </div>
 </template>

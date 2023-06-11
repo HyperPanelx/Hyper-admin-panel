@@ -41,7 +41,7 @@
                   name="email"
                   input-class=" font-main"
                   label="Email Address (like: abc@gmail.com)"
-                  label-class="dark:text-primary-dark-2 dark:!bg-[#37404a] !font-main"
+                  label-class="dark:text-primary-dark-2 dark:!bg-[#37404a] !font-main md:!text-1 !text-0.8"
                   :floating-label="true"
               />
             </column>
@@ -54,7 +54,7 @@
                   name="phone"
                   input-class=" font-main"
                   label="Phone Number (Required) (like: 09xxxxxxxxx)"
-                  label-class="dark:text-primary-dark-2 dark:!bg-[#37404a] !font-main"
+                  label-class="dark:text-primary-dark-2 dark:!bg-[#37404a] !font-main md:!text-1 !text-0.8"
                   :floating-label="true"
               />
 
@@ -79,7 +79,7 @@
             </column>
             <column col="12" md="6">
               <FormKit
-                  :validation="`required|date_after:${date.getFullYear()}-${date.getDay()}-${date.getDate()}`"
+                  :validation="`required|date_after:${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`"
                   validation-label="Expiration Date"
                   type="date"
                   id="expiration_date"
@@ -218,6 +218,8 @@ import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 const {createUserFormSubmit,fetchOperationData,createSingleUserForm,submitForm,castNumber,closeModal,newCreatedUserData,copyCreatedUserInfo}=useCreateUser();
 const showPasswordFlag=ref<boolean>(false);
 const date=new Date()
+
+
 </script>
 
 <style scoped>

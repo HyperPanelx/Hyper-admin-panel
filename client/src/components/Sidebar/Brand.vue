@@ -1,8 +1,8 @@
 <template>
   <div class="sidebar-brand" :class="{'p-1':sidebarCollapseFlag,'!p-1':windowWidth<500}">
     <router-link :to="{name:'DASHBOARD'}">
-      <div class="flex gap-1 items-center">
-        <img class="sidebar-brand-image" :src="logoLg" alt="logo"/>
+      <div class="flex = items-center">
+        <img class="sidebar-brand-image mr-1" :src="logoLg" alt="logo"/>
         <p v-if="windowWidth>500 ? !sidebarCollapseFlag : true" class="sidebar-brand-title">
           HYPER
         </p>

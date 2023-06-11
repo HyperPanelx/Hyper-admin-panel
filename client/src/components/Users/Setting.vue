@@ -1,5 +1,5 @@
 <template>
-  <VDropdown top-start="10px" top-end="0px" dropdown-class="!w-11 !left-[-11.5rem] !top-[0]" v-model="dropdownFlag">
+  <VDropdown top-start="10px" class="mr-0.5" top-end="0px" dropdown-class="!w-11 !left-[-11.5rem] !top-[0]" v-model="dropdownFlag">
     <template #parent>
       <VTooltip content="Setting" inner-class="!w-4 !right-[-11px] !bg-primary-dark-1/70">
         <button  @click="toggleDropdown" class=" btn-indigo btn-operation">
@@ -10,7 +10,7 @@
     <template #content>
       <ul class="setting-dropdown">
         <li v-for="item in settingDropdownOption" @click="selectOperation(item.title)" class="hover:bg-gray-100">
-          <font-awesome-icon class="text-0.9" :icon="item.icon" :class="item.theme" />
+          <font-awesome-icon class="text-0.9 mr-1" :icon="item.icon" :class="item.theme" />
           <p>{{item.title}}</p>
         </li>
       </ul>
@@ -98,7 +98,7 @@ const {toggleDropdown,dropdownFlag,selectOperation,operationData,handlers,renewU
 @tailwind components;
 @layer components {
   .setting-dropdown{
-    @apply [&_li]:py-0.7 [&_li]:px-0.7  [&_li]:transition-all cursor-pointer [&_p]:font-400 [&_p]:text-0.8 [&_li]:flex [&_li]:items-center [&_li]:gap-1
+    @apply [&_li]:py-0.7 [&_li]:px-0.7  [&_li]:transition-all cursor-pointer [&_p]:font-400 [&_p]:text-0.8 [&_li]:flex [&_li]:items-center
   }
   .formkit-input{
     @apply  !font-second

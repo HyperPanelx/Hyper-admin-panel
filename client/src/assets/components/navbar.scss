@@ -17,7 +17,7 @@
         @apply p-0.7 cursor-pointer hover:bg-gray-100 transition-all flex gap-1 items-center dark:hover:bg-primary-dark-2/50 dark:[&_p]:hover:text-primary-light-1
     }
     .navbar-right{
-        @apply flex gap-1.8 items-center
+        @apply flex items-center
     }
     .navbar-icon{
         @apply text-[#6c757d] font-700 cursor-pointer hover:text-secondary-light-2 transition-all text-1.4

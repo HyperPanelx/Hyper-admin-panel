@@ -1,6 +1,6 @@
 <template>
   <div class="p-1 flex justify-center">
-    <button class="btn btn-rose btn-sm" @click="modalFlag=true">
+    <button class="btn btn-rose w-6 btn-sm" @click="modalFlag=true">
       Kill user
     </button>
   </div>

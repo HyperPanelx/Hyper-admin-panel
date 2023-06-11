@@ -16,7 +16,7 @@
         Kill selected users
       </button>
     </div>
-    <div class="flex items-center gap-1">
+    <div class="flex items-center [&_button]:mr-1">
       <button @click="previousPage" class="btn btn-indigo !p-[0.59rem]">
         <font-awesome-icon class="text-1.3" icon="fa-solid fa-chevron-left" size="1.7rem"/>
       </button>

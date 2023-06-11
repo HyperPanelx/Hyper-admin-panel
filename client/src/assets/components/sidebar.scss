@@ -1,7 +1,7 @@
 @tailwind components;
 @layer components {
     .sidebar{
-        @apply transition-all duration-[350ms] ease-in-out fixed sm:w-[260px]  top-0 sm:!left-0 w-[260px] left-[-260px] z-[999] h-[100vh] bg-primary-dark-1 p-1 shadow-[0_0_30px_rgba(0,0,0,0.2)]
+        @apply  transition-all duration-[350ms] ease-in-out fixed sm:w-[260px]  top-0 sm:!left-0 w-[260px] left-[-260px] z-[999] h-[100vh] bg-primary-dark-1 p-1 shadow-[0_0_30px_rgba(0,0,0,0.2)]
     }
     .sidebar-brand{
         @apply flex  items-center md:justify-center justify-between
@@ -19,7 +19,7 @@
         @apply sm:!w-[70px] left-[0px]
     }
     .sidebar-item-link{
-        @apply flex items-center gap-1.5 [&_p]:hover:text-primary-light-2 [&_svg]:hover:text-primary-light-2 [&_p]:transition-all [&_svg]:transition-all
+        @apply flex items-center [&_svg]:mr-1.5 [&_p]:hover:text-primary-light-2 [&_svg]:hover:text-primary-light-2 [&_p]:transition-all [&_svg]:transition-all
     }
     .sidebar-item-collapse{
         @apply  hover:bg-secondary-light-2 [&_span]:hover:!text-primary-light-1 cursor-pointer relative ;

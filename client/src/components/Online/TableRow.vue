@@ -12,8 +12,8 @@
     </div>
   </td>
   <td>
-    <div class="p-1 flex justify-center items-center gap-0.5">
-      <font-awesome-icon class="dark:!text-primary-dark-3 text-gray-700 text-0.8" icon="fa-solid fa-user"/>
+    <div class="p-1 flex justify-center items-center ">
+      <font-awesome-icon class="dark:!text-primary-dark-3 mr-0.5 text-gray-700 text-0.8" icon="fa-solid fa-user"/>
       <p class=" dark:text-primary-light-1">{{user}}</p>
     </div>
   </td>

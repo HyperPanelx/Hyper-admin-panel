@@ -14,8 +14,8 @@
       />
     </column>
   </row>
-  <div class="mt-1 flex gap-1 items-center">
-    <VBloader class="btn btn-success btn-md"
+  <div class="mt-1 flex  items-center">
+    <VBloader class="btn mr-1 btn-success btn-md"
               animation="slide-down"
               :duration="2000"
               @click="changeStatus('Active')"

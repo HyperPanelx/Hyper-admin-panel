@@ -1,5 +1,5 @@
 <template>
-  <div v-if="rows" class="table-responsive !overflow-visible">
+  <div v-if="rows" class="table-responsive md:!overflow-visible">
     <table class="w-full">
       <TableHead :titles="titles"/>
 

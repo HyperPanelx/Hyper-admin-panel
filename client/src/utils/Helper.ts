@@ -61,18 +61,20 @@ export const stringToPassword=(str:string)=>{
     return str.split('').map(item=>'•').join('')
 }
 
-export const copyText = (txt:string) => {
+export const copyText = async (txt:string) => {
     const { notify }  = useNotification()
     if(navigator.clipboard){
-        navigator.clipboard.writeText(txt);
+       await navigator.clipboard.writeText(txt);
         notify({
             type:'success',
-            title:'Copied'
+            title:'Copied',
+            duration:1
         })
     }else{
         notify({
             type:'error',
-            title:'copy text is not allowed over http secure origin!'
+            title:'copy text is not allowed over http secure origin!',
+            duration:2
         })
     }
 }

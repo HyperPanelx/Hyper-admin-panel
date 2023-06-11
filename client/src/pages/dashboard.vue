@@ -82,8 +82,8 @@
           <template  v-slot:body>
             <apexchart
                 v-if="fetchDashboardDataFlag"
-                :class="{'md:!left-[-65px]':sidebarCollapseFlag}"
-                class="md:left-[-83px] dark:[&_*]:!text-primary-light-1 left-[-35px] relative"
+                :class="{'lg:!left-[-65px]':sidebarCollapseFlag}"
+                class="md:left-[-83px] dark:[&_*]:!text-primary-light-1 lg:left-[-85px] sm:left-[-68px] left-[-10px] relative"
                 type="donut"
                 width="350"
                 height="300"

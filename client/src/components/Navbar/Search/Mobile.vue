@@ -1,5 +1,5 @@
 <template>
-  <VDropdown dropdown-class="!w-22 !overflow-visible p-1 dark:bg-primary-dark-1 z-[20] dark:border-primary-dark-3/20 !left-[-10rem]" class="lg:hidden block" v-model="openDropdownFlag">
+  <VDropdown dropdown-class="!w-22 !overflow-visible p-1 dark:bg-primary-dark-1 z-[20] dark:border-primary-dark-3/20 !left-[-10rem]" class="lg:hidden block  mr-1.8" v-model="openDropdownFlag">
     <template v-slot:parent>
       <font-awesome-icon  @click="openDropdownFlag=!openDropdownFlag" class="navbar-icon relative bottom-[-3px]" icon="fa-solid fa-magnifying-glass" size="1.7rem"/>
     </template>

@@ -8,11 +8,11 @@ export const envVariable=()=>{
     const apiBase:string|undefined=process.env.API_BASE;
     const cookieName:string|undefined=process.env.COOKIE_NAME;
     const apiKey:string|undefined=process.env.API_KEY;
-
+    const appVersion:string|undefined=process.env.VERSION
 
 
     return{
-        apiBase,cookieName,apiKey
+        apiBase,cookieName,apiKey,appVersion
     }
 }
 
