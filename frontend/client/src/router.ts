@@ -13,6 +13,8 @@ const login=()=>import( './pages/login.vue')
 const error=()=>import( './pages/error.vue')
 const editUser=()=>import('./pages/users/edit.vue')
 
+
+
 //// setting page
 const api=()=>import( './pages/settings/index/api.vue')
 const backup=()=>import( './pages/settings/index/backup.vue')
@@ -33,7 +35,6 @@ const routes:RouteRecordRaw[]=[
             name:'DASHBOARD'
         },
         children:[
-
             {
                 component:dashboard,
                 path:'dashboard',
@@ -157,7 +158,7 @@ const routes:RouteRecordRaw[]=[
 
 const router=createRouter({
     routes,
-    history:createWebHistory()
+    history:createWebHashHistory()
 })
 
 

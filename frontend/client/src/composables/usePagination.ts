@@ -2,9 +2,11 @@ import {IUsers_Data} from "../utils/Types";
 import {useTableStore,envVariable,useAuthStore,useDashboardStore} from "./useStates";
 import {reactive,watch} from "vue";
 import { useNotification } from "@kyvg/vue3-notification";
+import {useRouter,useRoute} from "vue-router";
 
 
 export const usePagination=()=>{
+    const router=useRouter()
     const { notify }  = useNotification()
     const {tableStore}=useTableStore()
     const {apiKey,apiBase}=envVariable()
@@ -61,6 +63,24 @@ export const usePagination=()=>{
         changePage(tableStore.paginationData.currentPage-1)
         goToCurrentButton(tableStore.paginationData.currentPage)
     }
+    const searchHandler = () => {
+        tableStore.paginationData.sourceData=tableStore.tableData.rows
+        const searchResult=[...tableStore.paginationData.sourceData].filter(item=>{
+            return item.user.toLowerCase().startsWith(tableStore.searchText.toLowerCase())
+        });
+        tableStore.paginationData.sourceData=searchResult
+        tableStore.paginationData.searchResultFlag = searchResult.length === 0;
+        paginationUpdate()
+    }
+
+    const searchThroughQuery = () => {
+        const route=useRoute()
+        const username=route.query.username as string
+        if(username){
+            tableStore.searchText=username
+            searchHandler()
+        }
+    }
 
 
     watch(
@@ -73,7 +93,8 @@ export const usePagination=()=>{
                 tableStore.paginationData=paginationDataInitialValue
                 tableStore.paginationData.sourceData=tableStore.tableData.rows
                 tableStore.searchText=''
-                paginationUpdate()
+                paginationUpdate();
+                searchThroughQuery();
             }
         },
         {
@@ -81,22 +102,13 @@ export const usePagination=()=>{
         }
     )
 
-    const searchHandler = () => {
-        tableStore.paginationData.sourceData=tableStore.tableData.rows
-        const searchResult=[...tableStore.paginationData.sourceData].filter(item=>{
-            return item.user.toLowerCase().startsWith(tableStore.searchText.toLowerCase())
-        });
-        tableStore.paginationData.sourceData=searchResult
-        tableStore.paginationData.searchResultFlag = searchResult.length === 0;
-        paginationUpdate()
-    }
-
     const resetSearch = () => {
         tableStore.paginationData.sourceData=tableStore.tableData.rows
         tableStore.searchText=''
         paginationUpdate()
         changePage(1)
         tableStore.paginationData.searchResultFlag=false
+        router.replace({query:null})
     }
     const showMoreButton = () => {
       tableStore.paginationData.startShowPaginationButton+=tableStore.paginationData.maxShowButton

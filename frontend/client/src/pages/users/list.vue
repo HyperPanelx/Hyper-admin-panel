@@ -38,9 +38,6 @@
               />
             </tr>
           </Table>
-
-
-<!--          <UsersTable v-if="paginationData.currentPageData" :searchResultFlag="paginationData.searchResultFlag" :rows="paginationData.currentPageData" :titles="tableData.titles" />-->
           <Pagination />
         </VCard>
       </column>

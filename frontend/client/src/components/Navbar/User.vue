@@ -7,7 +7,7 @@
              class="bg-gray-100/50 p-0.5 !mr-2 ml-1.8 dark:bg-[#3c4655]  flex items-center gap-0.5 lg:w-17 w-6  cursor-pointer group lg:justify-start justify-center border-x-primary-dark-3/10 border-x-[1px]"
   >
     <template v-slot:parent>
-      <img width="40"  src="../../public/profiles/profile_1.svg"/>
+      <img width="40"  :src="`./assets/profile_${Math.floor(Math.random()*6)+1}.svg`"/>
       <div class="lg:block hidden">
         <p class="group-hover:text-secondary-light-2 text-0.9 w-7 text-gray-700 capitalize font-600 text-hidden dark:text-primary-dark-2 dark:group-hover:text-[#bccee4]" v-if="username">{{username}}</p>
         <p class="group-hover:text-secondary-light-2 text-0.7 text-gray-600 mt-0.5 dark:text-primary-dark-2 dark:group-hover:text-[#bccee4]">

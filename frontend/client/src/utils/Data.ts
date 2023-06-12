@@ -1,45 +1,5 @@
 
 
-export const fakeSearchData=[
-    {
-        name:'Hooman Mousavi',
-        rule:'Admin',
-        img:'./assets/profile_1.svg',
-        link:'DASHBOARD'
-    },
-    {
-        name:'Alireza Alikhani',
-        rule:'Admin',
-        img:'./assets/profile_2.svg',
-        link:'DASHBOARD'
-
-    },
-    {
-        name:'Hooman Mousavi',
-        rule:'Admin',
-        img:'./assets/profile_3.svg',
-        link:'DASHBOARD'
-
-    },{
-        name:'Alireza Alikhani',
-        rule:'Admin',
-        img:'./assets/profile_4.svg',
-        link:'DASHBOARD'
-
-    },
-    {
-        name:'Hooman Mousavi',
-        rule:'Admin',
-        img:'./assets/profile_5.svg',                        link:'DASHBOARD'
-
-    },
-    {
-        name:'Alireza Alikhani',
-        rule:'Admin',
-        img:'./assets/profile_6.svg',                        link:'DASHBOARD'
-
-    },
-]
 export const fakeTodayNotificationData=[
     {
         sender:'Admin',

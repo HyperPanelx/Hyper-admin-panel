@@ -29,11 +29,11 @@
       <div v-else class="my-0.5 max-h-[19.5rem] overflow-y-auto scroller">
         <template v-if="searchData.searchResult.length>0">
           <p class="uppercase text-gray-700 px-1 text-0.8 mb-0.5 dark:text-primary-dark-3">Users</p>
-          <router-link  :to="{name:item.link}" v-for="item in searchData.searchResult" class="search-result-item">
-            <img alt="profile" width="30" :src="item.img"/>
+          <router-link @click="closeResult" :to="{name:'USERS',query:{username:item}}" v-for="item in searchData.searchResult" class="search-result-item">
+            <img alt="profile" width="30" :src="`./assets/profile_${Math.floor(Math.random()*6)+1}.svg`"/>
             <div>
-              <p class="text-0.8 text-gray-700 font-600 dark:text-primary-dark-3">{{item.name}}</p>
-              <p class="text-0.7 text-gray-700 dark:text-primary-dark-3">{{item.rule}}</p>
+              <p class="text-0.8 text-gray-700 font-600 dark:text-primary-dark-3">{{item}}</p>
+              <p class="text-0.7 text-gray-700 dark:text-primary-dark-3">User</p>
             </div>
           </router-link>
         </template>

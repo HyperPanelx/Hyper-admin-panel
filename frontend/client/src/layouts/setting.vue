@@ -26,7 +26,9 @@ import VCard from '../components/global/VCard.vue'
 import {settingTabItems} from "../utils/Data";
 
 const moveWindow = () => {
-  window.scrollTo(0,800)
+  if(window.innerWidth<500){
+    window.scrollTo(0,800)
+  }
 }
 </script>
 

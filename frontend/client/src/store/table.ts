@@ -1,6 +1,8 @@
 import {defineStore} from "pinia";
 import {IUsers_Data,IOnline_Users_Data} from "../utils/Types";
 import {envVariable, useAuthStore, useDashboardStore} from "../composables/useStates";
+import {useRoute} from "vue-router";
+import {usePagination} from "../composables/usePagination";
 
 
 export const Table=defineStore('table',{
@@ -27,12 +29,13 @@ export const Table=defineStore('table',{
             dashboardStore.showPreloaderFlag=true
             fetch(apiBase+'/user/list',{
                 headers:{Authorization:apiKey,token:token.value},
-                credentials: "include"
             }).
             then(response=>response.json()).
             then(response=>{
                 this.tableData=response
-            }).catch(err=>console.log(err)).finally(()=>{
+            }).
+            catch(err=>console.log(err)).
+            finally(()=>{
                 this.fetchTableDataFlag=true
                 dashboardStore.showPreloaderFlag=false
             })
