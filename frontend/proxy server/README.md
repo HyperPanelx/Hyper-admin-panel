@@ -19,15 +19,15 @@ pnpm install
 #### Then you need to create a .env file in the root of the project and add these keys and values
 
 ```
-PORT=3001 
-API_KEY=xxx  // api server key
-API_BASE=xxx // api server address => like: http://127.0.0.1/
+API_BASE=xxx   // url of api server
+API_KEY=b3c7532e3158eea90c6fb542fb69cda06c6280cdc0d0f39d51bf78bae425e8514d8b6c7549ae26d86
+PORT=9001
 ```
 
 
 ## Development Server
 
-Start the development server on `http://localhost:3001`
+Start the development server on `http://localhost:9001`
 
 ```bash
 npm run start
