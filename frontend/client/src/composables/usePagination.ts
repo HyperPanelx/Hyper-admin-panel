@@ -7,6 +7,7 @@ import {useRouter,useRoute} from "vue-router";
 
 export const usePagination=()=>{
     const router=useRouter()
+    const route=useRoute()
     const { notify }  = useNotification()
     const {tableStore}=useTableStore()
     const {apiKey,apiBase}=envVariable()
@@ -74,7 +75,6 @@ export const usePagination=()=>{
     }
 
     const searchThroughQuery = () => {
-        const route=useRoute()
         const username=route.query.username as string
         if(username){
             tableStore.searchText=username
@@ -99,6 +99,12 @@ export const usePagination=()=>{
         },
         {
             immediate:true
+        }
+    )
+    watch(
+        ()=>route.query,
+        ()=>{
+            searchThroughQuery();
         }
     )
 

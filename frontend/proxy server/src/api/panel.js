@@ -104,7 +104,7 @@ router.get('/search',(req,res)=>{
     const username=req.query.username
     const token=req.headers.token
     if(username){
-        res.status(200).send(JSON.stringify(['user02','alireza_76','hooman_77','alireza_76','hooman_77','alireza_76']))
+        res.status(200).send(JSON.stringify(['user02','alikashi','hooman_77','alireza_76','hooman_77','alireza_76']))
 
     }else{
         res.status(400).send('missing required query param username!').end()

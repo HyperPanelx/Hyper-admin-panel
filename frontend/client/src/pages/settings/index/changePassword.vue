@@ -17,11 +17,12 @@
       <column md="6" col="12">
         <FormKit
             validation-label="password"
-            validation="required"
+            :validation="[['required'], ['matches', /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/]]"
             type="password"
             id="new_password"
             name="new_password"
             input-class=" font-main"
+            help="Minimum eight characters, at least one letter, one number and one special character"
             label="New Password"
             label-class="dark:text-primary-dark-2 dark:!bg-[#37404a] !font-main"
             :floating-label="true"
