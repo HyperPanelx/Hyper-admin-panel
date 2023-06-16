@@ -1,5 +1,5 @@
 import {defineStore} from "pinia";
-import {IUsers_Data,IServer_Status} from "../utils/Types";
+import {IUsers_Data,IServer_Status,Response} from "../utils/Types";
 import {useLogout} from "../composables/useLogout";
 import {envVariable, useAuthStore} from "../composables/useStates";
 
@@ -44,21 +44,22 @@ export const Dashboard=defineStore('dashboard',{
                 },
             }).
             then(response=>response.json()).
-            then((response:IServer_Status|boolean)=>{
-                if(!response && typeof response==='boolean'){
+            then((response:Response)=>{
+                if(response.error){
                     ///// if token is not valid user must be logged out and response = false
                     logoutHandler()
                 }else{
-                    this.serverStatus=response as IServer_Status
+                    this.serverStatus=response.data as IServer_Status
                 }
             }).catch(err=>{
                 console.log(err)
             }).finally(()=>{
-                // turn of loader flag
+                // turn off loader flag
                 this.fetchDashboardDataFlag=true
             })
         },
         async triggerInitialFetchData(){
+            const {logoutHandler}=useLogout()
             ///.env
             const {apiKey,apiBase}=envVariable()
             /// token for auth header
@@ -74,8 +75,12 @@ export const Dashboard=defineStore('dashboard',{
                 },
             }).
             then(response=>response.json()).
-            then(response=>{
-                this.usersStatusData=response
+            then((response:Response)=>{
+                if(response.error){
+                    logoutHandler()
+                }else{
+                    this.usersStatusData=response.data
+                }
             }).
             catch(err=>console.log(err)).
             finally(()=>{

@@ -3,6 +3,7 @@ import { reset } from '@formkit/core'
 import {useAuthStore,envVariable} from "../useStates";
 import { useNotification } from "@kyvg/vue3-notification";
 import {downloadTextFile} from "../../utils/Helper";
+import {Response} from "../../utils/Types";
 
 export const useGenerate=()=>{
     const { notify }  = useNotification()
@@ -45,10 +46,15 @@ export const useGenerate=()=>{
             }
         }).
         then(response=>response.json()).
-        then(response=>{
+        then((response:Response)=>{
             if(response.error){
                 /// if error in sending data
-                generateUsersData.msg=response.error
+                generateUsersData.msg=response.msg
+                notify({
+                    type:'error',
+                    title:'Generating User',
+                    text:response.msg
+                })
             }else{
                 notify({
                     type:'success',
@@ -56,7 +62,7 @@ export const useGenerate=()=>{
                     text:'User(s) generated successfully! you are able to download a json file.'
                 })
                 generateUsersData.isDownloadAvailable=true
-                generateUsersData.data=response
+                generateUsersData.data=response.data
                 generateUsersData.modalFlag=value.g_count < 5
                 reset('generateUserForm')
             }

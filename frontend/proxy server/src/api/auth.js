@@ -4,6 +4,7 @@ const router=express.Router();
 const helper=require('../helper')
 
 
+
 router.post('/login', (req,res)=>{
     const body=req.body
     if(body){
@@ -15,15 +16,15 @@ router.post('/login', (req,res)=>{
             },
         }).then(response=>response.json()).then(response=>{
             if(response.detail){
-                res.status(200).send(JSON.stringify(response)).end()
+                res.status(200).send(helper.responseHandler(true,response.detail,null)).end();
             }else{
-                res.status(200).send(JSON.stringify(response.access_token)).end()
+                res.status(200).send(helper.responseHandler(false,null,{token:response.access_token})).end();
             }
         }).catch(err=>{
-            res.status(503).send('error in connecting to api!').end()
+            res.status(200).send(helper.responseHandler(true,'error in connecting to api!',null)).end();
         })
     }else{
-        res.status(406).send('missing body params!').end()
+        res.status(200).send(helper.responseHandler(true,'username and password required!',null)).end();
     }
 });
 router.get('/me',(req,res)=>{
@@ -35,14 +36,14 @@ router.get('/me',(req,res)=>{
         }
     }).then(response=>response.json()).then(response=>{
         if(response.detail){
-            res.status(404).send('error in finding user').end()
+            res.status(200).send(helper.responseHandler(true,response.detail,null)).end();
         }else if(response.username){
-            res.status(200).send(JSON.stringify(response.username)).end()
+            res.status(200).send(helper.responseHandler(false,null,{username:response.username})).end();
         }else{
-            res.status(503).send('error in api!').end()
+            res.status(200).send(helper.responseHandler(true,'error in api!',null)).end();
         }
     }).catch(err=>{
-        res.status(503).send('error in connecting to api! route: api/auth/me => panel/me/').end()
+        res.status(200).send(helper.responseHandler(true,'error in connecting to api! route: api/auth/me => panel/me/',null)).end();
     })
 });
 

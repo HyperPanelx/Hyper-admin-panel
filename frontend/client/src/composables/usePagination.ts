@@ -1,4 +1,4 @@
-import {IUsers_Data} from "../utils/Types";
+import {IUsers_Data,Response} from "../utils/Types";
 import {useTableStore,envVariable,useAuthStore,useDashboardStore} from "./useStates";
 import {reactive,watch} from "vue";
 import { useNotification } from "@kyvg/vue3-notification";
@@ -148,18 +148,26 @@ export const usePagination=()=>{
                 Authorization:apiKey,
                 token:token.value
             }
-        }).
-        then(()=>{
-            tableStore.selectedUserToDelete.forEach(user=>{
-                const idx=tableStore.tableData.rows.findIndex((item)=>item.user===user)
-                tableStore.tableData.rows.splice(idx,1)
-            })
-            tableStore.selectedUserToDelete=[]
-            notify({
-                type:'warn',
-                title:'Delete Users Operation',
-                text:'Users deleted successfully!'
-            })
+        }).then(response=>response.json()).
+        then((response:Response)=>{
+            if(response.error){
+                notify({
+                    type:'error',
+                    title:'Delete Users Operation',
+                    text:response.msg
+                })
+            }else{
+                tableStore.selectedUserToDelete.forEach(user=>{
+                    const idx=tableStore.tableData.rows.findIndex((item)=>item.user===user)
+                    tableStore.tableData.rows.splice(idx,1)
+                })
+                tableStore.selectedUserToDelete=[]
+                notify({
+                    type:'warn',
+                    title:'Delete Users Operation',
+                    text:'Users deleted successfully!'
+                })
+            }
         }).
         catch(err=>{
             console.log(err)
@@ -187,17 +195,26 @@ export const usePagination=()=>{
                 token:token.value
             },
         }).
-        then(()=>{
-            tableStore.selectedOnlineUserToKill.forEach(user=>{
-                const idx=tableStore.tableData.rows.findIndex((item)=>item.user===user)
-                tableStore.tableData.rows.splice(idx,1)
-            });
-            tableStore.selectedOnlineUserToKill=[]
-            notify({
-                type:'warn',
-                title:'Kill Users Operation',
-                text:'Users are killed successfully!'
-            })
+        then(response=>response.json()).
+        then((response:Response)=>{
+            if(response.error){
+                notify({
+                    type:'error',
+                    title:'Kill Users Operation',
+                    text:response.msg
+                })
+            }else{
+                tableStore.selectedOnlineUserToKill.forEach(user=>{
+                    const idx=tableStore.tableData.rows.findIndex((item)=>item.user===user)
+                    tableStore.tableData.rows.splice(idx,1)
+                });
+                tableStore.selectedOnlineUserToKill=[]
+                notify({
+                    type:'warn',
+                    title:'Kill Users Operation',
+                    text:'Users are killed successfully!'
+                })
+            }
         }).
         catch(err=>{
             console.log(err)

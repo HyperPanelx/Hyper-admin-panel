@@ -1,4 +1,4 @@
-import {IUsers_Data} from "../../utils/Types";
+import {IUsers_Data,Response} from "../../utils/Types";
 import {envVariable} from "../useStates";
 import {ref,reactive} from "vue";
 import {useTableStore,useAuthStore,useDashboardStore} from "../useStates";
@@ -47,14 +47,23 @@ export const useSettings=(props:any)=>{
                 token:token.value
             },
         }).
-        then(()=>{
-            const userIndex=tableStore.tableData.rows.findIndex((item:any)=>item.uid===props.uid)
-            tableStore.tableData.rows.splice(userIndex,1)
-            notify({
-                type:'warn',
-                title:'Delete Operation',
-                text:'User deleted successfully!'
-            })
+        then(response=>response.json()).
+        then((response:Response)=>{
+            if(response.error){
+                notify({
+                    type:'error',
+                    title:'Delete Operation',
+                    text:response.msg
+                })
+            }else{
+                const userIndex=tableStore.tableData.rows.findIndex((item:any)=>item.uid===props.uid)
+                tableStore.tableData.rows.splice(userIndex,1)
+                notify({
+                    type:'warn',
+                    title:'Delete Operation',
+                    text:'User deleted successfully!'
+                })
+            }
         }).
         catch(err=>{
             console.log(err)
@@ -82,18 +91,26 @@ export const useSettings=(props:any)=>{
             },
         }).
         then(response=>response.json()).
-        then(response=>{
-            operationData.newPassword=response.password
-            operationData.changePassword=true
-            operationData.name='Password'
-            operationData.modal=true
-            const userIndex=tableStore.tableData.rows.findIndex((item:any)=>item.uid===props.uid);
-            (tableStore.tableData as IUsers_Data).rows[userIndex].passwd=response.password
-            notify({
-                type:'success',
-                title:'Change Password Operation',
-                text:'Password Changed successfully!'
-            })
+        then((response:Response)=>{
+            if(response.error){
+                notify({
+                    type:'error',
+                    title:'Change Password Operation',
+                    text:response.msg
+                })
+            }else{
+                operationData.newPassword=response.data.password
+                operationData.changePassword=true
+                operationData.name='Password'
+                operationData.modal=true
+                const userIndex=tableStore.tableData.rows.findIndex((item:any)=>item.uid===props.uid);
+                (tableStore.tableData as IUsers_Data).rows[userIndex].passwd=response.data.password
+                notify({
+                    type:'success',
+                    title:'Change Password Operation',
+                    text:'Password Changed successfully!'
+                })
+            }
         }).catch(err=>{
             operationData.modal=false
             notify({
@@ -112,14 +129,24 @@ export const useSettings=(props:any)=>{
                 token:token.value
             }
         }).
-        then(()=>{
-            notify({
-                type:'success',
-                title:'Lock User Operation',
-                text:'User locked successfully!'
-            })
-            const userIndex=tableStore.tableData.rows.findIndex((item:any)=>item.uid===props.uid);
-            (tableStore.tableData as IUsers_Data).rows[userIndex].status='disable';
+        then(response=>response.json()).
+        then((response:Response)=>{
+            if(response.error){
+                notify({
+                    type:'error',
+                    title:'Lock User Operation',
+                    text:response.msg
+                })
+            }else{
+                notify({
+                    type:'success',
+                    title:'Lock User Operation',
+                    text:'User locked successfully!'
+                })
+                const userIndex=tableStore.tableData.rows.findIndex((item:any)=>item.uid===props.uid);
+                (tableStore.tableData as IUsers_Data).rows[userIndex].status='disable';
+            }
+
         }).catch(err=>{
             notify({
                 type:'error',
@@ -139,14 +166,23 @@ export const useSettings=(props:any)=>{
                 token:token.value
             }
         }).
-        then(()=>{
-            const userIndex=tableStore.tableData.rows.findIndex((item:any)=>item.uid===props.uid);
-            (tableStore.tableData as IUsers_Data).rows[userIndex].status='enable';
-            notify({
-                type:'warn',
-                title:'Unlock User Operation',
-                text:'User unlocked successfully!'
-            })
+        then(response=>response.json()).
+        then((response:Response)=>{
+            if(response.error){
+                notify({
+                    type:'error',
+                    title:'Unlock User Operation',
+                    text:response.msg
+                })
+            }else{
+                const userIndex=tableStore.tableData.rows.findIndex((item:any)=>item.uid===props.uid);
+                (tableStore.tableData as IUsers_Data).rows[userIndex].status='enable';
+                notify({
+                    type:'warn',
+                    title:'Unlock User Operation',
+                    text:'User unlocked successfully!'
+                })
+            }
         }).catch(err=>{
             console.log(err)
             notify({
@@ -169,15 +205,24 @@ export const useSettings=(props:any)=>{
                 'Content-Type':'application/json'
             },
         }).
-        then(()=>{
-            const userIndex=tableStore.tableData.rows.findIndex((item:any)=>item.uid===props.uid);
-            (tableStore.tableData as IUsers_Data).rows[userIndex].exdate=value.new_exp;
-            operationData.renewUser=false
-            notify({
-                type:'success',
-                title:'Renew User Operation',
-                text:'User renewed successfully!'
-            })
+        then(response=>response.json()).
+        then((response:Response)=>{
+            if(response.error){
+                notify({
+                    type:'error',
+                    title:'Renew User Operation',
+                    text:response.msg
+                })
+            }else{
+                const userIndex=tableStore.tableData.rows.findIndex((item:any)=>item.uid===props.uid);
+                (tableStore.tableData as IUsers_Data).rows[userIndex].exdate=value.new_exp;
+                operationData.renewUser=false
+                notify({
+                    type:'success',
+                    title:'Renew User Operation',
+                    text:'User renewed successfully!'
+                })
+            }
         }).catch(err=>{
             console.log(err)
             notify({

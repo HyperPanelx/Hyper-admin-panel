@@ -25,7 +25,7 @@
         @apply bg-secondary-light-2  shadow-[0_2px_6px_0_rgba(114,124,245,0.5)] hover:bg-[#6973e3] focus:ring-4 focus:ring-secondary-light-2/30 focus:ring-offset-2
     }
     .btn-indigo.active{
-        @apply !bg-indigo-800
+        @apply !bg-indigo-800 hover:!bg-indigo-800;
     }
     .btn-success{
         @apply bg-[#0acf97] shadow-[0_2px_6px_0_rgba(10,207,151,0.5)] hover:bg-[#09bf8c] focus:ring-[#0acf97]/30 focus:ring-offset-2 focus:ring-4

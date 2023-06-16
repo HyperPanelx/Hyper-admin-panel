@@ -1,7 +1,7 @@
 const fetch=require('node-fetch');
 const express=require('express');
+const helper=require('../helper')
 const router=express.Router();
-
 
 router.get('/server',(req,res)=>{
     const token=req.headers.token
@@ -12,13 +12,14 @@ router.get('/server',(req,res)=>{
         }
     }).then(response=>response.json()).then(response=>{
         if(response.detail){
-            res.status(200).send(JSON.stringify(false)).end()
+            res.status(200).send(helper.responseHandler(true,response.detail,null)).end()
         }else{
             const uploadSpeed=response[1]['Upload Speed']
             const downloadSpeed=response[1]['Download Speed']
             const download=response[1]['Download']
             const upload=response[1]['Upload']
-            res.status(200).send(JSON.stringify({
+
+            res.status(200).send(helper.responseHandler(false,null,{
                 cpu:response[0].cpu,
                 ram:response[0].mem,
                 disk:response[0].hdd,
@@ -32,8 +33,7 @@ router.get('/server',(req,res)=>{
             })).end()
         }
     }).catch(err=>{
-        console.log(err)
-        res.status(400).send('error in connecting to api').end()
+        res.status(200).send(helper.responseHandler(true,'error in connecting to api',null)).end();
     })
 
 
@@ -47,19 +47,24 @@ router.get('/users-status',(req,res)=>{
             Authorization:`Bearer ${token}`
         }
     }).then(response=>response.json()).then(response=>{
-        res.status(200).send(JSON.stringify([
-            {
-                title:'All Users', number:response.all_users,theme:'indigo'
-            },{
-                title:'Active Users', number:response.active_users, theme:'green'
-            },{
-                title:'Online Users', number:response.active_users, theme:'blue'
-            },{
-                title:'Blocked Users', number:response.disabled_users,theme:'red'
-            },
-        ]) ).end()
+        if(response.detail){
+            res.status(200).send(helper.responseHandler(true,response.detail,null)).end()
+        }else{
+            res.status(200).send(helper.responseHandler(false,null,[
+                {
+                    title:'All Users', number:response.all_users,theme:'indigo'
+                },{
+                    title:'Active Users', number:response.active_users, theme:'green'
+                },{
+                    title:'Online Users', number:response.active_users, theme:'blue'
+                },{
+                    title:'Blocked Users', number:response.disabled_users,theme:'red'
+                },
+            ])).end()
+        }
+
     }).catch(err=>{
-        res.status(400).send('error in connecting to api').end()
+        res.status(200).send(helper.responseHandler(true,'error in connecting to api',null)).end()
     })
 })
 

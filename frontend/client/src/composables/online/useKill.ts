@@ -1,6 +1,8 @@
 import {useTableStore,useAuthStore,envVariable,useDashboardStore} from "../useStates";
 import {ref} from "vue";
 import { useNotification } from "@kyvg/vue3-notification";
+import {Response} from "../../utils/Types";
+
 export const useKill=(props:any)=>{
     const { notify }  = useNotification()
     const {apiBase,apiKey}=envVariable()
@@ -21,14 +23,23 @@ export const useKill=(props:any)=>{
                 token:token.value
             },
         }).
-        then(()=>{
-            const userIndex=tableStore.tableData.rows.findIndex((item:any)=>item.uid===props.uid)
-            tableStore.tableData.rows.splice(userIndex,1)
-            notify({
-                type:'warn',
-                title:'Kill User Operation',
-                text:'User is killed successfully!'
-            })
+        then(response=>response.json()).
+        then((response:Response)=>{
+            if(response.error){
+                notify({
+                    type:'error',
+                    title:'Kill User Operation',
+                    text:response.msg
+                })
+            }else{
+                const userIndex=tableStore.tableData.rows.findIndex((item:any)=>item.uid===props.uid)
+                tableStore.tableData.rows.splice(userIndex,1)
+                notify({
+                    type:'warn',
+                    title:'Kill User Operation',
+                    text:'User is killed successfully!'
+                })
+            }
         }).
         catch(err=>{
             console.log(err)

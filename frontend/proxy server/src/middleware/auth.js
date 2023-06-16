@@ -1,3 +1,5 @@
+const helper=require('../helper')
+
 module.exports = function (options) {
     return function (req, res, next) {
         if(req.originalUrl==='/api/auth/login'){
@@ -8,7 +10,7 @@ module.exports = function (options) {
             if(apiKey===process.env.API_KEY  && token){
                 next()
             }else{
-                res.status(401).send('missing api key!')
+                res.status(401).send(helper.responseHandler(true,'missing api key or token!',null))
             }
         }
 

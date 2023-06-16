@@ -5,7 +5,11 @@ export interface Login_Response {
     token_type:'bearer'
 }
 
-
+export interface Response {
+    error:boolean,
+    msg:string|null,
+    data:any|null
+}
 export interface ISidebar {
     title:string
     icon:string

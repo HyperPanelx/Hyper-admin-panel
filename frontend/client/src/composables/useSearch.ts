@@ -1,5 +1,6 @@
 import {reactive} from "vue";
 import {envVariable,useAuthStore} from "./useStates";
+import {Response} from "../utils/Types";
 
 export const useSearch=(props:{modelValue:any},emit:any)=>{
     const searchData=reactive({
@@ -21,9 +22,13 @@ export const useSearch=(props:{modelValue:any},emit:any)=>{
                     token:token.value,
                     'Content-Type':'application/json'
                 }
-            }).then(response=>response.json()).then(response=>{
-                searchData.searchResultFlag=true
-                searchData.searchResult=response
+            }).then(response=>response.json()).then((response:Response)=>{
+                if(response.error){
+                    console.log(response.error)
+                }else{
+                    searchData.searchResultFlag=true
+                    searchData.searchResult=response.data
+                }
             })
         }
     }

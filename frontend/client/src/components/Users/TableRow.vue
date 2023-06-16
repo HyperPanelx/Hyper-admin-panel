@@ -13,7 +13,7 @@
         </p>
       </div>
       <div v-if="passwd" class="mb-0.5 flex items-center ">
-        <font-awesome-icon class="dark:text-red-300 text-0.8 mr-1 text-red-500" @click="showPasswordFlag=!showPasswordFlag" :icon="showPasswordFlag ? 'fa-solid fa-eye-slash':'fa-solid fa-eye'" size="1.2rem"/>
+        <font-awesome-icon  class="dark:text-red-300 relative z-10 text-0.8 mr-1 text-red-500" @click="showPasswordFlag=!showPasswordFlag" :icon="showPasswordFlag ? 'fa-solid fa-eye-slash':'fa-solid fa-eye'" size="1.2rem"/>
         <p @click="copyText(passwd)" :class="{'font-800':!showPasswordFlag,'!text-0.9':showPasswordFlag}" class=" dark:text-primary-light-1 text-1 relative z-10 text-gray-800 ">{{showPasswordFlag ? passwd :  stringToPassword(passwd)}}</p>
       </div>
       <div v-if="telegram_id" class="flex items-center ">

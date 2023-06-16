@@ -100,6 +100,7 @@
 </template>
 
 <script setup lang="ts">
+import {Response} from "../../../utils/Types";
 import {ref} from "vue";
 import { useNotification } from "@kyvg/vue3-notification";
 import { reset } from '@formkit/core'
@@ -133,9 +134,9 @@ const handlerFormWithSessionFile =async (data) => {
         body:JSON.stringify({
           file:JSON.parse(fileReader.result)
         })
-      }).then(response=>response.json()).then(response=>{
-        if(response.detail){
-          notify({type:'error', title:'Telegram Robot Configuration', text:response.detail})
+      }).then(response=>response.json()).then((response:Response)=>{
+        if(response.error){
+          notify({type:'error', title:'Telegram Robot Configuration', text:response.msg})
         }else{
           notify({type:'success', title:'Telegram Robot Configuration', text:'Telegram Robot configured successfully'})
           reset('telegramRobotWithSessionFileForm')
@@ -160,9 +161,9 @@ const handlerFormWithoutSessionFile = (data) => {
       token:token.value
     },
     body:JSON.stringify(data)
-  }).then(response=>response.json()).then(response=>{
-    if(response.detail){
-      notify({type:'error', title:'Telegram Robot Configuration', text:response.detail})
+  }).then(response=>response.json()).then((response:Response)=>{
+    if(response.error){
+      notify({type:'error', title:'Telegram Robot Configuration', text:response.msg})
     }else{
       notify({type:'success', title:'Telegram Robot Configuration', text:'Telegram Robot configured successfully'})
       reset('telegramRobotWithoutSessionFileForm')

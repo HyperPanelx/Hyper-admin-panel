@@ -1,0 +1,1033 @@
+{
+	"info": {
+		"_postman_id": "7b96b258-2a26-4f3b-a2a1-abe04c23c791",
+		"name": "hyper admin panel",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22525055"
+	},
+	"item": [
+		{
+			"name": "authentication",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"hooman_77\",\r\n    \"password\":\"13777731Ho@\",\r\n    \"rememberMe\":true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_base}}/auth/login",
+							"host": [
+								"{{api_base}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "me",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api_base}}/auth/me",
+							"host": [
+								"{{api_base}}"
+							],
+							"path": [
+								"auth",
+								"me"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "dashboard",
+			"item": [
+				{
+					"name": "server resource",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text"
+							},
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api_base}}/dashboard/server",
+							"host": [
+								"{{api_base}}"
+							],
+							"path": [
+								"dashboard",
+								"server"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "users status",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text"
+							},
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api_base}}/dashboard/users-status",
+							"host": [
+								"{{api_base}}"
+							],
+							"path": [
+								"dashboard",
+								"users-status"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "users list table",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text"
+							},
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/javascript",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api_base}}/user/list",
+							"host": [
+								"{{api_base}}"
+							],
+							"path": [
+								"user",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create user",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text"
+							},
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"test\",\r\n    \"concurrent_user\":1,\r\n    \"expiration_date\":\"2023-7-16\",\r\n    \"telegram_id\":\"test\",\r\n    \"phone\":\"09921929653\",\r\n    \"password\":\"\",\r\n    \"referral\":\"\",\r\n    \"description\":\"\",\r\n    \"traffic\":\"\",\r\n    \"traffic_unit\":\"\"\r\n\r\n}"
+						},
+						"url": {
+							"raw": "{{api_base}}/user/create",
+							"host": [
+								"{{api_base}}"
+							],
+							"path": [
+								"user",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "generate user",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text"
+							},
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"g_concurrent_user\":1,    \r\n    \"g_expiration_date\":\"2023-7-17\",    \r\n    \"g_count\":1       \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_base}}/user/generate",
+							"host": [
+								"{{api_base}}"
+							],
+							"path": [
+								"user",
+								"generate"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete several user",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text"
+							},
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api_base}}/user/delete-several?username=focused_heisenberg&username=flamboyant_pike",
+							"host": [
+								"{{api_base}}"
+							],
+							"path": [
+								"user",
+								"delete-several"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "focused_heisenberg"
+								},
+								{
+									"key": "username",
+									"value": "flamboyant_pike"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete user",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text"
+							},
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api_base}}/user/delete/:username",
+							"host": [
+								"{{api_base}}"
+							],
+							"path": [
+								"user",
+								"delete",
+								":username"
+							],
+							"variable": [
+								{
+									"key": "username",
+									"value": "heuristic_pascal"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "lock user",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text"
+							},
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api_base}}/user/lock/:username",
+							"host": [
+								"{{api_base}}"
+							],
+							"path": [
+								"user",
+								"lock",
+								":username"
+							],
+							"variable": [
+								{
+									"key": "username",
+									"value": "distracted_volhard"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "unlock user",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text"
+							},
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api_base}}/user/unlock/:username",
+							"host": [
+								"{{api_base}}"
+							],
+							"path": [
+								"user",
+								"unlock",
+								":username"
+							],
+							"variable": [
+								{
+									"key": "username",
+									"value": "distracted_volhard"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "renew user",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text"
+							},
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\":\"2023-10-16\"\r\n}"
+						},
+						"url": {
+							"raw": "{{api_base}}/user/renew-user/:username",
+							"host": [
+								"{{api_base}}"
+							],
+							"path": [
+								"user",
+								"renew-user",
+								":username"
+							],
+							"variable": [
+								{
+									"key": "username",
+									"value": "competent_bhabha"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "change password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text"
+							},
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api_base}}/user/change-password/:username",
+							"host": [
+								"{{api_base}}"
+							],
+							"path": [
+								"user",
+								"change-password",
+								":username"
+							],
+							"variable": [
+								{
+									"key": "username",
+									"value": "competent_bhabha"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user detail",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text"
+							},
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api_base}}/user/detail?username=competent_bhabha",
+							"host": [
+								"{{api_base}}"
+							],
+							"path": [
+								"user",
+								"detail"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "competent_bhabha"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit user detail",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text"
+							},
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"e_username\":\"competent_bhabha\",\r\n    \"e_telegram_id\":\"test\",\r\n    \"e_phone\":\"09921929653\",\r\n    \"e_email\":\"hoomanmousavi77@gmail.com\",\r\n    \"e_concurrent_user\":3,\r\n    \"e_traffic\":\"20\",\r\n    \"e_traffic_unit\":\"Gigabyte\"   \r\n}"
+						},
+						"url": {
+							"raw": "{{api_base}}/user/edit",
+							"host": [
+								"{{api_base}}"
+							],
+							"path": [
+								"user",
+								"edit"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "panel",
+			"item": [
+				{
+					"name": "search",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text"
+							},
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api_base}}/panel/search?username=ali",
+							"host": [
+								"{{api_base}}"
+							],
+							"path": [
+								"panel",
+								"search"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "ali"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create admin user",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text"
+							},
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"admin_username\":\"hooman_77\",\r\n    \"admin_password\":\"13777731Ho@\"  \r\n}"
+						},
+						"url": {
+							"raw": "{{api_base}}/panel/admin",
+							"host": [
+								"{{api_base}}"
+							],
+							"path": [
+								"panel",
+								"admin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "change admin password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text"
+							},
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"hooman_77\",\r\n    \"new_password\":\"13777731Ho@\"  \r\n}"
+						},
+						"url": {
+							"raw": "{{api_base}}/panel/change-password",
+							"host": [
+								"{{api_base}}"
+							],
+							"path": [
+								"panel",
+								"change-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "change ssh port",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text"
+							},
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"new_ssh\":50\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_base}}/panel/change-ssh",
+							"host": [
+								"{{api_base}}"
+							],
+							"path": [
+								"panel",
+								"change-ssh"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "change user limitation",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text"
+							},
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\":\"Active\"\r\n}"
+						},
+						"url": {
+							"raw": "{{api_base}}/panel/user-limitation",
+							"host": [
+								"{{api_base}}"
+							],
+							"path": [
+								"panel",
+								"user-limitation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "telegram robot",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text"
+							},
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"robot_token\":\"1234\",\r\n    \"manager_id\":\"efeffe\"\r\n}"
+						},
+						"url": {
+							"raw": "{{api_base}}/panel/telegram-robot?session_file=false",
+							"host": [
+								"{{api_base}}"
+							],
+							"path": [
+								"panel",
+								"telegram-robot"
+							],
+							"query": [
+								{
+									"key": "session_file",
+									"value": "false"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "online users",
+			"item": [
+				{
+					"name": "online users list table",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text"
+							},
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/javascript",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api_base}}/user/online-list",
+							"host": [
+								"{{api_base}}"
+							],
+							"path": [
+								"user",
+								"online-list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "kill several users",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text"
+							},
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api_base}}/user/kill-several?username=shuku&username=shiva01",
+							"host": [
+								"{{api_base}}"
+							],
+							"path": [
+								"user",
+								"kill-several"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "shuku"
+								},
+								{
+									"key": "username",
+									"value": "shiva01"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "kill user",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text"
+							},
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api_base}}/user/kill-online/:username",
+							"host": [
+								"{{api_base}}"
+							],
+							"path": [
+								"user",
+								"kill-online",
+								":username"
+							],
+							"variable": [
+								{
+									"key": "username",
+									"value": "mehdi01"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "api_base",
+			"value": "http://localhost:9001/api",
+			"type": "string"
+		},
+		{
+			"key": "api_key",
+			"value": "b3c7532e3158eea90c6fb542fb69cda06c6280cdc0d0f39d51bf78bae425e8514d8b6c7549ae26d86",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

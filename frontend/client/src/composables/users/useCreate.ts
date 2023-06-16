@@ -1,6 +1,7 @@
 import { reset } from '@formkit/core'
 import {onMounted,reactive,ref} from "vue";
 import {envVariable, useAuthStore} from "../useStates";
+import {Response} from "../../utils/Types";
 
 export const useCreateUser=()=>{
     const {token}=useAuthStore()
@@ -43,15 +44,15 @@ export const useCreateUser=()=>{
             },
         }).
         then(response=>response.json()).
-        then(response=>{
-            if(!response){
+        then((response:Response)=>{
+            if(response.error){
                 //// if username exist response=false
-                fetchOperationData.msg='The Username already exist!'
+                fetchOperationData.msg=response.msg
                 fetchOperationData.error=true
             }else{
                 fetchOperationData.error=false
-                newCreatedUserData.password=response.password
-                newCreatedUserData.username=response.username
+                newCreatedUserData.password=response.data.password
+                newCreatedUserData.username=response.data.username
                 fetchOperationData.modal=true
                 reset('createSingleUserForm')
             }

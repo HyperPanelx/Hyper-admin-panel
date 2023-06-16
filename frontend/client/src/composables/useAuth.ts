@@ -29,26 +29,37 @@ export const useAuth=()=>{
                 },
             }).
             then(response=>response.json()).
-            then(username=>{
-                notify({
-                    title: "Authorization",
-                    text: "You have been logged in!",
-                    type:'success'
-                });
-                //// store username and token
-                /// islogin is for middleware
-                authStore.$patch({
-                    username:username,
-                    isLogin:true,
-                    token:token
-                })
-                router.push({name:'DASHBOARD'})
+            then(response=>{
+                if(response.error){
+                    //// if status 401 user is not valid
+                    authStore.$reset()
+                    router.push({name:'LOGIN'})
+                    notify({
+                        title: "Authorization failed",
+                        text: "You need to login again!",
+                        type:'error'
+                    });
+                }else{
+                    notify({
+                        title: "Authorization",
+                        text: "You have been logged in!",
+                        type:'success'
+                    });
+                    //// store username and token
+                    /// islogin is for middleware
+                    authStore.$patch({
+                        username:response.data.username,
+                        isLogin:true,
+                        token:token
+                    });
+                    router.push({name:'DASHBOARD'})
+                }
             }).catch(err=>{
                 //// if status 401 user is not valid
                 authStore.$reset()
                 router.push({name:'LOGIN'})
                 notify({
-                    title: "Authorization",
+                    title: "Authorization failed",
                     text: "You need to login again!",
                     type:'error'
                 });

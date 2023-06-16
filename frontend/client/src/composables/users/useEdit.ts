@@ -2,7 +2,7 @@ import {useRoute,useRouter} from "vue-router";
 import {onMounted, reactive,ref} from "vue";
 import {envVariable,useAuthStore,useDashboardStore} from "../useStates";
 import { useNotification } from "@kyvg/vue3-notification";
-
+import {Response} from "../../utils/Types";
 
 export const useEdit=()=>{
     const { notify }  = useNotification()
@@ -36,17 +36,21 @@ export const useEdit=()=>{
                 token:token.value,
                 'Content-Type':'application/json'
             }
-        }).then(response=>response.json()).then(response=>{
-            const {username,telegram_id,phone,email,traffic:{num,unit},multi}=response;
-            userInitialData.username=username
-            userInitialData.telegram_id=telegram_id
-            userInitialData.phone=phone
-            userInitialData.email=email
-            userInitialData.traffic.num=num
-            userInitialData.traffic.unit=unit
-            userInitialData.multi=multi
-            dashboardStore.showPreloaderFlag=false
-            fetchFlag.value=true
+        }).then(response=>response.json()).then((response:Response)=>{
+            if(response.error){
+                console.log(response.error)
+            }else{
+                const {username,telegram_id,phone,email,traffic:{num,unit},multi}=response.data;
+                userInitialData.username=username
+                userInitialData.telegram_id=telegram_id
+                userInitialData.phone=phone
+                userInitialData.email=email
+                userInitialData.traffic.num=num
+                userInitialData.traffic.unit=unit
+                userInitialData.multi=multi
+                dashboardStore.showPreloaderFlag=false
+                fetchFlag.value=true
+            }
         }).catch(err=>{
             console.log(err)
         })
@@ -62,12 +66,12 @@ export const useEdit=()=>{
                 'Content-Type':'application/json'
             },
             body:JSON.stringify(data)
-        }).then(response=>response.json()).then(response=>{
-            if(response.detail){
+        }).then(response=>response.json()).then((response:Response)=>{
+            if(response.error){
                 notify({
                     type:'error',
                     title:'Edit User',
-                    text:response.detail
+                    text:response.msg
                 })
             }else{
                 editFetchFlag.value=false

@@ -35,6 +35,7 @@
 </template>
 
 <script setup lang="ts">
+import {Response} from "../../../utils/Types";
 import {reactive, ref} from "vue";
 import { useNotification } from "@kyvg/vue3-notification";
 import VBloader from '../../../components/global/VBloader.vue';
@@ -59,15 +60,15 @@ const changeStatus = (status:string) => {
       token:token.value
     },
     body:JSON.stringify({status})
-  }).then(response=>response.json()).then(response=>{
-    if(response.detail){
+  }).then(response=>response.json()).then((response:Response)=>{
+    if(response.error){
       notify({
         type:'error',
         title:'Limitation Status',
-        text:response.detail
+        text:response.msg
       })
     }else{
-      limitationStatus.value=response
+      limitationStatus.value=response.data.status
       notify({
         type:'success',
         title:'Limitation Status',

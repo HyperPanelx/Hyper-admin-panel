@@ -31,6 +31,7 @@
 </template>
 
 <script setup lang="ts">
+import {Response} from "../../../utils/Types";
 import {ref} from "vue";
 import { useNotification } from "@kyvg/vue3-notification";
 import { reset } from '@formkit/core'
@@ -54,12 +55,12 @@ const changeSSHPortFormSubmit = (value) => {
       token:token.value
     },
     body:JSON.stringify(value)
-  }).then(response=>response.json()).then(response=>{
-    if(response.detail){
+  }).then(response=>response.json()).then((response:Response)=>{
+    if(response.error){
       notify({
         type:'error',
         title:'Change SSH Port',
-        text:response.detail
+        text:response.msg
       })
     }else{
       notify({
