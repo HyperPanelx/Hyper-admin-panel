@@ -26,18 +26,21 @@
   <td>
     <Kill :user="user" :uid="uid" />
   </td>
+  <td class="absolute top-0 left-0 w-full h-full z-[5]" @click="checkboxHandler" colspan="0"></td>
 
 </template>
 
 <script setup lang="ts">
 import Check from './Check.vue'
 import Kill from './Kill.vue'
+import {useCheckBox} from "../../composables/online/useCheckBox";
 const props=defineProps<{
   user:string,
   ip:string,
   index:number,
   uid:number
 }>();
+const {checkboxHandler}=useCheckBox(props)
 
 </script>
 

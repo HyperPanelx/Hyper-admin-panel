@@ -30,7 +30,7 @@
         <template v-if="searchData.searchResult.length>0">
           <p class="uppercase text-gray-700 px-1 text-0.8 mb-0.5 dark:text-primary-dark-3">Users</p>
           <router-link @click="closeResult" :to="{name:'USERS',query:{username:item}}" v-for="item in searchData.searchResult" class="search-result-item">
-            <img alt="profile" width="30" :src="`./assets/profile_${Math.floor(Math.random()*6)+1}.svg`"/>
+            <img alt="profile" width="30" src="../../../public/profiles/profile_2.svg" />
             <div>
               <p class="text-0.8 text-gray-700 font-600 dark:text-primary-dark-3">{{item}}</p>
               <p class="text-0.7 text-gray-700 dark:text-primary-dark-3">User</p>

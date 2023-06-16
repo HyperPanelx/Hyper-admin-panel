@@ -1,5 +1,5 @@
 <template>
-  <input type="checkbox" class="v-checkbox" @change="checkboxHandler" :checked="selectedUserToDelete?.includes(user)" :name="user" :id="user">
+  <input type="checkbox" class="v-checkbox relative z-10" @change="checkboxHandler" :checked="selectedUserToDelete?.includes(user)" :name="user" :id="user">
 </template>
 
 <script setup lang="ts">

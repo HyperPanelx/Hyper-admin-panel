@@ -9,7 +9,19 @@
 import DefaultLayout from '../layouts/default.vue'
 import VPreloader from '../components/global/VPreloader.vue'
 import {useDashboardStore} from "../composables/useStates";
-const {showPreloaderFlag}=useDashboardStore();
+import {watch} from "vue";
+const {showPreloaderFlag,dashboardStore}=useDashboardStore();
+watch(
+    ()=>dashboardStore.showPreloaderFlag,
+    ()=>{
+      if(dashboardStore.showPreloaderFlag){
+        document.body.style.overflowY='hidden'
+      }else{
+        document.body.style.overflowY='auto'
+      }
+    }
+)
+
 </script>
 
 <style scoped>

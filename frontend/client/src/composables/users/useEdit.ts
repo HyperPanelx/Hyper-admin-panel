@@ -19,6 +19,7 @@ export const useEdit=()=>{
         telegram_id:'',
         phone:'',
         email:'',
+        multi:0,
         traffic:{
             num:0,
             unit:''
@@ -36,13 +37,14 @@ export const useEdit=()=>{
                 'Content-Type':'application/json'
             }
         }).then(response=>response.json()).then(response=>{
-            const {username,telegram_id,phone,email,traffic:{num,unit}}=response;
+            const {username,telegram_id,phone,email,traffic:{num,unit},multi}=response;
             userInitialData.username=username
             userInitialData.telegram_id=telegram_id
             userInitialData.phone=phone
             userInitialData.email=email
             userInitialData.traffic.num=num
             userInitialData.traffic.unit=unit
+            userInitialData.multi=multi
             dashboardStore.showPreloaderFlag=false
             fetchFlag.value=true
         }).catch(err=>{

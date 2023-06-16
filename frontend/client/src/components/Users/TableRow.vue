@@ -8,17 +8,17 @@
     <div class="p-1 ">
       <div class="mb-0.5 flex items-center">
         <font-awesome-icon class="dark:!text-primary-dark-3 text-gray-700 text-0.8 mr-1" icon="fa-solid fa-user"/>
-        <p @click="copyText(user)" class="text-gray-800 dark:text-primary-light-1 ">
+        <p @click="copyText(user)" class="text-gray-800 dark:text-primary-light-1 relative z-10">
           {{user}}
         </p>
       </div>
       <div v-if="passwd" class="mb-0.5 flex items-center ">
         <font-awesome-icon class="dark:text-red-300 text-0.8 mr-1 text-red-500" @click="showPasswordFlag=!showPasswordFlag" :icon="showPasswordFlag ? 'fa-solid fa-eye-slash':'fa-solid fa-eye'" size="1.2rem"/>
-        <p @click="copyText(passwd)" :class="{'font-800':!showPasswordFlag,'!text-0.9':showPasswordFlag}" class=" dark:text-primary-light-1 text-1  text-gray-800">{{showPasswordFlag ? passwd :  stringToPassword(passwd)}}</p>
+        <p @click="copyText(passwd)" :class="{'font-800':!showPasswordFlag,'!text-0.9':showPasswordFlag}" class=" dark:text-primary-light-1 text-1 relative z-10 text-gray-800 ">{{showPasswordFlag ? passwd :  stringToPassword(passwd)}}</p>
       </div>
       <div v-if="telegram_id" class="flex items-center ">
         <font-awesome-icon class="dark:!text-blue-300 mr-1 text-blue-700 text-0.8" icon="fa-brands fa-telegram"/>
-        <p @click="copyText('@'+telegram_id)" :title="telegram_id" class="text-gray-800 text-hidden w-[7.6rem] dark:text-primary-light-1 ">
+        <p @click="copyText('@'+telegram_id)" :title="telegram_id" class="text-gray-800 text-hidden w-[7.6rem] dark:text-primary-light-1 relative z-10">
           @{{telegram_id}}
         </p>
       </div>
@@ -40,13 +40,13 @@
   </td>
   <td >
     <div class="p-0.5">
-      <p @click="copyText(phone)" class="text-gray-800 flex items-center  !text-[0.8rem] mb-0.5 text-center dark:text-primary-dark-3  " v-if="phone">
+      <p @click="copyText(phone)" class="text-gray-800 flex items-center  !text-[0.8rem] mb-0.5 text-center dark:text-primary-dark-3  relative z-10" v-if="phone">
         <font-awesome-icon class="text-0.8 mr-0.5" size="0.8rem" icon="fa-solid fa-phone"  />
         {{phone}}
       </p>
       <div @click="copyText(email)" :title="email" class=" flex items-center dark:text-primary-dark-3  text-gray-800" v-if="email">
         <font-awesome-icon  size="0.8rem" class="text-0.8 mr-0.5" icon="fa-regular fa-envelope"/>
-        <p class="text-gray-800 !text-[0.8rem] w-5.5 text-hidden text-center dark:text-primary-dark-3">
+        <p class="text-gray-800 relative z-10 !text-[0.8rem] w-5.5 text-hidden text-center dark:text-primary-dark-3">
           {{email}}
         </p>
       </div>
@@ -74,6 +74,7 @@
       <Download v-bind="props" />
     </div>
   </td>
+  <td class="absolute top-0 left-0 w-full h-full z-[5]" @click="checkboxHandler" colspan="0"></td>
 </template>
 
 <script setup lang="ts">
@@ -84,9 +85,11 @@ import Download from './Download.vue'
 import CheckBox from './Check.vue'
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 import {ref} from "vue";
+import {useCheckBox} from "../../composables/users/useCheckBox";
 const props=defineProps(['user','traffic','usedVolume','multi','phone','email','registered','exdate','status','uid','passwd','telegram_id','desc','referral']);
 const showPasswordFlag=ref<boolean>(false)
 
+const {checkboxHandler}=useCheckBox(props)
 
 </script>
 

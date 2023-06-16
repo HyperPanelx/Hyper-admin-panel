@@ -37,7 +37,7 @@
             <column col="12" md="6">
               <FormKit
                   :value="userInitialData.phone"
-                  validation="required|matches:/^09\d{9}$/"
+                  validation="required|matches:/^0?9\d{9}$/"
                   type="text"
                   id="e_phone"
                   name="e_phone"
@@ -50,7 +50,7 @@
             <column col="12" md="6">
               <FormKit
                   :value="userInitialData.email"
-                  validation="email"
+                  validation="required|email"
                   type="text"
                   id="e_email"
                   name="e_email"
@@ -65,6 +65,7 @@
             <column col="12" md="6">
               <FormKit
                   :value="userInitialData.traffic.num"
+                  validation="required"
                   type="text"
                   id="e_traffic"
                   name="e_traffic"
@@ -76,6 +77,7 @@
               <FormKit
                   :value="userInitialData.traffic.unit"
                   name="e_traffic_unit"
+                  validation="required"
                   id="e_traffic_unit"
                   fieldset-class="!border-[0px] dark:[&_*]!text-primary-light-1 !pl-0 !ml-0"
                   options-class="!flex gap-1 !flex-row"
@@ -83,6 +85,22 @@
                   :options="['Gigabyte', 'Megabyte']"
                   value="Gigabyte"
                   label-class="dark:!text-primary-light-1"
+              />
+            </column>
+            <column col="12" md="6">
+              <FormKit
+                  :value="userInitialData.multi"
+                  validation="min:1"
+                  validation-label="Concurrent user"
+                  type="number"
+                  id="e_concurrent_user"
+                  name="e_concurrent_user"
+                  input-class=" font-main"
+                  label="Concurrent user"
+                  label-class="dark:text-primary-dark-2 dark:!bg-[#37404a] !font-main"
+                  value="1"
+                  :floating-label="true"
+                  min="1"
               />
             </column>
           </row>

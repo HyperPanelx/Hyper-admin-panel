@@ -1,6 +1,6 @@
 <template>
 
-  <VTooltip content="Download user detail" inner-class="!w-10 !right-[-18px] !bg-primary-dark-1/70">
+  <VTooltip class="relative z-10" content="Download user detail" inner-class="!w-10 !right-[-18px] !bg-primary-dark-1/70">
     <button @click="downloadUserDetail" class="btn-operation btn-teal ">
       <font-awesome-icon class="text-1.3 text-primary-light-1" icon="fa-solid fa-download" />
       <a ref="downloadAnchorElem" style="display:none"></a>

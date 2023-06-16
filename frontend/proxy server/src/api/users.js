@@ -6,7 +6,7 @@ const helper=require('../helper')
 //// users page
 router.get('/list', (req,res)=>{
     const token=req.headers.token
-    fetch(process.env.API_BASE+'get-users',{
+    fetch(process.env.API_BASE+'get-users?mode=all',{
         headers:{
             'Content-type':'application/json',
             Authorization:`Bearer ${token}`
@@ -210,19 +210,32 @@ router.post('/generate',(req,res)=>{
 
 });
 router.get('/detail',(req,res)=>{
-    const username=req.query.username
+    const username=req.query.username;
     const token=req.headers.token;
     if(username){
-        res.status(200).send(JSON.stringify({
-            username:'hooman_77',
-            telegram_id:'hooman_77',
-            phone:'09921929653',
-            email:'hoomanmousavi77@gmail.com',
-            traffic:{
-                num:12,
-                unit:'Gigabyte'
+        fetch(process.env.API_BASE+`get-users?mode=username&username=${username}`,{
+            headers:{
+                'Content-type':'application/json',
+                Authorization:`Bearer ${token}`
             }
-        }))
+        }).then(response=>response.json()).then(response=>{
+            const {user,telegram_id,phone,email,traffic,multi}=response;
+            const idx=traffic.indexOf('G')===-1 ?  traffic.indexOf('M') : traffic.indexOf('G');
+            res.status(200).send(JSON.stringify({
+                username:user,
+                telegram_id:telegram_id,
+                phone:phone===0 ? '' : phone,
+                email:email,
+                multi:multi,
+                traffic:{
+                    num:traffic ? Number(traffic.slice(0,idx-1)) : '',
+                    unit:traffic.includes('Gigabyte') ? 'Gigabyte' : traffic.includes('Megabyte') ? 'Megabyte' : 'Gigabyte'
+                }
+            }))
+        }).catch(err=>{
+            res.status(400).send('error in connecting to api!').end()
+        })
+
     }else{
         res.status(400).send('missing required query param username!').end()
     }
@@ -238,14 +251,25 @@ router.put('/edit',(req,res)=>{
             telegram_id :body.e_telegram_id,
             phone:body.e_phone,
             email:body.e_email,
+            multi:body.e_concurrent_user,
             traffic:body.e_traffic ? `${body.e_traffic} ${body.e_traffic_unit}` : ''
         })
-        const response=''
-        if(response.detail){
-            res.status(200).send(JSON.stringify(response))
-        }else{
-            res.status(200).send(JSON.stringify('ok'))
-        }
+        fetch(process.env.API_BASE+'change-detail?'+query,{
+            headers:{
+                'Content-type':'application/json',
+                Authorization:`Bearer ${token}`
+            }
+        }).
+        then(response=>response.json()).
+        then(response=>{
+            if(response.detail){
+                res.status(200).send(JSON.stringify(response))
+            }else{
+                res.status(200).send(JSON.stringify('ok'))
+            }
+        }).catch(err=>{
+            res.status(401).send('error in connecting to api!').end()
+        })
     }else{
         res.status(400).send('missing required body!').end()
     }

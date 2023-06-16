@@ -70,6 +70,7 @@ import VCheckbox from '../components/global/VCheckbox.vue'
 import VBloader from '../components/global/VBloader.vue'
 import {useLogin} from "../composables/useLogin";
 const {userData,formHandler,usernameRegex,passwordRegex,loginRequestFlag,errorMessage}=useLogin();
+document.body.classList.remove('dark')
 </script>
 
 <style lang="scss" scoped>

@@ -1,5 +1,5 @@
 <template>
-  <VDropdown top-start="10px" class="mr-0.5" top-end="0px" dropdown-class="!w-11 !left-[-11.5rem] !top-[0]" v-model="dropdownFlag">
+  <VDropdown top-start="10px" class="mr-0.5 relative z-10" top-end="0px" dropdown-class="!w-11 !left-[-11.5rem] !top-[0]" v-model="dropdownFlag">
     <template #parent>
       <VTooltip content="Setting" inner-class="!w-4 !right-[-11px] !bg-primary-dark-1/70">
         <button  @click="toggleDropdown" class=" btn-indigo btn-operation">

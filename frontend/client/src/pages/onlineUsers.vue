@@ -11,7 +11,7 @@
               :titles="tableData.titles"
           >
             <tr
-                :class="{'row-select':selectedOnlineUserToKill?.includes(item.user)}" class="table-hover td-border"
+                :class="{'row-select':selectedOnlineUserToKill?.includes(item.user)}" class="table-hover td-border relative"
                 v-for="(item,index) in paginationData.currentPageData">
               <OnlineTableRow
                   :user="item.user"

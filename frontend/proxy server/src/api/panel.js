@@ -104,8 +104,16 @@ router.get('/search',(req,res)=>{
     const username=req.query.username
     const token=req.headers.token
     if(username){
-        res.status(200).send(JSON.stringify(['user02','alikashi','hooman_77','alireza_76','hooman_77','alireza_76']))
-
+        fetch(process.env.API_BASE+`search-user?username=${username}`,{
+            headers:{
+                'Content-Type':'application/json',
+                Authorization:`Bearer ${token}`
+            },
+        }).then(response=>response.json()).then(response=>{
+            res.status(200).send(JSON.stringify(response))
+        }).catch(err=>{
+            res.status(401).send('error in connecting to api!')
+        })
     }else{
         res.status(400).send('missing required query param username!').end()
     }

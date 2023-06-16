@@ -1,7 +1,7 @@
 <template>
   <footer class="footer" :class="{'n-collapse':sidebarCollapseFlag}">
-    <p class="text-gray-500 dark:text-primary-dark-3 sm:mb-0 mb-1">All right is reserved by  &copy;Hyper</p>
-    <p class="text-gray-500 dark:text-primary-dark-3">Designed and developed by H&F</p>
+    <p class="text-gray-500 dark:text-primary-dark-3 sm:mb-0 mb-1">&copy;Copyright 2023. All right is reserved.</p>
+    <p class="text-gray-500 dark:text-primary-dark-3">Designed and developed by H&F.</p>
   </footer>
 </template>
 

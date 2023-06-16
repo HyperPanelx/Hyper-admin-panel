@@ -19,7 +19,7 @@
                  :searchResultFlag="paginationData.searchResultFlag"
                  :rows="paginationData.currentPageData"
                  :titles="tableData.titles" >
-            <tr class="table-hover td-border" :class="{'row-select':selectedUserToDelete?.includes(item.user)}"  v-for="item in paginationData.currentPageData">
+            <tr class="table-hover td-border relative" :class="{'row-select':selectedUserToDelete?.includes(item.user)}"  v-for="item in paginationData.currentPageData">
               <UsersTableRow
                   :user="item.user"
                   :traffic="item.traffic"
