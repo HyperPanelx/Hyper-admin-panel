@@ -19,8 +19,8 @@ pnpm install
 #### Then you need to create a .env.production file name (for building project) and .env.development file name (for developing project) file in root of the project and add these keys and your values
 
 ```
-API_BASE=xxx    => api url
-COOKIE_NAME=x_hyper_x => just a name
+API_BASE=xxx      => api url like: https://example.com/
+COOKIE_NAME=x_hyper_x    => just a name
 VERSION=0.0.9
 ```
 ## Development Server

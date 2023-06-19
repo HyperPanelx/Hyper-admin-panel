@@ -35,6 +35,7 @@ export const usePagination=()=>{
 
     const changePerPageHandler = (value:any) => {
         tableStore.paginationData.itemPerPage=value.per_page
+        changePage(1)
         paginationUpdate()
     }
 
