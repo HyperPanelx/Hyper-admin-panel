@@ -6,8 +6,8 @@ import {IUsers_Data,IOnline_Users_Data} from "../utils/Types";
 
 export const envVariable=()=>{
     const apiBase:string|undefined=process.env.API_BASE;
-    const cookieName:string|undefined=process.env.COOKIE_NAME;
-    const appVersion:string|undefined=process.env.VERSION
+    const cookieName:string|undefined=process.env.COOKIE_NAME || 'fb69cda06c628';
+    const appVersion:string|undefined=process.env.VERSION || '0.0.9';
 
 
     return{

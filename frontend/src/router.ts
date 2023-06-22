@@ -158,7 +158,7 @@ const routes:RouteRecordRaw[]=[
 
 const router=createRouter({
     routes,
-    history:createWebHashHistory()
+    history:createWebHistory()
 })
 
 
