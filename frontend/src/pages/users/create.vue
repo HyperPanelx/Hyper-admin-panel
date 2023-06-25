@@ -21,20 +21,6 @@
             </column>
             <column col="12" md="6">
               <FormKit
-                  type="password"
-                  id="password"
-                  name="password"
-                  input-class=" font-main"
-                  label="Password"
-                  label-class="dark:text-primary-dark-2 dark:!bg-[#37404a] !font-main"
-                  :floating-label="true"
-              />
-
-            </column>
-          </row>
-          <row class="my-1">
-            <column col="12" md="6">
-              <FormKit
                   validation="email"
                   type="text"
                   id="email"
@@ -44,7 +30,10 @@
                   label-class="dark:text-primary-dark-2 dark:!bg-[#37404a] !font-main md:!text-1 !text-0.8"
                   :floating-label="true"
               />
+
             </column>
+          </row>
+          <row class="my-1">
             <column col="12" md="6">
               <FormKit
                   validation="required|matches:/^09\d{9}$/"
@@ -57,10 +46,7 @@
                   label-class="dark:text-primary-dark-2 dark:!bg-[#37404a] !font-main md:!text-1 !text-0.8"
                   :floating-label="true"
               />
-
             </column>
-          </row>
-          <row>
             <column col="12" md="6">
               <FormKit
                   validation="min:1"
@@ -76,7 +62,10 @@
                   :floating-label="true"
                   min="1"
               />
+
             </column>
+          </row>
+          <row>
             <column col="12" md="6">
               <FormKit
                   :validation="`required|date_after:${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`"
@@ -89,10 +78,7 @@
                   label-class="dark:text-primary-dark-2 !translate-x-[-1px] !text-0.7 !translate-y-[2px] bg-primary-light-1 dark:!bg-[#37404a] !font-main"
                   :floating-label="true"
               />
-
             </column>
-          </row>
-          <row  class="my-1">
             <column col="12" md="6">
               <FormKit
                   type="text"
@@ -113,7 +99,10 @@
                   value="Gigabyte"
                   label-class="dark:!text-primary-light-1"
               />
+
             </column>
+          </row>
+          <row  class="my-1">
             <column col="12" md="6">
               <FormKit
                   type="text"
@@ -125,10 +114,7 @@
 
                   :floating-label="true"
               />
-
             </column>
-          </row>
-          <row >
             <column col="12" md="6">
               <FormKit
                   validation-label="Telegram id"
@@ -141,8 +127,11 @@
                   label-class="dark:text-primary-dark-2 dark:!bg-[#37404a] !font-main"
                   :floating-label="true"
               />
+
             </column>
-            <column col="12" md="6" >
+          </row>
+          <row >
+            <column col="12" md="6">
               <FormKit
                   rows="5"
                   type="textarea"
@@ -153,7 +142,6 @@
                   label-class="dark:text-primary-dark-2 dark:!bg-[#37404a] !font-main"
                   :floating-label="true"
               />
-
             </column>
           </row>
 

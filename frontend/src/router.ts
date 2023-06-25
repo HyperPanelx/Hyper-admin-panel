@@ -1,4 +1,5 @@
 import {createRouter,createWebHashHistory,RouteRecordRaw,createWebHistory} from "vue-router";
+import {useRouter} from "vue-router";
 import {Auth} from './store/auth'
 //// pages
 const MainIndex=()=>import(  './pages/index.vue')
@@ -39,7 +40,7 @@ const routes:RouteRecordRaw[]=[
                 component:dashboard,
                 path:'dashboard',
                 name:'DASHBOARD',
-                meta:{title:'Dashboard | Hyper'}
+                meta:{title:'Dashboard | Hyper',status:true}
             },{
                 component:usersIndex,
                 path:'users',
@@ -52,24 +53,24 @@ const routes:RouteRecordRaw[]=[
                         component:editUser,
                         path:'edit',
                         name:'EDIT_USER',
-                        meta:{title:'Edit User | Hyper'}
+                        meta:{title:'Edit User | Hyper',status:true}
                     },
                     {
                         component:createUser,
                         path:'create',
                         name:'CREATE_USER',
-                        meta:{title:'Create User | Hyper'},
+                        meta:{title:'Create User | Hyper',status:true},
                     },{
                         component:usersList,
                         path:'',
                         name:'USERS',
-                        meta:{title:'Users | Hyper'},
+                        meta:{title:'Users | Hyper',status:true},
                     },
                     {
                         component:generateUser,
                         path:'generate',
                         name:'GENERATE_USER',
-                        meta:{title:'Generate Users | Hyper'},
+                        meta:{title:'Generate Users | Hyper',status:true},
                     },
                 ]
             },
@@ -77,7 +78,7 @@ const routes:RouteRecordRaw[]=[
                 component:onlineUsers,
                 name:'ONLINE',
                 path:'online',
-                meta:{title:'Online Users | Hyper'},
+                meta:{title:'Online Users | Hyper',status:true},
             },
             {
                 component:settingsIndex,
@@ -91,55 +92,55 @@ const routes:RouteRecordRaw[]=[
                         component: create,
                         name:'CREATE_ADMIN_USER',
                         path: 'create-admin-user',
-                        meta:{title:'Create Admin User | Hyper'},
+                        meta:{title:'Create Admin User | Hyper',status:true},
                     },
                     {
                         component:api,
                         name:'API',
                         path: 'api',
-                        meta:{title:'Api | Hyper'},
+                        meta:{title:'Api | Hyper',status:false},
                     },
                     {
                         component: ip,
                         name:'IP_BLOCK',
                         path: 'ip-block',
-                        meta:{title:'IP Block | Hyper'},
+                        meta:{title:'IP Block | Hyper',status:false},
                     },
                     {
                         component:SSH,
                         name:'SSH_PORT',
                         path: 'ssh-port',
-                        meta:{title:'SSH Port | Hyper'},
+                        meta:{title:'SSH Port | Hyper',status:false},
                     },
                     {
                         component: backup,
                         name:'BACKUP_RESTORE',
                         path: 'backup-restore',
-                        meta:{title:'Backup & Restore | Hyper'},
+                        meta:{title:'Backup & Restore | Hyper',status:false},
                     },
                     {
                         component: changePassword,
                         name:'CHANGE_PASSWORD',
                         path: 'change-password',
-                        meta:{title:'Change Password | Hyper'},
+                        meta:{title:'Change Password | Hyper',status:true},
                     },
                     {
                         component: limitation,
                         name:'USER_LIMITATION',
                         path: 'user-limitation',
-                        meta:{title:'User Limitation | Hyper'},
+                        meta:{title:'User Limitation | Hyper',status:false},
                     },
                     {
                         component: multi,
                         name:'MULTI_SERVER',
                         path: 'multi-server',
-                        meta:{title:'Multi Server | Hyper'},
+                        meta:{title:'Multi Server | Hyper',status:false},
                     },
                     {
                         component: robot,
                         name:'TELEGRAM_ROBOT',
                         path: 'telegram-robot',
-                        meta:{title:'Telegram Robot | Hyper'},
+                        meta:{title:'Telegram Robot | Hyper',status:false},
                     },
                 ]
             }
@@ -149,16 +150,16 @@ const routes:RouteRecordRaw[]=[
         component:login,
         name:'LOGIN',
         path:'/login',
-        meta:{title:'Login | Hyper'},
+        meta:{title:'Login | Hyper',status:true},
     },
-    { path: '/:pathMatch(.*)*', name: 'NotFound', component: error },
+    { path: '/:pathMatch(.*)*', name: 'NotFound', component: error ,meta:{title:'Page not found!',status:true},},
 
 ]
 
 
 const router=createRouter({
     routes,
-    history:createWebHistory()
+    history:createWebHashHistory()
 })
 
 
@@ -168,14 +169,15 @@ router.afterEach((to,from,next)=>{
 
 router.beforeEach((to,from,next)=>{
     const authStore=Auth();
-    if(to.name!=='LOGIN'){
-        if(authStore.isLogin){
+    if(to.meta.status){
+        if(to.name!=='LOGIN'){
+            if(authStore.isLogin){
+                next()
+            }
+        }else{
             next()
         }
-    }else{
-        next()
     }
-
 })
 
 export default router

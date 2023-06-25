@@ -38,7 +38,6 @@ export const useCreateUser=()=>{
         const query=querySerialize({
             username:formData.username,
             multi:Number(formData.concurrent_user),
-            passwd:formData.password,
             exdate:formData.expiration_date,
             telegram_id:formData.telegram_id,
             phone:Number(formData.phone),

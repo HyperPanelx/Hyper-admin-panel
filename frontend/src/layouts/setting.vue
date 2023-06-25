@@ -5,7 +5,7 @@
       <VCard title="options" body-class="p-1.5">
         <ul class="flex flex-col [&_li]:mb-1.3">
           <li v-for="item in settingTabItems">
-            <router-link @click="moveWindow" exact-active-class="active" :to="item.link" class="tab-item" >
+            <router-link :class="{'route-disable':!item.status}" @click="moveWindow" exact-active-class="active" :to="item.link" class="tab-item" >
               <font-awesome-icon class="dark:text-primary-dark-3 text-0.6"  icon="fa-solid fa-arrow-right" />
               <p class="text-gray-800 dark:text-primary-light-1 ml-0.7">{{item.title}}</p>
             </router-link>
@@ -43,6 +43,9 @@ const moveWindow = () => {
   }
   #settings{
     @apply grid grid-cols-1 md:grid-cols-[1fr_3fr] gap-1.5 mt-3 items-start
+  }
+  .route-disable{
+    @apply cursor-not-allowed [&_p]:!text-gray-400 !text-gray-400 hover:[&_p]:!ml-0.7;
   }
 }
 </style>

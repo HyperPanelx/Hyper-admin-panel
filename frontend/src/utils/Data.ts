@@ -153,13 +153,13 @@ export const settingDropdownOption=[
 ];
 
 export const settingTabItems=[
-    {title:'Create admin user',link:{name:'CREATE_ADMIN_USER'}},
-    {title:'Change password',link:{name:'CHANGE_PASSWORD'}},
-    {title:'SSH port',link:{name:'SSH_PORT'}},
-    {title:'User limitation',link:{name:'USER_LIMITATION'}},
-    {title:'Telegram robot',link:{name:'TELEGRAM_ROBOT'}},
-    {title:'Multi server',link:{name:'MULTI_SERVER'}},
-    {title:'Backup and restore',link:{name:'BACKUP_RESTORE'}},
-    {title:'API',link:{name:'API'}},
-    {title:'IP block',link:{name:'IP_BLOCK'}},
+    {title:'Create admin user',link:{name:'CREATE_ADMIN_USER'},status:true},
+    {title:'Change password',link:{name:'CHANGE_PASSWORD'},status:true},
+    {title:'SSH port',link:{name:'SSH_PORT'},status:false},
+    {title:'User limitation',link:{name:'USER_LIMITATION'},status:false},
+    {title:'Telegram robot',link:{name:'TELEGRAM_ROBOT'},status:false},
+    {title:'Multi server',link:{name:'MULTI_SERVER'},status:false},
+    {title:'Backup and restore',link:{name:'BACKUP_RESTORE'},status:false},
+    {title:'API',link:{name:'API'},status:false},
+    {title:'IP block',link:{name:'IP_BLOCK'},status:false},
 ]
