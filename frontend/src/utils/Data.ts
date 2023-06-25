@@ -1,31 +1,5 @@
 
 
-export const fakeTodayNotificationData=[
-    {
-        sender:'Admin',
-        content:'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur, voluptas.',
-        time:'1 hours ago',
-        link:{name:'DASHBOARD'}
-    },{
-        sender:'Admin',
-        content:'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur, voluptas.',
-        link:{name:'DASHBOARD'},
-        time:'1 hours ago',
-    }
-]
-export const fakeYesterdayNotificationData=[
-    {
-        sender:'Admin',
-        content:'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur, voluptas.',
-        time:'1 hours ago',
-        link:{name:'DASHBOARD'}
-    },{
-        sender:'Admin',
-        content:'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur, voluptas.',
-        link:{name:'DASHBOARD'},
-        time:'1 hours ago',
-    }
-]
 export const serverStatusChartOption=(prc:number,label:string)=>{
     return {
         chartOptions: {
