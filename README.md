@@ -1,4 +1,4 @@
-# Hyper Admin Panel 
+<h1 style="display: flex;align-items: center; gap:1rem"><img src="./src/public/logo-sm.png"/> Hyper Admin Panel </h1>  
 <a href='https://github.com/hoomanFsmo77/Hyper-admin-panel/tree/master/frontend' target="_blank"><img alt='' src='https://img.shields.io/badge/Release_V0.0.9-100000?style=flat&logo=&logoColor=3178C6&labelColor=333333&color=333333'/></a>
 
 ## Tech
