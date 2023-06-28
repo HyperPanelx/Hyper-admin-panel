@@ -26,7 +26,7 @@ export const Table=defineStore('table',{
              this.tableData={rows:[],titles:[]}
              this.fetchTableDataFlag=false
             dashboardStore.showPreloaderFlag=true
-            fetch(apiBase+'get-users?mode=all',{
+            fetch(apiBase+'get-users?username=all',{
                 headers:{
                     'Content-type':'application/json',
                     Authorization:`Bearer ${token.value}`

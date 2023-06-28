@@ -30,7 +30,7 @@ export const useEdit=()=>{
         dashboardStore.showPreloaderFlag=true
         fetchFlag.value=false
        const username=route.query.username
-        fetch(apiBase+`get-users?mode=username&username=${username}`,{
+        fetch(apiBase+`get-users?username=${username}`,{
             headers:{
                 'Content-type':'application/json',
                 Authorization:`Bearer ${token.value}`
