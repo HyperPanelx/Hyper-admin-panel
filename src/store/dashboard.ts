@@ -73,6 +73,7 @@ export const Dashboard=defineStore('dashboard',{
             })
         },
         async triggerInitialFetchData(){
+            document.body.style.overflowY='hidden'
             const {logoutHandler}=useLogout()
             ///.env
             const {apiBase}=envVariable()
@@ -95,9 +96,10 @@ export const Dashboard=defineStore('dashboard',{
                     this.usersStatusData=[
                         {title:'All Users', number:response.all_users,theme:'indigo'},
                         {title:'Active Users', number:response.active_users, theme:'green'},
-                        {title:'Online Users', number:response.active_users, theme:'blue'},
+                        {title:'Enable Users', number:response.enable_users, theme:'blue'},
                         {title:'Blocked Users', number:response.disabled_users,theme:'red'},
                     ]
+                    document.body.style.overflowY='auto'
                 }
             }).
             catch(err=>console.log(err)).

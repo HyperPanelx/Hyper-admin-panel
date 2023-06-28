@@ -159,7 +159,10 @@ const routes:RouteRecordRaw[]=[
 
 const router=createRouter({
     routes,
-    history:createWebHashHistory()
+    history:createWebHashHistory(),
+    scrollBehavior(to, from, savedPosition) {
+        return { top: 0 }
+    },
 })
 
 

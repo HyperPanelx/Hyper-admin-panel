@@ -23,7 +23,7 @@ export const useDashboard=()=>{
             if(dashboardStore.fetchDashboardDataFlag){
                 timer= setTimeout(async ()=>{
                     await dashboardStore.getServerUsageData();
-                },15000)
+                },20000)
             }
         },{
             immediate:true,

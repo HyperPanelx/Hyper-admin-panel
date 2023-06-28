@@ -69,7 +69,7 @@
     }
     .v-checkbox{
         @apply appearance-none w-[16px] h-[16px] p-[8px] rounded-full border-[1px] border-gray-400  focus:ring-4 focus:ring-indigo-600/50 checked:bg-indigo-600 checked:text-white
-        checked:bg-[url("https://res.cloudinary.com/dhpxutwun/image/upload/v1677917722/dashboard/check_pktxkf.svg")] checked:bg-center  checked:rounded-full checked:w-[17px] checked:h-[17px] outline-0 checked:border-[0px]
+        checked:bg-[url("../../public/check.svg")] checked:bg-center  checked:rounded-full checked:w-[17px] checked:h-[17px] outline-0 checked:border-[0px]
         ;
     }
 

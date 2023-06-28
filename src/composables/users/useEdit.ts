@@ -1,8 +1,7 @@
 import {useRoute,useRouter} from "vue-router";
-import {onMounted, reactive,ref} from "vue";
+import {onMounted, reactive, ref, watch} from "vue";
 import {envVariable,useAuthStore,useDashboardStore} from "../useStates";
 import { useNotification } from "@kyvg/vue3-notification";
-import {Response} from "../../utils/Types";
 import {querySerialize} from "../../utils/Helper";
 
 export const useEdit=()=>{
@@ -39,6 +38,12 @@ export const useEdit=()=>{
         }).then(response=>response.json()).then((response)=>{
             if(response.detail){
                 console.log(response.detail)
+                notify({
+                    type:'error',
+                    title:'Edit User',
+                    text:'error in finding user'
+                })
+                router.push({name:'USERS'})
             }else{
                 const {user,telegram_id,phone,email,traffic,multi}=response;
                 const idx=traffic.indexOf('G')===-1 ?  traffic.indexOf('M') : traffic.indexOf('G');
@@ -49,11 +54,17 @@ export const useEdit=()=>{
                 userInitialData.traffic.num=traffic ? Number(traffic.slice(0,idx-1)) : ''
                 userInitialData.traffic.unit=traffic.includes('Gigabyte') ? 'Gigabyte' : traffic.includes('Megabyte') ? 'Megabyte' : 'Gigabyte'
                 userInitialData.multi=multi
-                dashboardStore.showPreloaderFlag=false
                 fetchFlag.value=true
             }
         }).catch(err=>{
-            console.log(err)
+            notify({
+                type:'error',
+                title:'Error',
+                text:'error in finding user'
+            })
+            router.push({name:'USERS'})
+        }).finally(()=>{
+            dashboardStore.showPreloaderFlag=false
         })
     })
 

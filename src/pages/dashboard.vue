@@ -11,8 +11,8 @@
             <apexchart v-if="fetchDashboardDataFlag"
                        type="radialBar"
                        height="260"
-                       :options="serverStatusChartOption(serverStatus.cpu,'CPU').chartOptions"
-                       :series="serverStatusChartOption(serverStatus.cpu,'CPU').series">
+                       :options="serverStatusChartOption(serverStatus.cpu,'CPU')?.chartOptions ?? null"
+                       :series="serverStatusChartOption(serverStatus.cpu,'CPU')?.series ?? null">
             </apexchart>
             <div v-else class="section-loader">
               <hollow-dots-spinner
@@ -35,8 +35,8 @@
             <apexchart v-if="fetchDashboardDataFlag"
                        type="radialBar"
                        height="260"
-                       :options="serverStatusChartOption(serverStatus.ram,'RAM').chartOptions"
-                       :series="serverStatusChartOption(serverStatus.ram,'RAM').series">
+                       :options="serverStatusChartOption(serverStatus.ram,'RAM')?.chartOptions ?? null"
+                       :series="serverStatusChartOption(serverStatus.ram,'RAM')?.series ?? null">
             </apexchart>
             <div v-else class="section-loader">
               <hollow-dots-spinner
@@ -60,8 +60,8 @@
                 v-if="fetchDashboardDataFlag"
                 type="radialBar"
                 height="260"
-                :options="serverStatusChartOption(serverStatus.disk,'DISK').chartOptions"
-                :series="serverStatusChartOption(serverStatus.disk,'DISK').series"></apexchart>
+                :options="serverStatusChartOption(serverStatus.disk,'DISK')?.chartOptions ?? null"
+                :series="serverStatusChartOption(serverStatus.disk,'DISK')?.series ?? null"></apexchart>
             <div v-else class="section-loader">
               <hollow-dots-spinner
                   :animation-duration="1000"
@@ -87,8 +87,8 @@
                 type="donut"
                 width="350"
                 height="300"
-                :options="bandWidthOption(serverStatus.bandWidth.downloadSpeed,serverStatus.bandWidth.uploadSpeed,serverStatus.bandWidth.speedUnit).chartOptions"
-                :series="bandWidthOption(serverStatus.bandWidth.downloadSpeed,serverStatus.bandWidth.uploadSpeed,serverStatus.bandWidth.speedUnit).series"></apexchart>
+                :options="bandWidthOption(serverStatus?.bandWidth?.downloadSpeed,serverStatus?.bandWidth.uploadSpeed,serverStatus?.bandWidth?.speedUnit)?.chartOptions"
+                :series="bandWidthOption(serverStatus?.bandWidth?.downloadSpeed,serverStatus?.bandWidth.uploadSpeed,serverStatus?.bandWidth?.speedUnit).series"></apexchart>
             <div v-else class="section-loader !h-17">
               <hollow-dots-spinner
                   :animation-duration="1000"

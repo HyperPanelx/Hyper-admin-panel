@@ -5,7 +5,7 @@
       <VCard title="Generate new users" body-class="!p-2">
         <FormKit id="generateUserForm" type="form" ref="generateUserForm"  @submit="generateUserFormSubmit"  :actions="false" >
           <row>
-            <column md="4" class="md:mb-0 mb-1" col="12">
+            <column md="3" class="md:mb-0 mb-1" col="12">
               <FormKit
                   validation="min:1"
                   validation-label="Concurrent user"
@@ -21,20 +21,7 @@
                   min="1"
               />
             </column>
-            <column md="4" class="md:mb-0 mb-1" col="12">
-              <FormKit
-                  :validation="`required|date_after:${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`"
-                  validation-label="Expiration Date"
-                  type="date"
-                  id="g_expiration_date"
-                  name="g_expiration_date"
-                  input-class=" font-main"
-                  label="Expiration Date (Required)"
-                  label-class="dark:text-primary-dark-2 !translate-x-[-1px] !text-0.7 !translate-y-[2px] bg-primary-light-1 dark:!bg-[#37404a] !font-main"
-                  :floating-label="true"
-              />
-            </column>
-            <column md="4" class="md:mb-0 mb-1" col="12">
+            <column md="3" class="md:mb-0 mb-1" col="12">
               <FormKit
                   validation="min:1"
                   validation-label="Count"
@@ -48,6 +35,19 @@
                   value="1"
                   :floating-label="true"
                   min="1"
+              />
+            </column>
+            <column md="6" class="md:mb-0 mb-1" col="12">
+              <FormKit
+                  :validation="`required|date_after:${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`"
+                  validation-label="Expiration Date"
+                  type="date"
+                  id="g_expiration_date"
+                  name="g_expiration_date"
+                  input-class=" font-main"
+                  label="Expiration Date (Required)"
+                  label-class="dark:text-primary-dark-2 !translate-x-[-1px] !text-0.7 !translate-y-[2px] bg-primary-light-1 dark:!bg-[#37404a] !font-main"
+                  :floating-label="true"
               />
             </column>
           </row>
