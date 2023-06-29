@@ -1,5 +1,5 @@
 import {defineStore} from "pinia";
-import {IUsers_Data,IServer_Status,Response} from "../utils/Types";
+import {IUsers_Data,IServer_Status,INotification} from "../utils/Types";
 import {useLogout} from "../composables/useLogout";
 import {envVariable, useAuthStore} from "../composables/useStates";
 
@@ -8,6 +8,7 @@ import {envVariable, useAuthStore} from "../composables/useStates";
 export const Dashboard=defineStore('dashboard',{
     state:()=>{
         return{
+            notificationData:[] as INotification[],
             sidebarCollapseFlag:false as boolean,
             showPreloaderFlag:false as boolean,
             fetchDashboardDataFlag:false as boolean,
@@ -27,6 +28,31 @@ export const Dashboard=defineStore('dashboard',{
         }
     },
     actions:{
+        addNotification(action:INotification){
+            const isExist=this.notificationData.some(item=>item.username===action.username);
+            if(!isExist){
+                this.notificationData.push(action)
+            }
+        },
+        removeNotification(username:string|string[]){
+            if(typeof username==='object'){
+                username.forEach(user=>{
+                    const isExist=this.notificationData.some(item=>item.username===user);
+                    if(isExist){
+                        const idx=this.notificationData.findIndex(item=>item.username===user)
+                        this.notificationData.splice(idx,1)
+                    }
+                })
+            }else{
+                const isExist=this.notificationData.some(item=>item.username===username);
+                if(isExist){
+                    const idx=this.notificationData.findIndex(item=>item.username===username)
+                    this.notificationData.splice(idx,1)
+                }
+
+            }
+
+        },
          async getServerUsageData (){
              ///.env
              const {apiBase}=envVariable()

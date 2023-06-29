@@ -76,6 +76,7 @@ export const usePagination=()=>{
     }
 
     const searchThroughQuery = () => {
+        dashboardStore.showPreloaderFlag=false
         const username=route.query.username as string
         if(username){
             tableStore.searchText=username
@@ -160,6 +161,7 @@ export const usePagination=()=>{
                     text:response.detail
                 })
             }else{
+                dashboardStore.removeNotification(tableStore.selectedUserToDelete)
                 tableStore.selectedUserToDelete=[]
                 notify({
                     type:'warn',

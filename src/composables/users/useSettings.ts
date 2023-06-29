@@ -61,6 +61,7 @@ export const useSettings=(props:any)=>{
                     title:'Delete Operation',
                     text:'User deleted successfully!'
                 })
+               dashboardStore.removeNotification(props.user)
             }
         }).
         catch(err=>{

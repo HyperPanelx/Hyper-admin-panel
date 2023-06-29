@@ -1,8 +1,18 @@
 import {defineStore} from "pinia";
 import {IUsers_Data,IOnline_Users_Data} from "../utils/Types";
 import {envVariable, useAuthStore, useDashboardStore} from "../composables/useStates";
-
-
+import {dayRegex, monthRegex, yearRegex} from "../utils/Helper";
+///////////////////////
+const notifTemp={
+    title:'User expiration',
+    icon:'fa-solid fa-circle-exclamation',
+    theme:'!bg-red-500'
+}
+const date=new Date();
+const currentYear=Number(date.getFullYear());
+const currentMonth=Number(date.getMonth()+1 < 10 ? `0${date.getMonth()+1}` : date.getMonth()+1);
+const currentDate=Number(date.getDate() < 10 ? `0${date.getDate()}` : date.getDate())
+///////////////////////////////////////////////////////
 
 export const Table=defineStore('table',{
     state:()=>{
@@ -12,10 +22,42 @@ export const Table=defineStore('table',{
             selectedUserToDelete:[] as string[],
             selectedOnlineUserToKill:[] as string[],
             paginationData:{} as any,
-            searchText:'' as string
+            searchText:'' as string,
         }
     },
     actions:{
+        trackExpiredUsers(usersData:IUsers_Data['rows']){
+            const {dashboardStore}=useDashboardStore()
+            ///////////////////////////////////////////
+            usersData.forEach(user=>{
+                const userExYear=Number(user.exdate?.match(yearRegex)[0]) ?? null
+                const userExMonth=Number(user.exdate?.match(monthRegex)[0]) ?? null
+                const userExDay=Number(user.exdate?.match(dayRegex)[0]) ?? null
+                if(currentYear==userExYear && currentMonth==userExMonth){
+                    if(currentDate+3 > userExDay){
+                        dashboardStore.addNotification({
+                            ...notifTemp,
+                            username:user.user,
+                            msg:'Action require : user will be expired soon',
+                        })
+                    }
+                }else if (currentYear==userExYear && currentMonth+1==userExMonth){
+                    if(currentDate>28 && (userExDay<2 || userExDay>28)){
+                        dashboardStore.addNotification({
+                            ...notifTemp,
+                            username:user.user,
+                            msg:'Action require : user will be expired soon',
+                        })
+                    }
+                } else if(currentYear>userExYear || currentMonth> userExMonth){
+                    dashboardStore.addNotification({
+                        ...notifTemp,
+                        username:user.user,
+                        msg:'Action require : user expired',
+                    })
+                }
+           })
+        },
          async getUsersList (){
              //// dashboard store for preloader
              const {dashboardStore}=useDashboardStore()
@@ -26,7 +68,7 @@ export const Table=defineStore('table',{
              this.tableData={rows:[],titles:[]}
              this.fetchTableDataFlag=false
             dashboardStore.showPreloaderFlag=true
-            fetch(apiBase+'get-users?username=all',{
+            fetch(apiBase+'get-users?mode=all',{
                 headers:{
                     'Content-type':'application/json',
                     Authorization:`Bearer ${token.value}`
@@ -42,7 +84,9 @@ export const Table=defineStore('table',{
                         rows:response.map((item,index)=>{
                             return {...item,uid:index+1}
                         })
-                    }
+                    };
+                    this.trackExpiredUsers(response)
+
                 }
             }).
             catch(err=>console.log(err)).

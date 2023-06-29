@@ -74,22 +74,28 @@
       <Download v-bind="props" />
     </div>
   </td>
-  <td class="absolute top-0 left-0 w-full h-full z-[5]" @click="checkboxHandler" colspan="0"></td>
+  <td class="absolute top-0 left-0 w-full h-full z-[5]" @click="checkboxHandler" colspan="0">
+    <span v-if="getNotificationData?.some(item=>item.username===user) ?? false" class="top-0 w-full absolute inline-block left-0 text-center bg-red-500 text-primary-light-1 text-0.7 ">
+      {{getNotificationData?.filter(item=>item.username===user)[0].msg ?? ''}}
+    </span>
+  </td>
 </template>
 
 <script setup lang="ts">
-import {stringToPassword,copyText} from "../../utils/Helper";
+import {stringToPassword, copyText} from "../../utils/Helper";
 import Settings from './Setting.vue'
 import Edit from './Edit.vue'
 import Download from './Download.vue'
 import CheckBox from './Check.vue'
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
-import {ref} from "vue";
+import {computed, ref} from "vue";
 import {useCheckBox} from "../../composables/users/useCheckBox";
+import {useDashboardStore} from "../../composables/useStates";
+/////////////////////////////////////////////////////////////
 const props=defineProps(['user','traffic','usedVolume','multi','phone','email','registered','exdate','status','uid','passwd','telegram_id','desc','referral']);
 const showPasswordFlag=ref<boolean>(false)
-
-const {checkboxHandler}=useCheckBox(props)
+const {checkboxHandler}=useCheckBox(props);
+const {dashboardStore,getNotificationData}=useDashboardStore();
 
 </script>
 
@@ -105,5 +111,6 @@ const {checkboxHandler}=useCheckBox(props)
   .btn-operation{
     @apply  w-[2.8rem] h-[2.8rem] !flex !justify-center !items-center transition-all
   }
+
 }
 </style>

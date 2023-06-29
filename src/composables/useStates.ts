@@ -33,11 +33,11 @@ export const useDashboardStore=()=>{
     const fetchDashboardDataFlag=computed(()=>dashboardStore.fetchDashboardDataFlag)
     const usersStatusData=computed(()=>dashboardStore.usersStatusData)
     const serverStatus=computed(()=>dashboardStore.serverStatus)
-
+    const getNotificationData=computed(()=>dashboardStore.notificationData)
     const windowWidth:null|number= window.innerWidth
 
     return{
-        sidebarCollapseFlag,windowWidth,dashboardStore,showPreloaderFlag,fetchDashboardDataFlag,usersStatusData,serverStatus
+        sidebarCollapseFlag,windowWidth,dashboardStore,showPreloaderFlag,fetchDashboardDataFlag,usersStatusData,serverStatus,getNotificationData
     }
 }
 
@@ -49,6 +49,7 @@ export const useTableStore=()=>{
     const selectedOnlineUserToKill=computed<string[]>(()=>tableStore.selectedOnlineUserToKill)
     const paginationData=computed<any>(()=>tableStore.paginationData)
     const searchText=computed<string>(()=>tableStore.searchText)
+
 
     return{
         tableData,

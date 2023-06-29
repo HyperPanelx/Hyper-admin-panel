@@ -87,3 +87,11 @@ export interface ICreate_User {
     telegram_id:string,
     description?:string
 }
+
+
+export interface INotification {
+    title:string,
+    msg:string,
+    username?:string,
+    icon:string,
+}
