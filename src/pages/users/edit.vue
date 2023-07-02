@@ -23,7 +23,6 @@
               <FormKit
                   :value="userInitialData.telegram_id"
                   type="text"
-                  validation="required"
                   id="e_telegram_id"
                   name="e_telegram_id"
                   input-class=" font-main"
@@ -37,7 +36,7 @@
             <column col="12" md="6">
               <FormKit
                   :value="userInitialData.phone"
-                  validation="required|matches:/^0?9\d{9}$/"
+                  validation="matches:/^0?9\d{9}$/"
                   type="text"
                   id="e_phone"
                   name="e_phone"
@@ -50,7 +49,7 @@
             <column col="12" md="6">
               <FormKit
                   :value="userInitialData.email"
-                  validation="required|email"
+                  validation="email"
                   type="text"
                   id="e_email"
                   name="e_email"
@@ -65,7 +64,6 @@
             <column col="12" md="6">
               <FormKit
                   :value="userInitialData.traffic.num"
-                  validation="required"
                   type="text"
                   id="e_traffic"
                   name="e_traffic"
@@ -77,7 +75,6 @@
               <FormKit
                   :value="userInitialData.traffic.unit"
                   name="e_traffic_unit"
-                  validation="required"
                   id="e_traffic_unit"
                   fieldset-class="!border-[0px] dark:[&_*]!text-primary-light-1 !pl-0 !ml-0"
                   options-class="!flex gap-1 !flex-row"

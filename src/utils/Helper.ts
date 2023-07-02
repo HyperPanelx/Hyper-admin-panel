@@ -1,6 +1,9 @@
 import {ISidebar} from "./Types";
 import { useNotification } from "@kyvg/vue3-notification";
-
+export const date=new Date();
+export const currentYear=Number(date.getFullYear());
+export const currentMonth=Number(date.getMonth()+1 < 10 ? `0${date.getMonth()+1}` : date.getMonth()+1);
+export const currentDate=Number(date.getDate() < 10 ? `0${date.getDate()}` : date.getDate())
 export const usernameRegex=/^(?=.{3,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/g
 export const passwordRegex=/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/g
 export const yearRegex=/^(\d{0,4})/g

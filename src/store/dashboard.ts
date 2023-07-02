@@ -27,6 +27,23 @@ export const Dashboard=defineStore('dashboard',{
             } as IServer_Status
         }
     },
+    getters:{
+        isUserExpired:(state)=>(username:string)=>{
+            return state.notificationData?.some(item=>item.username===username) ?? false
+        },
+        getUserExpiredDetail:(state)=>(username)=>{
+            return state.notificationData?.filter(item=>item.username===username)[0] ?? null
+        },
+        getNewsNotification(state){
+            return state.notificationData.filter(item=>item.status==='news')
+        },
+        getWarningNotification(state){
+            return state.notificationData.filter(item=>item.status==='warning')
+        },
+        getDangerNotification(state){
+            return state.notificationData.filter(item=>item.status==='danger')
+        },
+    },
     actions:{
         addNotification(action:INotification){
             const isExist=this.notificationData.some(item=>item.username===action.username);

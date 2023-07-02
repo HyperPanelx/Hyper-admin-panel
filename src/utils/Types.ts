@@ -93,5 +93,5 @@ export interface INotification {
     title:string,
     msg:string,
     username?:string,
-    icon:string,
+    status:'warning' | 'news' | 'danger'
 }

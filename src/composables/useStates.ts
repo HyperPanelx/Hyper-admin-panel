@@ -2,7 +2,8 @@ import {Auth} from '../store/auth'
 import {Dashboard} from "../store/dashboard";
 import {Table} from "../store/table";
 import {computed} from "vue";
-import {IUsers_Data,IOnline_Users_Data} from "../utils/Types";
+import {IUsers_Data, IOnline_Users_Data, INotification} from "../utils/Types";
+import {storeToRefs} from "pinia";
 
 export const envVariable=()=>{
     const apiBase:string|undefined=process.env.API_BASE || 'http://localhost/';
@@ -28,16 +29,22 @@ export const useAuthStore=()=>{
 
 export const useDashboardStore=()=>{
     const dashboardStore=Dashboard()
+    const {isUserExpired,getUserExpiredDetail}=storeToRefs(dashboardStore)
+    ////////////////////////////////////////////
     const sidebarCollapseFlag=computed<boolean>(()=>dashboardStore.sidebarCollapseFlag)
     const showPreloaderFlag=computed<boolean>(()=>dashboardStore.showPreloaderFlag)
-    const fetchDashboardDataFlag=computed(()=>dashboardStore.fetchDashboardDataFlag)
+    const fetchDashboardDataFlag=computed<boolean>(()=>dashboardStore.fetchDashboardDataFlag)
     const usersStatusData=computed(()=>dashboardStore.usersStatusData)
     const serverStatus=computed(()=>dashboardStore.serverStatus)
-    const getNotificationData=computed(()=>dashboardStore.notificationData)
+    const getNotificationData=computed<INotification[]>(()=>dashboardStore.notificationData);
+    const newsNotificationData=computed<INotification[]>(()=>dashboardStore.getNewsNotification);
+    const warningNotificationData=computed<INotification[]>(()=>dashboardStore.getWarningNotification);
+    const dangerNotificationData=computed<INotification[]>(()=>dashboardStore.getDangerNotification);
     const windowWidth:null|number= window.innerWidth
 
     return{
-        sidebarCollapseFlag,windowWidth,dashboardStore,showPreloaderFlag,fetchDashboardDataFlag,usersStatusData,serverStatus,getNotificationData
+        sidebarCollapseFlag,windowWidth,dashboardStore,showPreloaderFlag,fetchDashboardDataFlag,usersStatusData,serverStatus,getNotificationData,newsNotificationData,
+        warningNotificationData, dangerNotificationData,isUserExpired,getUserExpiredDetail
     }
 }
 

@@ -41,10 +41,10 @@ import router from "./router";
 //////////// fontawesome
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import {faCircleCheck,faXmark,faEye,faEyeSlash,faCircleExclamation,faBars,faChevronRight,faCompress,faExpand,faMagnifyingGlass,faBell,faMoon,faGear,faArrowRightFromBracket,faHouse,faUserGroup,faTowerBroadcast,faUser,faMicrochip,faServer,faHardDrive,faSignal,faChevronLeft,faKey,faPhone,faSliders,faDownload,faTrash,faRightLeft,faLock,faLockOpen,faArrowRight} from '@fortawesome/free-solid-svg-icons'
+import {faCircleCheck,faXmark,faEye,faEyeSlash,faCircleExclamation,faBars,faChevronRight,faCompress,faExpand,faMagnifyingGlass,faBell,faMoon,faGear,faArrowRightFromBracket,faHouse,faUserGroup,faTowerBroadcast,faUser,faMicrochip,faServer,faHardDrive,faSignal,faChevronLeft,faKey,faPhone,faSliders,faDownload,faTrash,faRightLeft,faLock,faLockOpen,faArrowRight,faTriangleExclamation} from '@fortawesome/free-solid-svg-icons'
 import {faTelegram} from '@fortawesome/free-brands-svg-icons'
 import {faCircle,faEnvelope,faSun,faPenToSquare} from '@fortawesome/free-regular-svg-icons'
-library.add(faCircle,faCircleCheck,faXmark,faEye,faEyeSlash,faCircleExclamation,faBars,faChevronRight,faCompress,faExpand,faMagnifyingGlass,faBell,faEnvelope,faMoon,faSun,faGear,faArrowRightFromBracket,faHouse,faUserGroup,faTowerBroadcast,faUser,faMicrochip,faServer,faHardDrive,faSignal,faChevronLeft,faKey,faTelegram,faPhone,faCircle,faSliders,faPenToSquare,faDownload,faTrash,faRightLeft,faLock,faLockOpen,faArrowRight)
+library.add(faCircle,faCircleCheck,faXmark,faEye,faEyeSlash,faCircleExclamation,faBars,faChevronRight,faCompress,faExpand,faMagnifyingGlass,faBell,faEnvelope,faMoon,faSun,faGear,faArrowRightFromBracket,faHouse,faUserGroup,faTowerBroadcast,faUser,faMicrochip,faServer,faHardDrive,faSignal,faChevronLeft,faKey,faTelegram,faPhone,faCircle,faSliders,faPenToSquare,faDownload,faTrash,faRightLeft,faLock,faLockOpen,faArrowRight,faTriangleExclamation)
 
 
 ///// dependencies

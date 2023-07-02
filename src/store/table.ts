@@ -1,17 +1,9 @@
 import {defineStore} from "pinia";
 import {IUsers_Data,IOnline_Users_Data} from "../utils/Types";
 import {envVariable, useAuthStore, useDashboardStore} from "../composables/useStates";
-import {dayRegex, monthRegex, yearRegex} from "../utils/Helper";
-///////////////////////
-const notifTemp={
-    title:'User expiration',
-    icon:'fa-solid fa-circle-exclamation',
-    theme:'!bg-red-500'
-}
-const date=new Date();
-const currentYear=Number(date.getFullYear());
-const currentMonth=Number(date.getMonth()+1 < 10 ? `0${date.getMonth()+1}` : date.getMonth()+1);
-const currentDate=Number(date.getDate() < 10 ? `0${date.getDate()}` : date.getDate())
+import {dayRegex, monthRegex, yearRegex,date,currentDate,currentMonth,currentYear} from "../utils/Helper";
+
+
 ///////////////////////////////////////////////////////
 
 export const Table=defineStore('table',{
@@ -34,26 +26,29 @@ export const Table=defineStore('table',{
                 const userExMonth=Number(user.exdate?.match(monthRegex)[0]) ?? null
                 const userExDay=Number(user.exdate?.match(dayRegex)[0]) ?? null
                 if(currentYear==userExYear && currentMonth==userExMonth){
-                    if(currentDate+3 > userExDay){
+                    if(currentDate+4 > userExDay){
                         dashboardStore.addNotification({
-                            ...notifTemp,
                             username:user.user,
                             msg:'Action require : user will be expired soon',
+                            title:'User expiration',
+                            status:'warning'
                         })
                     }
                 }else if (currentYear==userExYear && currentMonth+1==userExMonth){
                     if(currentDate>28 && (userExDay<2 || userExDay>28)){
                         dashboardStore.addNotification({
-                            ...notifTemp,
+                            title:'User expiration',
                             username:user.user,
                             msg:'Action require : user will be expired soon',
+                            status:'warning'
                         })
                     }
                 } else if(currentYear>userExYear || currentMonth> userExMonth){
                     dashboardStore.addNotification({
-                        ...notifTemp,
                         username:user.user,
                         msg:'Action require : user expired',
+                        title:'User expiration',
+                        status:'danger'
                     })
                 }
            })

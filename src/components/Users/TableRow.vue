@@ -55,8 +55,8 @@
   </td>
   <td >
     <div class="p-1">
-      <p class="text-gray-800 dark:text-primary-dark-3 text-0.8 mb-0.5">Registered: <template v-if="registered">{{registered}}</template></p>
-      <p class="text-gray-800 dark:text-primary-dark-3 text-0.8 ">Expired: <template v-if="exdate"> {{exdate}}</template></p>
+      <p class="text-gray-800 dark:text-primary-dark-3 text-0.8 mb-0.5">Registered at: <template v-if="registered">{{registered}}</template></p>
+      <p class="text-gray-800 dark:text-primary-dark-3 text-0.8 ">Expired at: <template v-if="exdate"> {{exdate}}</template></p>
     </div>
   </td>
   <td >
@@ -75,8 +75,8 @@
     </div>
   </td>
   <td class="absolute top-0 left-0 w-full h-full z-[5]" @click="checkboxHandler" colspan="0">
-    <span v-if="getNotificationData?.some(item=>item.username===user) ?? false" class="top-0 w-full absolute inline-block left-0 text-center bg-red-500 text-primary-light-1 text-0.7 ">
-      {{getNotificationData?.filter(item=>item.username===user)[0].msg ?? ''}}
+    <span v-if="isUserExpired(user)" class="top-0 w-full absolute inline-block left-0 text-center  text-primary-light-1 text-0.7 " :class="{'bg-red-500':getUserExpiredDetail(user).status==='danger','bg-amber-500':getUserExpiredDetail(user).status==='warning'}">
+      {{getUserExpiredDetail(user)?.msg ?? ''}}
     </span>
   </td>
 </template>
@@ -88,14 +88,14 @@ import Edit from './Edit.vue'
 import Download from './Download.vue'
 import CheckBox from './Check.vue'
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
-import {computed, ref} from "vue";
+import {ref} from "vue";
 import {useCheckBox} from "../../composables/users/useCheckBox";
 import {useDashboardStore} from "../../composables/useStates";
 /////////////////////////////////////////////////////////////
 const props=defineProps(['user','traffic','usedVolume','multi','phone','email','registered','exdate','status','uid','passwd','telegram_id','desc','referral']);
 const showPasswordFlag=ref<boolean>(false)
 const {checkboxHandler}=useCheckBox(props);
-const {dashboardStore,getNotificationData}=useDashboardStore();
+const {dashboardStore,getNotificationData,isUserExpired,getUserExpiredDetail}=useDashboardStore();
 
 </script>
 

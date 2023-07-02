@@ -1,13 +1,15 @@
 <template>
   <footer class="footer" :class="{'n-collapse':sidebarCollapseFlag,'!mt-[250px]':$route.name==='NotFound'}">
-    <p class="text-gray-500 dark:text-primary-dark-3 sm:mb-0 mb-1">&copy;Copyright 2023. All right is reserved.</p>
+    <p class="text-gray-500 dark:text-primary-dark-3 sm:mb-0 mb-1">&copy;Copyright {{currentYear}}. All right is reserved.</p>
     <p class="text-gray-500 dark:text-primary-dark-3">Designed and developed by H&F</p>
   </footer>
 </template>
 
 <script setup lang="ts">
 import {useDashboardStore} from "../../composables/useStates";
+import {currentYear} from "../../utils/Helper";
 const {sidebarCollapseFlag}=useDashboardStore();
+
 </script>
 
 <style scoped>
