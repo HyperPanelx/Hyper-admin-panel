@@ -1,7 +1,7 @@
 <template>
   <VDropdown height="20rem" class="mr-1.8" dropdownClass="!w-[320px] dark:!bg-primary-dark-1 dark:!border-primary-dark-2/50 lg:!left-[-300px] !left-[-200px]"   v-model="dropdownFlag">
     <template v-slot:parent>
-      <span @click="dropdownFlag=!dropdownFlag" class="badge " :class="{'before:!opacity-0':!getNotificationData.length>0}">
+      <span @click="dropdownFlag=!dropdownFlag" class="badge " :class="{'before:!opacity-0':getNotificationData.length===0}">
           <font-awesome-icon  icon="fa-solid fa-bell" size="1.7rem" class=" navbar-icon"/>
       </span>
     </template>
@@ -10,7 +10,7 @@
        <p class="text-gray-600 dark:text-primary-dark-3">Notification</p>
        <font-awesome-icon  @click="dropdownFlag=!dropdownFlag" class="text-gray-600 cursor-pointer relative  text-1.2 dark:text-primary-dark-3" icon="fa-solid fa-xmark" />
      </div>
-      <div class="py-0.8 px-1.5 overflow-y-auto h-[17rem] scroller" :class="{'h-auto':!getNotificationData.length>0}">
+      <div class="py-0.8 px-1.5 overflow-y-auto h-[17rem] scroller" :class="{'h-auto':getNotificationData.length===0}">
         <p class="text-0.8 text-gray-400">News</p>
         <template v-if="newsNotificationData.length>0">
           <NavbarNotificationItem

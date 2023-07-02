@@ -95,4 +95,5 @@ export interface INotification {
     msg:string,
     username?:string,
     status:'warning' | 'news' | 'danger'
+    link?:string|object
 }
