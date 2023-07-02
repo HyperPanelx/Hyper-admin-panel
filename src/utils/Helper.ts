@@ -28,6 +28,11 @@ export const sidebarItemData:ISidebar[]=[
         hasSub:false,
 
     },{
+        title:'Servers',
+        icon:'fa-solid fa-server',
+        link:{name:'SERVERS'},
+        hasSub:false,
+    },{
         title:'Settings',
         icon:'fa-solid fa-gear',
         link:{name:'SETTINGS'},

@@ -78,6 +78,12 @@
     <span v-if="isUserExpired(user)" class="top-0 w-full absolute inline-block left-0 text-center  text-primary-light-1 text-0.7 " :class="{'bg-red-500':getUserExpiredDetail(user).status==='danger','bg-amber-500':getUserExpiredDetail(user).status==='warning'}">
       {{getUserExpiredDetail(user)?.msg ?? ''}}
     </span>
+
+    <div class="w-full absolute bottom-0 left-0 pr-1 pb-0.2 flex justify-end">
+      <p :title="`created at ${server} server`" class="text-gray-600 text-0.7 w-[9.5rem] text-hidden dark:text-primary-dark-2 ">
+        created at {{server}} server
+      </p>
+    </div>
   </td>
 </template>
 
@@ -92,11 +98,10 @@ import {ref} from "vue";
 import {useCheckBox} from "../../composables/users/useCheckBox";
 import {useDashboardStore} from "../../composables/useStates";
 /////////////////////////////////////////////////////////////
-const props=defineProps(['user','traffic','usedVolume','multi','phone','email','registered','exdate','status','uid','passwd','telegram_id','desc','referral']);
+const props=defineProps(['user','traffic','usedVolume','multi','phone','email','registered','exdate','status','uid','passwd','telegram_id','desc','referral','server']);
 const showPasswordFlag=ref<boolean>(false)
 const {checkboxHandler}=useCheckBox(props);
-const {dashboardStore,getNotificationData,isUserExpired,getUserExpiredDetail}=useDashboardStore();
-
+const {dashboardStore,isUserExpired,getUserExpiredDetail}=useDashboardStore();
 </script>
 
 <style scoped>

@@ -1,14 +1,15 @@
 import {ref,reactive} from "vue";
 import { reset } from '@formkit/core'
-import {useAuthStore,envVariable} from "../useStates";
+import {useAuthStore,envVariable,useServerStore} from "../useStates";
 import { useNotification } from "@kyvg/vue3-notification";
 import {downloadTextFile} from "../../utils/Helper";
 import {querySerialize} from "../../utils/Helper";
 
 export const useGenerate=()=>{
     const { notify }  = useNotification()
-    const {token}=useAuthStore()
+    const {token,username}=useAuthStore()
     const {apiBase}=envVariable()
+    const {getServerIP}=useServerStore()
     const downloadAnchorElem=ref<HTMLAnchorElement|null>(null);
     const generateUserForm=ref<HTMLFormElement|null>(null);
     const generateUsersData=reactive({
@@ -39,7 +40,9 @@ export const useGenerate=()=>{
         const query=querySerialize({
             multi:formData.g_concurrent_user,
             exdate:formData.g_expiration_date,
-            count:formData.g_count
+            count:formData.g_count,
+            server:getServerIP.value,
+            created_by:username.value
         });
         fetch(apiBase+'user-gen?'+query,{
             method:'POST',
@@ -50,7 +53,7 @@ export const useGenerate=()=>{
         }).
         then(response=>response.json()).
         then((response)=>{
-            if(response.detail){
+            if(response?.detail){
                 /// if error in sending data
                 generateUsersData.msg=response.detail
                 notify({

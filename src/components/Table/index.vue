@@ -5,7 +5,7 @@
 
       <tbody v-if="searchResultFlag">
       <tr>
-        <td colspan="7">
+        <td colspan="8">
           <p class="text-center dark:text-primary-dark-3 uppercase  text-gray-800 p-2">
             no search result!
           </p>

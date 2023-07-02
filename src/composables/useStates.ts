@@ -1,6 +1,7 @@
 import {Auth} from '../store/auth'
 import {Dashboard} from "../store/dashboard";
 import {Table} from "../store/table";
+import {Server} from "../store/server";
 import {computed} from "vue";
 import {IUsers_Data, IOnline_Users_Data, INotification} from "../utils/Types";
 import {storeToRefs} from "pinia";
@@ -9,10 +10,10 @@ export const envVariable=()=>{
     const apiBase:string|undefined=process.env.API_BASE || 'http://localhost/';
     const cookieName:string|undefined=process.env.COOKIE_NAME || 'fb69cda06c628';
     const appVersion:string|undefined=process.env.VERSION || '0.0.9';
-
+    const server_ip:string|undefined=process.env.SERVER_IP || 'localhost'
 
     return{
-        apiBase,cookieName,appVersion
+        apiBase,cookieName,appVersion,server_ip
     }
 }
 
@@ -68,5 +69,18 @@ export const useTableStore=()=>{
         selectedOnlineUserToKill,
         tableStore,paginationData,
         searchText,filterUser
+    }
+}
+
+
+export const useServerStore=()=>{
+    const serverStore=Server()
+    const {getServerIP,getHostList}=storeToRefs(serverStore)
+    const fetchServerListsFlag=computed<boolean>(()=>serverStore.fetchServerListFlag)
+
+
+
+    return{
+        getServerIP,serverStore,getHostList,fetchServerListsFlag
     }
 }

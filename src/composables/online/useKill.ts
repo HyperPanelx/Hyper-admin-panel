@@ -1,4 +1,4 @@
-import {useTableStore,useAuthStore,envVariable,useDashboardStore} from "../useStates";
+import {useTableStore,useAuthStore,envVariable,useDashboardStore,useServerStore} from "../useStates";
 import {ref} from "vue";
 import { useNotification } from "@kyvg/vue3-notification";
 import {querySerialize} from "../../utils/Helper";
@@ -9,13 +9,14 @@ export const useKill=(props:any)=>{
     const {tableStore}=useTableStore()
     const {token}=useAuthStore()
     const {dashboardStore}=useDashboardStore()
+    const {getServerIP}=useServerStore()
 
 
     const modalFlag=ref<boolean>(false);
     const killUser =async () => {
         tableStore.fetchTableDataFlag=false
         dashboardStore.showPreloaderFlag=true
-        const query=querySerialize({username:props.user})
+        const query=querySerialize({username:props.user,server:getServerIP.value})
 
         fetch(apiBase+'kill-user?'+query,{
             headers:{

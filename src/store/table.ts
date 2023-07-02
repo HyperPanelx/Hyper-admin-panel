@@ -1,8 +1,7 @@
 import {defineStore} from "pinia";
 import {IUsers_Data, IOnline_Users_Data, INotification,IUser_Item} from "../utils/Types";
-import {envVariable, useAuthStore, useDashboardStore} from "../composables/useStates";
+import {envVariable, useAuthStore, useDashboardStore,useServerStore} from "../composables/useStates";
 import {dayRegex, monthRegex, yearRegex,date,currentDate,currentMonth,currentYear} from "../utils/Helper";
-import {ComputedRef} from "vue";
 
 
 ///////////////////////////////////////////////////////
@@ -65,16 +64,18 @@ export const Table=defineStore('table',{
            })
         },
          async getUsersList (){
+            //// server store
+             const {getServerIP}=useServerStore()
              //// dashboard store for preloader
              const {dashboardStore}=useDashboardStore()
              /// token / .env
              const {token}=useAuthStore()
-             const {apiBase}=envVariable()
+             const {apiBase,server_ip}=envVariable()
 
              this.tableData={rows:[],titles:[]}
              this.fetchTableDataFlag=false
             dashboardStore.showPreloaderFlag=true
-            fetch(apiBase+'get-users?mode=all',{
+            fetch(apiBase+`get-users?username=all&server=${getServerIP.value}`,{
                 headers:{
                     'Content-type':'application/json',
                     Authorization:`Bearer ${token.value}`
@@ -88,7 +89,7 @@ export const Table=defineStore('table',{
                     this.tableData={
                         titles:['user info','traffic','User limitation','Contact info','Date','status','operation'],
                         rows:response.map((item,index)=>{
-                            return {...item,uid:index+1}
+                            return {...item,uid:index+1,server:item.server || server_ip}
                         })
                     };
                     this.trackExpiredUsers(response)
@@ -104,13 +105,15 @@ export const Table=defineStore('table',{
         async getOnlineUsers ()  {
             //// dashboard store for preloader
             const {dashboardStore}=useDashboardStore()
+            //// server store
+            const {getServerIP}=useServerStore()
             /// token / .env
             const {token}=useAuthStore()
             const {apiBase}=envVariable()
             this.tableData={rows:[],titles:[]}
             this.fetchTableDataFlag=false
             dashboardStore.showPreloaderFlag=true
-            fetch(apiBase+'active-user',{
+            fetch(apiBase+`active-user?server=${getServerIP.value}`,{
                 headers:{
                     'Content-Type':'application/json',
                     Authorization:`Bearer ${token.value}`
@@ -123,7 +126,7 @@ export const Table=defineStore('table',{
                 }else{
                     this.tableData={
                         titles:['#','Username','IP Address','Management'],
-                        rows:response.map((item,index)=>{
+                        rows:response.users.map((item,index)=>{
                             return {
                                 user:item,
                                 ip:'',

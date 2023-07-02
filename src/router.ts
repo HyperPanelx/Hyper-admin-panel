@@ -12,6 +12,7 @@ const generateUser=()=>import('./pages/users/generate.vue')
 const login=()=>import( './pages/login.vue')
 const error=()=>import( './pages/error.vue')
 const editUser=()=>import('./pages/users/edit.vue')
+const servers=()=>import('./pages/server.vue')
 
 
 
@@ -40,7 +41,8 @@ const routes:RouteRecordRaw[]=[
                 path:'dashboard',
                 name:'DASHBOARD',
                 meta:{title:'Dashboard | Hyper',status:true}
-            },{
+            },
+            {
                 component:usersIndex,
                 path:'users',
                 name:'USERS_INDEX',
@@ -78,6 +80,12 @@ const routes:RouteRecordRaw[]=[
                 name:'ONLINE',
                 path:'online',
                 meta:{title:'Online Users | Hyper',status:true},
+            },
+            {
+                component:servers,
+                name:'SERVERS',
+                path:'servers',
+                meta:{title:'Servers | Hyper',status:true},
             },
             {
                 component:settingsIndex,

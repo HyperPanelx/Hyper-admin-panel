@@ -1,7 +1,7 @@
 import {defineStore} from "pinia";
 import {IUsers_Data,IServer_Status,INotification} from "../utils/Types";
 import {useLogout} from "../composables/useLogout";
-import {envVariable, useAuthStore} from "../composables/useStates";
+import {envVariable, useAuthStore,useServerStore} from "../composables/useStates";
 
 
 
@@ -71,6 +71,8 @@ export const Dashboard=defineStore('dashboard',{
 
         },
          async getServerUsageData (){
+            /// server store
+             const {getServerIP}=useServerStore()
              ///.env
              const {apiBase}=envVariable()
              /// logout func
@@ -79,7 +81,7 @@ export const Dashboard=defineStore('dashboard',{
              const {token}=useAuthStore()
              /// turn on loader flag
             this.fetchDashboardDataFlag=false
-            fetch(apiBase+'resource-usage',{
+            fetch(apiBase+`resource-usage?server=${getServerIP.value}`,{
                 headers:{
                     'Content-Type':'application/json',
                     Authorization:`Bearer ${token.value}`
@@ -89,7 +91,8 @@ export const Dashboard=defineStore('dashboard',{
             then((response)=>{
                 if(response.detail){
                     ///// if token is not valid user must be logged out and response = false
-                    logoutHandler()
+                    // logoutHandler()
+                    console.log(response)
                 }else{
                     const uploadSpeed=response[1]['Upload Speed']
                     const downloadSpeed=response[1]['Download Speed']
@@ -117,6 +120,8 @@ export const Dashboard=defineStore('dashboard',{
         },
         async triggerInitialFetchData(){
             document.body.style.overflowY='hidden'
+            /// server store
+            const {getServerIP}=useServerStore()
             const {logoutHandler}=useLogout()
             ///.env
             const {apiBase}=envVariable()
@@ -125,7 +130,7 @@ export const Dashboard=defineStore('dashboard',{
             /// turn on page loader flag
             this.showPreloaderFlag=true
             await this.getServerUsageData()
-            await fetch(apiBase+'status-clients',{
+            await fetch(apiBase+`status-clients?server=${getServerIP.value}`,{
                 headers:{
                     'Content-Type':'application/json',
                     Authorization:`Bearer ${token.value}`
@@ -134,7 +139,8 @@ export const Dashboard=defineStore('dashboard',{
             then(response=>response.json()).
             then((response)=>{
                 if(response.detail){
-                    logoutHandler()
+                    console.log(response)
+                    // logoutHandler()
                 }else{
                     this.usersStatusData=[
                         {title:'All Users', number:response.all_users,theme:'indigo'},

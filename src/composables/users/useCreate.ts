@@ -1,12 +1,12 @@
 import { reset } from '@formkit/core'
 import {onMounted,reactive,ref} from "vue";
-import {envVariable, useAuthStore} from "../useStates";
-import {Response} from "../../utils/Types";
+import {envVariable, useAuthStore,useServerStore} from "../useStates";
 import {querySerialize} from "../../utils/Helper";
 
 export const useCreateUser=()=>{
-    const {token}=useAuthStore()
+    const {token,username}=useAuthStore()
     const {apiBase}=envVariable()
+    const {getServerIP}=useServerStore()
     const createSingleUserForm=ref(null);
     const fetchOperationData=reactive({
         on:null as null|boolean,
@@ -45,6 +45,8 @@ export const useCreateUser=()=>{
             referral:formData?.referral ?? '' ,
             desc:formData?.description ?? '',
             traffic:formData.traffic ? `${formData?.traffic ?? ''} ${formData?.traffic_unit ?? ''}` : '',
+            server:getServerIP.value,
+            created_by:username.value
         });
         fetch(apiBase+'add-user?'+query,{
             headers:{

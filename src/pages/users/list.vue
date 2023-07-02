@@ -35,6 +35,7 @@
                   :telegram_id="item.telegram_id"
                   :desc="item.desc"
                   :referral="item.referral"
+                  :server="item.server"
               />
             </tr>
           </Table>

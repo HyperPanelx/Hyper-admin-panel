@@ -1,5 +1,5 @@
 import {IUsers_Data} from "../utils/Types";
-import {useTableStore,envVariable,useAuthStore,useDashboardStore} from "./useStates";
+import {useTableStore,envVariable,useAuthStore,useDashboardStore,useServerStore} from "./useStates";
 import {reactive,watch} from "vue";
 import { useNotification } from "@kyvg/vue3-notification";
 import {useRouter,useRoute} from "vue-router";
@@ -12,6 +12,7 @@ export const usePagination=()=>{
     const {tableStore,filterUser}=useTableStore()
     const {apiBase}=envVariable()
     const {token}=useAuthStore()
+    const {getServerIP}=useServerStore()
     const {dashboardStore,dangerNotificationData,warningNotificationData}=useDashboardStore()
     const modalData=reactive({
         on:false,
@@ -161,7 +162,7 @@ export const usePagination=()=>{
     const deleteSelectedUsers = async () => {
         tableStore.fetchTableDataFlag=false
         dashboardStore.showPreloaderFlag=true
-        fetch(apiBase+'del-kill-users?mode=del',{
+        fetch(apiBase+`del-kill-users?mode=del&server=${getServerIP.value}`,{
             method:'POST',
             headers:{
                 'Content-Type':'application/json',
@@ -205,7 +206,7 @@ export const usePagination=()=>{
     const killSelectedUsers =async () => {
         tableStore.fetchTableDataFlag=false
         dashboardStore.showPreloaderFlag=true
-        fetch(apiBase+'del-kill-users?mode=kill',{
+        fetch(apiBase+`del-kill-users?mode=kill&server=${getServerIP.value}`,{
             method:'POST',
             headers:{
                 'Content-Type':'application/json',

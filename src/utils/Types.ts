@@ -97,3 +97,9 @@ export interface INotification {
     status:'warning' | 'news' | 'danger'
     link?:string|object
 }
+
+export interface IServer_List{
+    host:string
+    port:number
+    status:string
+}

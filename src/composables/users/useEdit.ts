@@ -1,11 +1,12 @@
 import {useRoute,useRouter} from "vue-router";
 import {onMounted, reactive, ref, watch} from "vue";
-import {envVariable,useAuthStore,useDashboardStore} from "../useStates";
+import {envVariable,useAuthStore,useDashboardStore,useServerStore} from "../useStates";
 import { useNotification } from "@kyvg/vue3-notification";
 import {querySerialize} from "../../utils/Helper";
 
 export const useEdit=()=>{
-    const { notify }  = useNotification()
+    const { notify }  = useNotification();
+    const { getServerIP }  = useServerStore();
     const fetchFlag=ref<boolean>(false);
     const editFetchFlag=ref<boolean>(false);
     const editUserForm=ref<HTMLFormElement|null>(null);
@@ -30,7 +31,7 @@ export const useEdit=()=>{
         dashboardStore.showPreloaderFlag=true
         fetchFlag.value=false
        const username=route.query.username
-        fetch(apiBase+`get-users?mode=username&username=${username}`,{
+        fetch(apiBase+`get-users?username=${username}`,{
             headers:{
                 'Content-type':'application/json',
                 Authorization:`Bearer ${token.value}`
@@ -73,10 +74,11 @@ export const useEdit=()=>{
         const query=querySerialize({
             username:formData.e_username,
             telegram_id :formData.e_telegram_id,
-            phone:formData.e_phone,
+            phone:Number(formData.e_phone),
             email:formData.e_email,
             multi:formData.e_concurrent_user,
-            traffic:formData.e_traffic ? `${formData.e_traffic} ${formData.e_traffic_unit}` : ''
+            traffic:formData.e_traffic ? `${formData.e_traffic} ${formData.e_traffic_unit}` : '',
+            server:getServerIP.value
         })
         fetch(apiBase+'change-detail?'+query,{
             headers:{

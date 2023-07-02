@@ -1,7 +1,7 @@
 import {IUsers_Data,Response} from "../../utils/Types";
 import {envVariable} from "../useStates";
 import {ref,reactive} from "vue";
-import {useTableStore,useAuthStore,useDashboardStore} from "../useStates";
+import {useTableStore,useAuthStore,useDashboardStore,useServerStore} from "../useStates";
 import { useNotification } from "@kyvg/vue3-notification";
 import {querySerialize} from "../../utils/Helper";
 
@@ -13,6 +13,7 @@ export const useSettings=(props:any)=>{
     const {tableStore}=useTableStore()
     const {token}=useAuthStore()
     const {dashboardStore}=useDashboardStore()
+    const {getServerIP}=useServerStore()
     const operationData=reactive({
         name:'',
         modal:false,
@@ -40,7 +41,7 @@ export const useSettings=(props:any)=>{
         dropdownFlag.value=false
         dashboardStore.showPreloaderFlag=true
         tableStore.fetchTableDataFlag=false
-        const query=querySerialize({username:props.user})
+        const query=querySerialize({username:props.user,server:getServerIP.value})
         fetch(apiBase+'delete-user?'+query,{
             headers:{
                 'Content-Type':'application/json',
@@ -81,7 +82,7 @@ export const useSettings=(props:any)=>{
     const changePassword = async () => {
         dropdownFlag.value=false
         operationData.modal=false
-        const query=querySerialize({mode:'users',username:props.user})
+        const query=querySerialize({mode:'users',username:props.user,server:getServerIP.value})
         fetch(apiBase+`change-passwd-user?`+query,{
             headers:{
                 'Content-Type':'application/json',
@@ -122,7 +123,7 @@ export const useSettings=(props:any)=>{
         dropdownFlag.value=false
         dashboardStore.showPreloaderFlag=true
         tableStore.fetchTableDataFlag=false
-        const query=querySerialize({username:props.user})
+        const query=querySerialize({username:props.user,server:getServerIP.value})
         fetch(apiBase+`lock-user?`+query,{
             headers:{
                 'Content-Type':'application/json',
@@ -160,7 +161,7 @@ export const useSettings=(props:any)=>{
         dropdownFlag.value=false
         dashboardStore.showPreloaderFlag=true
         tableStore.fetchTableDataFlag=false
-        const query=querySerialize({username:props.user})
+        const query=querySerialize({username:props.user,server:getServerIP.value})
         fetch(apiBase+`unlock-user?`+query,{
             headers:{
                 'Content-Type':'application/json',
