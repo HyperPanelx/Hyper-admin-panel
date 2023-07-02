@@ -17,7 +17,7 @@
       </tbody>
       <tbody v-else-if="rows.length===0">
       <tr>
-        <td colspan="7">
+        <td colspan="8">
           <p class="text-center uppercase dark:text-primary-dark-3  text-gray-800 p-2">
             no users found!
           </p>

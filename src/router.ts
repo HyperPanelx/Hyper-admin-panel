@@ -1,5 +1,4 @@
 import {createRouter,createWebHashHistory,RouteRecordRaw,createWebHistory} from "vue-router";
-import {useRouter} from "vue-router";
 import {Auth} from './store/auth'
 //// pages
 const MainIndex=()=>import(  './pages/index.vue')
@@ -155,11 +154,13 @@ const routes:RouteRecordRaw[]=[
     { path: '/:pathMatch(.*)*', name: 'NotFound', component: error ,meta:{title:'Page not found!',status:true},},
 
 ]
-
-
+///////////////////////
+const isDevelopment=process.env.NODE_ENV === 'development'
+const historyMode=isDevelopment ? createWebHashHistory() : createWebHistory();
+///////////////////////
 const router=createRouter({
     routes,
-    history:createWebHashHistory(),
+    history:historyMode,
     scrollBehavior(to, from, savedPosition) {
         return { top: 0 }
     },
