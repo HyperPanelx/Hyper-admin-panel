@@ -14,7 +14,7 @@
     <row>
       <column col="12">
         <VCard title="users list" class="!overflow-visible" body-class="!p-0">
-          <PaginationControl  @refresh="tableStore.getUsersList()"/>
+          <PaginationControl :sort="true"  @refresh="tableStore.getUsersList()"/>
           <Table v-if="paginationData.currentPageData"
                  :searchResultFlag="paginationData.searchResultFlag"
                  :rows="paginationData.currentPageData"

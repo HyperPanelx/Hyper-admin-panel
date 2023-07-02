@@ -1,7 +1,8 @@
 import {defineStore} from "pinia";
-import {IUsers_Data,IOnline_Users_Data} from "../utils/Types";
+import {IUsers_Data, IOnline_Users_Data, INotification,IUser_Item} from "../utils/Types";
 import {envVariable, useAuthStore, useDashboardStore} from "../composables/useStates";
 import {dayRegex, monthRegex, yearRegex,date,currentDate,currentMonth,currentYear} from "../utils/Helper";
+import {ComputedRef} from "vue";
 
 
 ///////////////////////////////////////////////////////
@@ -15,6 +16,16 @@ export const Table=defineStore('table',{
             selectedOnlineUserToKill:[] as string[],
             paginationData:{} as any,
             searchText:'' as string,
+        }
+    },
+    getters:{
+        filterUser:(state)=>(source:INotification[])=>{
+            let result=[]
+            source.forEach((item)=>{
+                const target=(state.tableData as IUsers_Data).rows.filter((table:IUser_Item)=>table.user===item.username)[0]
+                result.push(target)
+            })
+            return result
         }
     },
     actions:{

@@ -4,7 +4,7 @@
     <row class="mt-2">
       <column col="12">
         <VCard title="online users" body-class="!p-0">
-          <PaginationControl @refresh="tableStore.getOnlineUsers()" />
+          <PaginationControl :sort="false" @refresh="tableStore.getOnlineUsers()" />
           <Table  v-if="paginationData.currentPageData"
                   :searchResultFlag="paginationData.searchResultFlag"
               :rows="paginationData.currentPageData"

@@ -1,11 +1,24 @@
 <template>
-  <div class="p-2 shadow-[inset_0_0px_5px_0_rgba(0,0,0,0.1)] overflow-hidden flex md:flex-row flex-col md:justify-between md:items-center">
+  <div class="py-2 px-1 shadow-[inset_0_0px_5px_0_rgba(0,0,0,0.1)] overflow-hidden flex md:flex-row flex-col md:justify-between md:items-center">
     <FormKit type="form"  @submit="changePerPageHandler"  :actions="false" >
-      <div class="flex gap-1 items-center">
+      <div class="flex gap-0.5 items-center">
         <FormKit
             input-class="btn btn-indigo btn-md"
             type="submit"
             label="Apply"
+        />
+        <FormKit
+            v-if="sort"
+            type="select"
+            name="sort"
+            placeholder="sort by"
+            input-class="select-dark"
+            :options="[
+                'disable',
+                'enable',
+                'expired',
+                'expire soon',
+            ]"
         />
         <FormKit
             type="select"
@@ -44,6 +57,9 @@
 <script setup lang="ts">
 import {usePagination} from "../../composables/usePagination";
 import {useTableStore} from "../../composables/useStates";
+const props=defineProps<{
+  sort:boolean
+}>()
 const emit=defineEmits<{
   (e:'refresh'):void
 }>();

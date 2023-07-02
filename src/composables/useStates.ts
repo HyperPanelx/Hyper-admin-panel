@@ -50,6 +50,8 @@ export const useDashboardStore=()=>{
 
 export const useTableStore=()=>{
     const tableStore=Table()
+    const {filterUser}=storeToRefs(tableStore)
+    ///////////////////////
     const tableData=computed<IOnline_Users_Data | IUsers_Data>(()=>tableStore.tableData)
     const fetchTableDataFlag=computed<boolean>(()=>tableStore.fetchTableDataFlag)
     const selectedUserToDelete=computed<string[]>(()=>tableStore.selectedUserToDelete)
@@ -58,12 +60,13 @@ export const useTableStore=()=>{
     const searchText=computed<string>(()=>tableStore.searchText)
 
 
+
     return{
         tableData,
         fetchTableDataFlag,
         selectedUserToDelete,
         selectedOnlineUserToKill,
         tableStore,paginationData,
-        searchText
+        searchText,filterUser
     }
 }

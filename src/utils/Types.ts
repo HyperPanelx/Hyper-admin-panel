@@ -47,22 +47,23 @@ export interface IServer_Status {
         uploadSpeed:number,
     }
 }
+export interface IUser_Item {
+    desc: string
+    email: string
+    exdate: string
+    multi: number
+    passwd: string
+    phone: number
+    referral: string
+    status: string
+    telegram_id: string
+    traffic: string
+    user: string
+}
 
 export interface IUsers_Data {
     titles:string[],
-    rows:{
-        desc: string
-        email: string
-        exdate: string
-        multi: number
-        passwd: string
-        phone: number
-        referral: string
-        status: string
-        telegram_id: string
-        traffic: string
-        user: string
-    }[];
+    rows:IUser_Item[];
 
 }
 

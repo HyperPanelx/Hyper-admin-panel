@@ -1,4 +1,4 @@
-import {IUsers_Data,Response} from "../utils/Types";
+import {IUsers_Data} from "../utils/Types";
 import {useTableStore,envVariable,useAuthStore,useDashboardStore} from "./useStates";
 import {reactive,watch} from "vue";
 import { useNotification } from "@kyvg/vue3-notification";
@@ -9,10 +9,10 @@ export const usePagination=()=>{
     const router=useRouter()
     const route=useRoute()
     const { notify }  = useNotification()
-    const {tableStore}=useTableStore()
+    const {tableStore,filterUser}=useTableStore()
     const {apiBase}=envVariable()
     const {token}=useAuthStore()
-    const {dashboardStore}=useDashboardStore()
+    const {dashboardStore,dangerNotificationData,warningNotificationData}=useDashboardStore()
     const modalData=reactive({
         on:false,
         name:''
@@ -33,10 +33,27 @@ export const usePagination=()=>{
     tableStore.paginationData=paginationDataInitialValue
 
 
-    const changePerPageHandler = (value:any) => {
-        tableStore.paginationData.itemPerPage=value.per_page
+    const changePerPageHandler = (data:any) => {
+        tableStore.paginationData.itemPerPage=data.per_page
+        sortHandler(data.sort)
         changePage(1)
         paginationUpdate()
+    }
+
+    const sortHandler = (item:string) => {
+        tableStore.paginationData.sourceData=tableStore.tableData.rows
+        if(item==='disable'){
+            tableStore.paginationData.sourceData=[...tableStore.paginationData.sourceData].filter(item=>item.status==='disable')
+        }else if(item==='enable' ){
+            tableStore.paginationData.sourceData=[...tableStore.paginationData.sourceData].filter(item=>item.status==='enable')
+        }else if(item==='expired' ){
+            tableStore.paginationData.sourceData=filterUser.value(dangerNotificationData.value)
+        }else if(item==='expire soon' ){
+            tableStore.paginationData.sourceData=filterUser.value(warningNotificationData.value)
+        }
+
+        paginationUpdate()
+
     }
 
     const paginationUpdate = () => {
