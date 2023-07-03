@@ -23,18 +23,17 @@ export const Server=defineStore('server',{
             if(state.fetchServerListFlag){
                 return state.serversList.reduce((p1,p2)=>{
                     return [...p1,p2.host]
-                },[server_ip])
+                },[])
             }else{
                 return ['']
             }
         }
     },
     actions:{
-        changeServerIP(newIP){
+        changeServerIP(){
             const { notify }  = useNotification()
             const {dashboardStore}=useDashboardStore()
             ///////////////////////////
-            this.server_ip=newIP
             this.freezeAppFlag=true
             dashboardStore.showPreloaderFlag=true
             setTimeout(()=>{
@@ -43,12 +42,12 @@ export const Server=defineStore('server',{
                 notify({
                     type:'success',
                     title:'Switch Server',
-                    text:`server switched on ${newIP} successfully!`
+                    text:`server switched on ${this.server_ip} successfully!`
                 })
             },2000)
         },
         fetchServersList(){
-            const {apiBase}=envVariable();
+            const {apiBase,server_ip}=envVariable();
             const {token}=useAuthStore();
             const {dashboardStore}=useDashboardStore()
             //////////////////////////////////////////////////
@@ -65,7 +64,14 @@ export const Server=defineStore('server',{
                 if(response.detail){
                     console.log(response)
                 }else{
-                    this.serversList=response
+                    this.serversList=[
+                        {
+                            host:server_ip,
+                            port:22,
+                            status:'enable',
+                        },
+                        ...response
+                    ]
                 }
             }).catch(err=>{
                 console.log(err)

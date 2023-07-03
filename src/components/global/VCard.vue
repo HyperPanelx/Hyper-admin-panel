@@ -3,7 +3,7 @@
        <div class="card-title ">
           <span v-if="title" class="uppercase dark:text-primary-light-1 font-500 tracking-widest text-primary-dark text-[0.87rem]" v-html="title">
           </span>
-         <span v-else class="uppercase dark:text-primary-light-1 font-500 tracking-widest text-primary-dark text-[0.87rem]">
+         <span v-else class="uppercase dark:text-primary-light-1 font-500 tracking-widest text-primary-dark text-[0.87rem] w-full">
             <slot name="title" />
           </span>
 

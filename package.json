@@ -58,6 +58,7 @@
     "@kyvg/vue3-notification": "^2.9.1",
     "apexcharts": "^3.40.0",
     "axios": "^1.4.0",
+    "choices.js": "^10.2.0",
     "core-js": "^3.27.2",
     "epic-spinners": "^2.0.0",
     "ladda": "^2.0.3",

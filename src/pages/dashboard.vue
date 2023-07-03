@@ -1,5 +1,15 @@
 <template>
-  <container-full>
+  <container-full >
+
+    <row class="mb-1.5">
+      <column col="12" md="5" class="flex items-center">
+        <p class="text-gray-700 text-0.9 mr-0.5">
+          Switch Server:
+        </p>
+        <VServer @fire="changeServer($event)"/>
+      </column>
+    </row>
+
     <row >
       <column col="12" sm="6" lg="3">
         <VCard >
@@ -102,8 +112,8 @@
       </column>
     </row>
     <row class="my-1.5" v-if="usersStatusData.length>0">
-      <column v-for="item in usersStatusData" col="12" sm="6" lg="3">
-        <DashboardCard :title="item.title" :number="item.number" :theme="item.theme"/>
+      <column v-for="item in usersStatusData " col="12" sm="6" lg="3">
+        <DashboardCard :title="item.title" :number="item.number " :theme="item.theme "/>
       </column>
     </row>
   </container-full>
@@ -115,11 +125,13 @@ import DashboardCard from '../components/Dashboard/Card.vue'
 import {serverStatusChartOption,bandWidthOption} from "../utils/Data";
 import { HollowDotsSpinner } from 'epic-spinners';
 import {useDashboard} from "../composables/useDashboard";
-import {useDashboardStore,useServerStore} from "../composables/useStates";
+import {useDashboardStore} from "../composables/useStates";
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
-const {getServerIP}=useServerStore()
+import VServer from '../components/global/VServer.vue'
+//////////////////////////////////////////////////////////////////
 const {sidebarCollapseFlag,fetchDashboardDataFlag,usersStatusData,serverStatus}=useDashboardStore();
-useDashboard();
+const {changeServer}=useDashboard();
+
 </script>
 
 <style >
@@ -127,6 +139,9 @@ useDashboard();
 @layer components {
   .section-loader{
     @apply h-15 flex w-full justify-center items-center
+  }
+  .choices{
+    @apply w-[60%]
   }
 }
 </style>

@@ -51,6 +51,7 @@ library.add(faCircle,faCircleCheck,faXmark,faEye,faEyeSlash,faCircleExclamation,
 import Notifications from '@kyvg/vue3-notification'
 import VueApexCharts from "vue3-apexcharts";
 import { plugin ,defaultConfig} from '@formkit/vue';
+import 'choices.js/public/assets/styles/choices.min.css'
 import '@formkit/addons/css/floatingLabels';
 import 'ladda/dist/ladda-themeless.min.css';
 import config from '../formkit.config'
@@ -65,7 +66,6 @@ import containerFull from './components/grid/containerFull.vue'
 import row from './components/grid/row.vue'
 import { createPinia } from 'pinia';
 import VueCookies from 'vue-cookies'
-
 ///// app
 const app=createApp(App)
 const pinia = createPinia()

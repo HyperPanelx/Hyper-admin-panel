@@ -1,21 +1,30 @@
-import {useDashboardStore} from "./useStates";
-import {onMounted,watch} from "vue";
+import {useDashboardStore,useServerStore} from "./useStates";
+import {onMounted, watch} from "vue";
 import {useRouter} from "vue-router";
 
 
 
+
 export const useDashboard=()=>{
+    const {serverStore}=useServerStore()
     /// dashboard store
     const {dashboardStore}=useDashboardStore()
     /// router
     const router=useRouter()
     let timer:any=null;
 
-
+    const changeServer =async (ev) => {
+        serverStore.server_ip=ev.target.value
+        serverStore.changeServerIP()
+        clearTimeout(timer)
+        await dashboardStore.triggerInitialFetchData()
+    }
 
     onMounted(async ()=>{
-       await dashboardStore.triggerInitialFetchData()
+        await dashboardStore.triggerInitialFetchData()
     })
+
+
 
     watch(
         ()=>dashboardStore.fetchDashboardDataFlag,
@@ -38,4 +47,7 @@ export const useDashboard=()=>{
         }
     })
 
+    return{
+        changeServer
+    }
 }

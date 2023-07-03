@@ -148,13 +148,13 @@ export const Dashboard=defineStore('dashboard',{
                         {title:'Enable Users', number:response.enable_users, theme:'blue'},
                         {title:'Blocked Users', number:response.disabled_users,theme:'red'},
                     ]
-                    document.body.style.overflowY='auto'
                 }
             }).
             catch(err=>console.log(err)).
             finally(()=>{
                 /// turn off page loader flag
                 this.showPreloaderFlag=false
+                document.body.style.overflowY='auto'
             })
 
         }
