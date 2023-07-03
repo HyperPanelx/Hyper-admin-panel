@@ -141,7 +141,7 @@ const routes:RouteRecordRaw[]=[
                         component: multi,
                         name:'MULTI_SERVER',
                         path: 'multi-server',
-                        meta:{title:'Multi Server | Hyper',status:false},
+                        meta:{title:'Multi Server | Hyper',status:true},
                     },
                     {
                         component: robot,
