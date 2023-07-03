@@ -3,7 +3,7 @@ import {useTableStore,envVariable,useAuthStore,useDashboardStore,useServerStore}
 import {reactive,watch} from "vue";
 import { useNotification } from "@kyvg/vue3-notification";
 import {useRouter,useRoute} from "vue-router";
-
+import {reset} from "@formkit/core";
 
 export const usePagination=()=>{
     const router=useRouter()
@@ -41,18 +41,19 @@ export const usePagination=()=>{
         paginationUpdate()
     }
 
-    const sortHandler = (item:string) => {
+    const sortHandler = (selectedItem:string) => {
         tableStore.paginationData.sourceData=tableStore.tableData.rows
-        if(item==='disable'){
+        if(selectedItem==='disable'){
             tableStore.paginationData.sourceData=[...tableStore.paginationData.sourceData].filter(item=>item.status==='disable')
-        }else if(item==='enable' ){
+        }else if(selectedItem==='enable' ){
             tableStore.paginationData.sourceData=[...tableStore.paginationData.sourceData].filter(item=>item.status==='enable')
-        }else if(item==='expired' ){
+        }else if(selectedItem==='expired' ){
             tableStore.paginationData.sourceData=filterUser.value(dangerNotificationData.value)
-        }else if(item==='expire soon' ){
+        }else if(selectedItem==='expire soon' ){
             tableStore.paginationData.sourceData=filterUser.value(warningNotificationData.value)
+        }else{
+            tableStore.paginationData.sourceData=[...tableStore.paginationData.sourceData].filter(item=>item.server===selectedItem)
         }
-
         paginationUpdate()
 
     }
@@ -133,6 +134,7 @@ export const usePagination=()=>{
         tableStore.searchText=''
         paginationUpdate()
         changePage(1)
+        reset('control-pagination-form')
         tableStore.paginationData.searchResultFlag=false
         router.replace({query:null})
     }

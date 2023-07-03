@@ -1,6 +1,7 @@
 import {defineStore} from "pinia";
 import {IServer_List} from "../utils/Types";
 import {envVariable, useAuthStore,useDashboardStore} from "../composables/useStates";
+import { useNotification } from "@kyvg/vue3-notification";
 
 
 export const Server=defineStore('server',{
@@ -9,7 +10,8 @@ export const Server=defineStore('server',{
         return{
             server_ip:server_ip  as string,
             serversList:[] as IServer_List[],
-            fetchServerListFlag:false as boolean
+            fetchServerListFlag:false as boolean,
+            freezeAppFlag:false as boolean
         }
     },
     getters:{
@@ -29,12 +31,27 @@ export const Server=defineStore('server',{
     },
     actions:{
         changeServerIP(newIP){
+            const { notify }  = useNotification()
+            const {dashboardStore}=useDashboardStore()
+            ///////////////////////////
             this.server_ip=newIP
+            this.freezeAppFlag=true
+            dashboardStore.showPreloaderFlag=true
+            setTimeout(()=>{
+                this.freezeAppFlag=false
+                dashboardStore.showPreloaderFlag=false
+                notify({
+                    type:'success',
+                    title:'Switch Server',
+                    text:`server switched on ${newIP} successfully!`
+                })
+            },2000)
         },
         fetchServersList(){
             const {apiBase}=envVariable();
             const {token}=useAuthStore();
             const {dashboardStore}=useDashboardStore()
+            //////////////////////////////////////////////////
             this.fetchServerListFlag=false
             dashboardStore.showPreloaderFlag=true
             fetch(apiBase+'list-servers',{

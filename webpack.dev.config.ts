@@ -79,7 +79,7 @@ module.exports={
         compress: true,
         port: 9000,
         devMiddleware:{
-            writeToDisk:true
+            writeToDisk:false
         }
 
     }

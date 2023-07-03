@@ -1,6 +1,6 @@
 <template>
   <div class="py-2 px-1 shadow-[inset_0_0px_5px_0_rgba(0,0,0,0.1)] overflow-hidden flex md:flex-row flex-col md:justify-between md:items-center">
-    <FormKit type="form"  @submit="changePerPageHandler"  :actions="false" >
+    <FormKit type="form" id="control-pagination-form"  @submit="changePerPageHandler"  :actions="false" >
       <div class="flex gap-0.5 items-center">
         <FormKit
             input-class="btn btn-indigo btn-md"
@@ -18,6 +18,7 @@
                 'enable',
                 'expired',
                 'expire soon',
+                ...getHostList
             ]"
         />
         <FormKit
@@ -56,7 +57,8 @@
 
 <script setup lang="ts">
 import {usePagination} from "../../composables/usePagination";
-import {useTableStore} from "../../composables/useStates";
+import {useTableStore,useServerStore} from "../../composables/useStates";
+const {getHostList}=useServerStore()
 const props=defineProps<{
   sort:boolean
 }>()

@@ -22,20 +22,31 @@
             :sub="row1.sub"
         />
       </li>
-
     </ul>
+    <div class="mt-1 flex items-center pl-0.5">
+      <span class="relative flex h-0.5 w-0.5 flex justify-center items-center">
+          <span class="animate-ping-slow !w-1.7 !h-1.7 absolute inline-flex h-full w-full rounded-full bg-primary-dark-2 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-0.5 w-0.5 bg-primary-dark-2"></span>
+      </span>
+      <p class="text-primary-dark-2 text-0.8 ml-1">Active Server : {{getServerIP}}</p>
+    </div>
+
   </div>
 </template>
 
 <script setup lang="ts">
 import  SidebarItemClose from './ItemClose.vue'
 import SidebarItemOpen from './ItemOpen.vue'
-import {useDashboardStore} from "../../composables/useStates";
+import {useDashboardStore,useServerStore} from "../../composables/useStates";
 import {sidebarItemData} from "../../utils/Helper";
 const {sidebarCollapseFlag,windowWidth}=useDashboardStore()
-
+const {getServerIP}=useServerStore()
 </script>
 
 <style scoped>
+
+.pulse{
+
+}
 
 </style>

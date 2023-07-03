@@ -115,8 +115,9 @@ import DashboardCard from '../components/Dashboard/Card.vue'
 import {serverStatusChartOption,bandWidthOption} from "../utils/Data";
 import { HollowDotsSpinner } from 'epic-spinners';
 import {useDashboard} from "../composables/useDashboard";
-import {useDashboardStore} from "../composables/useStates";
+import {useDashboardStore,useServerStore} from "../composables/useStates";
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
+const {getServerIP}=useServerStore()
 const {sidebarCollapseFlag,fetchDashboardDataFlag,usersStatusData,serverStatus}=useDashboardStore();
 useDashboard();
 </script>

@@ -193,7 +193,10 @@ module.exports = {
     },
 
     extend:{
-      colors
+      colors,
+      animation: {
+        'ping-slow': 'ping 2s linear infinite',
+      }
     }
   },
   plugins: [

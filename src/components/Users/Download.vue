@@ -11,7 +11,7 @@
 <script setup lang="ts">
 import VTooltip from '../global/VTooltip.vue'
 import {useDownload} from "../../composables/users/useDownload";
-const props=defineProps(['user','traffic','usedVolume','multi','phone','email','registered','exdate','status','uid','passwd','telegram_id','desc','referral']);
+const props=defineProps(['user','traffic','usedVolume','multi','phone','email','registered','exdate','status','uid','passwd','telegram_id','desc','referral','server']);
 const {downloadUserDetail,downloadAnchorElem}=useDownload(props)
 </script>
 

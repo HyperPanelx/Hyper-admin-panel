@@ -1,8 +1,13 @@
 <template>
+  <button @click="goBack">
+    back
+  </button>
+
   <FormKit
       v-if="fetchServerListsFlag"
       type="select"
-      v-model="serverStore.server_ip"
+      v-model="newServerIP"
+      @change="serverStore.changeServerIP(newServerIP)"
       name="sort"
       placeholder="sort by"
       input-class="select-dark"
@@ -11,16 +16,15 @@
 </template>
 
 <script setup lang="ts">
-import {onMounted} from "vue";
+import {ref} from "vue";
 import {useServerStore} from "../composables/useStates";
 const {serverStore,getHostList,fetchServerListsFlag}=useServerStore()
-onMounted(()=>{
-  serverStore.fetchServersList()
-})
+const newServerIP=ref(serverStore.server_ip);
 
 
-
-
+const goBack = () => {
+  history.back()
+}
 </script>
 
 <style scoped>

@@ -1,8 +1,7 @@
 <template>
     <div class="shadow-card overflow-hidden rounded-10 bg-primary-light-1 dark:bg-[rgb(70,79,91)]">
        <div class="card-title ">
-          <span v-if="title" class="uppercase dark:text-primary-light-1 font-500 tracking-widest text-primary-dark text-[0.87rem]">
-            {{title}}
+          <span v-if="title" class="uppercase dark:text-primary-light-1 font-500 tracking-widest text-primary-dark text-[0.87rem]" v-html="title">
           </span>
          <span v-else class="uppercase dark:text-primary-light-1 font-500 tracking-widest text-primary-dark text-[0.87rem]">
             <slot name="title" />
