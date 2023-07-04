@@ -3,7 +3,7 @@
     <VBreadcrumb :pages="[{name:'Home',link:'DASHBOARD'},{name:'Online Users'}]" />
     <row class="mt-2">
       <column col="12">
-        <VCard  body-class="!p-0">
+        <VCard  body-class="!p-0" class="!overflow-visible">
           <template v-slot:title>
             online users on <span class="text-secondary-light-2">{{getServerIP}}</span> server <router-link class="text-secondary-light-2 !text-[0.65rem] hover:underline" to='/servers'>Switch</router-link>
           </template>

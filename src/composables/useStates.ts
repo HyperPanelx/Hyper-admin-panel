@@ -59,7 +59,7 @@ export const useTableStore=()=>{
     const selectedOnlineUserToKill=computed<string[]>(()=>tableStore.selectedOnlineUserToKill)
     const paginationData=computed<any>(()=>tableStore.paginationData)
     const searchText=computed<string>(()=>tableStore.searchText)
-
+    const resetPaginationControl=computed<boolean>(()=>tableStore.paginationData.resetFlag)
 
 
     return{
@@ -68,19 +68,19 @@ export const useTableStore=()=>{
         selectedUserToDelete,
         selectedOnlineUserToKill,
         tableStore,paginationData,
-        searchText,filterUser
+        searchText,filterUser,resetPaginationControl
     }
 }
 
 
 export const useServerStore=()=>{
     const serverStore=Server()
-    const {getServerIP,getHostList}=storeToRefs(serverStore)
+    const {getServerIP,getHostList,isEnable}=storeToRefs(serverStore)
     const fetchServerListsFlag=computed<boolean>(()=>serverStore.fetchServerListFlag)
 
 
 
     return{
-        getServerIP,serverStore,getHostList,fetchServerListsFlag
+        getServerIP,serverStore,getHostList,fetchServerListsFlag,isEnable
     }
 }

@@ -39,7 +39,7 @@ export interface IServer_Status {
     cpu:number
     ram:number
     disk:number
-    bandWidth:{
+    bandWidth?:{
         download:number
         upload:number,
         downloadSpeed:number,

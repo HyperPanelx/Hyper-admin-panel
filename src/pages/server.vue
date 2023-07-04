@@ -20,7 +20,7 @@
         <template v-slot:title>
           <div class="flex justify-between items-center w-full">
             <p>
-              Server {{index+1}} <span class="!text-0.6">({{server.status}})</span>
+              Server {{Number(index)+1}} <span class="!text-0.6">({{server.status}})</span>
             </p>
             <img :title="server.status" :src="server.status==='enable' ? lampOn : lampOff" width="40"/>
           </div>
@@ -34,8 +34,8 @@
                Active
             </span>
           </div>
-          <div @click.self="changeServer(server.host)" class="absolute top-0 left-0 transition-all invisible group-hover:bg-secondary-light-2/30 group-hover:visible w-full h-full cursor-pointer flex justify-center items-center">
-            <button @click="changeServer(server.host)" class="btn btn-primary">
+          <div @click.self="changeServer(server.host,server.status)" class="absolute top-0 left-0 transition-all invisible group-hover:bg-secondary-light-2/30 group-hover:visible w-full h-full cursor-pointer flex justify-center items-center">
+            <button @click="changeServer(server.host,server.status)" class="btn btn-primary">
               Switch
             </button>
           </div>
@@ -55,9 +55,11 @@ import {useServerStore} from "../composables/useStates";
 const {serverStore,getServerIP}=useServerStore()
 
 
-const changeServer = (host:string) => {
-  serverStore.server_ip=host
-  serverStore.changeServerIP()
+const changeServer = (host:string,status:string) => {
+  if(status==='enable'){
+    serverStore.server_ip=host
+  }
+  serverStore.changeServerIP(status)
 }
 
 const goBack = () => {

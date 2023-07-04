@@ -19,7 +19,6 @@ export const Server=defineStore('server',{
             return state.server_ip
         },
         getHostList(state):string[]{
-            const {server_ip}=envVariable();
             if(state.fetchServerListFlag){
                 return state.serversList.reduce((p1,p2)=>{
                     return [...p1,p2.host]
@@ -27,24 +26,33 @@ export const Server=defineStore('server',{
             }else{
                 return ['']
             }
+        },
+        isEnable:(state)=>(server:string)=>{
+            const target=state.serversList.filter(item=>item.host===server)[0];
+            return target.status === 'enable';
         }
     },
     actions:{
-        changeServerIP(){
+        changeServerIP(status:string){
             const { notify }  = useNotification()
-            const {dashboardStore}=useDashboardStore()
             ///////////////////////////
-            this.freezeAppFlag=true
-            dashboardStore.showPreloaderFlag=true
-            setTimeout(()=>{
-                this.freezeAppFlag=false
-                dashboardStore.showPreloaderFlag=false
+            if(status==='enable'){
+                this.freezeAppFlag=true
+                setTimeout(()=>{
+                    this.freezeAppFlag=false
+                    notify({
+                        type:'success',
+                        title:'Switch Server',
+                        text:`server switched on ${this.server_ip} successfully!`
+                    })
+                },2000)
+            }else{
                 notify({
-                    type:'success',
+                    type:'error',
                     title:'Switch Server',
-                    text:`server switched on ${this.server_ip} successfully!`
+                    text:`server is disable!`
                 })
-            },2000)
+            }
         },
         fetchServersList(){
             const {apiBase,server_ip}=envVariable();

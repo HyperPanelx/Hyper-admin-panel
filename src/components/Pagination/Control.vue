@@ -1,34 +1,37 @@
 <template>
-  <div class="py-2 px-1 shadow-[inset_0_0px_5px_0_rgba(0,0,0,0.1)] overflow-hidden flex md:flex-row flex-col md:justify-between md:items-center">
+  <div class="py-2 px-1 shadow-[inset_0_0px_5px_0_rgba(0,0,0,0.1)] overflow-visible flex md:flex-row flex-col md:justify-between md:items-center">
     <FormKit type="form" id="control-pagination-form"  @submit="changePerPageHandler"  :actions="false" >
       <div class="flex gap-0.5 items-center">
-        <FormKit
-            input-class="btn btn-indigo btn-md"
-            type="submit"
-            label="Apply"
-        />
-        <FormKit
-            v-if="sort"
-            type="select"
-            name="sort"
-            placeholder="sort by"
-            input-class="select-dark"
-            :options="[
+        <div v-if="sort" class="w-8">
+          <VSelect
+              @fire="sortHandler($event)"
+              id="sort"
+              init="sort by"
+              :search="false"
+              :placeholder="true"
+              :reset="resetPaginationControl"
+              :list="[
                 'disable',
                 'enable',
                 'expired',
                 'expire soon',
                 ...getHostList
             ]"
-        />
-        <FormKit
-            type="select"
-            name="per_page"
-            input-class="select-dark"
-            :options="[
-                  5,10,15,20,25
+          />
+        </div>
+        <div class="w-4">
+          <VSelect
+              @fire="changePerPageHandler($event)"
+              :search="false"
+              id="per_page"
+              init="5"
+              :placeholder="false"
+              :reset="resetPaginationControl"
+              :list="[
+                  '5','10','15','20','25'
                 ]"
-        />
+          />
+        </div>
         <span class="text-0.7 text-gray-600 dark:text-primary-light-1">Entries per page</span>
       </div>
     </FormKit>
@@ -56,6 +59,7 @@
 </template>
 
 <script setup lang="ts">
+import VSelect from '../global/VSelect.vue'
 import {usePagination} from "../../composables/usePagination";
 import {useTableStore,useServerStore} from "../../composables/useStates";
 const {getHostList}=useServerStore()
@@ -65,8 +69,8 @@ const props=defineProps<{
 const emit=defineEmits<{
   (e:'refresh'):void
 }>();
-const {tableStore}=useTableStore()
-const {changePerPageHandler,searchHandler,resetSearch}=usePagination();
+const {tableStore,resetPaginationControl}=useTableStore()
+const {changePerPageHandler,searchHandler,resetSearch,sortHandler}=usePagination();
 
 </script>
 

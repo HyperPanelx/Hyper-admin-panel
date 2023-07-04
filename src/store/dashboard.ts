@@ -94,22 +94,33 @@ export const Dashboard=defineStore('dashboard',{
                     // logoutHandler()
                     console.log(response)
                 }else{
-                    const uploadSpeed=response[1]['Upload Speed']
-                    const downloadSpeed=response[1]['Download Speed']
-                    const download=response[1]['Download']
-                    const upload=response[1]['Upload']
-                    this.serverStatus={
-                        cpu:response[0].cpu,
-                        ram:response[0].mem,
-                        disk:response[0].hdd,
-                        bandWidth:{
-                            download:Number(download.slice(0,download.length-2)) ,
-                            upload: Number(upload.slice(0,upload.length-2)) ,
-                            downloadSpeed:Number(downloadSpeed.slice(0,downloadSpeed.length-2)),
-                            uploadSpeed:Number(uploadSpeed.slice(0,uploadSpeed.length-2)),
-                            speedUnit:downloadSpeed.slice(downloadSpeed.length-2),
+
+
+                    if(response[1]){
+                        const uploadSpeed=response[1]['Upload Speed']
+                        const downloadSpeed=response[1]['Download Speed']
+                        const download=response[1]['Download']
+                        const upload=response[1]['Upload']
+                        this.serverStatus={
+                            cpu:response[0].cpu,
+                            ram:response[0].mem,
+                            disk:response[0].hdd,
+                            bandWidth:{
+                                download:Number(download.slice(0,download.length-2)) ,
+                                upload: Number(upload.slice(0,upload.length-2)) ,
+                                downloadSpeed:Number(downloadSpeed.slice(0,downloadSpeed.length-2)),
+                                uploadSpeed:Number(uploadSpeed.slice(0,uploadSpeed.length-2)),
+                                speedUnit:downloadSpeed.slice(downloadSpeed.length-2),
+                            }
+                        } as IServer_Status
+                    }else{
+                        this.serverStatus={
+                            cpu:response.cpu,
+                            ram:Number(response.mem).toFixed(2),
+                            disk:response.hdd,
                         }
-                    } as IServer_Status
+                    }
+
                 }
             }).catch(err=>{
                 console.log(err)
@@ -143,10 +154,10 @@ export const Dashboard=defineStore('dashboard',{
                     // logoutHandler()
                 }else{
                     this.usersStatusData=[
-                        {title:'All Users', number:response.all_users,theme:'indigo'},
-                        {title:'Active Users', number:response.active_users, theme:'green'},
-                        {title:'Enable Users', number:response.enable_users, theme:'blue'},
-                        {title:'Blocked Users', number:response.disabled_users,theme:'red'},
+                        {title:'Total Users', number:response.total_users,theme:'indigo'},
+                        {title:'Active Users', number:response.total_active_users, theme:'green'},
+                        {title:'Enable Users', number:response.total_enable_users, theme:'blue'},
+                        {title:'Blocked Users', number:response.total_disabled_users,theme:'red'},
                     ]
                 }
             }).

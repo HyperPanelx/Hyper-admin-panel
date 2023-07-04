@@ -87,9 +87,9 @@ export const Table=defineStore('table',{
                     console.log(response.detail)
                 }else{
                     this.tableData={
-                        titles:['user info','traffic','User limitation','Contact info','Date','status','operation'],
+                        titles:['user info','traffic','User limitation','Contact info','Detail','status','operation'],
                         rows:response.map((item,index)=>{
-                            return {...item,uid:index+1,server:item.server || server_ip}
+                            return {...item,uid:index+1,server:item.server || server_ip,ordered_by:item.ordered_by || 'god'}
                         })
                     };
                     this.trackExpiredUsers(response)

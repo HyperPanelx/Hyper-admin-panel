@@ -7,7 +7,7 @@
   <td>
     <div class="p-1">
       <p class="text-center dark:text-primary-dark-3">
-        {{index+1}}
+        {{uid}}
       </p>
     </div>
   </td>

@@ -3,7 +3,7 @@
 
     <row class="mb-1.5">
       <column col="12" md="5" class="flex items-center">
-        <p class="text-gray-700 text-0.9 mr-0.5">
+        <p class="text-gray-700 text-0.9 mr-0.5 dark:text-primary-dark-3">
           Switch Server:
         </p>
         <VServer @fire="changeServer($event)"/>
@@ -91,15 +91,21 @@
           </template>
           <template  v-slot:body>
             <apexchart
-                v-if="fetchDashboardDataFlag"
+                v-if="fetchDashboardDataFlag && serverStatus.bandWidth"
                 :class="{'lg:!left-[-65px]':sidebarCollapseFlag}"
                 class="md:left-[-83px] dark:[&_*]:!text-primary-light-1 lg:left-[-85px] sm:left-[-68px] left-[-10px] relative"
                 type="donut"
                 width="350"
                 height="300"
                 :options="bandWidthOption(serverStatus?.bandWidth?.downloadSpeed,serverStatus?.bandWidth.uploadSpeed,serverStatus?.bandWidth?.speedUnit)?.chartOptions"
-                :series="bandWidthOption(serverStatus?.bandWidth?.downloadSpeed,serverStatus?.bandWidth.uploadSpeed,serverStatus?.bandWidth?.speedUnit).series"></apexchart>
-            <div v-else class="section-loader !h-17">
+                :series="bandWidthOption(serverStatus?.bandWidth?.downloadSpeed,serverStatus?.bandWidth.uploadSpeed,serverStatus?.bandWidth?.speedUnit).series">
+            </apexchart>
+            <div class="w-full h-[272px] pb-1 flex justify-center items-center" v-else-if="fetchDashboardDataFlag && !serverStatus.bandWidth">
+              <p class="text-0.9 text-gray-700 dark:text-primary-dark-3">
+                There is no data to show.
+              </p>
+            </div>
+            <div v-else-if="!fetchDashboardDataFlag" class="section-loader !h-17">
               <hollow-dots-spinner
                   :animation-duration="1000"
                   :dot-size="15"

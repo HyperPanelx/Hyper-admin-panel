@@ -1,5 +1,5 @@
 <template>
-  <select  @change="emit('fire',$event)" ref="selectEl" name="selectEl" id="selectEl"></select>
+  <select  @change="emit('fire',$event)" ref="selectEl" name="selectEl-dashboard" id="selectEl-dashboard"></select>
 </template>
 
 <script setup lang="ts">
@@ -25,6 +25,34 @@ const initServerListSelect = () => {
     const choices = new Choices(selectEl.value,{
       choices:selectData,
       allowHTML:true,
+      classNames:{
+        containerOuter:'!w-[60%] m-0 choices',
+        containerInner: 'choices__inner',
+        input: 'choices__input',
+        inputCloned: 'choices__input--cloned',
+        list: 'choices__list',
+        listItems: 'choices__list--multiple',
+        listSingle: 'choices__list--single',
+        listDropdown: 'choices__list--dropdown',
+        item: 'choices__item',
+        itemSelectable: 'choices__item--selectable',
+        itemDisabled: 'choices__item--disabled',
+        itemChoice: 'choices__item--choice',
+        placeholder: 'choices__placeholder',
+        group: 'choices__group',
+        groupHeading: 'choices__heading',
+        button: 'choices__button',
+        activeState: 'is-active',
+        focusState: 'is-focused',
+        openState: 'is-open',
+        disabledState: 'is-disabled',
+        highlightedState: 'is-highlighted',
+        selectedState: 'is-selected',
+        flippedState: 'is-flipped',
+        loadingState: 'is-loading',
+        noResults: 'has-no-results',
+        noChoices: 'has-no-choices'
+      }
     });
   }
 }
@@ -42,5 +70,20 @@ onMounted(()=>{
 </script>
 
 <style scoped>
+@tailwind components;
+@layer components {
+  .choices__inner{
+      @apply dark:!bg-primary-dark-3 text-[#333]
+  }
+  .choices__list.choices__list--dropdown{
+    @apply dark:!bg-[rgb(70,79,91)] dark:!text-primary-light-1
+  }
+  .choices__input.choices__input--cloned{
+    @apply dark:!bg-[rgb(70,79,91)]
+  }
+  .choices__list--dropdown .choices__item--selectable.is-highlighted, .choices__list[aria-expanded] .choices__item--selectable.is-highlighted{
+    @apply dark:!bg-[#333]
+  }
 
+}
 </style>

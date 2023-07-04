@@ -6,7 +6,7 @@ import {useRouter} from "vue-router";
 
 
 export const useDashboard=()=>{
-    const {serverStore}=useServerStore()
+    const {serverStore,isEnable}=useServerStore()
     /// dashboard store
     const {dashboardStore}=useDashboardStore()
     /// router
@@ -14,10 +14,16 @@ export const useDashboard=()=>{
     let timer:any=null;
 
     const changeServer =async (ev) => {
-        serverStore.server_ip=ev.target.value
-        serverStore.changeServerIP()
-        clearTimeout(timer)
-        await dashboardStore.triggerInitialFetchData()
+        const target=ev.target.value
+        if(isEnable.value(target)){
+            clearTimeout(timer)
+            serverStore.server_ip=ev.target.value
+            serverStore.changeServerIP('enable')
+            await dashboardStore.triggerInitialFetchData()
+        }else{
+            serverStore.changeServerIP('disable')
+        }
+
     }
 
     onMounted(async ()=>{

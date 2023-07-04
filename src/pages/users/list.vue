@@ -36,6 +36,7 @@
                   :desc="item.desc"
                   :referral="item.referral"
                   :server="item.server"
+                  :ordered_by="item.ordered_by"
               />
             </tr>
           </Table>

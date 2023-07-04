@@ -3,7 +3,6 @@ import {useTableStore,envVariable,useAuthStore,useDashboardStore,useServerStore}
 import {reactive,watch} from "vue";
 import { useNotification } from "@kyvg/vue3-notification";
 import {useRouter,useRoute} from "vue-router";
-import {reset} from "@formkit/core";
 
 export const usePagination=()=>{
     const router=useRouter()
@@ -30,13 +29,13 @@ export const usePagination=()=>{
         maxShowButton:3,
         startShowPaginationButton:1,
         endShowPaginationButton:3,
+        resetFlag:false
     }
     tableStore.paginationData=paginationDataInitialValue
 
 
     const changePerPageHandler = (data:any) => {
-        tableStore.paginationData.itemPerPage=data.per_page
-        sortHandler(data.sort)
+        tableStore.paginationData.itemPerPage=Number(data)
         changePage(1)
         paginationUpdate()
     }
@@ -130,11 +129,12 @@ export const usePagination=()=>{
     )
 
     const resetSearch = () => {
+        tableStore.paginationData.resetFlag=!tableStore.paginationData.resetFlag
         tableStore.paginationData.sourceData=tableStore.tableData.rows
         tableStore.searchText=''
+        tableStore.paginationData.itemPerPage=5
         paginationUpdate()
         changePage(1)
-        reset('control-pagination-form')
         tableStore.paginationData.searchResultFlag=false
         router.replace({query:null})
     }
@@ -254,6 +254,6 @@ export const usePagination=()=>{
     }
 
     return{
-        changePerPageHandler,changePage,nextPage,previousPage,searchHandler,resetSearch,showMoreButton,showLessButton,deleteSelectedUsers,killSelectedUsers,selectOperation,modalData
+        changePerPageHandler,changePage,nextPage,previousPage,searchHandler,resetSearch,showMoreButton,showLessButton,deleteSelectedUsers,killSelectedUsers,selectOperation,modalData,sortHandler
     }
 }
