@@ -80,11 +80,12 @@ pnpm install
 ```
 #### Then you need to create a .env.production file name (for building project) and .env.development file name (for developing project) file in root of the project and add these keys and your values
 
-| Key           | Type     | Description                                        |
-|:--------------| :------- |:---------------------------------------------------|
-| `API_BASE`    | `string` | **Required**. Api Url format: https://example.com/ |
-| `COOKIE_NAME` | `string` | **Optional**. Just a name.                         |
-| `VERSION`     | `string` | **Optional**. Current Version:0.0.9.               |
+| Key           | Type     | Description                                                                   |
+|:--------------| :------- |:------------------------------------------------------------------------------|
+| `API_BASE`    | `string` | **Required**. Api Url format: https://example.com/ default: http://localhost/ |
+| `SERVER_IP`    | `string` | **Optional**. default: localhost                                              |
+| `COOKIE_NAME` | `string` | **Optional**. Just a name                                                     |
+| `VERSION`     | `string` | **Optional**. Current Version:0.0.9                                           |
 
 ## Development Server
 
