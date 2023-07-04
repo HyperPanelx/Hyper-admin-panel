@@ -1,5 +1,8 @@
 import {ISidebar} from "./Types";
 import { useNotification } from "@kyvg/vue3-notification";
+
+
+/////////// helper variables
 export const date=new Date();
 export const currentYear=Number(date.getFullYear());
 export const currentMonth=Number(date.getMonth()+1 < 10 ? `0${date.getMonth()+1}` : date.getMonth()+1);
@@ -9,6 +12,8 @@ export const passwordRegex=/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%
 export const yearRegex=/^(\d{0,4})/g
 export const monthRegex=/(?<=\-)(\d{0,2})(?=\-)/g
 export const dayRegex=/(?<=\-)(\d{0,2})$/g
+
+/////////////// helper data
 export const sidebarItemData:ISidebar[]=[
     {
         title:'Dashboard',
@@ -40,8 +45,149 @@ export const sidebarItemData:ISidebar[]=[
 
     },
 ]
+export const settingDropdownOption=[
+    {
+        icon:'fa-solid fa-trash',
+        title:'Delete user',
+        theme:'text-red-500'
+    },{
+        icon:'fa-solid fa-key',
+        title:'Change password',
+        theme:'text-blue-500'
+    },{
+        icon:'fa-solid fa-right-left',
+        title:'Renew user',
+        theme:'text-cyan-500'
+    },{
+        icon:'fa-solid fa-users-line',
+        title:'Change Multi',
+        theme:'text-green-500'
+    },{
+        icon:'fa-solid fa-lock',
+        title:'Lock user',
+        theme:'text-red-500'
+    },{
+        icon:'fa-solid fa-lock-open',
+        title:'Unlock user',
+        theme:'text-green-500'
+    },
+];
+export const settingTabItems=[
+    {title:'Create admin user',link:{name:'CREATE_ADMIN_USER'},status:true},
+    {title:'Change password',link:{name:'CHANGE_PASSWORD'},status:true},
+    {title:'Add multi server',link:{name:'MULTI_SERVER'},status:true},
+    {title:'SSH port',link:{name:'SSH_PORT'},status:false},
+    {title:'User limitation',link:{name:'USER_LIMITATION'},status:false},
+    {title:'Telegram robot',link:{name:'TELEGRAM_ROBOT'},status:false},
+    {title:'Backup and restore',link:{name:'BACKUP_RESTORE'},status:false},
+    {title:'API',link:{name:'API'},status:false},
+    {title:'IP block',link:{name:'IP_BLOCK'},status:false},
+]
 
 
+//////////////// helper functions
+export const bandWidthOption=(download:number, upload:number,unit:string)=>{
+    return {
+        series: [download, upload],
+        chartOptions: {
+            labels:['download','upload'],
+            chart: {
+                width: 350,
+                type: 'donut',
+                fontFamily:'Montserrat,sans-serif'
+            },
+            dataLabels: {
+                enabled: false,
+            },
+            legend: {
+                position: 'bottom',
+                offsetY: -20,
+                height: 70,
+            },
+            plotOptions: {
+                pie: {
+                    donut: {
+                        labels: {
+                            show: true,
+                            total: {
+                                showAlways: true,
+                                show: true,
+                                formatter: function (w:any) {
+                                    return w.globals.seriesTotals.reduce((a: number, b: number) => {
+                                        return a+b;
+                                    }, 0).toFixed(2) + ` ${unit}`
+                                }
+                            },
+
+                        }
+                    }
+                }
+            },
+            tooltip: {
+                y: {
+                    formatter: function (val:string) {
+                        return val + ` ${unit}`
+                    }
+                }
+            }
+        }
+    }
+}
+export const serverStatusChartOption=(prc:number,label:string)=>{
+    return {
+        chartOptions: {
+            chart: {
+                height: 260,
+                type: "radialBar",
+                fontFamily:'Montserrat,sans-serif'
+            },
+            colors: ["#20E647"],
+            plotOptions: {
+                radialBar: {
+                    startAngle: -135,
+                    endAngle: 135,
+                    track: {
+                        background: '#333',
+                        startAngle: -135,
+                        endAngle: 135,
+                    },
+                    hollow: {
+                        margin: 0,
+                        size: "70%",
+                        background: "#293450"
+                    },
+
+                    dataLabels: {
+                        name: {
+                            offsetY: -10,
+                            color: "#fff",
+                            fontSize: "13px"
+                        },
+                        value: {
+                            color: "#fff",
+                            fontSize: "30px",
+                            show: true
+                        }
+                    }
+                }
+            },
+            fill: {
+                type: "gradient",
+                gradient: {
+                    shade: "dark",
+                    type: "vertical",
+                    gradientToColors: ["#87D4F9"],
+                    stops: [0, 100]
+                }
+            },
+            stroke: {
+                lineCap: "round"
+            },
+            labels: [`${label} Usage`]
+        },
+        series: [prc],
+    }
+}
 export const declareNumberToArray = (num:number) => {
     const res=[]
     for (let n=1;n<num+1;n++){
@@ -49,8 +195,6 @@ export const declareNumberToArray = (num:number) => {
     }
     return res
 }
-
-
 export const bodyEncode = (username,password) => {
     const urlencoded = new URLSearchParams();
     urlencoded.append("grant_type", "");
@@ -61,12 +205,9 @@ export const bodyEncode = (username,password) => {
     urlencoded.append("password", password);
     return urlencoded
 }
-
-
 export const stringToPassword=(str:string)=>{
     return str.split('').map(item=>'•').join('')
 }
-
 export const copyText = async (txt:string) => {
     const { notify }  = useNotification()
     if(navigator.clipboard){
@@ -84,15 +225,12 @@ export const copyText = async (txt:string) => {
         })
     }
 }
-
 export const querySerialize = (obj:object) => {
     return Object.entries(obj).map(([key, val]) => `${key}=${val}`).join('&');
 }
-
 export const downloadTextFile = (txt:string) => {
     return "data:text/json;charset=utf-8," + encodeURI(txt);
 }
-
 export const downloadJsonFile = (json:string) => {
     return "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(json));
 }

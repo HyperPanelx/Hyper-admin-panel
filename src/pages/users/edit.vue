@@ -88,22 +88,6 @@
                     label-class="dark:!text-primary-light-1"
                 />
               </column>
-              <column col="12" md="6">
-                <FormKit
-                    :value="userInitialData.multi"
-                    validation="min:1"
-                    validation-label="Concurrent user"
-                    type="number"
-                    id="e_concurrent_user"
-                    name="e_concurrent_user"
-                    input-class=" font-main"
-                    label="Concurrent user"
-                    label-class="dark:text-primary-dark-2 dark:!bg-[#37404a] !font-main"
-                    value="1"
-                    :floating-label="true"
-                    min="1"
-                />
-              </column>
             </row>
           </FormKit>
           <div class="mt-1.5">

@@ -23,7 +23,7 @@
 <script lang="ts" setup>
 import VBreadcrumb from '../components/global/VBreadcrumb.vue'
 import VCard from '../components/global/VCard.vue'
-import {settingTabItems} from "../utils/Data";
+import {settingTabItems} from "../utils/Helper";
 
 const moveWindow = () => {
   if(window.innerWidth<500){

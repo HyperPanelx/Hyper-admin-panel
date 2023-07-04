@@ -7,6 +7,7 @@
           Switch Server:
         </p>
         <VServer @fire="changeServer($event)"/>
+
       </column>
     </row>
 
@@ -128,7 +129,7 @@
 <script setup lang="ts">
 import VCard from '../components/global/VCard.vue'
 import DashboardCard from '../components/Dashboard/Card.vue'
-import {serverStatusChartOption,bandWidthOption} from "../utils/Data";
+import {serverStatusChartOption,bandWidthOption} from "../utils/Helper";
 import { HollowDotsSpinner } from 'epic-spinners';
 import {useDashboard} from "../composables/useDashboard";
 import {useDashboardStore} from "../composables/useStates";
@@ -146,8 +147,6 @@ const {changeServer}=useDashboard();
   .section-loader{
     @apply h-15 flex w-full justify-center items-center
   }
-  .choices{
-    @apply w-[60%]
-  }
+
 }
 </style>

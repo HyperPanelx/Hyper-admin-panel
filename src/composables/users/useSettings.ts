@@ -10,6 +10,7 @@ export const useSettings=(props:any)=>{
     const {apiBase}=envVariable()
     const dropdownFlag=ref<boolean>(false);
     const newExpirationDateForm=ref<HTMLFormElement|null>(null)
+    const newMultiForm=ref<HTMLFormElement|null>(null)
     const {tableStore}=useTableStore()
     const {token}=useAuthStore()
     const {dashboardStore}=useDashboardStore()
@@ -20,7 +21,8 @@ export const useSettings=(props:any)=>{
         username:'',
         newPassword:'',
         changePassword:false,
-        renewUser:false
+        renewUser:false,
+        changeMulti:false,
     })
     const submitNewExpForm = () => {
         if(newExpirationDateForm.value){
@@ -28,7 +30,12 @@ export const useSettings=(props:any)=>{
             node.submit()
         }
     };
-
+    const submitNewMultiForm = () => {
+        if(newMultiForm.value){
+            const node = (newMultiForm.value as any).node
+            node.submit()
+        }
+    };
 
 
     const toggleDropdown = () => {
@@ -237,7 +244,48 @@ export const useSettings=(props:any)=>{
         })
     }
     /////
-
+    const changeMulti = (data) => {
+        dropdownFlag.value=false
+        dashboardStore.showPreloaderFlag=true
+        tableStore.fetchTableDataFlag=false
+        const query=querySerialize({
+            username:operationData.username,
+            multi:Number(data.new_multi)
+        })
+        fetch(apiBase+`change-multi?`+query,{
+            headers:{
+                'Content-Type':'application/json',
+                Authorization:`Bearer ${token.value}`
+            },
+        }).
+        then(response=>response.json()).
+        then((response)=>{
+            if(response.detail){
+                notify({
+                    type:'error',
+                    title:'Change Multi Operation',
+                    text:response.detail
+                })
+            }else{
+                operationData.changeMulti=false
+                notify({
+                    type:'success',
+                    title:'Change Multi Operation',
+                    text:'User Multi updated!'
+                })
+            }
+        }).catch(err=>{
+            console.log(err)
+            notify({
+                type:'error',
+                title:'Change Multi Operation',
+                text:'Operation failed! Error in connecting to server.'
+            })
+        }).finally(()=>{
+            operationData.modal=false
+            tableStore.getUsersList()
+        })
+    }
 
     ////// select operation
     const selectOperation = (name:string) => {
@@ -247,35 +295,28 @@ export const useSettings=(props:any)=>{
         operationData.newPassword=''
         operationData.changePassword=false
         operationData.renewUser = name === 'Renew user';
+        operationData.changeMulti = name === 'Change Multi';
     }
 
     const handlers=(name:string)=>{
         if(name==='Delete user'){
-            return {
-                'click':deleteUser
-            }
+            return {'click':deleteUser}
         }else if(name==='Change password'){
-            return {
-                'click':changePassword
-            }
+            return {'click':changePassword}
         }else if(name==='Lock user'){
-            return {
-                'click':lockUser
-            }
+            return {'click':lockUser}
         }else if(name==='Unlock user'){
-            return {
-                'click':unlockUser
-            }
+            return {'click':unlockUser}
         }else if(name==='Renew user'){
-            return {
-                'click':submitNewExpForm
-            }
+            return {'click':submitNewExpForm}
+        }else if(name==='Change Multi'){
+            return {'click':submitNewMultiForm}
         }
     }
 
 
 
     return{
-        toggleDropdown,dropdownFlag,selectOperation,operationData,handlers,renewUser,newExpirationDateForm
+        toggleDropdown,dropdownFlag,selectOperation,operationData,handlers,renewUser,newExpirationDateForm,changeMulti,newMultiForm
     }
 }

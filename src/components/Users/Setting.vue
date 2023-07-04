@@ -70,6 +70,26 @@
           </FormKit>
         </column>
       </row>
+      <row v-if="operationData.changeMulti" class="mt-0.5">
+        <column col="6">
+          <p class="font-second text-right dark:text-primary-light-1">new Multi:</p>
+        </column>
+        <column col="6">
+          <FormKit id="newMultiForm" type="form" ref="newMultiForm"  @submit="changeMulti"  :actions="false" >
+            <FormKit
+                name="new_multi"
+                id="new_multi"
+                validation-label="New Multi"
+                type="number"
+                min="1"
+                :value="multi"
+                help-class="dark:text-primary-light-1"
+                help="Enter a new Multi number."
+                validation="required|min:1"
+            />
+          </FormKit>
+        </column>
+      </row>
 
     </div>
     <div class="modal-footer">
@@ -90,12 +110,12 @@
 import VDropdown from '../global/VDropdown.vue'
 import VTooltip from '../global/VTooltip.vue'
 import {copyText} from "../../utils/Helper";
-import {settingDropdownOption} from "../../utils/Data";
+import {settingDropdownOption} from "../../utils/Helper";
 import {useServerStore} from "../../composables/useStates";
 import {useSettings} from "../../composables/users/useSettings";
 import VModal from '../global/VModal.vue'
-const props=defineProps(['user','uid','exdate','status']);
-const {toggleDropdown,dropdownFlag,selectOperation,operationData,handlers,renewUser,newExpirationDateForm}=useSettings(props);
+const props=defineProps(['user','uid','exdate','status','multi']);
+const {toggleDropdown,dropdownFlag,selectOperation,operationData,handlers,renewUser,newExpirationDateForm,changeMulti,newMultiForm}=useSettings(props);
 const {getServerIP}=useServerStore()
 
 

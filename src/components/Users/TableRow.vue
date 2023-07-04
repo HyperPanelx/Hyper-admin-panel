@@ -72,7 +72,7 @@
   </td>
   <td class="py-1">
     <div class="p-1 text-center flex items-center">
-      <Settings :status="status" :user="user" :uid="uid" :exdate="exdate"/>
+      <Settings :status="status" :user="user" :uid="uid" :exdate="exdate" :multi="multi"/>
       <Edit :uid="uid" :user="user" />
       <Download v-bind="props" />
     </div>

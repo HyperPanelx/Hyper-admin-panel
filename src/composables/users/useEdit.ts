@@ -20,7 +20,6 @@ export const useEdit=()=>{
         telegram_id:'',
         phone:'',
         email:'',
-        multi:0,
         traffic:{
             num:0 as number|string,
             unit:''
@@ -46,7 +45,7 @@ export const useEdit=()=>{
                 })
                 router.push({name:'USERS'})
             }else{
-                const {user,telegram_id,phone,email,traffic,multi}=response;
+                const {user,telegram_id,phone,email,traffic}=response;
                 const idx=traffic.indexOf('G')===-1 ?  traffic.indexOf('M') : traffic.indexOf('G');
                 userInitialData.username=user
                 userInitialData.telegram_id=telegram_id
@@ -54,7 +53,6 @@ export const useEdit=()=>{
                 userInitialData.email=email
                 userInitialData.traffic.num=traffic ? Number(traffic.slice(0,idx-1)) : ''
                 userInitialData.traffic.unit=traffic.includes('Gigabyte') ? 'Gigabyte' : traffic.includes('Megabyte') ? 'Megabyte' : 'Gigabyte'
-                userInitialData.multi=multi
                 fetchFlag.value=true
             }
         }).catch(err=>{
@@ -76,7 +74,6 @@ export const useEdit=()=>{
             telegram_id :formData.e_telegram_id,
             phone:Number(formData.e_phone),
             email:formData.e_email,
-            multi:formData.e_concurrent_user,
             traffic:formData.e_traffic ? `${formData.e_traffic} ${formData.e_traffic_unit}` : '',
             server:getServerIP.value
         })
