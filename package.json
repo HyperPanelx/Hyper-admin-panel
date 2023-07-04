@@ -2,8 +2,8 @@
   "browserslist": [
     "last 2 versions"
   ],
-  "name": "template",
-  "version": "1.0.0",
+  "name": "Hyper Admin Panel",
+  "version": "0.0.9",
   "description": "",
   "main": "index.js",
   "scripts": {
