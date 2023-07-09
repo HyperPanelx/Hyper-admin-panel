@@ -45,6 +45,9 @@ export const Dashboard=defineStore('dashboard',{
         },
     },
     actions:{
+        resetNotifications(){
+            this.notificationData=[...this.notificationData].filter(item=>item.status!=='warning' && item.status!=='danger')
+        },
         addNotification(action:INotification){
             const isExist=this.notificationData.some(item=>item.username===action.username);
             if(!isExist){

@@ -44,9 +44,6 @@ onMounted(()=>{
 <style >
 @tailwind components;
 @layer components {
-  .choices{
-    @apply !w-[60%] m-0
-  }
   .choices__inner{
       @apply dark:!bg-primary-dark-3 text-[#333]
   }

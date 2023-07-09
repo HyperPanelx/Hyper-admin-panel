@@ -19,18 +19,19 @@
                              label="Username"
                              v-model="userData.username"
                              :regex="usernameRegex"
-                             rule="1- username is 8-20 characters long<br/>2- no _ or . at the beginning<br/>3- no __ or _. or ._ or .. inside<br/>4- no _ or . at the end"
+                             rule="1- username at least 3-20 characters long<br/>2- no _ or . at the beginning<br/>3- no __ or _. or ._ or .. inside<br/>4- no _ or . at the end"
                     />
                   </column>
                 </row>
                 <row class="justify-center md:pl-4">
                   <column md="8" col="12">
                     <VTInput type="password"
+                             tooltipClass="!top-[-5px]"
                              placeholder="Enter password"
                              label="Password"
                              v-model="userData.password"
                              :regex="passwordRegex"
-                             rule="Minimum eight characters, at least one letter, one number and one special character"
+                             rule="between 3 and 20 characters"
                     />
                   </column>
                 </row>

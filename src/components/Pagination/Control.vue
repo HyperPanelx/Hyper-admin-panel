@@ -2,7 +2,7 @@
   <div class="py-2 px-1 shadow-[inset_0_0px_5px_0_rgba(0,0,0,0.1)] overflow-visible flex md:flex-row flex-col md:justify-between md:items-center">
     <FormKit type="form" id="control-pagination-form"  @submit="changePerPageHandler"  :actions="false" >
       <div class="flex gap-0.5 items-center">
-        <div v-if="sort" class="w-8">
+        <div v-if="sort" class="w-9">
           <VSelect
               @fire="sortHandler($event)"
               id="sort"
@@ -75,5 +75,10 @@ const {changePerPageHandler,searchHandler,resetSearch,sortHandler}=usePagination
 </script>
 
 <style scoped>
-
+@tailwind components;
+@layer components {
+  .choices{
+    @apply !w-[100%] m-0
+  }
+}
 </style>

@@ -1,4 +1,4 @@
-import {IUser_Data,Response} from "../utils/Types";
+import {IUser_Data} from "../utils/Types";
 import {usernameRegex,passwordRegex,bodyEncode} from "../utils/Helper";
 import {ref, reactive,inject} from "vue";
 import {VueCookies} from "vue-cookies";

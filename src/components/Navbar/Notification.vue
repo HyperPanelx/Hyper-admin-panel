@@ -10,44 +10,55 @@
        <p class="text-gray-600 dark:text-primary-dark-3">Notification</p>
        <font-awesome-icon  @click="dropdownFlag=!dropdownFlag" class="text-gray-600 cursor-pointer relative  text-1.2 dark:text-primary-dark-3" icon="fa-solid fa-xmark" />
      </div>
-      <div class="py-0.8 px-1.5 overflow-y-auto h-[17rem] scroller" :class="{'h-auto':getNotificationData.length===0}">
-        <p class="text-0.8 text-gray-400">News</p>
-        <template v-if="newsNotificationData.length>0">
-          <NavbarNotificationItem
-              v-for="(item) in newsNotificationData"
-              :title="item.title"
-              :msg="item.msg"
-              :link="item.link"
-              status="news"
-          />
-        </template>
-        <p v-else class="text-0.7 text-gray-400 mt-1 text-center">There is not any News for today.</p>
+      <div class="py-0.8 overflow-y-auto h-[17rem] scroller" :class="{'h-auto':getNotificationData.length===0}">
+        <div class="px-1.5">
+          <p class="text-0.8 text-gray-400">News</p>
+          <template v-if="newsNotificationData.length>0">
+            <NavbarNotificationItem
+                v-for="(item) in newsNotificationData"
+                :title="item.title"
+                :msg="item.msg"
+                :link="item.link"
+                status="news"
+            />
+          </template>
+          <p v-else class="text-0.7 text-gray-400 mt-1 text-center">There is not any News for today.</p>
+        </div>
 
-        <p class="text-0.8 text-gray-400 mt-1">Warnings</p>
-        <template v-if="warningNotificationData.length>0">
-          <NavbarNotificationItem
-              v-for="(item) in warningNotificationData"
-              :title="item.title"
-              :msg="item.msg"
-              :username="item.username"
-              :link="{name:'USERS',query:{username:item.username}}"
-              status="warning"
-          />
-        </template>
-        <p v-else class="text-0.7 text-gray-400 mt-1 text-center">There is not any Warnings for today.</p>
+        <p class="w-full my-1 h-[2px] border-b-gray-300 border-[1px] border-dashed"></p>
 
-        <p class="text-0.8 text-gray-400 mt-1">Immediate Actions</p>
-        <template v-if="dangerNotificationData.length>0">
-          <NavbarNotificationItem
-              v-for="(item) in dangerNotificationData"
-              :title="item.title"
-              :msg="item.msg"
-              :username="item.username"
-              :link="{name:'USERS',query:{username:item.username}}"
-              status="danger"
-          />
-        </template>
-        <p v-else class="text-0.7 text-gray-400 mt-1 text-center">There is not any Immediate Actions for today.</p>
+        <div class="px-1.5">
+          <p class="text-0.8 text-gray-400 mt-1">Warnings</p>
+          <template v-if="warningNotificationData.length>0">
+            <NavbarNotificationItem
+                v-for="(item) in warningNotificationData"
+                :title="item.title"
+                :msg="item.msg"
+                :username="item.username"
+                :link="{name:'USERS',query:{username:item.username}}"
+                status="warning"
+            />
+          </template>
+          <p v-else class="text-0.7 text-gray-400 mt-1 text-center">There is not any Warnings for today.</p>
+        </div>
+
+        <p class="w-full my-1 h-[2px] border-b-gray-300 border-[1px] border-dashed"></p>
+
+        <div class="px-1.5 pb-1">
+          <p class="text-0.8 text-gray-400 mt-1">Immediate Actions</p>
+          <template v-if="dangerNotificationData.length>0">
+            <NavbarNotificationItem
+                v-for="(item) in dangerNotificationData"
+                :title="item.title"
+                :msg="item.msg"
+                :username="item.username"
+                :link="{name:'USERS',query:{username:item.username}}"
+                status="danger"
+            />
+          </template>
+          <p v-else class="text-0.7 text-gray-400 mt-1 text-center">There is not any Immediate Actions for today.</p>
+        </div>
+
       </div>
     </template>
   </VDropdown>
@@ -55,22 +66,14 @@
 </template>
 
 <script setup lang="ts">
-import {ref,watch} from "vue";
-import {useRoute} from "vue-router";
+import {useNotification} from "../../composables/useNotification";
 import {useDashboardStore} from "../../composables/useStates";
 import  NavbarNotificationItem from './NotificationItem.vue'
 import VDropdown from '../global/VDropdown.vue'
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 ////////////////////////////////////////////////////////
-const dropdownFlag=ref<boolean>(false);
 const {getNotificationData,dangerNotificationData,newsNotificationData,warningNotificationData}=useDashboardStore();
-const route=useRoute()
-watch(
-    ()=>route.query,
-    ()=>{
-      dropdownFlag.value=false
-    }
-)
+const {dropdownFlag}=useNotification();
 
 </script>
 

@@ -17,13 +17,13 @@
       <column md="6" col="12">
         <FormKit
             validation-label="password"
-            :validation="[['required'], ['matches', /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/]]"
+            :validation="[['required'], ['matches', /^.{3,20}$/]]"
             type="password"
             id="new_password"
             name="new_password"
             input-class=" font-main dark:text-primary-light-1"
             help-class="dark:text-primary-light-1"
-            help="Minimum eight characters, at least one letter, one number and one special character"
+            help="Between 3 and 20 characters."
             label="New Password"
             label-class="dark:text-primary-dark-2 dark:!bg-[#37404a] !font-main"
             :floating-label="true"

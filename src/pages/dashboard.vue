@@ -6,7 +6,9 @@
         <p class="text-gray-700 text-0.9 mr-0.5 dark:text-primary-dark-3">
           Switch Server:
         </p>
-        <VServer @fire="changeServer($event)"/>
+        <div class="w-15">
+          <VServer @fire="changeServer($event)"/>
+        </div>
 
       </column>
     </row>
@@ -141,11 +143,14 @@ const {changeServer}=useDashboard();
 
 </script>
 
-<style >
+<style scoped>
 @tailwind components;
 @layer components {
   .section-loader{
     @apply h-15 flex w-full justify-center items-center
+  }
+  .choices{
+    @apply !w-[60%] m-0
   }
 
 }

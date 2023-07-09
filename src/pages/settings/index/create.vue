@@ -17,8 +17,8 @@
         <column md="6" col="12">
           <FormKit
               validation-label="password"
-              :validation="[['required'], ['matches', /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/]]"
-              help="Minimum eight characters, at least one letter, one number and one special character"
+              :validation="[['required'], ['matches', /^.{3,20}$/]]"
+              help="Between 3 and 20 characters."
               type="password"
               help-class="dark:text-primary-light-1"
               id="admin_password"

@@ -62,9 +62,7 @@ watch(
 <style >
 @tailwind components;
 @layer components {
-  .choices{
-    @apply !w-full m-0
-  }
+
   .choices__inner{
     @apply dark:!bg-primary-dark-3 text-[#333]
   }
@@ -82,6 +80,9 @@ watch(
   }
   .choices__list--dropdown .choices__item--selectable, .choices__list[aria-expanded] .choices__item--selectable{
     @apply pr-0 after:!hidden
+  }
+  .choices__item.choices__item--selectable{
+    @apply !text-1;
   }
 }
 </style>

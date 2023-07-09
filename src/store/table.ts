@@ -30,12 +30,14 @@ export const Table=defineStore('table',{
     actions:{
         trackExpiredUsers(usersData:IUsers_Data['rows']){
             const {dashboardStore}=useDashboardStore()
+            dashboardStore.resetNotifications()
             ///////////////////////////////////////////
             usersData.forEach(user=>{
                 const userExYear=Number(user.exdate?.match(yearRegex)[0]) ?? null
                 const userExMonth=Number(user.exdate?.match(monthRegex)[0]) ?? null
                 const userExDay=Number(user.exdate?.match(dayRegex)[0]) ?? null
                 if(currentYear==userExYear && currentMonth==userExMonth){
+                    /// 2023=2023 7=7 9+4>15
                     if(currentDate+4 > userExDay){
                         dashboardStore.addNotification({
                             username:user.user,
@@ -53,7 +55,24 @@ export const Table=defineStore('table',{
                             status:'warning'
                         })
                     }
-                } else if(currentYear>userExYear || currentMonth> userExMonth){
+                    //// 2023 > 2022
+                } else if(currentYear>userExYear){
+                    dashboardStore.addNotification({
+                        username:user.user,
+                        msg:'Action require : user expired',
+                        title:'User expiration',
+                        status:'danger'
+                    })
+                    /// 2023=2023  // 7>6 => expire
+                }else if(currentYear==userExYear && currentMonth> userExMonth){
+                    dashboardStore.addNotification({
+                        username:user.user,
+                        msg:'Action require : user expired',
+                        title:'User expiration',
+                        status:'danger'
+                    })
+                    /// 2023=2023 7=7 20>18 => expire
+                }else if(currentYear==userExYear && currentMonth==userExMonth && currentDate>userExDay){
                     dashboardStore.addNotification({
                         username:user.user,
                         msg:'Action require : user expired',
@@ -61,6 +80,7 @@ export const Table=defineStore('table',{
                         status:'danger'
                     })
                 }
+
            })
         },
          async getUsersList (){

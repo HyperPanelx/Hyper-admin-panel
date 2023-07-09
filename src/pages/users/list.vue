@@ -76,5 +76,6 @@ const {selectedUserToDelete}=useTableStore()
   .pagination-section{
     @apply bg-gray-100 p-2 flex md:justify-between justify-center items-center items-center md:flex-row flex-col gap-1 md:gap-0 dark:bg-[rgb(70,79,91)];
   }
+
 }
 </style>
