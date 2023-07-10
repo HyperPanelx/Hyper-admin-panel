@@ -22,8 +22,7 @@
 
   <VModal :fade-outside="false" class="!p-0 !h-auto" v-model="operationData.modal">
     <div class="modal-body">
-      <p v-if="operationData.changePassword" class="text-1 text-gray-800 dark:text-primary-dark-3 flex items-center gap-0.5">Password changed.</p>
-      <p v-else class="text-1 text-gray-800 dark:text-primary-dark-3 flex items-center gap-0.5"> Are you sure?</p>
+      <p  class="text-1 text-gray-800 dark:text-primary-dark-3 flex items-center gap-0.5"> Are you sure?</p>
       <p class="text-gray-800 text-0.8 mt-0.7 dark:text-primary-dark-3">
         Action on <span class="text-secondary-light-2 text-0.8">{{getServerIP}}</span> server <router-link class="text-secondary-light-2 !text-[0.65rem] hover:underline ml-0.1" to="/servers">switch</router-link>
       </p>
@@ -41,14 +40,6 @@
         </column>
         <column col="6">
           <p class="font-second dark:text-primary-light-1">{{operationData.username}}</p>
-        </column>
-      </row>
-      <row v-if="operationData.changePassword" class="mt-0.5">
-        <column col="6">
-          <p class="font-second text-right dark:text-primary-light-1">new password:</p>
-        </column>
-        <column col="6">
-          <p @click="copyText(operationData.newPassword)" class="font-second dark:text-primary-light-1">{{operationData.newPassword}}</p>
         </column>
       </row>
       <row v-if="operationData.renewUser" class="mt-0.5">
@@ -90,6 +81,29 @@
           </FormKit>
         </column>
       </row>
+      <row v-if="operationData.askPassword" class="mt-0.5">
+        <column col="6">
+          <p class="font-second text-right dark:text-primary-light-1">new Password:</p>
+        </column>
+        <column col="6">
+          <FormKit id="changePasswordForm" type="form" ref="changePasswordForm"  @submit="changePassword"  :actions="false" >
+            <FormKit
+                validation-label="password"
+                :validation="[['required'], ['matches', /^.{3,20}$/]]"
+                help="Between 3 and 20 characters."
+                type="password"
+                help-class="dark:text-primary-light-1"
+                id="new_change_password"
+                name="new_change_password"
+                input-class=" font-main dark:text-primary-light-1"
+                label-class="dark:text-primary-dark-2 dark:!bg-[#37404a] !font-main"
+                :floating-label="true"
+                suffix-icon="eyeClosed"
+                @suffix-icon-click="handleIconClick"
+            />
+          </FormKit>
+        </column>
+      </row>
 
     </div>
     <div class="modal-footer">
@@ -109,15 +123,18 @@
 <script setup lang="ts">
 import VDropdown from '../global/VDropdown.vue'
 import VTooltip from '../global/VTooltip.vue'
-import {copyText} from "../../utils/Helper";
 import {settingDropdownOption} from "../../utils/Helper";
 import {useServerStore} from "../../composables/useStates";
 import {useSettings} from "../../composables/users/useSettings";
 import VModal from '../global/VModal.vue'
 const props=defineProps(['user','uid','exdate','status','multi']);
-const {toggleDropdown,dropdownFlag,selectOperation,operationData,handlers,renewUser,newExpirationDateForm,changeMulti,newMultiForm}=useSettings(props);
+const {toggleDropdown,dropdownFlag,selectOperation,operationData,handlers,renewUser,newExpirationDateForm,changeMulti,newMultiForm,changePasswordForm,changePassword}=useSettings(props);
 const {getServerIP}=useServerStore()
 
+const handleIconClick = (node, e) => {
+  node.props.suffixIcon = node.props.suffixIcon === 'eye' ? 'eyeClosed' : 'eye'
+  node.props.type = node.props.type === 'password' ? 'text' : 'password'
+}
 
 </script>
 

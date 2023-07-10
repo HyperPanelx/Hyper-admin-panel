@@ -19,7 +19,6 @@
                              label="Username"
                              v-model="userData.username"
                              :regex="usernameRegex"
-                             rule="1- username at least 3-20 characters long<br/>2- no _ or . at the beginning<br/>3- no __ or _. or ._ or .. inside<br/>4- no _ or . at the end"
                     />
                   </column>
                 </row>
@@ -31,7 +30,6 @@
                              label="Password"
                              v-model="userData.password"
                              :regex="passwordRegex"
-                             rule="between 3 and 20 characters"
                     />
                   </column>
                 </row>

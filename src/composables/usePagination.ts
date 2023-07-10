@@ -184,7 +184,7 @@ export const usePagination=()=>{
                 dashboardStore.removeNotification(tableStore.selectedUserToDelete)
                 tableStore.selectedUserToDelete=[]
                 notify({
-                    type:'warn',
+                    type:'success',
                     title:'Delete Users Operation',
                     text:'Users deleted successfully!'
                 })
@@ -227,7 +227,7 @@ export const usePagination=()=>{
             }else{
                 tableStore.selectedOnlineUserToKill=[]
                 notify({
-                    type:'warn',
+                    type:'success',
                     title:'Kill Users Operation',
                     text:'Users are killed successfully!'
                 })

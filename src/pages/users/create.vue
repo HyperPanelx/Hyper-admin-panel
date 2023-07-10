@@ -190,7 +190,7 @@
       </row>
     </div>
     <div class="modal-footer">
-      <button class="btn btn-secondary btn-sm" @click="copyCreatedUserInfo">
+      <button class="btn btn-secondary btn-sm" @click="copyText(`username:${newCreatedUserData.username} password:${newCreatedUserData.password}`)">
         copy
       </button>
       <button class="btn btn-indigo btn-sm" @click="closeModal">
@@ -201,6 +201,7 @@
 </template>
 
 <script setup lang="ts">
+import {copyText} from "../../utils/Helper";
 import VBreadcrumb from '../../components/global/VBreadcrumb.vue'
 import VCard from '../../components/global/VCard.vue'
 import VBloader from '../../components/global/VBloader.vue'
@@ -210,7 +211,7 @@ import {currentYear,currentDate,currentMonth} from "../../utils/Helper";
 import {ref} from 'vue'
 import {useCreateUser} from "../../composables/users/useCreate";
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
-const {createUserFormSubmit,fetchOperationData,createSingleUserForm,submitForm,castNumber,closeModal,newCreatedUserData,copyCreatedUserInfo}=useCreateUser();
+const {createUserFormSubmit,fetchOperationData,createSingleUserForm,submitForm,castNumber,closeModal,newCreatedUserData}=useCreateUser();
 const showPasswordFlag=ref<boolean>(false);
 const {getServerIP}=useServerStore()
 

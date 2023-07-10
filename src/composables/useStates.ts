@@ -9,7 +9,7 @@ import {storeToRefs} from "pinia";
 export const envVariable=()=>{
     const apiBase:string|undefined=process.env.API_BASE || 'http://localhost/';
     const cookieName:string|undefined=process.env.COOKIE_NAME || 'fb69cda06c628';
-    const appVersion:string|undefined=process.env.VERSION || '0.0.9';
+    const appVersion:string|undefined=process.env.VERSION || '1.0.0';
     const server_ip:string|undefined=process.env.SERVER_IP || 'localhost'
 
     return{

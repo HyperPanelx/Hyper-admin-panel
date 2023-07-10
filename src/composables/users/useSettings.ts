@@ -11,6 +11,7 @@ export const useSettings=(props:any)=>{
     const dropdownFlag=ref<boolean>(false);
     const newExpirationDateForm=ref<HTMLFormElement|null>(null)
     const newMultiForm=ref<HTMLFormElement|null>(null)
+    const changePasswordForm=ref<HTMLFormElement|null>(null)
     const {tableStore}=useTableStore()
     const {token}=useAuthStore()
     const {dashboardStore}=useDashboardStore()
@@ -20,9 +21,9 @@ export const useSettings=(props:any)=>{
         modal:false,
         username:'',
         newPassword:'',
-        changePassword:false,
         renewUser:false,
         changeMulti:false,
+        askPassword:false
     })
     const submitNewExpForm = () => {
         if(newExpirationDateForm.value){
@@ -36,7 +37,12 @@ export const useSettings=(props:any)=>{
             node.submit()
         }
     };
-
+    const submitChangePasswordForm = () => {
+        if(changePasswordForm.value){
+            const node = (changePasswordForm.value as any).node
+            node.submit()
+        }
+    };
 
     const toggleDropdown = () => {
         dropdownFlag.value=!dropdownFlag.value
@@ -65,7 +71,7 @@ export const useSettings=(props:any)=>{
                 })
             }else{
                 notify({
-                    type:'warn',
+                    type:'success',
                     title:'Delete Operation',
                     text:'User deleted successfully!'
                 })
@@ -86,10 +92,11 @@ export const useSettings=(props:any)=>{
         })
 
     }
-    const changePassword = async () => {
+    const changePassword = async (data) => {
         dropdownFlag.value=false
-        operationData.modal=false
-        const query=querySerialize({mode:'users',username:props.user,server:getServerIP.value})
+        dashboardStore.showPreloaderFlag=true
+        tableStore.fetchTableDataFlag=false
+        const query=querySerialize({mode:'users',username:props.user,server:getServerIP.value,passwd:data.new_change_password})
         fetch(apiBase+`change-passwd-user?`+query,{
             headers:{
                 'Content-Type':'application/json',
@@ -105,12 +112,6 @@ export const useSettings=(props:any)=>{
                     text:response.detail
                 })
             }else{
-                operationData.newPassword=response.password
-                operationData.changePassword=true
-                operationData.name='Password'
-                operationData.modal=true
-                const userIndex=tableStore.tableData.rows.findIndex((item:any)=>item.uid===props.uid);
-                (tableStore.tableData as IUsers_Data).rows[userIndex].passwd=response.password;
                 notify({
                     type:'success',
                     title:'Change Password Operation',
@@ -118,12 +119,15 @@ export const useSettings=(props:any)=>{
                 })
             }
         }).catch(err=>{
-            operationData.modal=false
             notify({
                 type:'error',
                 title:'Change Password Operation',
                 text:'Operation failed! Error in connecting to server.'
             })
+        }).finally(()=>{
+            operationData.askPassword=false
+            operationData.modal=false
+            tableStore.getUsersList()
         })
     }
     const lockUser = async () => {
@@ -187,7 +191,7 @@ export const useSettings=(props:any)=>{
                 const userIndex=tableStore.tableData.rows.findIndex((item:any)=>item.uid===props.uid);
                 (tableStore.tableData as IUsers_Data).rows[userIndex].status='enable';
                 notify({
-                    type:'warn',
+                    type:'success',
                     title:'Unlock User Operation',
                     text:'User unlocked successfully!'
                 })
@@ -293,7 +297,7 @@ export const useSettings=(props:any)=>{
         operationData.modal=true
         operationData.username=props.user
         operationData.newPassword=''
-        operationData.changePassword=false
+        operationData.askPassword=name === 'Change password'
         operationData.renewUser = name === 'Renew user';
         operationData.changeMulti = name === 'Change Multi';
     }
@@ -302,7 +306,7 @@ export const useSettings=(props:any)=>{
         if(name==='Delete user'){
             return {'click':deleteUser}
         }else if(name==='Change password'){
-            return {'click':changePassword}
+            return {'click':submitChangePasswordForm}
         }else if(name==='Lock user'){
             return {'click':lockUser}
         }else if(name==='Unlock user'){
@@ -317,6 +321,6 @@ export const useSettings=(props:any)=>{
 
 
     return{
-        toggleDropdown,dropdownFlag,selectOperation,operationData,handlers,renewUser,newExpirationDateForm,changeMulti,newMultiForm
+        toggleDropdown,dropdownFlag,selectOperation,operationData,handlers,renewUser,newExpirationDateForm,changeMulti,newMultiForm,changePassword,changePasswordForm
     }
 }

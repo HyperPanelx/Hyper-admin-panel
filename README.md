@@ -21,9 +21,13 @@
 ##### in this page is shown the status of online user, which you can disconnect their connection.
 <img alt="page 3" src="./src/public/github/p3.png">
 
-#### 4- Settings
-##### as you can see there are plenty of options for admins to control admin panel.
+#### 4- Servers
+##### in this page you can see the available servers which you are able to switch between them.
 <img alt="page 4" src="./src/public/github/p4.png">
+
+#### 5- Settings
+##### as you can see there are plenty of options for admins to control admin panel.
+<img alt="page 4" src="./src/public/github/p5.png">
 
 ## Project structure
 
@@ -45,7 +49,7 @@
     ├── app.ts  => entry point file for webpack and packages
     ├── App.vue  => entry point vue component
     ├── router.ts  => page routing configs
-    ├── shims-vue.d.ts => typescript deleration file for vue components
+    ├── shims-vue.d.ts => typescript decleration file for vue components
     └── utils
         ├── Data.ts => tabs data
         ├── Helper.ts => some helper function
@@ -82,10 +86,7 @@ pnpm install
 
 | Key           | Type     | Description                                                                   |
 |:--------------| :------- |:------------------------------------------------------------------------------|
-| `API_BASE`    | `string` | **Required**. Api Url format: https://example.com/ default: http://localhost/ |
-| `SERVER_IP`    | `string` | **Optional**. default: localhost                                              |
-| `COOKIE_NAME` | `string` | **Optional**. Just a name                                                     |
-| `VERSION`     | `string` | **Optional**. Current Version:0.0.9                                           |
+| `API_BASE`    | `string` | **Required**. Api Url format: https://example.com/  |
 
 ## Development Server
 

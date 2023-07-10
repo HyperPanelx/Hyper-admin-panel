@@ -5,9 +5,10 @@
     </label>
     <input ref="input" :class="{'!border-b-red-600':errorFlag}" :type="passwordIconToggleFlag ? 'text' : type" :placeholder="placeholder" class="v-trans-input" :id="label" @input="inputHandler($event)" :value="modelValue" type="text">
    <font-awesome-icon @click="passwordIconToggleFlag=!passwordIconToggleFlag" class="password-eye-icon w-1.5" v-if="type==='password'" size="1.5rem" :icon="passwordIconToggleFlag ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye'"/>
-    <VTooltip :innerClass="tooltipClass" :content="rule" class="!absolute right-0 cursor-pointer" :class="{'right-[30px]':type==='password'}" >
+    <VTooltip v-if="rule" :innerClass="tooltipClass" :content="rule" class="!absolute right-0 cursor-pointer" :class="{'right-[30px]':type==='password'}" >
       <font-awesome-icon v-if="errorFlag"   size="1.5rem" class="error-icon w-1.5" icon="fa-solid fa-circle-exclamation"/>
     </VTooltip>
+    <font-awesome-icon v-if="errorFlag && !rule" :class="{'right-[30px]':type==='password'}"   size="1.5rem" class="error-icon w-1.5 absolute right-0" icon="fa-solid fa-circle-exclamation"/>
   </div>
 </template>
 

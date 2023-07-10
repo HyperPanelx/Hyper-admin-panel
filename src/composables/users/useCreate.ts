@@ -82,12 +82,8 @@ export const useCreateUser=()=>{
       fetchOperationData.modal=false
     };
 
-    const copyCreatedUserInfo = () => {
-        navigator.clipboard.writeText(`username:${newCreatedUserData.username} password:${newCreatedUserData.password}`)
-        alert('copied the text')
-    };
 
     return{
-        createUserFormSubmit,fetchOperationData,createSingleUserForm,submitForm,castNumber,closeModal,newCreatedUserData,copyCreatedUserInfo
+        createUserFormSubmit,fetchOperationData,createSingleUserForm,submitForm,castNumber,closeModal,newCreatedUserData
     }
 }

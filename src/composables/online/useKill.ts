@@ -34,7 +34,7 @@ export const useKill=(props:any)=>{
                 })
             }else{
                 notify({
-                    type:'warn',
+                    type:'success',
                     title:'Kill User Operation',
                     text:'User is killed successfully!'
                 })

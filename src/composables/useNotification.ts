@@ -1,5 +1,5 @@
 import {ref, watch} from "vue";
-import {useDashboardStore} from "./useStates";
+import {useDashboardStore,useAuthStore,envVariable} from "./useStates";
 import {useRoute} from "vue-router";
 import {onMounted} from "vue";
 import {INotification} from "../utils/Types";
@@ -8,6 +8,8 @@ import {INotification} from "../utils/Types";
 export const useNotification=()=>{
     const dropdownFlag=ref<boolean>(false);
     const {dashboardStore}=useDashboardStore();
+    const {token}=useAuthStore();
+    const {apiBase}=envVariable()
     const route=useRoute()
     watch(
         ()=>route.query,

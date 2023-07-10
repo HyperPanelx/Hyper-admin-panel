@@ -1,7 +1,7 @@
 <template>
   <footer class="footer" :class="{'n-collapse':sidebarCollapseFlag,'!mt-[250px]':$route.name==='NotFound'}">
     <p class="text-gray-500 dark:text-primary-dark-3 sm:mb-0 mb-1">&copy;Copyright {{currentYear}}. All right is reserved.</p>
-    <p class="text-gray-500 dark:text-primary-dark-3">Designed and developed by Hooman & Farshad</p>
+    <p class="text-gray-500 dark:text-primary-dark-3">Designed and developed by Hooman & Alireza</p>
   </footer>
 </template>
 
