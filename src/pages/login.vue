@@ -38,8 +38,8 @@
                     <VCheckbox v-model="userData.rememberMe" label="Remember me" />
                   </column>
                 </row>
-                <row class="justify-center md:pl-4 mt-2">
-                  <column md="8">
+                <row class="justify-center md:pl-4 mt-1">
+                  <column md="8" >
                     <VBloader class="btn btn-primary btn-md"
                               animation="slide-down"
                               :duration="2000"

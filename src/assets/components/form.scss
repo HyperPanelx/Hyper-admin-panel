@@ -4,7 +4,7 @@
         @apply flex gap-1.5 items-center my-1 relative
     }
     .input-wrapper label{
-        @apply text-gray-500 font-400 text-1 absolute md:left-[-110px] left-[-3px] top-[-24px] md:top-[9px] w-[80px] text-left cursor-pointer
+        @apply text-gray-500 font-400 text-0.9 absolute md:left-[-110px] left-[-3px] top-[-24px] md:top-[9px] w-[80px] text-left cursor-pointer
     }
     .v-input-rest{
         @apply outline-none border-none focus:border-none focus:outline-none
@@ -69,7 +69,7 @@
     }
     .v-checkbox{
         @apply appearance-none w-[16px] h-[16px] p-[8px] rounded-full border-[1px] border-gray-400  focus:ring-4 focus:ring-indigo-600/50 checked:bg-indigo-600 checked:text-white
-        checked:bg-[url("../../public/check.svg")] checked:bg-center  checked:rounded-full checked:w-[17px] checked:h-[17px] outline-0 checked:border-[0px]
+        checked:bg-[url("../../public/check.svg")] checked:bg-center  checked:rounded-full checked:w-[18px] checked:h-[18px] outline-0 checked:border-[0px]
         ;
     }
 

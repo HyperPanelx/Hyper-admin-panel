@@ -123,7 +123,7 @@
 <script setup lang="ts">
 import VDropdown from '../global/VDropdown.vue'
 import VTooltip from '../global/VTooltip.vue'
-import {settingDropdownOption} from "../../utils/Helper";
+import {settingDropdownOption,handleIconClick} from "../../utils/Helper";
 import {useServerStore} from "../../composables/useStates";
 import {useSettings} from "../../composables/users/useSettings";
 import VModal from '../global/VModal.vue'
@@ -131,10 +131,7 @@ const props=defineProps(['user','uid','exdate','status','multi']);
 const {toggleDropdown,dropdownFlag,selectOperation,operationData,handlers,renewUser,newExpirationDateForm,changeMulti,newMultiForm,changePasswordForm,changePassword}=useSettings(props);
 const {getServerIP}=useServerStore()
 
-const handleIconClick = (node, e) => {
-  node.props.suffixIcon = node.props.suffixIcon === 'eye' ? 'eyeClosed' : 'eye'
-  node.props.type = node.props.type === 'password' ? 'text' : 'password'
-}
+
 
 </script>
 

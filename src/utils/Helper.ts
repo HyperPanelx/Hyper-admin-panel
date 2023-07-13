@@ -234,3 +234,8 @@ export const downloadTextFile = (txt:string) => {
 export const downloadJsonFile = (json:string) => {
     return "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(json));
 }
+
+export const handleIconClick = (node, e) => {
+    node.props.suffixIcon = node.props.suffixIcon === 'eye' ? 'eyeClosed' : 'eye'
+    node.props.type = node.props.type === 'password' ? 'text' : 'password'
+}

@@ -13,6 +13,6 @@
         @apply absolute top-0 left-0 w-full h-full z-[3] bg-[rgba(54,84,99,.7)] flex justify-center items-center
     }
     .login-form-content{
-        @apply p-1.5
+        @apply p-1.5 !pb-0
     }
 }

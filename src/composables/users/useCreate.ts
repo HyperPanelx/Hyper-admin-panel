@@ -30,7 +30,8 @@ export const useCreateUser=()=>{
     const castNumber = (node:any) => {
         node.hook.input((value:any, next:any) => next(Number(value)))
     };
-    const createUserFormSubmit = async (formData:any) => {
+    const createUserFormSubmit =  (formData:any) => {
+        console.log(formData)
         fetchOperationData.on=true
         fetchOperationData.error=false
         fetchOperationData.msg=''

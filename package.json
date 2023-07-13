@@ -47,6 +47,7 @@
   },
   "dependencies": {
     "@formkit/addons": "^0.17.2",
+    "@formkit/inputs": "^0.17.4",
     "@formkit/themes": "^0.17.2",
     "@formkit/vue": "^0.17.2",
     "@fortawesome/fontawesome-svg-core": "^6.4.0",

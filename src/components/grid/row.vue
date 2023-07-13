@@ -2,25 +2,19 @@
   <div v-bind="$attrs" class="row"><slot/></div>
 </template>
 
-<script>
-export default {
-  name: "row",
-  props:['colGap','rowGap'],
-  data(){
-    return{
-      columnGaps:this.colGap || 0,
-      rowGaps:this.rowGap || 0,
-    }
-  }
-}
+<script setup lang="ts">
+const {colGap,rowGap}=defineProps<{
+  colGap?:string,
+  rowGap?:string
+}>()
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
 @tailwind components;
 @layer components {
   .row{
-    column-gap: v-bind(columnGaps);
-    row-gap: v-bind(rowGaps);
+    column-gap: v-bind(colGap);
+    row-gap: v-bind(rowGap);
     display: flex;
     flex-wrap: wrap;
   }

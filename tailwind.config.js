@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 const colors=require('./colors');
-const plugin = require('tailwindcss/plugin')
+const plugin =   require('tailwindcss/plugin')
 
 module.exports = {
   darkMode: 'class',
@@ -15,6 +15,7 @@ module.exports = {
     "./src/layouts/**/*.{js,vue,ts}",
     "./src/pages/**/*.vue",
     "./src/store/**/*.{js,ts}",
+    "./src/assets/**/*.scss",
   ],
   theme: {
     screens: {

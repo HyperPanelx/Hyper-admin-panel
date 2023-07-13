@@ -6,13 +6,14 @@ import App from "./App.vue";
 import './assets/Tailwind.config/Tailwind.base.scss'
 import './assets/Tailwind.config/Tailwind.component.scss'
 import './assets/Tailwind.config/Tailwind.utilities.scss'
+import './assets/components/form.scss'
+import './assets/components/formkit.scss'
 import './assets/components/conatiner.scss'
 import './assets/components/modal.scss'
 import './assets/components/layout.scss'
 import './assets/components/sidebar.scss'
 import './assets/components/navbar.scss'
 import './assets/components/login.scss'
-import './assets/components/form.scss'
 import './assets/components/tooltip.scss'
 import './assets/components/dropdown.scss'
 import './assets/components/table.scss'
@@ -52,7 +53,6 @@ import Notifications from '@kyvg/vue3-notification'
 import VueApexCharts from "vue3-apexcharts";
 import { plugin ,defaultConfig} from '@formkit/vue';
 import 'choices.js/public/assets/styles/choices.min.css'
-import '@formkit/addons/css/floatingLabels';
 import 'ladda/dist/ladda-themeless.min.css';
 import config from '../formkit.config'
 import {btnColor,textColor,bgColor} from "./plugins/color";

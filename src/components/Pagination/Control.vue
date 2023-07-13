@@ -37,15 +37,15 @@
     </FormKit>
     <div class="flex md:flex-row flex-col  md:mt-0 mt-2 items-center">
       <FormKit
-          type="text"
-          outer-class="w-full"
-          input-class=" font-main"
-          label="Search username..."
-          label-class="dark:text-primary-dark-2 dark:!bg-[#37404a]  !font-main"
-          :floating-label="true"
+          type="custom_placeholder"
+          label="search username..."
+          id="search_username"
+          name="search_username"
           @keyup="searchHandler"
           v-model="tableStore.searchText"
+
       />
+
       <div class="w-full md:ml-1 ml-0 mt-1 md:mt-0">
         <button @click="resetSearch" class="btn btn-indigo btn-md mr-1">
           Reset
