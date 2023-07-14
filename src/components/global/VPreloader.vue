@@ -1,7 +1,7 @@
 <template>
   <template v-if="freeze">
     <teleport to="body">
-      <section v-if="freeze" class="page-preloader flex flex-col !h-full !z-[9999] !opacity-90 !fixed">
+      <section v-if="freeze" class="page-preloader flex flex-col !h-full !z-[9999] !bg-secondary-light-1/40 !fixed">
         <half-circle-spinner
             :animation-duration="1300"
             :size="130"

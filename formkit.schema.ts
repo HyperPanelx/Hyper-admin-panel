@@ -14,7 +14,7 @@ import {
 } from "@formkit/inputs";
 import {FormKitTypeDefinition} from '@formkit/core/dist'
 
-/// auth / use route loader
+/// auth / use route loader  /table
 export const custom_text_schema:FormKitTypeDefinition={
     forceTypeProp:'text',
     schema: wrapper(

@@ -7,7 +7,7 @@
     @apply relative
   }
   .input-effect{
-    @apply text-[#333] text-[15px/24px] tracking-[1px] box-border border-[1px] border-solid border-[#ccc] py-[8.8px] px-[14px] transition-all duration-[400ms] bg-transparent focus:outline-none outline-none w-full relative z-[2]
+    @apply text-[#333] text-[15px/24px] tracking-[1px] box-border border-[1px] border-solid border-[#ccc] py-[8.8px] px-[14px] transition-all duration-[400ms] bg-transparent focus:outline-none outline-none w-full relative z-[2] dark:text-primary-dark-3
   }
 
   .input-effect ~ .focus-border{
@@ -20,14 +20,14 @@
   .input-effect:focus ~ .focus-border:after,
   .has-content.input-effect ~ .focus-border:before,
   .has-content.input-effect ~ .focus-border:after{
-    @apply w-[100%] transition-all duration-300
+    @apply w-[100%] transition-all duration-300 z-10
   }
 
   .input-effect:focus ~ .focus-border label:before,
   .input-effect:focus ~ .focus-border label:after,
   .has-content.input-effect ~ .focus-border label:before,
   .has-content.input-effect ~ .focus-border label:after {
-    @apply h-[100%] transition-all duration-[400ms]
+    @apply h-[100%] transition-all duration-[400ms] z-10
   }
   .input-effect ~ .input-effect-label{
     @apply absolute left-[14px] w-full top-[8px] text-[#aaa] transition-all duration-300 z-[1] tracking-[0.5px] text-1 leading-[1.6];
@@ -54,25 +54,25 @@
   }
 
   .formkit-wrapper .error-message{
-    @apply mt-[3px] [&_li]:text-0.8 [&_li]:text-red-600
+    @apply mt-[3px] [&_li]:text-0.8 [&_li]:text-red-600 dark:[&_li]:text-red-500
   }
 
   .input-effect-wrapper .password-icon{
-    @apply absolute w-1 h-1 [&_svg]:w-1 [&_svg]:h-1 right-[12px] top-[12px] cursor-pointer z-[4]
+    @apply absolute w-1 h-1 [&_svg]:w-1 [&_svg]:h-1 right-[12px] top-[12px] cursor-pointer z-[4] dark:text-primary-light-1 text-gray-500
   }
 
   .radio-options{
     @apply flex gap-1 flex-row items-center
   }
   .radio-option{
-    @apply flex items-center [&_input]:mr-0.5
+    @apply flex items-center [&_input]:mr-0.5 dark:[&_label]:text-primary-dark-3
   }
 
   .input-hint{
-    @apply text-0.8 my-[0.2rem] text-gray-500
+    @apply text-0.8 my-[0.2rem] text-gray-500 dark:text-primary-light-1
   }
 
   form .formkit-message{
-    @apply text-0.9 text-red-600
+    @apply text-0.9 text-red-600 dark:text-red-500
   }
 }

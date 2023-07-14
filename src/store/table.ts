@@ -113,14 +113,15 @@ export const Table=defineStore('table',{
                         })
                     };
                     this.trackExpiredUsers(response)
-
+                    this.fetchTableDataFlag=true
+                    dashboardStore.showPreloaderFlag=false
                 }
             }).
-            catch(err=>console.log(err)).
-            finally(()=>{
-                this.fetchTableDataFlag=true
+            catch(err=>{
+                console.log(err)
                 dashboardStore.showPreloaderFlag=false
-            })
+
+            });
         },
         async getOnlineUsers ()  {
             //// dashboard store for preloader
@@ -154,13 +155,14 @@ export const Table=defineStore('table',{
                             }
                         })
                     }
+                    this.fetchTableDataFlag=true
+                    dashboardStore.showPreloaderFlag=false
                 }
             }).
-            catch(err=>console.log(err)).
-            finally(()=>{
-                this.fetchTableDataFlag=true
+            catch(err=>{
+                console.log(err)
                 dashboardStore.showPreloaderFlag=false
-            })
+            });
         }
     }
 })

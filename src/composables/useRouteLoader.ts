@@ -6,8 +6,8 @@ export const useRouteLoader=()=>{
     const {dashboardStore}=useDashboardStore();
     const router=useRouter()
     router.beforeEach(()=>{
-        // dashboardStore.showPreloaderFlag=true
-        // document.body.style.overflowY='hidden'
+        dashboardStore.showPreloaderFlag=true
+        document.body.style.overflowY='hidden'
     })
 
     router.beforeResolve((to,from)=>{

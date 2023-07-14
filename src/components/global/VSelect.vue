@@ -63,8 +63,14 @@ watch(
 @tailwind components;
 @layer components {
 
+  .choices.is-focused.is-open .choices__inner{
+    @apply !border-secondary-light-2/40
+  }
+  .choices__list.is-active{
+    @apply !border-secondary-light-2/50
+  }
   .choices__inner{
-    @apply dark:!bg-primary-dark-3 text-[#333]
+    @apply dark:!bg-primary-dark-3 !bg-transparent text-[#333]
   }
   .choices__list.choices__list--dropdown{
     @apply dark:!bg-[rgb(70,79,91)] dark:!text-primary-light-1
@@ -73,7 +79,7 @@ watch(
     @apply dark:!bg-[rgb(70,79,91)]
   }
   .choices__list--dropdown .choices__item--selectable.is-highlighted, .choices__list[aria-expanded] .choices__item--selectable.is-highlighted{
-    @apply dark:!bg-[#333]
+    @apply dark:!bg-[#333] !bg-secondary-light-2 !text-secondary-light-1 transition-all
   }
   .choices__list.choices__list--dropdown{
     @apply absolute z-[999]

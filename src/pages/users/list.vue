@@ -57,12 +57,6 @@ const {selectedUserToDelete}=useTableStore()
 <style >
 @tailwind components;
 @layer components {
-  .formkit-outer{
-    @apply !mb-0
-  }
-  .formkit-input{
-    @apply !border-[1px] !border-gray-100/50 dark:!text-primary-light-1 font-main
-  }
   .pagination-section{
     @apply bg-gray-100 p-2 flex md:justify-between justify-center items-center items-center md:flex-row flex-col gap-1 md:gap-0 dark:bg-[rgb(70,79,91)];
   }
