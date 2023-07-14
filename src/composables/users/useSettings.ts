@@ -50,7 +50,7 @@ export const useSettings=(props:any)=>{
 
 
     ///// setting operations
-    const deleteUser = async () => {
+    const deleteUser =  () => {
         dropdownFlag.value=false
         dashboardStore.showPreloaderFlag=true
         tableStore.fetchTableDataFlag=false
@@ -92,7 +92,7 @@ export const useSettings=(props:any)=>{
         })
 
     }
-    const changePassword = async (data) => {
+    const changePassword =  (data) => {
         dropdownFlag.value=false
         dashboardStore.showPreloaderFlag=true
         tableStore.fetchTableDataFlag=false
@@ -130,7 +130,7 @@ export const useSettings=(props:any)=>{
             tableStore.getUsersList()
         })
     }
-    const lockUser = async () => {
+    const lockUser =  () => {
         dropdownFlag.value=false
         dashboardStore.showPreloaderFlag=true
         tableStore.fetchTableDataFlag=false
@@ -168,7 +168,7 @@ export const useSettings=(props:any)=>{
             tableStore.getUsersList()
         })
     }
-    const unlockUser =async () => {
+    const unlockUser = () => {
         dropdownFlag.value=false
         dashboardStore.showPreloaderFlag=true
         tableStore.fetchTableDataFlag=false
@@ -208,7 +208,7 @@ export const useSettings=(props:any)=>{
             tableStore.getUsersList()
         })
     }
-    const renewUser = async (formData:any) => {
+    const renewUser =  (formData:any) => {
         dropdownFlag.value=false
         dashboardStore.showPreloaderFlag=true
         tableStore.fetchTableDataFlag=false

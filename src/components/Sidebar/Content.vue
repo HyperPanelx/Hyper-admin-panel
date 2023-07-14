@@ -3,7 +3,7 @@
     <p v-if="windowWidth>500 ? !sidebarCollapseFlag : true" class="text-primary-dark-2 font-500 uppercase text-0.8">
       Navigation
     </p>
-    <ul class="mt-2 mb-1 flex flex-col " :class="{'[&_li]:mb-2':windowWidth>500 ? !sidebarCollapseFlag : true}">
+    <ul class="mt-2  flex flex-col " :class="{'[&_li]:mb-2':windowWidth>500 ? !sidebarCollapseFlag : true}">
       <li  v-if="sidebarCollapseFlag && windowWidth>500" v-for="row1 in sidebarItemData" class="sidebar-item-collapse group">
         <SidebarItemClose
             :icon="row1.icon"
@@ -23,7 +23,7 @@
         />
       </li>
     </ul>
-    <div v-if="windowWidth>500 && !sidebarCollapseFlag" class="mt-1 flex items-center pl-0.5">
+    <div v-if="windowWidth>500 && !sidebarCollapseFlag" class="mt-0.5 flex items-center pl-0.5">
       <span class="relative flex h-0.5 w-0.5 flex justify-center items-center">
           <span class="animate-ping-slow !w-1.7 !h-1.7 absolute inline-flex h-full w-full rounded-full bg-primary-dark-2 opacity-75"></span>
             <span class="relative inline-flex rounded-full h-0.5 w-0.5 bg-primary-dark-2"></span>

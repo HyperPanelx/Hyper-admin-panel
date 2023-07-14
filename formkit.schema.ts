@@ -10,11 +10,11 @@ import {
     textInput,
     wrapper,
     textareaInput,
-    option, boxOption, boxOptions, $for, options, $root,
-    actions, form, submit,optionSlot,formInput,
+    boxOption, boxOptions
 } from "@formkit/inputs";
 import {FormKitTypeDefinition} from '@formkit/core/dist'
 
+/// auth / use route loader
 export const custom_text_schema:FormKitTypeDefinition={
     forceTypeProp:'text',
     schema: wrapper(
@@ -47,7 +47,12 @@ export const custom_text_schema:FormKitTypeDefinition={
 
             ),
         ),
-        help('$help'),
+        $attrs(
+            {
+                class:'input-hint'
+            },
+            help('$help')
+        ),
         $attrs(
             {
                 class:'error-message'
@@ -97,7 +102,12 @@ export const custom_password_schema:FormKitTypeDefinition={
 
             ),
         ),
-        help('$help'),
+        $attrs(
+            {
+                class:'input-hint'
+            },
+            help('$help')
+        ),
         $attrs(
             {
                 class:'error-message'
@@ -142,7 +152,12 @@ export const custom_placeholder_schema:FormKitTypeDefinition={
 
             ),
         ),
-        help('$help'),
+        $attrs(
+            {
+                class:'input-hint'
+            },
+            help('$help')
+        ),
         $attrs(
             {
                 class:'error-message'
@@ -164,6 +179,7 @@ export const custom_number_schema:FormKitTypeDefinition={
                     {
                         class:'input-effect',
                         required:true,
+
                     },
                     textInput()
                 ),
@@ -184,7 +200,12 @@ export const custom_number_schema:FormKitTypeDefinition={
 
             ),
         ),
-        help('$help'),
+        $attrs(
+            {
+                class:'input-hint'
+            },
+            help('$help')
+        ),
         $attrs(
             {
                 class:'error-message'
@@ -206,9 +227,16 @@ export const custom_date_schema:FormKitTypeDefinition={
                     {
                         class:'input-effect',
                         required:true,
+                        'data-wide':true,
                         placeholder:'$label'
                     },
                     textInput()
+                ),
+                $attrs(
+                    {
+                        class:'input-effect-label'
+                    },
+                    label('$label')
                 ),
                 $attrs(
                     {
@@ -228,7 +256,12 @@ export const custom_date_schema:FormKitTypeDefinition={
 
             ),
         ),
-        help('$help'),
+        $attrs(
+            {
+                class:'input-hint'
+            },
+            help('$help')
+        ),
         $attrs(
             {
                 class:'error-message'
@@ -272,7 +305,12 @@ export const custom_area_schema:FormKitTypeDefinition={
 
             ),
         ),
-        help('$help'),
+        $attrs(
+            {
+                class:'input-hint'
+            },
+            help('$help')
+        ),
         $attrs(
             {
                 class:'error-message'
@@ -284,7 +322,7 @@ export const custom_area_schema:FormKitTypeDefinition={
 };
 export const custom_radio_schema:FormKitTypeDefinition={
     forceTypeProp:'radio',
-    props:['options'],
+    props:['options','check'],
     schema: wrapper(
         $attrs(
             {
@@ -303,7 +341,8 @@ export const custom_radio_schema:FormKitTypeDefinition={
                                 type:'radio',
                                 name:'$label',
                                 id:'$option',
-                                checked:'$value'
+                                checked:'$value===$option',
+                                value:'$option',
                             },
                             textInput()
                         ),
@@ -320,5 +359,5 @@ export const custom_radio_schema:FormKitTypeDefinition={
         )
 
     ),
-    type:'list',
+    type:'input',
 };

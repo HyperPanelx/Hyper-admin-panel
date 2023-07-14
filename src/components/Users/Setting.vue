@@ -51,10 +51,9 @@
             <FormKit
                 name="new_exp"
                 id="new_exp"
-                validation-label="New expiration date"
-                type="date"
-                :value="exdate"
-                help-class="dark:text-primary-light-1"
+                validation-label="new expiration date"
+                type="custom_date"
+                :value="getEXdateDetail(exdate)"
                 help="Enter a new expiration day."
                 :validation="'required|date_after:'+exdate"
             />
@@ -70,12 +69,11 @@
             <FormKit
                 name="new_multi"
                 id="new_multi"
-                validation-label="New Multi"
-                type="number"
+                validation-label="new multi"
+                type="custom_number"
                 min="1"
                 :value="multi"
-                help-class="dark:text-primary-light-1"
-                help="Enter a new Multi number."
+                help="enter a new Multi number."
                 validation="required|min:1"
             />
           </FormKit>
@@ -91,13 +89,9 @@
                 validation-label="password"
                 :validation="[['required'], ['matches', /^.{3,20}$/]]"
                 help="Between 3 and 20 characters."
-                type="password"
-                help-class="dark:text-primary-light-1"
+                type="custom_password"
                 id="new_change_password"
                 name="new_change_password"
-                input-class=" font-main dark:text-primary-light-1"
-                label-class="dark:text-primary-dark-2 dark:!bg-[#37404a] !font-main"
-                :floating-label="true"
                 suffix-icon="eyeClosed"
                 @suffix-icon-click="handleIconClick"
             />
@@ -121,6 +115,7 @@
 </template>
 
 <script setup lang="ts">
+import {getEXdateDetail} from "../../utils/Helper";
 import VDropdown from '../global/VDropdown.vue'
 import VTooltip from '../global/VTooltip.vue'
 import {settingDropdownOption,handleIconClick} from "../../utils/Helper";
@@ -132,7 +127,6 @@ const {toggleDropdown,dropdownFlag,selectOperation,operationData,handlers,renewU
 const {getServerIP}=useServerStore()
 
 
-
 </script>
 
 
@@ -141,9 +135,6 @@ const {getServerIP}=useServerStore()
 @layer components {
   .setting-dropdown{
     @apply [&_li]:py-0.7 [&_li]:px-0.7  [&_li]:transition-all cursor-pointer [&_p]:font-400 [&_p]:text-0.8 [&_li]:flex [&_li]:items-center
-  }
-  .formkit-input{
-    @apply  !font-second
   }
   .btn-operation{
     @apply  w-[2.8rem] h-[2.8rem] !flex !justify-center !items-center transition-all

@@ -2,32 +2,31 @@
   <FormKit id="changePasswordForm" type="form" ref="changePasswordForm"  @submit="changePasswordSubmit"  :actions="false" >
     <row>
       <column md="6" col="12">
+
         <FormKit
-            disabled=""
-            :value="username"
-            type="text"
+            type="custom_text"
+            label="username"
             id="c_username"
             name="c_username"
-            input-class=" font-main dark:text-primary-light-1"
-            label="Username"
-            label-class="dark:text-primary-dark-2 dark:!bg-[#37404a] !font-main"
-            :floating-label="true"
+            validation-label="username"
+            :value="username"
+            disabled=""
         />
+
       </column>
       <column md="6" col="12">
         <FormKit
-            validation-label="password"
-            :validation="[['required'], ['matches', /^.{3,20}$/]]"
-            type="password"
+            type="custom_password"
+            label="password"
             id="new_password"
             name="new_password"
-            input-class=" font-main dark:text-primary-light-1"
-            help-class="dark:text-primary-light-1"
+            validation-label="new password"
             help="Between 3 and 20 characters."
-            label="New Password"
-            label-class="dark:text-primary-dark-2 dark:!bg-[#37404a] !font-main"
-            :floating-label="true"
+            suffix-icon="eyeClosed"
+            @suffix-icon-click="handleIconClick"
+            :validation="[['required'], ['matches', /^.{3,20}$/]]"
         />
+
       </column>
     </row>
   </FormKit>
@@ -44,7 +43,7 @@
 </template>
 
 <script setup lang="ts">
-import {querySerialize} from "../../../utils/Helper";
+import {querySerialize,handleIconClick} from "../../../utils/Helper";
 import {ref} from "vue";
 import { useNotification } from "@kyvg/vue3-notification";
 import { reset } from '@formkit/core'

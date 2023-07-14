@@ -11,47 +11,37 @@
             <row>
               <column md="3" class="md:mb-0 mb-1" col="12">
                 <FormKit
-                    validation="min:1"
-                    validation-label="Concurrent user"
-                    type="number"
-                    :plugins="[castNumber]"
+                    type="custom_number"
+                    label="Multi user"
                     id="g_concurrent_user"
+                    :plugins="[castNumber]"
                     name="g_concurrent_user"
-                    input-class=" font-main"
-                    label="Concurrent user (Required)"
-                    label-class="dark:text-primary-dark-2 dark:!bg-[#37404a] !font-main"
-                    value="1"
-                    :floating-label="true"
+                    validation-label="Multi user"
+                    validation="min:1"
                     min="1"
                 />
               </column>
               <column md="3" class="md:mb-0 mb-1" col="12">
                 <FormKit
-                    validation="min:1"
-                    validation-label="Count"
-                    type="number"
-                    :plugins="[castNumber]"
+                    type="custom_number"
+                    label="Count"
                     id="g_count"
+                    :plugins="[castNumber]"
                     name="g_count"
-                    input-class="font-main"
-                    label="Count (Required)"
-                    label-class="dark:text-primary-dark-2 dark:!bg-[#37404a] !font-main"
-                    value="1"
-                    :floating-label="true"
+                    validation-label="user"
+                    validation="min:1"
                     min="1"
                 />
+
               </column>
-              <column md="6" class="md:mb-0 mb-1" col="12">
+              <column md="4" class="md:mb-0 mb-1" col="12">
                 <FormKit
-                    :validation="`required|date_after:${currentYear}-${currentMonth}-${currentDate}`"
-                    validation-label="Expiration Date"
-                    type="date"
+                    type="custom_date"
+                    label="Expiration date"
                     id="g_expiration_date"
                     name="g_expiration_date"
-                    input-class=" font-main"
-                    label="Expiration Date (Required)"
-                    label-class="dark:text-primary-dark-2 !translate-x-[-1px] !text-0.7 !translate-y-[2px] bg-primary-light-1 dark:!bg-[#37404a] !font-main"
-                    :floating-label="true"
+                    validation-label="Expiration Date"
+                    :validation="`required|date_after:${currentYear}-${currentMonth}-${currentDate}`"
                 />
               </column>
             </row>

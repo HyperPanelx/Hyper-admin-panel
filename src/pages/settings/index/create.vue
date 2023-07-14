@@ -3,30 +3,25 @@
       <row>
         <column md="6" col="12">
           <FormKit
-              validation-label="username"
-              validation="required"
-              type="text"
+              type="custom_text"
+              label="username"
               id="admin_username"
               name="admin_username"
-              input-class=" font-main dark:text-primary-light-1"
-              label="Username"
-              label-class="dark:text-primary-dark-2 dark:!bg-[#37404a] !font-main"
-              :floating-label="true"
+              validation-label="username"
+              validation="required"
           />
         </column>
         <column md="6" col="12">
           <FormKit
-              validation-label="password"
-              :validation="[['required'], ['matches', /^.{3,20}$/]]"
-              help="Between 3 and 20 characters."
-              type="password"
-              help-class="dark:text-primary-light-1"
+              type="custom_password"
+              label="password"
               id="admin_password"
               name="admin_password"
-              input-class=" font-main dark:text-primary-light-1"
-              label="Password"
-              label-class="dark:text-primary-dark-2 dark:!bg-[#37404a] !font-main"
-              :floating-label="true"
+              validation-label="password"
+              help="Between 3 and 20 characters."
+              suffix-icon="eyeClosed"
+              @suffix-icon-click="handleIconClick"
+              :validation="[['required'], ['matches', /^.{3,20}$/]]"
           />
         </column>
       </row>
@@ -44,7 +39,7 @@
 </template>
 
 <script setup lang="ts">
-import {querySerialize} from "../../../utils/Helper";
+import {querySerialize,handleIconClick} from "../../../utils/Helper";
 import {ref} from "vue";
 import { useNotification } from "@kyvg/vue3-notification";
 import { reset } from '@formkit/core'

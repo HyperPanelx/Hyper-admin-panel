@@ -1,4 +1,5 @@
 @tailwind components;
+@tailwind components;
 @layer components {
     .sidebar{
         @apply  transition-all duration-[350ms] ease-in-out fixed sm:w-[260px]  top-0 sm:!left-0 w-[260px] left-[-260px] z-[999] h-[100vh] bg-primary-dark-1 p-1 shadow-[0_0_30px_rgba(0,0,0,0.2)]
@@ -31,7 +32,7 @@
         @apply absolute h-full bg-secondary-light-2 w-[190px] invisible flex items-center opacity-0 pl-0.5 right-[-190px] ;
     }
     .sidebar-item-link-collapse ul{
-        @apply absolute w-full left-0 top-[56px] bg-secondary-dark-1 h-auto shadow-[0_0_45px_0_rgba(108,117,125,0.2)]
+        @apply absolute w-full left-0 top-[61px] bg-secondary-dark-1 h-auto shadow-[0_0_45px_0_rgba(108,117,125,0.2)]
     }
     .sidebar-item-link.active p,.sidebar-item-link.active svg{
         @apply text-primary-light-1 ;

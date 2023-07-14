@@ -26,6 +26,7 @@
                     label="email"
                     id="email"
                     name="email"
+                    help="example: user@gmail.com"
                     validation-label="email"
                     validation="email"
                 />
@@ -36,6 +37,7 @@
                     label="phone (required)"
                     id="phone"
                     name="phone"
+                    help="example: 09xxxxxxxxx"
                     validation-label="phone Number"
                     validation="required|matches:/^09\d{9}$/"
                 />
@@ -67,9 +69,10 @@
               <column col="12" md="4">
                 <FormKit
                     type="custom_text"
-                    label="Traffic"
+                    label="traffic"
                     id="traffic"
                     name="traffic"
+                    validation="number"
                 />
                 <FormKit
                     type="custom_radio"
@@ -77,8 +80,7 @@
                     label="traffic_unit"
                     id="traffic_unit"
                     name="traffic_unit"
-                    validation="required"
-                    value="Megabyte"
+                    value="Gigabyte"
                 />
 
               </column>

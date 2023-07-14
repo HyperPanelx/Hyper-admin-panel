@@ -21,7 +21,7 @@ export const useEdit=()=>{
         phone:'',
         email:'',
         traffic:{
-            num:0 as number|string,
+            num:null as number|string|null,
             unit:''
         }
     })
@@ -67,7 +67,7 @@ export const useEdit=()=>{
         })
     })
 
-    const editUserFormSubmit =async (formData) => {
+    const editUserFormSubmit = (formData) => {
         editFetchFlag.value=true
         const query=querySerialize({
             username:formData.e_username,
@@ -90,7 +90,6 @@ export const useEdit=()=>{
                     text:response.detail
                 })
             }else{
-                editFetchFlag.value=false
                 notify({
                     type:'success',
                     title:'Edit User',
@@ -104,6 +103,8 @@ export const useEdit=()=>{
                 title:'Edit User',
                 text:'operation failed due to network connection!'
             })
+        }).finally(()=>{
+            editFetchFlag.value=false
         })
     }
     const submitForm = () => {

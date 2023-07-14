@@ -3,44 +3,37 @@
     <row>
       <column md="6" col="12">
         <FormKit
-            validation-label="IP Address"
-            :validation="[['required'], ['matches', /^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})$/]]"
-            type="text"
+            type="custom_text"
+            label="ip address"
             id="ip_address"
             name="ip_address"
-            input-class=" font-main dark:text-primary-light-1"
-            label="IP Address like: xxx.xxx.xxx.xxx"
-            label-class="dark:text-primary-dark-2 dark:!bg-[#37404a] !font-main"
-            :floating-label="true"
+            validation-label="ip address"
+            :validation="[['required'], ['matches', /^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})$/]]"
+           help="format: xxx.xxx.xxx.xxx"
         />
+
       </column>
       <column md="6" col="12">
         <FormKit
-            validation-label="port"
-            validation="required|min:1"
-            type="number"
-            min="1"
+            type="custom_number"
+            label="port"
             id="server_port"
             name="server_port"
-            input-class=" font-main dark:text-primary-light-1"
-            label="Port"
-            label-class="dark:text-primary-dark-2 dark:!bg-[#37404a] !font-main"
-            :floating-label="true"
+            validation-label="port"
+            validation="required|min:1"
+            min="1"
         />
       </column>
     </row>
-    <row>
+    <row class="mt-0.7">
       <column md="6" col="12">
         <FormKit
-            validation-label="Username"
+            validation-label="username"
             validation="required"
-            type="text"
+            type="custom_text"
             id="new_server_user"
             name="new_server_user"
-            input-class=" font-main dark:text-primary-light-1"
-            label="Username"
-            label-class="dark:text-primary-dark-2 dark:!bg-[#37404a] !font-main"
-            :floating-label="true"
+            label="username"
         />
       </column>
       <column md="6" col="12">
@@ -48,14 +41,12 @@
             validation-label="password"
             :validation="[['required'], ['matches', /^.{3,20}$/]]"
             help="Between 3 and 20 characters."
-            type="password"
-            help-class="dark:text-primary-light-1"
+            type="custom_password"
             id="new_server_password"
             name="new_server_password"
-            input-class=" font-main dark:text-primary-light-1"
-            label="Password"
-            label-class="dark:text-primary-dark-2 dark:!bg-[#37404a] !font-main"
-            :floating-label="true"
+            label="password"
+            suffix-icon="eyeClosed"
+            @suffix-icon-click="handleIconClick"
         />
       </column>
     </row>
@@ -76,7 +67,7 @@
 import VBloader from '../../../components/global/VBloader.vue'
 import {ref} from "vue";
 import {useAuthStore,envVariable,useServerStore} from "../../../composables/useStates";
-import {querySerialize} from "../../../utils/Helper";
+import {querySerialize,handleIconClick} from "../../../utils/Helper";
 import {reset} from "@formkit/core";
 import {useNotification} from "@kyvg/vue3-notification";
 ///////////////////////////////////

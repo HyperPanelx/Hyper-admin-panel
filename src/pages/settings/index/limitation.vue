@@ -4,13 +4,10 @@
       <FormKit
           disabled=""
           v-model="limitationStatus"
-          type="text"
+          type="custom_text"
           id="limitation_status"
           name="limitation_status"
-          input-class="font-main"
           label="Limitation Status"
-          label-class="dark:text-primary-dark-2 dark:!bg-[#37404a] !font-main"
-          :floating-label="true"
       />
     </column>
   </row>

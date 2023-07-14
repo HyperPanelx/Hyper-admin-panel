@@ -1,4 +1,4 @@
-import { DefaultConfigOptions,defaultConfig ,createInput} from '@formkit/vue'
+import { DefaultConfigOptions,defaultConfig } from '@formkit/vue'
 import { createFloatingLabelsPlugin,createMultiStepPlugin  } from '@formkit/addons'
 import {
     custom_password_schema,

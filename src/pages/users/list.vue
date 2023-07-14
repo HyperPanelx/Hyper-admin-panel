@@ -1,17 +1,7 @@
 <template >
   <template v-if="fetchTableDataFlag">
-    <div class="flex sm:flex-row flex-col  sm:items-center sm:justify-between mb-2">
-      <VBreadcrumb :pages="[{name:'Home',link:'DASHBOARD'},{name:'Users'}]" />
-      <div class="sm:mt-0 mt-1">
-        <router-link  :to="{name:'GENERATE_USER'}" class="btn btn-success mr-1">
-          Generate New Users
-        </router-link>
-        <router-link :to="{name:'CREATE_USER'}" class="btn btn-success ">
-          Add New User
-        </router-link>
-      </div>
-    </div>
-    <row>
+    <VBreadcrumb :pages="[{name:'Home',link:'DASHBOARD'},{name:'Users'}]" />
+    <row class="mt-3">
       <column col="12">
         <VCard title="users list" class="!overflow-visible" body-class="!p-0">
           <PaginationControl :sort="true"  @refresh="tableStore.getUsersList()"/>

@@ -4,16 +4,13 @@
       <column  col="12">
         <FormKit
             validation="min:1"
-            type="number"
-            validation-label="Port"
+            type="custom_number"
+            validation-label="port"
             value="1"
             min="1"
             id="new_ssh"
             name="new_ssh"
-            input-class=" font-main"
             label="New SSH Port"
-            label-class="dark:text-primary-dark-2 dark:!bg-[#37404a] !font-main"
-            :floating-label="true"
         />
       </column>
     </row>

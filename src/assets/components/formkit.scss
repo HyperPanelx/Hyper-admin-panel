@@ -48,12 +48,17 @@
     @apply w-full transition-all duration-300
   }
 
+
+  .input-effect[data-wide] ~ .input-effect-label, .has-content.input-effect ~ .input-effect-label{
+    @apply top-[-25px] left-0 text-[0.9rem]   transition-all duration-300;
+  }
+
   .formkit-wrapper .error-message{
     @apply mt-[3px] [&_li]:text-0.8 [&_li]:text-red-600
   }
 
   .input-effect-wrapper .password-icon{
-    @apply absolute w-1 h-1 [&_svg]:w-1 [&_svg]:h-1 right-[12px] top-[12px] cursor-pointer
+    @apply absolute w-1 h-1 [&_svg]:w-1 [&_svg]:h-1 right-[12px] top-[12px] cursor-pointer z-[4]
   }
 
   .radio-options{
@@ -61,5 +66,13 @@
   }
   .radio-option{
     @apply flex items-center [&_input]:mr-0.5
+  }
+
+  .input-hint{
+    @apply text-0.8 my-[0.2rem] text-gray-500
+  }
+
+  form .formkit-message{
+    @apply text-0.9 text-red-600
   }
 }

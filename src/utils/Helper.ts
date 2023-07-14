@@ -24,8 +24,21 @@ export const sidebarItemData:ISidebar[]=[
         title:'Users',
         icon:'fa-solid fa-user-group',
         link:{name:'USERS'},
-        hasSub:false,
-
+        hasSub:true,
+        sub:[
+            {
+              title:'list',
+              link:{name:'USERS'}
+            },
+            {
+                title:'Create user',
+                link:{name:'CREATE_USER'}
+            },
+            {
+                title:'Generate user',
+                link:{name:'GENERATE_USER'}
+            },
+        ]
     },{
         title:'Online users',
         icon:'fa-solid fa-tower-broadcast',
@@ -238,4 +251,25 @@ export const downloadJsonFile = (json:string) => {
 export const handleIconClick = (node, e) => {
     node.props.suffixIcon = node.props.suffixIcon === 'eye' ? 'eyeClosed' : 'eye'
     node.props.type = node.props.type === 'password' ? 'text' : 'password'
+}
+
+export const getEXdateDetail=(exdate:string)=>{
+    const userExYear=Number(exdate?.match(yearRegex)[0]) ?? null
+    const userExMonth=Number(exdate?.match(monthRegex)[0]) ?? null
+    const userExDay=Number(exdate?.match(dayRegex)[0]) ?? null
+    /// 10  2
+    if(userExMonth>9 && userExDay<10){
+        return `${userExYear}-${userExMonth}-0${userExDay}`
+    }
+
+    // 9 13
+    if(userExMonth<10 && userExDay>10){
+        return `${userExYear}-0${userExMonth}-${userExDay}`
+    }
+
+    // 3 9
+    if(userExMonth<10 && userExDay<10){
+        return `${userExYear}-0${userExMonth}-0${userExDay}`
+
+    }
 }
