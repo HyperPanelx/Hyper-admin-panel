@@ -103,8 +103,8 @@
 import {ref} from "vue";
 import { useNotification } from "@kyvg/vue3-notification";
 import { reset } from '@formkit/core'
-import VBloader from '../../../components/global/VBloader.vue';
-import {envVariable,useAuthStore} from "../../../composables/useStates";
+import VBloader from '../../components/global/VBloader.vue';
+import {envVariable,useAuthStore} from "../../composables/useStates";
 ////////////////////////////////
 const {apiBase}=envVariable()
 const { notify }  = useNotification()

@@ -50,13 +50,7 @@ export const sidebarItemData:ISidebar[]=[
         icon:'fa-solid fa-server',
         link:{name:'SERVERS'},
         hasSub:false,
-    },{
-        title:'Settings',
-        icon:'fa-solid fa-gear',
-        link:{name:'SETTINGS'},
-        hasSub:false,
-
-    },
+    }
 ]
 export const settingDropdownOption=[
     {
@@ -85,16 +79,17 @@ export const settingDropdownOption=[
         theme:'text-green-500'
     },
 ];
+
 export const settingTabItems=[
-    {title:'Create admin user',link:{name:'CREATE_ADMIN_USER'},status:true},
-    {title:'Change password',link:{name:'CHANGE_PASSWORD'},status:true},
-    {title:'Add multi server',link:{name:'MULTI_SERVER'},status:true},
-    {title:'SSH port',link:{name:'SSH_PORT'},status:false},
-    {title:'User limitation',link:{name:'USER_LIMITATION'},status:false},
-    {title:'Telegram robot',link:{name:'TELEGRAM_ROBOT'},status:false},
-    {title:'Backup and restore',link:{name:'BACKUP_RESTORE'},status:false},
-    {title:'API',link:{name:'API'},status:false},
-    {title:'IP block',link:{name:'IP_BLOCK'},status:false},
+    {title:'Create admin user',icon:'fa-solid fa-user-plus',query:'create-admin-user',status:true},
+    {title:'Change password',icon:'fa-solid fa-key',query:'change-password',status:true},
+    {title:'Add multi server',icon:'fa-solid fa-server',query:'add-multi-server',status:true},
+    {title:'Change ssh port',icon: 'fa-brands fa-megaport',query:'ssh-port',status:false},
+    {title:'User limitation',icon: 'fa-solid fa-skull-crossbones',query:'user-limitation',status:false},
+    {title:'Telegram robot',icon: 'fa-brands fa-telegram',query:'telegram-robot',status:false},
+    {title:'Backup & restore',icon: 'fa-solid fa-trash-arrow-up',query:'backup-and-restore',status:false},
+    {title:'API',icon: 'fa-solid fa-code-pull-request',query:'API',status:false},
+    {title:'IP block',query:'ip-block',icon: 'fa-solid fa-ban',status:false},
 ]
 
 

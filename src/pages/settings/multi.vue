@@ -1,6 +1,6 @@
 <template>
   <FormKit id="addMultiServerForm" type="form" ref="addMultiServerForm"  @submit="addMultiServerHandler"  :actions="false" >
-    <row>
+    <row class="px-1.5 pt-1">
       <column md="6" col="12">
         <FormKit
             type="custom_text"
@@ -25,7 +25,7 @@
         />
       </column>
     </row>
-    <row class="mt-0.7">
+    <row class="mt-0.7 px-1.5">
       <column md="6" col="12">
         <FormKit
             validation-label="username"
@@ -51,8 +51,8 @@
       </column>
     </row>
   </FormKit>
-  <div class="mt-1">
-    <VBloader class="btn btn-indigo btn-md "
+  <div class="mt-1 modal-footer">
+    <VBloader class="btn  btn-indigo btn-md "
               animation="slide-down"
               :duration="2000"
               @click="submitForm"
@@ -60,14 +60,17 @@
     >
       Submit
     </VBloader>
+    <button  @click="emit('close')" class="btn btn-secondary btn-sm" >
+      Close
+    </button>
   </div>
 </template>
 
 <script setup lang="ts">
-import VBloader from '../../../components/global/VBloader.vue'
+import VBloader from '../../components/global/VBloader.vue'
 import {ref} from "vue";
-import {useAuthStore,envVariable,useServerStore} from "../../../composables/useStates";
-import {querySerialize,handleIconClick} from "../../../utils/Helper";
+import {useAuthStore,envVariable,useServerStore} from "../../composables/useStates";
+import {querySerialize,handleIconClick} from "../../utils/Helper";
 import {reset} from "@formkit/core";
 import {useNotification} from "@kyvg/vue3-notification";
 ///////////////////////////////////
@@ -77,7 +80,9 @@ const addMultiServerForm=ref<any>(null);
 const fetchFlag=ref(false)
 const { notify }  = useNotification()
 const {serverStore}=useServerStore()
-
+const emit=defineEmits<{
+  (e:'close'):void
+}>();
 const addMultiServerHandler = (data) => {
   fetchFlag.value=true
   const query=querySerialize({
@@ -117,6 +122,7 @@ const addMultiServerHandler = (data) => {
     })
   }).finally(()=>{
     fetchFlag.value=false
+    emit('close')
   })
 }
 
@@ -128,6 +134,12 @@ const submitForm = () => {
 };
 </script>
 
-<style scoped>
+<style >
+@tailwind components;
+@layer components {
+  #addMultiServerForm .formkit-messages .formkit-message{
+    @apply px-1.5
+  }
+}
 
 </style>

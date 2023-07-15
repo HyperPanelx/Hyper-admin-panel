@@ -34,8 +34,8 @@
 <script setup lang="ts">
 import {reactive, ref} from "vue";
 import { useNotification } from "@kyvg/vue3-notification";
-import VBloader from '../../../components/global/VBloader.vue';
-import {envVariable,useAuthStore} from "../../../composables/useStates";
+import VBloader from '../../components/global/VBloader.vue';
+import {envVariable,useAuthStore} from "../../composables/useStates";
 const {apiBase}=envVariable()
 const { notify }  = useNotification()
 const {token}=useAuthStore()

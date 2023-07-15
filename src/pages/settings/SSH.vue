@@ -1,6 +1,6 @@
 <template>
   <FormKit id="changeSSHForm" type="form" ref="changeSSHForm"  @submit="changeSSHPortFormSubmit"  :actions="false" >
-    <row>
+    <row class="p-1.5">
       <column  col="12">
         <FormKit
             validation="min:1"
@@ -15,7 +15,7 @@
       </column>
     </row>
   </FormKit>
-  <div class="mt-1">
+  <div class="mt-1 modal-footer">
     <VBloader class="btn btn-indigo btn-md"
               animation="slide-down"
               :duration="2000"
@@ -24,6 +24,9 @@
     >
       Submit
     </VBloader>
+    <button @click="emit('close')" class="btn btn-secondary btn-sm" >
+      Close
+    </button>
   </div>
 </template>
 
@@ -31,14 +34,16 @@
 import {ref} from "vue";
 import { useNotification } from "@kyvg/vue3-notification";
 import { reset } from '@formkit/core'
-import VBloader from '../../../components/global/VBloader.vue';
-import {envVariable,useAuthStore} from "../../../composables/useStates";
+import VBloader from '../../components/global/VBloader.vue';
+import {envVariable,useAuthStore} from "../../composables/useStates";
 const {apiBase}=envVariable()
 const { notify }  = useNotification()
 const {token}=useAuthStore()
 const changeSSHForm=ref<any>(null);
 const fetchFlag=ref(false)
-
+const emit=defineEmits<{
+  (e:'close'):void
+}>();
 
 
 const changeSSHPortFormSubmit = (formData) => {

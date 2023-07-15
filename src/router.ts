@@ -6,7 +6,6 @@ const dashboard=()=>import( './pages/dashboard.vue')
 const usersIndex=()=>import( './pages/users/index.vue')
 const createUser=()=>import( './pages/users/create.vue')
 const usersList=()=>import( './pages/users/list.vue')
-const settingsIndex=()=>import( './pages/settings/index.vue')
 const onlineUsers=()=>import( './pages/onlineUsers.vue')
 const generateUser=()=>import('./pages/users/generate.vue')
 const login=()=>import( './pages/login.vue')
@@ -16,16 +15,6 @@ const servers=()=>import('./pages/server.vue')
 
 
 
-//// setting page
-const api=()=>import( './pages/settings/index/api.vue')
-const backup=()=>import( './pages/settings/index/backup.vue')
-const create=()=>import( './pages/settings/index/create.vue')
-const ip=()=>import( './pages/settings/index/ip.vue')
-const SSH=()=>import( './pages/settings/index/SSH.vue')
-const robot=()=>import( './pages/settings/index/robot.vue')
-const changePassword=()=>import( './pages/settings/index/changePassword.vue')
-const limitation=()=>import( './pages/settings/index/limitation.vue')
-const multi=()=>import( './pages/settings/index/multi.vue')
 
 
 const routes:RouteRecordRaw[]=[
@@ -86,70 +75,6 @@ const routes:RouteRecordRaw[]=[
                 name:'SERVERS',
                 path:'servers',
                 meta:{title:'Servers | Hyper',status:true},
-            },
-            {
-                component:settingsIndex,
-                name:'SETTINGS',
-                path:'settings',
-                redirect:{
-                    name:'CREATE_ADMIN_USER'
-                },
-                children:[
-                    {
-                        component: create,
-                        name:'CREATE_ADMIN_USER',
-                        path: 'create-admin-user',
-                        meta:{title:'Create Admin User | Hyper',status:true},
-                    },
-                    {
-                        component:api,
-                        name:'API',
-                        path: 'api',
-                        meta:{title:'Api | Hyper',status:false},
-                    },
-                    {
-                        component: ip,
-                        name:'IP_BLOCK',
-                        path: 'ip-block',
-                        meta:{title:'IP Block | Hyper',status:false},
-                    },
-                    {
-                        component:SSH,
-                        name:'SSH_PORT',
-                        path: 'ssh-port',
-                        meta:{title:'SSH Port | Hyper',status:false},
-                    },
-                    {
-                        component: backup,
-                        name:'BACKUP_RESTORE',
-                        path: 'backup-restore',
-                        meta:{title:'Backup & Restore | Hyper',status:false},
-                    },
-                    {
-                        component: changePassword,
-                        name:'CHANGE_PASSWORD',
-                        path: 'change-password',
-                        meta:{title:'Change Password | Hyper',status:true},
-                    },
-                    {
-                        component: limitation,
-                        name:'USER_LIMITATION',
-                        path: 'user-limitation',
-                        meta:{title:'User Limitation | Hyper',status:false},
-                    },
-                    {
-                        component: multi,
-                        name:'MULTI_SERVER',
-                        path: 'multi-server',
-                        meta:{title:'Multi Server | Hyper',status:true},
-                    },
-                    {
-                        component: robot,
-                        name:'TELEGRAM_ROBOT',
-                        path: 'telegram-robot',
-                        meta:{title:'Telegram Robot | Hyper',status:false},
-                    },
-                ]
             }
         ]
     },

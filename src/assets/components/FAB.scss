@@ -1,0 +1,68 @@
+@tailwind components;
+@layer components {
+
+  .fab-wrapper{
+    @apply fixed right-[50px] bottom-[50px] z-[999] flex flex-row items-center cursor-pointer
+  }
+  .fab-wrapper:hover .fab-item-list-up{
+    @apply bottom-[59px] opacity-100 transition-all  duration-500 visible
+  }
+  .fab-wrapper:hover .fab-item-list-left{
+    @apply right-[70px] opacity-100 transition-all  duration-500 visible
+  }
+
+  .fab-wrapper:hover .fab-item-list-middle{
+    @apply right-[70px] opacity-100 transition-all  duration-500 visible
+  }
+
+  .fab-wrapper:hover .fab-item-tooltip{
+    @apply opacity-0 invisible
+  }
+  .fab-button{
+    @apply w-[70px] h-[70px] bg-secondary-light-2 flex flex-col justify-center items-center rounded-full
+      shadow-[0_4px_10px_rgba(0,0,0,0.3)] transition-all duration-100
+
+  }
+  .fab-button:hover , .fab-wrapper:hover  .fab-button{
+    @apply scale-[1.1] shadow-[0px_4px_15px_rgba(0,0,0,0.3)]
+  }
+
+
+  .fab-button  {
+    @apply text-[30px] text-primary-light-1 text-center leading-[70px]
+  }
+
+  .fab-item-list-up{
+    @apply opacity-0 w-full absolute p-0 bottom-[50px] mb-[12px] flex flex-col-reverse justify-center items-center transition-all duration-100 ease-in-out invisible
+  }
+  .fab-item-list-left{
+    @apply opacity-0 w-[192px] absolute p-0 right-[59px]  block transition-all duration-100 ease-in-out invisible
+  }
+  .fab-item-list-middle{
+    @apply opacity-0 w-[192px] absolute p-0 right-[59px]  block transition-all duration-100 ease-in-out invisible rotate-[129deg]  translate-y-[-47px] translate-x-[-26px]
+  }
+
+  .fab-item-list-left .fab-item{
+    @apply !mb-0 mr-[12px]
+  }
+
+  .fab-item{
+    @apply bg-primary-dark-1 w-[50px] h-[50px] rounded-full text-center text-primary-light-1 mb-[12px] flex flex-col justify-center self-center shadow-[0px_2px_5px_rgba(0,0,0,0.3)] transition-all duration-100 ease-in-out cursor-pointer relative
+
+  }
+  .fab-item a{
+    @apply absolute w-full h-full top-0 left-0 flex justify-center items-center
+  }
+
+  .fab-item:hover{
+    @apply shadow-[0px_4px_15px_rgba(0,0,0,0.3)] scale-[1.05] [&_span]:!opacity-100 [&_span]:!visible z-[15]
+  }
+
+  .fab-item-tooltip {
+    @apply opacity-0 invisible transition-all block absolute left-[-144px] bg-primary-dark-1 p-[10px] text-0.8 rounded-full
+  }
+}
+
+
+
+

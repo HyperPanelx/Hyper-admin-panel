@@ -8,7 +8,7 @@
               <img class="w-2"  src="../../public/logo-lg.png"/>
               <h5 class="text-gray-800 dark:text-primary-dark-3" > HYPER</h5>
             </div>
-            <font-awesome-icon @click="emit('update:modelValue',false)" size="1.5rem" class="text-gray-800 text-1.5 dark:text-primary-dark-3 cursor-pointer" icon="fa-solid fa-xmark" />
+            <font-awesome-icon @click="closeByIcon" size="1.5rem" class="text-gray-800 text-1.5 dark:text-primary-dark-3 cursor-pointer" icon="fa-solid fa-xmark" />
           </div>
           <slot />
         </div>
@@ -25,12 +25,19 @@ const props=defineProps<{
   fadeOutside?:boolean
 }>();
 const emit=defineEmits<{
-  (e:'update:modelValue',value:boolean):void
+  (e:'update:modelValue',value:boolean):void,
+  (e:'close'):void,
 }>();
 const close = () => {
   if(props.fadeOutside){
     emit('update:modelValue',false)
+    emit('close')
   }
+}
+
+const closeByIcon = () => {
+  emit('update:modelValue',false)
+  emit('close')
 }
 
 
