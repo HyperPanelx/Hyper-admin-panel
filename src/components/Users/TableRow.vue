@@ -78,8 +78,8 @@
     </div>
   </td>
   <td class="absolute top-0 left-0 w-full h-full z-[5]" @click="checkboxHandler" colspan="0">
-    <span v-if="isUserExpired(user)" class="top-0 w-full absolute inline-block left-0 text-center  text-primary-light-1 text-0.7 " :class="{'bg-red-500':getUserExpiredDetail(user).status==='danger','bg-amber-500':getUserExpiredDetail(user).status==='warning'}">
-      {{getUserExpiredDetail(user)?.msg ?? ''}}
+    <span v-if="notificationStore.isUserExpired(user)" class="top-0 w-full absolute inline-block left-0 text-center  text-primary-light-1 text-0.7 " :class="{'bg-red-500':notificationStore.getUserExpiredDetail(user).status==='danger','bg-amber-500':notificationStore.getUserExpiredDetail(user).status==='warning'}">
+      {{notificationStore.getUserExpiredDetail(user)?.msg ?? ''}}
     </span>
 
     <div class="w-full absolute bottom-0 left-0 pr-1 pb-0.2 flex justify-end">
@@ -99,12 +99,14 @@ import CheckBox from './Check.vue'
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 import {ref} from "vue";
 import {useCheckBox} from "../../composables/users/useCheckBox";
-import {useDashboardStore} from "../../composables/useStates";
+import {notificationStore} from '../../store/notification'
 /////////////////////////////////////////////////////////////
 const props=defineProps(['user','traffic','usedVolume','multi','phone','email','registered','exdate','status','uid','passwd','telegram_id','desc','referral','server','ordered_by']);
 const showPasswordFlag=ref<boolean>(false)
 const {checkboxHandler}=useCheckBox(props);
-const {dashboardStore,isUserExpired,getUserExpiredDetail}=useDashboardStore();
+
+
+
 </script>
 
 <style scoped>

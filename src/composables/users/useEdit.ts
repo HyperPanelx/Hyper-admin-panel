@@ -1,20 +1,21 @@
 import {useRoute,useRouter} from "vue-router";
-import {onMounted, reactive, ref, watch} from "vue";
-import {envVariable,useAuthStore,useDashboardStore,useServerStore} from "../useStates";
+import {onMounted, reactive, shallowRef} from "vue";
+import {envVariable,useAuthStore,useServerStore} from "../useStates";
 import { useNotification } from "@kyvg/vue3-notification";
 import {querySerialize} from "../../utils/Helper";
+import {dashboardStore} from '../../store/dashboard'
+import {IResponse} from "../../utils/Types";
 
 export const useEdit=()=>{
     const { notify }  = useNotification();
     const { getServerIP }  = useServerStore();
-    const fetchFlag=ref<boolean>(false);
-    const editFetchFlag=ref<boolean>(false);
-    const editUserForm=ref<HTMLFormElement|null>(null);
+    const fetchFlag=shallowRef<boolean>(false);
+    const editFetchFlag=shallowRef<boolean>(false);
+    const editUserForm=shallowRef<HTMLFormElement|null>(null);
     const route=useRoute();
     const router=useRouter();
     const {apiBase}=envVariable();
     const {token}=useAuthStore();
-    const {dashboardStore}=useDashboardStore();
     const userInitialData=reactive({
         username:'',
         telegram_id:'',
@@ -30,22 +31,15 @@ export const useEdit=()=>{
         dashboardStore.showPreloaderFlag=true
         fetchFlag.value=false
        const username=route.query.username
-        fetch(apiBase+`get-users?username=${username}`,{
+        fetch(apiBase+`user-get?username=${username}`,{
             headers:{
                 'Content-type':'application/json',
                 Authorization:`Bearer ${token.value}`
             }
-        }).then(response=>response.json()).then((response)=>{
-            if(response.detail){
-                console.log(response.detail)
-                notify({
-                    type:'error',
-                    title:'Edit User',
-                    text:'error in finding user'
-                })
-                router.push({name:'USERS'})
-            }else{
-                const {user,telegram_id,phone,email,traffic}=response;
+        }).then(response=>response.json()).
+        then((response:IResponse<any>)=>{
+            if(response.success){
+                const {user,telegram_id,phone,email,traffic}=response.data;
                 const idx=traffic.indexOf('G')===-1 ?  traffic.indexOf('M') : traffic.indexOf('G');
                 userInitialData.username=user
                 userInitialData.telegram_id=telegram_id
@@ -54,6 +48,15 @@ export const useEdit=()=>{
                 userInitialData.traffic.num=traffic ? Number(traffic.slice(0,idx-1)) : ''
                 userInitialData.traffic.unit=traffic.includes('Gigabyte') ? 'Gigabyte' : traffic.includes('Megabyte') ? 'Megabyte' : 'Gigabyte'
                 fetchFlag.value=true
+
+            }else{
+                console.log(response.message)
+                notify({
+                    type:'error',
+                    title:'Edit User',
+                    text:'error in finding user'
+                })
+                router.push({name:'USERS'})
             }
         }).catch(err=>{
             notify({
@@ -77,25 +80,26 @@ export const useEdit=()=>{
             traffic:formData.e_traffic ? `${formData.e_traffic} ${formData.e_traffic_unit}` : '',
             server:getServerIP.value
         })
-        fetch(apiBase+'change-detail?'+query,{
+        fetch(apiBase+'user-change-detail?'+query,{
             headers:{
                 'Content-type':'application/json',
                 Authorization:`Bearer ${token.value}`
             }
-        }).then(response=>response.json()).then((response)=>{
-            if(response.detail){
-                notify({
-                    type:'error',
-                    title:'Edit User',
-                    text:response.detail
-                })
-            }else{
+        }).then(response=>response.json()).
+        then((response:IResponse<any>)=>{
+            if(response.success){
                 notify({
                     type:'success',
                     title:'Edit User',
                     text:'users info edited successfully!'
                 })
                 router.push({name:'USERS'})
+            }else{
+                notify({
+                    type:'error',
+                    title:'Edit User',
+                    text:response.message
+                })
             }
         }).catch(err=>{
             notify({

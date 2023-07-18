@@ -43,11 +43,13 @@
 
 <script setup lang="ts">
 import {querySerialize,handleIconClick} from "../../utils/Helper";
+import {IResponse} from "../../utils/Types";
 import {ref} from "vue";
 import { useNotification } from "@kyvg/vue3-notification";
 import { reset } from '@formkit/core'
 import VBloader from '../../components/global/VBloader.vue';
 import {envVariable,useAuthStore} from "../../composables/useStates";
+/////////////
 const {apiBase}=envVariable()
 const { notify }  = useNotification()
 const {token}=useAuthStore()
@@ -68,20 +70,21 @@ const createAdminUserFormSubmit = (formData) => {
     },
   }).
   then(response=>response.json()).
-  then((response)=>{
-    if(response.detail){
-      notify({
-        type:'error',
-        title:'Create Admin User',
-        text:response.detail
-      })
-    }else{
+  then((response:IResponse<any>)=>{
+    if(response.success){
       notify({
         type:'success',
         title:'Create Admin User',
         text:'user created successfully'
       })
       reset('createAdminUserForm')
+    }else{
+      notify({
+        type:'error',
+        title:'Create Admin User',
+        text:response.message
+      })
+
     }
   }).catch(err=>{
     console.log(err)

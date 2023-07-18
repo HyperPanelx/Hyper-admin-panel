@@ -47,6 +47,26 @@ export interface IServer_Status {
         uploadSpeed:number,
     }
 }
+export type IServer_Usage_Response= [
+    {
+        "cpu": number,
+        "mem": number,
+        "hdd": number
+    },
+    {
+        "Upload": string,
+        "Download": string,
+        "Upload Speed": string,
+        "Download Speed": string
+    }
+]
+export interface IUser_Status {
+    total_users:number
+    total_active_users:number
+    total_enable_users:number
+    total_disabled_users:number
+}
+
 export interface IUser_Item {
     desc: string
     email: string
@@ -102,4 +122,22 @@ export interface IServer_List{
     host:string
     port:number
     status:string
+}
+
+export interface IResponse<T>{
+    success:boolean,
+    message:string,
+    data:T|any
+}
+
+export interface IUseChartRef {
+    cpu:{options:any,series:any}
+    ram:{options:any,series:any}
+    disk:{options:any,series:any}
+    bandwidth?:{options:any,series:any}
+}
+export interface IUseUserStatusRef {
+    title:string
+    number:number
+    theme:string
 }

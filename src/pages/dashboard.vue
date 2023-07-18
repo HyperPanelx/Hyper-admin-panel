@@ -21,11 +21,11 @@
             cpu
           </template>
           <template v-slot:body>
-            <apexchart v-if="fetchDashboardDataFlag"
+            <apexchart v-if="fetchDashboardDataFlag && serverStatus.cpu"
                        type="radialBar"
                        height="260"
-                       :options="serverStatusChartOption(serverStatus.cpu,'CPU')?.chartOptions ?? null"
-                       :series="serverStatusChartOption(serverStatus.cpu,'CPU')?.series ?? null">
+                       :options="serverStatus.cpu.options"
+                       :series="serverStatus.cpu.series">
             </apexchart>
             <div v-else class="section-loader">
               <hollow-dots-spinner
@@ -45,11 +45,11 @@
             ram
           </template>
           <template v-slot:body>
-            <apexchart v-if="fetchDashboardDataFlag"
+            <apexchart v-if="fetchDashboardDataFlag && serverStatus.ram"
                        type="radialBar"
                        height="260"
-                       :options="serverStatusChartOption(serverStatus.ram,'RAM')?.chartOptions ?? null"
-                       :series="serverStatusChartOption(serverStatus.ram,'RAM')?.series ?? null">
+                       :options="serverStatus.ram.options"
+                       :series="serverStatus.ram.series">
             </apexchart>
             <div v-else class="section-loader">
               <hollow-dots-spinner
@@ -70,11 +70,11 @@
           </template>
           <template v-slot:body>
             <apexchart
-                v-if="fetchDashboardDataFlag"
+                v-if="fetchDashboardDataFlag && serverStatus.disk"
                 type="radialBar"
                 height="260"
-                :options="serverStatusChartOption(serverStatus.disk,'DISK')?.chartOptions ?? null"
-                :series="serverStatusChartOption(serverStatus.disk,'DISK')?.series ?? null"></apexchart>
+                :options="serverStatus.disk.options"
+                :series="serverStatus.disk.series"></apexchart>
             <div v-else class="section-loader">
               <hollow-dots-spinner
                   :animation-duration="1000"
@@ -94,14 +94,14 @@
           </template>
           <template  v-slot:body>
             <apexchart
-                v-if="fetchDashboardDataFlag && serverStatus.bandWidth"
+                v-if="fetchDashboardDataFlag && serverStatus.bandwidth"
                 :class="{'lg:!left-[-65px]':sidebarCollapseFlag}"
                 class="md:left-[-83px] dark:[&_*]:!text-primary-light-1 lg:left-[-85px] sm:left-[-68px] left-[-10px] relative"
                 type="donut"
                 width="350"
                 height="300"
-                :options="bandWidthOption(serverStatus?.bandWidth?.downloadSpeed,serverStatus?.bandWidth.uploadSpeed,serverStatus?.bandWidth?.speedUnit)?.chartOptions"
-                :series="bandWidthOption(serverStatus?.bandWidth?.downloadSpeed,serverStatus?.bandWidth.uploadSpeed,serverStatus?.bandWidth?.speedUnit).series">
+                :options="serverStatus.bandwidth.options"
+                :series="serverStatus.bandwidth.series">
             </apexchart>
             <div class="w-full h-[272px] pb-1 flex justify-center items-center" v-else-if="fetchDashboardDataFlag && !serverStatus.bandWidth">
               <p class="text-0.9 text-gray-700 dark:text-primary-dark-3">
@@ -131,15 +131,14 @@
 <script setup lang="ts">
 import VCard from '../components/global/VCard.vue'
 import DashboardCard from '../components/Dashboard/Card.vue'
-import {serverStatusChartOption,bandWidthOption} from "../utils/Helper";
 import { HollowDotsSpinner } from 'epic-spinners';
 import {useDashboard} from "../composables/useDashboard";
 import {useDashboardStore} from "../composables/useStates";
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 import VServer from '../components/global/VServer.vue'
 //////////////////////////////////////////////////////////////////
-const {sidebarCollapseFlag,fetchDashboardDataFlag,usersStatusData,serverStatus}=useDashboardStore();
-const {changeServer}=useDashboard();
+const {sidebarCollapseFlag}=useDashboardStore();
+const {changeServer,serverStatus,usersStatusData,fetchDashboardDataFlag}=useDashboard();
 
 </script>
 

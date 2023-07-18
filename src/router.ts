@@ -1,5 +1,5 @@
 import {createRouter,createWebHashHistory,RouteRecordRaw,createWebHistory} from "vue-router";
-import {Auth} from './store/auth'
+import {authStore} from './store/auth'
 //// pages
 const MainIndex=()=>import(  './pages/index.vue')
 const dashboard=()=>import( './pages/dashboard.vue')
@@ -105,7 +105,6 @@ router.afterEach((to,from,next)=>{
 })
 
 router.beforeEach((to,from,next)=>{
-    const authStore=Auth();
     if(to.meta.status){
         if(to.name!=='LOGIN'){
             if(authStore.isLogin){

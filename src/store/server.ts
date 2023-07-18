@@ -1,8 +1,7 @@
 import {defineStore} from "pinia";
 import {IServer_List} from "../utils/Types";
-import {envVariable, useAuthStore,useDashboardStore} from "../composables/useStates";
+import {envVariable, useAuthStore} from "../composables/useStates";
 import { useNotification } from "@kyvg/vue3-notification";
-
 
 export const Server=defineStore('server',{
     state:()=>{
@@ -33,10 +32,11 @@ export const Server=defineStore('server',{
         }
     },
     actions:{
-        changeServerIP(status:string){
+        changeServerIP(status:string,new_ip?:string|undefined){
             const { notify }  = useNotification()
             ///////////////////////////
             if(status==='enable'){
+                this.server_ip=new_ip
                 this.freezeAppFlag=true
                 setTimeout(()=>{
                     this.freezeAppFlag=false
@@ -57,11 +57,9 @@ export const Server=defineStore('server',{
         fetchServersList(){
             const {apiBase,server_ip}=envVariable();
             const {token}=useAuthStore();
-            const {dashboardStore}=useDashboardStore()
             //////////////////////////////////////////////////
             this.fetchServerListFlag=false
-            dashboardStore.showPreloaderFlag=true
-            fetch(apiBase+'list-servers',{
+            fetch(apiBase+'server-list',{
                 headers:{
                     'Content-type':'application/json',
                     Authorization:`Bearer ${token.value}`
@@ -85,7 +83,6 @@ export const Server=defineStore('server',{
                 console.log(err)
             }).finally(()=>{
                 this.fetchServerListFlag=true
-                dashboardStore.showPreloaderFlag=false
             })
 
         }

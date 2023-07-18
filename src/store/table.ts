@@ -1,9 +1,9 @@
 import {defineStore} from "pinia";
-import {IUsers_Data, IOnline_Users_Data, INotification,IUser_Item} from "../utils/Types";
-import {envVariable, useAuthStore, useDashboardStore,useServerStore} from "../composables/useStates";
+import {IUsers_Data, IOnline_Users_Data, INotification, IUser_Item, IResponse} from "../utils/Types";
+import {envVariable, useAuthStore,useServerStore} from "../composables/useStates";
 import {dayRegex, monthRegex, yearRegex,date,currentDate,currentMonth,currentYear} from "../utils/Helper";
-
-
+import {notificationStore} from './notification'
+import {dashboardStore} from './dashboard'
 ///////////////////////////////////////////////////////
 
 export const Table=defineStore('table',{
@@ -29,26 +29,32 @@ export const Table=defineStore('table',{
     },
     actions:{
         trackExpiredUsers(usersData:IUsers_Data['rows']){
-            const {dashboardStore}=useDashboardStore()
-            dashboardStore.resetNotifications()
+            notificationStore.resetNotifications()
             ///////////////////////////////////////////
             usersData.forEach(user=>{
                 const userExYear=Number(user.exdate?.match(yearRegex)[0]) ?? null
                 const userExMonth=Number(user.exdate?.match(monthRegex)[0]) ?? null
                 const userExDay=Number(user.exdate?.match(dayRegex)[0]) ?? null
                 if(currentYear==userExYear && currentMonth==userExMonth){
-                    /// 2023=2023 7=7 9+4>15
-                    if(currentDate+4 > userExDay){
-                        dashboardStore.addNotification({
+                    if(currentDate+4 > userExDay && currentDate<userExDay){
+                        notificationStore.addNotification({
                             username:user.user,
                             msg:'Action require : user will be expired soon',
                             title:'User expiration',
                             status:'warning'
                         })
+                    }else if(currentDate>userExDay){
+                        notificationStore.addNotification({
+                            username:user.user,
+                            msg:'Action require : user expired',
+                            title:'User expiration',
+                            status:'danger'
+                        })
                     }
+
                 }else if (currentYear==userExYear && currentMonth+1==userExMonth){
                     if(currentDate>28 && (userExDay<2 || userExDay>28)){
-                        dashboardStore.addNotification({
+                        notificationStore.addNotification({
                             title:'User expiration',
                             username:user.user,
                             msg:'Action require : user will be expired soon',
@@ -57,7 +63,7 @@ export const Table=defineStore('table',{
                     }
                     //// 2023 > 2022
                 } else if(currentYear>userExYear){
-                    dashboardStore.addNotification({
+                    notificationStore.addNotification({
                         username:user.user,
                         msg:'Action require : user expired',
                         title:'User expiration',
@@ -65,29 +71,21 @@ export const Table=defineStore('table',{
                     })
                     /// 2023=2023  // 7>6 => expire
                 }else if(currentYear==userExYear && currentMonth> userExMonth){
-                    dashboardStore.addNotification({
+                    notificationStore.addNotification({
                         username:user.user,
                         msg:'Action require : user expired',
                         title:'User expiration',
                         status:'danger'
                     })
                     /// 2023=2023 7=7 20>18 => expire
-                }else if(currentYear==userExYear && currentMonth==userExMonth && currentDate>userExDay){
-                    dashboardStore.addNotification({
-                        username:user.user,
-                        msg:'Action require : user expired',
-                        title:'User expiration',
-                        status:'danger'
-                    })
                 }
+
 
            })
         },
          async getUsersList (){
             //// server store
              const {getServerIP}=useServerStore()
-             //// dashboard store for preloader
-             const {dashboardStore}=useDashboardStore()
              /// token / .env
              const {token}=useAuthStore()
              const {apiBase,server_ip}=envVariable()
@@ -95,26 +93,27 @@ export const Table=defineStore('table',{
              this.tableData={rows:[],titles:[]}
              this.fetchTableDataFlag=false
             dashboardStore.showPreloaderFlag=true
-            fetch(apiBase+`get-users?username=all&server=${getServerIP.value}`,{
+            fetch(apiBase+`user-get?username=all&server=${getServerIP.value}`,{
                 headers:{
                     'Content-type':'application/json',
                     Authorization:`Bearer ${token.value}`
                 }
             }).
             then(response=>response.json()).
-            then((response)=>{
-                if(response.detail){
-                    console.log(response.detail)
-                }else{
+            then((response:IResponse<IUsers_Data>)=>{
+                if(response.success){
                     this.tableData={
                         titles:['user info','traffic','User limitation','Contact info','Detail','status','operation'],
-                        rows:response.map((item,index)=>{
+                        rows:response.data.map((item,index)=>{
                             return {...item,uid:index+1,server:item.server || server_ip,ordered_by:item.ordered_by || 'god'}
                         })
                     };
-                    this.trackExpiredUsers(response)
+                    this.trackExpiredUsers(response.data)
                     this.fetchTableDataFlag=true
                     dashboardStore.showPreloaderFlag=false
+
+                }else{
+                    console.log(response)
                 }
             }).
             catch(err=>{
@@ -124,8 +123,6 @@ export const Table=defineStore('table',{
             });
         },
         async getOnlineUsers ()  {
-            //// dashboard store for preloader
-            const {dashboardStore}=useDashboardStore()
             //// server store
             const {getServerIP}=useServerStore()
             /// token / .env
@@ -134,7 +131,7 @@ export const Table=defineStore('table',{
             this.tableData={rows:[],titles:[]}
             this.fetchTableDataFlag=false
             dashboardStore.showPreloaderFlag=true
-            fetch(apiBase+`active-user?server=${getServerIP.value}`,{
+            fetch(apiBase+`user-active?server=${getServerIP.value}`,{
                 headers:{
                     'Content-Type':'application/json',
                     Authorization:`Bearer ${token.value}`
@@ -142,9 +139,7 @@ export const Table=defineStore('table',{
             }).
             then(response=>response.json()).
             then((response)=>{
-                if(response.detail){
-                    console.log(response.detail)
-                }else{
+                if(response.users){
                     this.tableData={
                         titles:['#','Username','IP Address','Management'],
                         rows:response.users.map((item,index)=>{
@@ -157,6 +152,8 @@ export const Table=defineStore('table',{
                     }
                     this.fetchTableDataFlag=true
                     dashboardStore.showPreloaderFlag=false
+                }else{
+                    console.log(response)
                 }
             }).
             catch(err=>{

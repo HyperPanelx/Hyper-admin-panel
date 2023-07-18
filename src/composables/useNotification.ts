@@ -1,15 +1,11 @@
 import {ref, watch} from "vue";
-import {useDashboardStore,useAuthStore,envVariable} from "./useStates";
 import {useRoute} from "vue-router";
 import {onMounted} from "vue";
 import {INotification} from "../utils/Types";
-
+import {notificationStore} from "../store/notification";
 
 export const useNotification=()=>{
     const dropdownFlag=ref<boolean>(false);
-    const {dashboardStore}=useDashboardStore();
-    const {token}=useAuthStore();
-    const {apiBase}=envVariable()
     const route=useRoute()
     watch(
         ()=>route.query,
@@ -30,7 +26,7 @@ export const useNotification=()=>{
                     link:item.link.startsWith('http') ? item.link : 'https://'+item.link
                 }
             });
-            result.forEach(item=>{dashboardStore.addNotification(item)})
+            result.forEach(item=>{notificationStore.addNotification(item)})
        }catch (err) {
            console.log(err)
        }

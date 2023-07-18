@@ -16,7 +16,8 @@
 import logoLg from '../../public/logo-lg.png'
 import {useDashboardStore} from "../../composables/useStates";
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
-const {sidebarCollapseFlag,windowWidth,dashboardStore}=useDashboardStore()
+import {dashboardStore} from "../../store/dashboard";
+const {sidebarCollapseFlag,windowWidth}=useDashboardStore()
 const closeSidebar = () => {
   dashboardStore.sidebarCollapseFlag=false
 }

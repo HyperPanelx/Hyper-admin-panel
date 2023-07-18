@@ -67,14 +67,13 @@
 
 <script setup lang="ts">
 import {useNotification} from "../../composables/useNotification";
-import {useDashboardStore} from "../../composables/useStates";
+import {useNotificationStore} from "../../composables/useStates";
 import  NavbarNotificationItem from './NotificationItem.vue'
 import VDropdown from '../global/VDropdown.vue'
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 ////////////////////////////////////////////////////////
-const {getNotificationData,dangerNotificationData,newsNotificationData,warningNotificationData}=useDashboardStore();
 const {dropdownFlag}=useNotification();
-
+const {warningNotificationData,newsNotificationData,dangerNotificationData,getNotificationData}=useNotificationStore()
 </script>
 
 <style scoped>

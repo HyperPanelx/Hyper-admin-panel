@@ -1,12 +1,12 @@
-import {useAuthStore,envVariable} from "./useStates";
+import {envVariable} from "./useStates";
 import {inject} from "vue";
 import {VueCookies} from "vue-cookies";
 import {useRouter} from "vue-router";
 import {useNotification} from "@kyvg/vue3-notification";
+import {authStore} from "../store/auth";
 
 export const useLogout=()=>{
     const { notify }  = useNotification()
-    const {authStore}=useAuthStore()
     const {cookieName}=envVariable()
     const $cookies = inject<VueCookies>('$cookies');
     const router=useRouter()
@@ -15,8 +15,8 @@ export const useLogout=()=>{
         /// remove cookie
         $cookies?.remove(cookieName as string,'/')
         /// reset store for update middleware
-        authStore.$reset()
-        router.push({name:'LOGIN'})
+        await router.push({name:'LOGIN'})
+        authStore.reset()
         notify({
             type:'warn',
             title:'Authorization',

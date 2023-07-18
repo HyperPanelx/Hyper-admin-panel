@@ -2,25 +2,25 @@ import {IUser_Data} from "../utils/Types";
 import {usernameRegex,passwordRegex,bodyEncode} from "../utils/Helper";
 import {ref, reactive,inject} from "vue";
 import {VueCookies} from "vue-cookies";
-import {envVariable,useAuthStore} from "./useStates";
+import {envVariable} from "./useStates";
 import {useRouter} from "vue-router";
 import { useNotification } from "@kyvg/vue3-notification";
+import {authStore} from "../store/auth";
 
 export const useLogin=()=>{
     const { notify }  = useNotification()
     const router=useRouter()
-    const loginRequestFlag=ref<boolean|null>(null)
+    const loginRequestFlag=ref<boolean|null>(null);
     const $cookies = inject<VueCookies>('$cookies');
-    const {authStore}=useAuthStore();
     const {apiBase,cookieName}=envVariable();
-    const errorMessage=ref<string>('')
+    const errorMessage=ref<string>('');
     const userData=reactive<IUser_Data>({
         username:'',
         password:'',
         rememberMe:false
     })
 
-    const formHandler = async () => {
+    const formHandler =  () => {
         //// validation using regex
         if(userData.password.match(passwordRegex) && userData.username.match(usernameRegex)){
             //// turn on button loader
@@ -34,10 +34,9 @@ export const useLogin=()=>{
                     "Content-Type":"application/x-www-form-urlencoded"
                 },
             }).then(response=>response.json()).then((response)=>{
-
                 if(response.detail){
                     /// if username or password is wrong
-                    authStore.$reset()
+                    authStore.reset()
                     errorMessage.value=response.detail
                 }else{
                     notify({
@@ -46,15 +45,11 @@ export const useLogin=()=>{
                         type:'success'
                     });
                     userData.rememberMe &&  $cookies?.set(cookieName as string,response.access_token);
-                    authStore.$patch({
-                        username:userData.username,
-                        isLogin:true,
-                        token:response.access_token
-                    });
+                    authStore.login(userData.username,response.access_token)
                     router.push({name:'DASHBOARD'})
                 }
             }).catch(err=>{
-                authStore.$reset()
+                authStore.reset()
                 errorMessage.value='Error in connecting to server! please try again.'
                 console.log(err)
             }).finally(()=>{

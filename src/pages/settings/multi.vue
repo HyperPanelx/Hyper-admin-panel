@@ -67,6 +67,7 @@
 </template>
 
 <script setup lang="ts">
+import {IResponse} from "../../utils/Types";
 import VBloader from '../../components/global/VBloader.vue'
 import {ref} from "vue";
 import {useAuthStore,envVariable,useServerStore} from "../../composables/useStates";
@@ -91,20 +92,14 @@ const addMultiServerHandler = (data) => {
     user:data.new_server_user,
     password:data.new_server_password
   })
-  fetch(apiBase+'add-server?'+query,{
+  fetch(apiBase+'server-add?'+query,{
     headers:{
       'Content-Type':'application/json',
       Authorization:`Bearer ${token.value}`
     },
   }).then(response=>response.json()).
-  then(response=>{
-    if(response.detail){
-      notify({
-        type:'error',
-        title:'Add multi server',
-        text:response.detail
-      })
-    }else{
+  then((response:IResponse<any> )=>{
+    if(response.success){
       notify({
         type:'success',
         title:'Add multi server',
@@ -112,6 +107,12 @@ const addMultiServerHandler = (data) => {
       })
       reset('addMultiServerForm')
       serverStore.fetchServersList()
+    }else{
+      notify({
+        type:'error',
+        title:'Add multi server',
+        text:response.message
+      })
     }
   }).catch(err=>{
     console.log(err)

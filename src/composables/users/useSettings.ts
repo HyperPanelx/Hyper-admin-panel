@@ -1,9 +1,11 @@
-import {IUsers_Data,Response} from "../../utils/Types";
+import {IResponse, IUsers_Data} from "../../utils/Types";
 import {envVariable} from "../useStates";
-import {ref,reactive} from "vue";
-import {useTableStore,useAuthStore,useDashboardStore,useServerStore} from "../useStates";
+import {ref,shallowReactive} from "vue";
+import {useTableStore,useAuthStore,useServerStore} from "../useStates";
 import { useNotification } from "@kyvg/vue3-notification";
 import {querySerialize} from "../../utils/Helper";
+import {notificationStore} from '../../store/notification'
+import {dashboardStore} from "../../store/dashboard";
 
 export const useSettings=(props:any)=>{
     const { notify }  = useNotification()
@@ -14,9 +16,8 @@ export const useSettings=(props:any)=>{
     const changePasswordForm=ref<HTMLFormElement|null>(null)
     const {tableStore}=useTableStore()
     const {token}=useAuthStore()
-    const {dashboardStore}=useDashboardStore()
     const {getServerIP}=useServerStore()
-    const operationData=reactive({
+    const operationData=shallowReactive({
         name:'',
         modal:false,
         username:'',
@@ -55,27 +56,27 @@ export const useSettings=(props:any)=>{
         dashboardStore.showPreloaderFlag=true
         tableStore.fetchTableDataFlag=false
         const query=querySerialize({username:props.user,server:getServerIP.value})
-        fetch(apiBase+'delete-user?'+query,{
+        fetch(apiBase+'user-delete?'+query,{
             headers:{
                 'Content-Type':'application/json',
                 Authorization:`Bearer ${token.value}`
             },
         }).
         then(response=>response.json()).
-        then((response)=>{
-            if(response.detail){
-                notify({
-                    type:'error',
-                    title:'Delete Operation',
-                    text:response.detail
-                })
-            }else{
+        then((response:IResponse<any>)=>{
+            if(response.success){
                 notify({
                     type:'success',
                     title:'Delete Operation',
                     text:'User deleted successfully!'
                 })
-               dashboardStore.removeNotification(props.user)
+                notificationStore.removeNotification(props.user)
+            }else{
+                notify({
+                    type:'error',
+                    title:'Delete Operation',
+                    text:response.message
+                })
             }
         }).
         catch(err=>{
@@ -97,27 +98,19 @@ export const useSettings=(props:any)=>{
         dashboardStore.showPreloaderFlag=true
         tableStore.fetchTableDataFlag=false
         const query=querySerialize({mode:'users',username:props.user,server:getServerIP.value,passwd:data.new_change_password})
-        fetch(apiBase+`change-passwd-user?`+query,{
+        fetch(apiBase+`user-change-passwd?`+query,{
             headers:{
                 'Content-Type':'application/json',
                 Authorization:`Bearer ${token.value}`
             },
         }).
         then(response=>response.json()).
-        then((response)=>{
-            if(response.detail){
-                notify({
-                    type:'error',
-                    title:'Change Password Operation',
-                    text:response.detail
-                })
-            }else{
-                notify({
-                    type:'success',
-                    title:'Change Password Operation',
-                    text:'Password Changed successfully!'
-                })
-            }
+        then((response:IResponse<any>)=>{
+            notify({
+                type:'success',
+                title:'Change Password Operation',
+                text:'Password Changed successfully!'
+            })
         }).catch(err=>{
             notify({
                 type:'error',
@@ -134,26 +127,26 @@ export const useSettings=(props:any)=>{
         dropdownFlag.value=false
         dashboardStore.showPreloaderFlag=true
         tableStore.fetchTableDataFlag=false
-        const query=querySerialize({username:props.user,server:getServerIP.value})
-        fetch(apiBase+`lock-user?`+query,{
+        const query=querySerialize({status :'lock',username:props.user,server:getServerIP.value})
+        fetch(apiBase+`user-change-status?`+query,{
             headers:{
                 'Content-Type':'application/json',
                 Authorization:`Bearer ${token.value}`
             },
         }).
         then(response=>response.json()).
-        then((response)=>{
-            if(response.detail){
-                notify({
-                    type:'error',
-                    title:'Lock User Operation',
-                    text:response.detail
-                })
-            }else{
+        then((response:IResponse<any>)=>{
+            if(response.success){
                 notify({
                     type:'success',
                     title:'Lock User Operation',
                     text:'User locked successfully!'
+                })
+            }else{
+                notify({
+                    type:'error',
+                    title:'Lock User Operation',
+                    text:response.message
                 })
             }
 
@@ -172,28 +165,27 @@ export const useSettings=(props:any)=>{
         dropdownFlag.value=false
         dashboardStore.showPreloaderFlag=true
         tableStore.fetchTableDataFlag=false
-        const query=querySerialize({username:props.user,server:getServerIP.value})
-        fetch(apiBase+`unlock-user?`+query,{
+        const query=querySerialize({status :'unlock',username:props.user,server:getServerIP.value})
+        fetch(apiBase+`user-change-status?`+query,{
             headers:{
                 'Content-Type':'application/json',
                 Authorization:`Bearer ${token.value}`
             },
         }).
         then(response=>response.json()).
-        then((response)=>{
-            if(response.detail){
-                notify({
-                    type:'error',
-                    title:'Unlock User Operation',
-                    text:response.detail
-                })
-            }else{
-                const userIndex=tableStore.tableData.rows.findIndex((item:any)=>item.uid===props.uid);
-                (tableStore.tableData as IUsers_Data).rows[userIndex].status='enable';
+        then((response:IResponse<any>)=>{
+            if(response.success){
                 notify({
                     type:'success',
                     title:'Unlock User Operation',
                     text:'User unlocked successfully!'
+                })
+
+            }else{
+                notify({
+                    type:'error',
+                    title:'Unlock User Operation',
+                    text:response.message
                 })
             }
         }).catch(err=>{
@@ -213,26 +205,26 @@ export const useSettings=(props:any)=>{
         dashboardStore.showPreloaderFlag=true
         tableStore.fetchTableDataFlag=false
         const query=querySerialize({username:props.user,exdate:formData.new_exp})
-        fetch(apiBase+`renew-user?`+query,{
+        fetch(apiBase+`user-renew?`+query,{
             headers:{
                 'Content-Type':'application/json',
                 Authorization:`Bearer ${token.value}`
             },
         }).
         then(response=>response.json()).
-        then((response)=>{
-            if(response.detail){
-                notify({
-                    type:'error',
-                    title:'Renew User Operation',
-                    text:response.detail
-                })
-            }else{
+        then((response:IResponse<any>)=>{
+            if(response.success){
                 operationData.renewUser=false
                 notify({
                     type:'success',
                     title:'Renew User Operation',
                     text:'User renewed successfully!'
+                })
+            }else{
+                notify({
+                    type:'error',
+                    title:'Renew User Operation',
+                    text:response.message
                 })
             }
         }).catch(err=>{
@@ -256,26 +248,27 @@ export const useSettings=(props:any)=>{
             username:operationData.username,
             multi:Number(data.new_multi)
         })
-        fetch(apiBase+`change-multi?`+query,{
+        fetch(apiBase+`user-change-multi?`+query,{
             headers:{
                 'Content-Type':'application/json',
                 Authorization:`Bearer ${token.value}`
             },
         }).
         then(response=>response.json()).
-        then((response)=>{
-            if(response.detail){
-                notify({
-                    type:'error',
-                    title:'Change Multi Operation',
-                    text:response.detail
-                })
-            }else{
+        then((response:IResponse<any>)=>{
+            if(response.success){
                 operationData.changeMulti=false
                 notify({
                     type:'success',
                     title:'Change Multi Operation',
                     text:'User Multi updated!'
+                })
+
+            }else{
+                notify({
+                    type:'error',
+                    title:'Change Multi Operation',
+                    text:response.message
                 })
             }
         }).catch(err=>{

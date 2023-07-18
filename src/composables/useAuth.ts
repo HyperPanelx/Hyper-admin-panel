@@ -1,9 +1,9 @@
 import {inject, onMounted} from "vue";
 import {VueCookies} from "vue-cookies";
-import {envVariable,useAuthStore} from "./useStates";
+import {envVariable} from "./useStates";
 import {useRouter} from "vue-router";
 import { useNotification } from "@kyvg/vue3-notification";
-
+import {authStore} from "../store/auth";
 
 
 export const useAuth=()=>{
@@ -13,8 +13,6 @@ export const useAuth=()=>{
     /// router
     const router=useRouter()
 
-    /// authentication store
-    const {authStore}=useAuthStore()
     const $cookies = inject<VueCookies>('$cookies');
     onMounted(async ()=>{
         ///// check if user is valid or not
@@ -30,7 +28,7 @@ export const useAuth=()=>{
             then(response=>{
                 if(response.detail){
                     //// if status 401 user is not valid
-                    authStore.$reset()
+                    authStore.reset()
                     router.push({name:'LOGIN'})
                     notify({
                         title: "Authorization failed",
@@ -45,16 +43,12 @@ export const useAuth=()=>{
                     });
                     //// store username and token
                     /// islogin is for middleware
-                    authStore.$patch({
-                        username:response.username,
-                        isLogin:true,
-                        token:token
-                    });
+                    authStore.login(response.username,token)
                     router.push({name:'DASHBOARD'})
                 }
             }).catch(err=>{
                 //// if status 401 user is not valid
-                authStore.$reset()
+                authStore.reset()
                 router.push({name:'LOGIN'})
                 notify({
                     title: "Authorization failed",
@@ -69,7 +63,7 @@ export const useAuth=()=>{
                 type:'error'
             });
             //// if there is no cookie user redirect to login  page
-            authStore.$reset()
+            authStore.reset()
             router.push({name:'LOGIN'})
         }
     })

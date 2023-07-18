@@ -4,7 +4,7 @@
       <column md="6" col="12">
 
         <FormKit
-            type="custom_text"
+            type="custom_placeholder"
             label="username"
             id="c_username"
             name="c_username"
@@ -47,12 +47,13 @@
 </template>
 
 <script setup lang="ts">
+import {IResponse} from "../../utils/Types";
 import {querySerialize,handleIconClick} from "../../utils/Helper";
 import {ref} from "vue";
 import { useNotification } from "@kyvg/vue3-notification";
 import { reset } from '@formkit/core'
 import VBloader from '../../components/global/VBloader.vue';
-import {envVariable,useAuthStore} from "../../composables/useStates";
+import {envVariable,useAuthStore,useServerStore} from "../../composables/useStates";
 import {useLogout} from "../../composables/useLogout";
 /////////////////////////////
 const emit=defineEmits<{
@@ -61,33 +62,35 @@ const emit=defineEmits<{
 const {apiBase}=envVariable()
 const { notify }  = useNotification()
 const {token,username}=useAuthStore()
+const {getServerIP}=useServerStore()
 const changePasswordForm=ref<any>(null);
 const fetchFlag=ref(false)
 const {logoutHandler}=useLogout()
 const changePasswordSubmit = (formData) => {
   fetchFlag.value=true
-  const query=querySerialize({mode:'admin',username:username.value,passwd:formData.new_password});
-
-  fetch(apiBase+'change-passwd-user?'+query,{
+  const query=querySerialize({mode:'admin',username:username.value,passwd:formData.new_password,server:getServerIP.value});
+  fetch(apiBase+'user-change-passwd?'+query,{
     headers:{
       'Content-Type':'application/json',
       Authorization:`Bearer ${token.value}`
     },
-  }).then(response=>response.json()).then((response)=>{
-    if(response.detail){
-      notify({
-        type:'error',
-        title:'Change Password',
-        text:response.detail
-      })
-    }else{
+  }).then(response=>response.json()).
+  then((response:IResponse<any>)=>{
+    if(response.success){
       notify({
         type:'success',
         title:'Change Password',
         text:'password changed successfully! you need to login again.'
       })
       reset('changePasswordForm')
+      emit('close')
       logoutHandler()
+    }else{
+      notify({
+        type:'error',
+        title:'Change Password',
+        text:response.message
+      })
     }
   }).catch(err=>{
     console.log(err)

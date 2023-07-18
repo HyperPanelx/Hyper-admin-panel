@@ -54,12 +54,8 @@ import VBreadcrumb from '../components/global/VBreadcrumb.vue'
 import {useServerStore} from "../composables/useStates";
 const {serverStore,getServerIP}=useServerStore()
 
-
 const changeServer = (host:string,status:string) => {
-  if(status==='enable'){
-    serverStore.server_ip=host
-  }
-  serverStore.changeServerIP(status)
+  serverStore.changeServerIP(status,host)
 }
 
 const goBack = () => {

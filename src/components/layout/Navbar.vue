@@ -26,9 +26,12 @@ import NavbarTheme from '../Navbar/Theme.vue'
 import NavbarUser from '../Navbar/User.vue'
 import {useDashboardStore} from "../../composables/useStates";
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
-const {windowWidth,dashboardStore,sidebarCollapseFlag}=useDashboardStore();
+import {dashboardStore} from "../../store/dashboard";
+///////////////
+const {windowWidth,sidebarCollapseFlag}=useDashboardStore();
 const fullScreenFlag=ref<boolean>(false)
 const openDropdownFlag=ref<boolean>(false)
+///////////////
 const collapseSidebar = () => {
   dashboardStore.sidebarCollapseFlag=!dashboardStore.sidebarCollapseFlag
 }

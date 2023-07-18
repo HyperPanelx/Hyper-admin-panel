@@ -1,5 +1,6 @@
 import {reactive} from "vue";
 import {envVariable,useAuthStore} from "./useStates";
+import {IResponse} from "../utils/Types";
 
 export const useSearch=(props:{modelValue:any},emit:any)=>{
     const searchData=reactive({
@@ -15,18 +16,18 @@ export const useSearch=(props:{modelValue:any},emit:any)=>{
         searchData.searchResultFlag=false
         searchData.searchResult=[]
         if(searchData.searchContent.length>0){
-            fetch(apiBase+`search-user?username=${searchData.searchContent}`,{
+            fetch(apiBase+`user-search?username=${searchData.searchContent}`,{
                 headers:{
                     'Content-Type':'application/json',
                     Authorization:`Bearer ${token.value}`
                 },
             }).then(response=>response.json()).
-            then((response)=>{
-                if(response.detail){
-                    console.log(response.detail)
-                }else{
+            then((response:IResponse<string[]>)=>{
+                if(response.success){
                     searchData.searchResultFlag=true
-                    searchData.searchResult=response
+                    searchData.searchResult=response.data
+                }else{
+                    console.log(response)
                 }
             })
         }

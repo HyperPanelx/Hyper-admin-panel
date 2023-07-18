@@ -1,8 +1,10 @@
 import {IUsers_Data} from "../utils/Types";
-import {useTableStore,envVariable,useAuthStore,useDashboardStore,useServerStore} from "./useStates";
+import {useTableStore,envVariable,useAuthStore,useServerStore,useNotificationStore} from "./useStates";
 import {reactive,watch} from "vue";
 import { useNotification } from "@kyvg/vue3-notification";
 import {useRouter,useRoute} from "vue-router";
+import {notificationStore} from '../store/notification'
+import {dashboardStore} from '../store/dashboard'
 
 export const usePagination=()=>{
     const router=useRouter()
@@ -12,7 +14,7 @@ export const usePagination=()=>{
     const {apiBase}=envVariable()
     const {token}=useAuthStore()
     const {getServerIP}=useServerStore()
-    const {dashboardStore,dangerNotificationData,warningNotificationData}=useDashboardStore()
+    const {dangerNotificationData,warningNotificationData}=useNotificationStore()
     const modalData=reactive({
         on:false,
         name:''
@@ -134,6 +136,7 @@ export const usePagination=()=>{
         tableStore.searchText=''
         tableStore.paginationData.itemPerPage=5
         paginationUpdate()
+        goToCurrentButton(1)
         changePage(1)
         tableStore.paginationData.searchResultFlag=false
         router.replace({query:null})
@@ -164,7 +167,7 @@ export const usePagination=()=>{
     const deleteSelectedUsers = async () => {
         tableStore.fetchTableDataFlag=false
         dashboardStore.showPreloaderFlag=true
-        fetch(apiBase+`del-kill-users?mode=del&server=${getServerIP.value}`,{
+        fetch(apiBase+`user-del-kill?mode=del&server=${getServerIP.value}`,{
             method:'POST',
             headers:{
                 'Content-Type':'application/json',
@@ -181,7 +184,7 @@ export const usePagination=()=>{
                     text:response.detail
                 })
             }else{
-                dashboardStore.removeNotification(tableStore.selectedUserToDelete)
+                notificationStore.removeNotification(tableStore.selectedUserToDelete)
                 tableStore.selectedUserToDelete=[]
                 notify({
                     type:'success',
@@ -208,7 +211,7 @@ export const usePagination=()=>{
     const killSelectedUsers =async () => {
         tableStore.fetchTableDataFlag=false
         dashboardStore.showPreloaderFlag=true
-        fetch(apiBase+`del-kill-users?mode=kill&server=${getServerIP.value}`,{
+        fetch(apiBase+`user-del-kill?mode=kill&server=${getServerIP.value}`,{
             method:'POST',
             headers:{
                 'Content-Type':'application/json',

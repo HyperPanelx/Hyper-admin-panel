@@ -1,13 +1,15 @@
 <template>
   <DefaultLayout>
-    <VPreloader :on="showPreloaderFlag" :freeze="serverStore.freezeAppFlag" />
+    <VPreloader :on="showPreloaderFlag" :freeze="freezeAppFlag" />
     <FAB
         :items="settingTabItems"
         fab-icon="fa-solid fa-gear"
     />
     <VModal :fade-outside="true" @close="closeModal" class="!p-0 !h-auto" v-model="modalFlag">
-      <p class="capitalize px-1.5 text-1.1 mt-1 mb-0.5 text-primary-dark-1">{{String(route.query.section).split('-').join(' ')}}</p>
-      <component @close="closeModal" :is="selected_component"/>
+      <div class="modal-body !px-0 !pb-0">
+        <p class="capitalize px-1.5 text-1.1 dark:text-secondary-light-1 mt-1 mb-0.5 text-primary-dark-1">{{String(route.query.section).split('-').join(' ')}}</p>
+        <component @close="closeModal" :is="selected_component"/>
+      </div>
     </VModal>
     <router-view></router-view>
   </DefaultLayout>
@@ -37,8 +39,8 @@ import {onMounted,watch,ref} from "vue";
 ////////
 const route=useRoute();
 const router=useRouter();
-const {showPreloaderFlag,dashboardStore}=useDashboardStore();
-const {serverStore}=useServerStore();
+const {showPreloaderFlag}=useDashboardStore();
+const {freezeAppFlag}=useServerStore();
 const modalFlag=ref(false)
 let selected_component=null
 const closeModal = () => {
@@ -56,10 +58,7 @@ watch(
       }
     }
 )
-onMounted(()=>{
-  //// fetching servers list on app start
-  serverStore.fetchServersList()
-});
+
 useRouteLoader();
 
 

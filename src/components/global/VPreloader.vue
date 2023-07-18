@@ -1,13 +1,13 @@
 <template>
   <template v-if="freeze">
     <teleport to="body">
-      <section v-if="freeze" class="page-preloader flex flex-col !h-full !z-[9999] !bg-secondary-light-1/40 !fixed">
+      <section v-if="freeze" class="page-preloader !z-[99999] dark:!bg-primary-dark-1 flex flex-col !h-full !bg-primary-light-1 !fixed">
         <half-circle-spinner
             :animation-duration="1300"
-            :size="130"
+            :size="160"
             color="#727cf5"
         />
-        <p class="text-center mt-2 text-gray-700 dark:text-primary-dark-3">Switching to {{getServerIP}} server. please wait...</p>
+        <p class="text-center text-1.2 mt-2 text-gray-700 dark:text-secondary-light-1">Switching on {{getServerIP}} server. please wait...</p>
       </section>
     </teleport>
   </template>

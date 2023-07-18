@@ -1,10 +1,17 @@
-import {useDashboardStore} from "./useStates";
 import {useRouter} from "vue-router";
-
+import {dashboardStore} from '../store/dashboard'
+import {onMounted} from "vue";
+import {useServerStore} from "./useStates";
 
 export const useRouteLoader=()=>{
-    const {dashboardStore}=useDashboardStore();
     const router=useRouter()
+    const {serverStore}=useServerStore();
+
+    onMounted(()=>{
+        //// fetching servers list on app start
+        serverStore.fetchServersList()
+    });
+
     router.beforeEach((to,from)=>{
        if (!to.query.page  || !from.query.page) {
            dashboardStore.showPreloaderFlag = true

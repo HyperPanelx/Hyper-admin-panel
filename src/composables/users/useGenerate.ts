@@ -4,6 +4,7 @@ import {useAuthStore,envVariable,useServerStore} from "../useStates";
 import { useNotification } from "@kyvg/vue3-notification";
 import {downloadTextFile} from "../../utils/Helper";
 import {querySerialize} from "../../utils/Helper";
+import {IResponse} from "../../utils/Types";
 
 export const useGenerate=()=>{
     const { notify }  = useNotification()
@@ -52,25 +53,25 @@ export const useGenerate=()=>{
             },
         }).
         then(response=>response.json()).
-        then((response)=>{
-            if(response?.detail){
-                /// if error in sending data
-                generateUsersData.msg=response.detail
-                notify({
-                    type:'error',
-                    title:'Generating User',
-                    text:response.detail
-                })
-            }else{
+        then((response:IResponse<any>)=>{
+            if(response.success){
                 notify({
                     type:'success',
                     title:'Generating User',
                     text:'User(s) generated successfully! you are able to download a json file.'
                 })
                 generateUsersData.isDownloadAvailable=true
-                generateUsersData.data=response
+                generateUsersData.data=response.data
                 generateUsersData.modalFlag=formData.g_count < 5
                 reset('generateUserForm')
+            }else{
+                /// if error in sending data
+                generateUsersData.msg=response.message
+                notify({
+                    type:'error',
+                    title:'Generating User',
+                    text:response.message
+                })
             }
         }).catch(err=>{
             console.log(err)
