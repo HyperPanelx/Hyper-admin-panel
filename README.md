@@ -3,7 +3,7 @@
 
 ## Tech
 
-<a href='https://vuejs.org/' target="_blank"><img alt='vuedotjs' src='https://img.shields.io/badge/Vue_js V3.3.4-100000?style=flat&logo=vuedotjs&logoColor=4FC08D&labelColor=333333&color=333333'/></a>   <a href='https://router.vuejs.org/' target="_blank"><img alt='vuedotjs' src='https://img.shields.io/badge/Vue_router V4.2.1-100000?style=flat&logo=vuedotjs&logoColor=4FC08D&labelColor=333333&color=333333'/></a>    <a href='https://pinia.vuejs.org/' target="_blank"><img alt='vuedotjs' src='https://img.shields.io/badge/Pinia_V2.1.3-100000?style=flat&logo=vuedotjs&logoColor=4FC08D&labelColor=333333&color=333333'/></a> <a href='https://tailwindcss.com/' target="_blank"><img alt='tailwindcss' src='https://img.shields.io/badge/Tailwindcss_V3.2.6-100000?style=flat&logo=tailwindcss&logoColor=06B6D4&labelColor=333333&color=333333'/></a> <a href='https://apexcharts.com' target="_blank"><img alt='chartdotjs' src='https://img.shields.io/badge/Apexchart_V3.40-100000?style=flat&logo=chartdotjs&logoColor=FF6384&labelColor=333333&color=333333'/></a> <a href='https://fontawesome.com/' target="_blank"><img alt='fontawesome' src='https://img.shields.io/badge/Fontawesome_V6.4-100000?style=flat&logo=fontawesome&logoColor=528DD7&labelColor=333333&color=333333'/></a> <a href='https://www.typescriptlang.org/' target="_blank"><img alt='typescript' src='https://img.shields.io/badge/Typescript_V4.9.5-100000?style=flat&logo=typescript&logoColor=3178C6&labelColor=333333&color=333333'/></a>  <a href='https://webpack.js.org/' target="_blank"><img alt='webpack' src='https://img.shields.io/badge/Webpack_V5.75.0-100000?style=flat&logo=webpack&logoColor=8DD6F9&labelColor=333333&color=333333'/></a> <a href='https://formkit.com/' target="_blank"><img alt='reacthookform' src='https://img.shields.io/badge/Formkit_V0.17.2-100000?style=flat&logo=reacthookform&logoColor=EC5990&labelColor=333333&color=333333'/></a>
+<a href='https://vuejs.org/' target="_blank"><img alt='vuedotjs' src='https://img.shields.io/badge/Vue_js V3.3.4-100000?style=flat&logo=vuedotjs&logoColor=4FC08D&labelColor=333333&color=333333'/></a>   <a href='https://router.vuejs.org/' target="_blank"><img alt='vuedotjs' src='https://img.shields.io/badge/Vue_router V4.2.1-100000?style=flat&logo=vuedotjs&logoColor=4FC08D&labelColor=333333&color=333333'/></a> <a href='https://tailwindcss.com/' target="_blank"><img alt='tailwindcss' src='https://img.shields.io/badge/Tailwindcss_V3.2.6-100000?style=flat&logo=tailwindcss&logoColor=06B6D4&labelColor=333333&color=333333'/></a> <a href='https://www.typescriptlang.org/' target="_blank"><img alt='typescript' src='https://img.shields.io/badge/Typescript_V4.9.5-100000?style=flat&logo=typescript&logoColor=3178C6&labelColor=333333&color=333333'/></a>  <a href='https://webpack.js.org/' target="_blank"><img alt='webpack' src='https://img.shields.io/badge/Webpack_V5.75.0-100000?style=flat&logo=webpack&logoColor=8DD6F9&labelColor=333333&color=333333'/></a>
 
 ## Preview
 
@@ -24,10 +24,6 @@
 #### 4- Servers
 ##### in this page you can see the available servers which you are able to switch between them.
 <img alt="page 4" src="./src/public/github/p4.png">
-
-#### 5- Settings
-##### as you can see there are plenty of options for admins to control admin panel.
-<img alt="page 4" src="./src/public/github/p5.png">
 
 ## Project structure
 
